@@ -1,0 +1,338 @@
+
+    "=====================================================
+""  GitGutter
+"=====================================================
+" Use fontawesome icons as signs
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
+
+let g:gitgutter_override_sign_column_highlight = 1
+highlight SignColumn guibg=bg
+
+" highlight SignColumn ctermbg=bg
+"
+" Update sign column every quarter second
+set updatetime=250  "Это есть и в другом файле (бэйсик что-ли) и может заторможить вим.
+
+"=====================================================
+"" Jedi-vim
+"=====================================================
+" <leader>r comflict! Я использую вызов :Files для папка с VIMRC
+" Deactivate it here.
+let g:jedi#rename_command="<Nop>"   " Она и так у меня не работала. Моргала и всё
+
+
+
+
+"=====================================================
+"" Gundo
+"=====================================================
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
+
+"=====================================================
+"" fzf
+"=====================================================
+" Вот с этой строчкой не работает поиск файлов!!!
+" let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+
+"=====================================================
+"" snippets
+"=====================================================
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-s>"
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+"
+
+
+"=====================================================
+""YouCompleteMe
+"=====================================================
+"special option, turned off YCM diagnostic display features. In feavour to Syntastic to
+"work
+"If you're using YCM's identifier completer in C-family languages but cannot use the clang-based
+"semantic completer for those languages and want to use the GCC Syntastic checkers, unset this option.
+
+let g:ycm_show_diagnostics_ui = 0
+
+
+" set completeopt-=preview "не показывать окно preview с документацией.
+let g:ycm_autoclose_preview_window_after_completion=1
+
+let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf=-1
+
+" nmap <leader>g :YcmCompleter GoTo<CR>   "Это делает и джеди
+" nmap <leader>d :YcmCompleter GoToDefinition<CR> "Это глючит как и у джеди
+
+let g:ycm_server_python_interpreter='python' "Это ничего не поменяло
+let g:ycm_key_list_select_completion = ['<Down>']
+
+" let g:ycm_semantic_triggers = {
+   " \   'css': [ 're!^\s{4}', 're!:\s+' ],
+   " \ }
+   "w/o whis css completion isn't working
+let g:ycm_semantic_triggers = {
+    \   'css': [ 're!^', 're!^\s+', ': ' ],
+    \   'scss': [ 're!^', 're!^\s+', ': ' ],
+    \ }
+"=====================================================
+"" NERDTree settings
+"=====================================================
+let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$', 'tags']     " Ignore files in NERDTree
+let NERDTreeWinSize=35
+
+let NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+"let g:NERDTreeDirArrowExpandable = '?'  "windows can't show int"
+"let g:NERDTreeDirArrowCollapsible = '?'  "windows can't show int"
+let g:NERDSpaceDelims = 1
+let NERDTreeShowHidden=0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"=====================================================
+""                 Toggle bar's and fullscreen
+"=====================================================
+"Toggle munu-bar, status-bar,right scroll line (Windows only)
+nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
+
+"=====================================================
+"                 TagBar settings
+"=====================================================
+let g:tagbar_autofocus=0
+let g:tagbar_width=42
+"autocmd BufEnter *.py :call tagbar#autoopen(0)
+"autocmd FileType * nested :call tagbar#autoopen(0)
+
+"let g:tagbar_map_close = '<C-m>'   "hidious bag - tag bar closing by <CR>
+" let g:tagbar_iconchars = ['+', '-'] only on win32 there uggy fonts
+"only for specific filetypes
+autocmd FileType python nested :TagbarOpen
+
+"let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
+"На линуксе теги сами обновляются с этими настройками - я проверял. Ничего
+"самому запускать не надо
+"
+"----------------------------------------------------------------------
+"                       vimwiki integration
+
+let g:tagbar_type_vimwiki = {
+          \   'ctagstype':'vimwiki'
+          \ , 'kinds':['h:header']
+          \ , 'sro':'&&&'
+          \ , 'kind2scope':{'h':'header'}
+          \ , 'sort':0
+          \ , 'ctagsbin':'~/.vim_runtime/vimrcs/vwtags.py'
+          \ , 'ctagsargs': 'default'
+          \ }
+
+"---------------------IndentLines-------------------
+"         Возможно это требуется для WINDOWS. В линуксах всё это давало мне
+"         оражневый фон под чёрточками
+" Vim
+" let g:indentLine_color_term = 239
+
+" GVim
+" let g:indentLine_color_gui = '#484b4c'
+
+" Background (Vim, GVim)
+" let g:indentLine_bgcolor_term = 202
+" let g:indentLine_char = '¦'     " ¦, ┆, │, ▏
+
+" let g:indentLine_setColors = 0 - show grayish highlights
+
+"=====================================================
+"         === Syntastic ===
+"=====================================================
+"SyntasticInfo - list of avalible linters
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_c_checkers = ["make"]
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
+" YouCompleteMe не даёт ему работать make линтеру с "c" языком. Не знаю как исправить
+let g:syntastic_mode_map = {
+    \ "mode": "passive",
+    \ "active_filetypes": ["c","h"],  
+    \ "passive_filetypes": ["sh"] } "Задолбал этот синтаситик. Пока не научился им ползоваться.
+"в active можно добавить sh - будет его проверять
+"и наоборот. Можно поствить его в пассиве - но это мало чего изменит
+"SyntasticCheck - команда возбуждает линтер даже в пассивном состоянии
+"ALE не может проверять SH (по карйней мере пришлось поставить shellcheck чтобы он начал,
+"а синтастик и так мог. Штатным средвством sh)."
+
+"Keep sign column always open(vim's thing, not syntastic)
+set signcolumn=yes
+"=====================================================
+"         === w0rp/ale settings (linter)===
+"=====================================================
+" apt-get install shellcheck   - только так, если хочеть ALE вместо древнего синтастика
+" ALEInfo - list of configs and enabled linters"
+" PROBABLY FONT can't handle it out
+let g:ale_sign_error = '⨉'
+let g:ale_sign_warning = '⚠'
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
+"
+"between error navigation
+nmap <silent> <M-A> <Plug>(ale_previous_wrap)
+nmap <silent> <M-a> <Plug>(ale_next_wrap)
+
+"show errors or warnings in my statusline
+let g:airline#extensions#ale#enabled = 1
+
+"Show 5 lines of errors (default: 10)
+let g:ale_list_window_size = 5
+" let g:ale_sign_column_always = 1   "Не закрывать лоток задрало мелькать "
+":help g:ale_echo_msg_format
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" let g:ale_open_list = 1
+" Set this if you want to.
+" This can be useful if you are combining ALE with
+" some other plugin which sets quickfix errors, etc.
+let g:ale_keep_list_window_open = 0
+
+" Check Python files with flake8 and pylint.
+" let b:ale_linters = ['flake8', 'pylint']
+" :ALEFix  - to run fixer
+" Fix Python files with autopep8 and yapf.
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black', 'yapf', 'autopep8'],
+\}
+" Disable warnings about trailing whitespace for Python files.
+let b:ale_warn_about_trailing_whitespace = 0
+
+"not continuously. Only after file saving.
+" let g:ale_lint_on_text_changed = 'never'
+
+"don't run after opening the file
+" let g:ale_lint_on_enter = 0
+"
+"Проблемы с gcc - не линтеры не понимают, что avr папка на отшибе в gcc"
+"об этом знает тлько мэйк (gcc and avrgcc косячат)
+  " let g:ale_linters = {'c': ['make']}
+  " let g:ale_linters = {'c': ['clangtidy']}
+  "cpp - ale так видит h - заголовочники в AVR проектах
+let g:ale_linters = {'c': [], 'cpp' : []}  " disable ale for c language
+" let g:ale_sign_column_always = 1  "keep sign column on (prevent flickering which I
+" hate.Don't set it on - vim has signcolumn=yes
+"
+"
+" Autocopletion for ALE especially for JS. (I'm testing it)
+let g:ale_completion_enabled = 1
+"=====================================================
+"      === easytag settings (autogenerate tag's ))===
+"=====================================================
+"// istead of ~/.vimtags
+let g:easytags_file = './tags'
+
+"// no tag highlight
+let g:easytags_auto_highlight = 0
+
+"// (:help autocmd-events),events being watched by easytags
+let g:easytags_events = ['BufWritePost']
+
+"// do not block vim during tag-file updating
+let g:easytags_async = 1
+" <C-]> Jump to tag
+
+" ctags -R *  Run in in bash in target folder, don't work instead
+"
+"
+"
+    "=====================================================
+"" AirLine settings
+"=====================================================
+" let g:airline_theme='base16'
+" let g:airline_theme='badwolf'
+":AirlineTheme
+if has('gui_running')
+    " let g:airline_theme='solarized' "subdued
+    " let g:airline_theme='dark_minimal' "yellow
+    " let g:airline_theme='night_owl' "nice pastelle
+     " let g:airline_theme='ouo' "nice colorfull blue-green
+    let g:airline_theme='badcat' "supernice contrast black-gray
+    ""let g:airline_theme='raven' "grayish supernice
+    "simple - very good too"
+else
+    " let g:airline_theme='angr'
+    let g:airline_theme='raven' "grayish supernice
+endif
+
+let g:airline_powerline_fonts = 1
+
+
+
+        " " Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" " Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_min_count = 0
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+" "like powerline - issues!!
+" let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
+
+" let g:airline_section_warning = ''
+" let g:airline_section_error = ''
+" let g:airline#extensions#fugitiveline#enabled = 1
+
+
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#ycm#error_symbol = 'E:'
+let g:airline#extensions#ycm#warning_symbol = 'W:'
+
+let g:airline#extensions#ale#enabled = 1
+let airline#extensions#ale#error_symbol = 'E:'
+let airline#extensions#ale#warning_symbol = 'W:'
+let airline#extensions#ale#show_line_numbers = 1
+
+let g:airline#extensions#keymap#enabled = 0
+
+
+"=====================================================
+"                  --=====  LeaderF  =====--
+"=====================================================
+" Define prefix dictionary
+let g:lmap =  {}
+
+" Second level dictionaries:
+let g:lmap.f = { 'name' : 'File Menu' }
+let g:lmap.o = { 'name' : 'Open Stuff' }
+
+
+
+
+
