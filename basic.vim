@@ -264,19 +264,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 
 
-" Delete trailing white space on save, useful for some filetypes ;)
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-endif
-
 
 " Execution permissions by default to shebang (#!) files {{{
 " Work's only on creation through :e and at first time saving having shabang 
@@ -300,13 +287,3 @@ augroup END
 
 " }}}
 "
-" highlight 'long' lines (>= 80 symbols) in python files
-augroup vimrc_autocmds
-    autocmd!
-    autocmd FileType python,rst,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
-    " autocmd FileType python,rst,c,cpp match Excess /\%81v.*/
-    "match Error /\%81v.\+/  "Бескопромисное решение"
-    ""set colorcolumn+80     "Серенькая полосочка
-    autocmd FileType python,rst,c,cpp set nowrap
-
-augroup END

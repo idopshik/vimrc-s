@@ -22,13 +22,12 @@ mkdir ~/.vim/swapfiles > /dev/null 2>&1
 mkdir ~/.vim/undodir > /dev/null 2>&1
 echo "directories for swap and backup created"
 
-"Это уже не нужно. Измени в .basic.vim ru.vim на jcuken-ru.vim.
-"Гораздо удобнее  keymap вообще не показывать, чем делать его короче.
+Это АРХИважно. Потому что в штатном jecuken точка и запятая на цифрах. Я так не привык!
 echo "----------------------------"
-echo "     jecuken=>ru rename.    "
+echo "     ru.vim    "
 echo "----------------------------"
-cd /usr/share/vim/vim82/keymap || exit
-sudo mv russian-jcuken.vim ru.vim
+
+sudo cp /home/st/Dropbox/Linux_or_Vim_related/vim_savings/put_it_it_keymap_folder/ru.vim /usr/share/vim/vim82/keymap
 
 echo "----------------------------"
 echo ".vimrc for Linux"
@@ -49,16 +48,6 @@ echo "*** Vim-plug installed"
 echo
 
 
-# установка LiveDown
-# livedown=$(npm -g ls | grep livedown | wc -l)
-# if [ $livedown != "1"  ]
-# then
-# 	npm install -g livedown
-# fi
-# echo "*** LiveDown installed"
-# echo
-
-
 # словарь проверки орфографии - (только RU UTF-8)
 mkdir ~/.vim/spell
 cd ~/.vim/spell/ || exit
@@ -68,8 +57,6 @@ cd ~/    || exit
 echo
 echo "*** Dictionary installed"
 echo
-
-
 
 
 echo "----------------------------"

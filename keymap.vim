@@ -1,12 +1,33 @@
+" Sample open-file mapping
+nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
+
 "=====================================================
 "" KEY mapping
 "=====================================================
-"<Plug> - Вот через это фуфло GitGutter так и не работили команды.
+"line move related mappings
+"The timeout settings are used to work around the ambiguity with escape sequences. Esc
+"and j sent within 50ms will be mapped to <A-j>, greater than 50ms will count as separate "keys.
+"all this replaced  Plug 'matze/vim-move'
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+set timeout ttimeoutlen=50   " can ponentially cause problems. Blame this first!
+nnoremap <silent><A-j> :m .+1<CR>==
+nnoremap <silent><A-k> :m .-2<CR>==
+inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent><A-j> :m '>+1<CR>gv=gv
+vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
-nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
-"
+
+"<Plug> - Вот через это фуфло GitGutter так и не работли команды.
+
 "change keymap file (winh a trick to override plugin's mapping)
 autocmd VimEnter * map! <C-k> <C-^>
+
 " vimwiki
 map <leader>wp <Plug>VimwikiDiaryPrevDay
 map <leader>wn <Plug>VimwikiDiaryNextDay
@@ -59,12 +80,8 @@ let g:UltiSnipsExpandTrigger = '<Leader>s' "Select snippet in drop out menu Youc
 "Windows-прикол какой-то? На Linux ./ и куча пробелов
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-map <C-_> NerdCommentToggle "doesn't work in linux
-
 "Reload vimrc w/o restarting VIM
 nnoremap <leader>ee :so $MYVIMRC<CR>
-
-" nnoremap <leader>rr :tabe ~/.vim_runtime/vimrcs/base.vim <CR>:tabm 0<CR>  "Open VIMRC in new tab
 
 " map <F3> <Esc>:w<CR>:!C:\Progs\anaconda\Scripts\pylint.exe %<CR>
 
@@ -73,8 +90,6 @@ autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox 
 " autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python %<CR>
 " autocmd FileType html nnoremap <F6> :exe ':silent !firefox %'<CR>
 
-"Имею проблемы с автокомандой по типу файла. При смене вкладок перестаёт опредяться html.
-"и вызывается node! так что leader-bb для html
 autocmd FileType python nnoremap <buffer> <F6> :exec '!python' shellescape(@%, 1)<cr>
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :!clear; node %<CR>
@@ -82,31 +97,30 @@ autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR>:! clear; node %<
 nnoremap <silent> <leader>bb :silent update<Bar>silent !firefox %:p &<CR>
 
 autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
-"не могу понять, по автокоманде перестаёт работать чере звермя.
-"Пробую напрямую
-map <F4> <Esc>:w<CR>:! ./%<CR>
 
 
-" Open VIMRC in new tab
 " When pressing <leader>cd switch to the directory of the open buffer Не надо, это
 " автоматом где-то настроено.
 map <Leader>cd :lcd %:p:h<CR>:pwd<CR>
 
-
 "%% ic Command-line mode to refer to the directory of the current file, regardledd of pwd.
+"
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-map <C-c> <plug>NERDCommenterToggle
-
 nnoremap <leader>nn :NERDTreeFind<CR>
-map <C-n> :NERDTreeToggle<CR>
 
+nmap <F3> <Plug>(ale_fix)
+
+map <F4> <Esc>:w<CR>:! ./%<CR>
+
+nnoremap <F7> :GundoToggle<CR>
 
 map <F8> :TagbarToggle<CR>
 
+map <C-_> NerdCommentToggle "doesn't work in linux
+map <C-c> <plug>NERDCommenterToggle
 
-
-
+map <C-n> :NERDTreeToggle<CR>
 
 function! WhichTab(filename)
     " Try to determine whether file is open in any tab.
@@ -172,12 +186,8 @@ endfunc
 
 "Откроем мой файл с тем, что надо поучить!"
 noremap <silent><Leader>k :call Window_close()<cr>
-
 noremap <silent><Leader>m :call quickmenu#toggle(0)<cr><cr>
 
-nnoremap <F7> :GundoToggle<CR>
-
-nmap <F3> <Plug>(ale_fix)
 
 " map <alt+n> to navigate through tabs
 for c in range(1, 9)
@@ -199,23 +209,17 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 "
+"
 "=====================================================
-""          Toggle bar's and fullscreen Windows only
+"      Toggle bar's and fullscreen Windows only
 "=====================================================
-
 "Toggle munu-bar, status-bar,right scroll line
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 
 "=====================================================
-"" GitGutter
-"=====================================================
-"Здесь были маппинги из какого-то левого сайтаю
-"Час на это ушатал. Но штатыне маппинги даже лучше!
-
-"=====================================================
-"" VimWiki
+"       VimWiki
 "=====================================================
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 :autocmd FileType vimwiki map <Leader>d :VimwikiMakeDiaryNote<CR>
@@ -233,8 +237,5 @@ function! ToggleCalendar()
   end
 endfunction
 
-"Проблема. когда буфер вики в фоне - нельзя даже c (change) сделать!"
+"Решение проблемы - когда буфер вики в фоне - нельзя даже c (change) сделать!"
 :autocmd FileType vimwiki map <leader>c :call ToggleCalendar()<CR>
-
-
-"command override

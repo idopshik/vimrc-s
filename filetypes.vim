@@ -1,30 +1,26 @@
 au BufRead,BufNewFile *.R set filetype=r
 au BufRead,BufNewFile *.r set filetype=r
 
-
 "=====================================================
 "" Python settings
 "=====================================================
-
-
 
 " highlight 'long' lines (>= 80 symbols) in python files
 augroup vimrc_autocmds
     autocmd!
     autocmd FileType python,rst,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType python,rst,c,cpp match Excess /\%81v.*/
-    autocmd FileType python,rst,c,cpp set nowrap
+    " autocmd FileType python,rst,c,cpp match Excess /\%81v.*/
+    "match Error /\%81v.\+/  "Бескопромисное решение"
+    ""set colorcolumn+80     "Серенькая полосочка
    "I dont like ruler.
-   " autocmd FileType python,rst,c,cpp set colorcolumn=80
+    autocmd FileType python,rst,c,cpp set nowrap
 
 augroup END
-
   " Select flake8 and pylint, and ignore pylint, so only flake8 is run.
   " let g:ale_linters = {'python': [ 'pylint']} just doesn' work out at all!
 
-
 " Jedy
-    let g:jedi#completions_command = "<C-N>" "omnicompletion to <C-N> instead of <Ctrl-Space>
+let g:jedi#completions_command = "<C-N>" "omnicompletion to <C-N> instead of <Ctrl-Space>
 "uncomment in order to not let jedi show docstrings
 "autocmd FileType python set completeopt-=preview
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4

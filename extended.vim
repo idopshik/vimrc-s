@@ -35,8 +35,6 @@ Plug 'skywind3000/quickmenu.vim'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'matze/vim-move'                    "alt + h/j/k/l text move
-                                        "(doesn't in some termimals. Work in gvim)
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 ":h fzf-vim
