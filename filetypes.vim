@@ -2,7 +2,7 @@ au BufRead,BufNewFile *.R set filetype=r
 au BufRead,BufNewFile *.r set filetype=r
 
 "=====================================================
-"" Python settings
+"#   => Python settings
 "=====================================================
 
 " highlight 'long' lines (>= 80 symbols) in python files
@@ -48,11 +48,19 @@ au FileType python set cindent
 au FileType python set cinkeys-=0#
 au FileType python set indentkeys-=0#
 
+function! s:GetVisualSelection()
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][:col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
 "autocmd for Visual mode
 autocmd FileType python vnoremap <buffer> <F9> :<C-U>exec '!clear;  python' shellescape(<SID>GetVisualSelection(), 1)<CR>
 
 """"""""""""""""""""""""""""""
-" => JavaScript section
+"#   => JavaScript section
 """""""""""""""""""""""""""""""
 let javascript_enable_domhtmlcss=1
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -81,7 +89,7 @@ endfunction
 
 
 """"""""""""""""""""""""""""""
-" => CoffeeScript section
+"#   => CoffeeScript section
 """""""""""""""""""""""""""""""
 function! CoffeeScriptFold()
     setl foldmethod=indent
@@ -93,7 +101,7 @@ au FileType gitcommit call setpos('.', [0, 1, 1, 0])
 
 
 """"""""""""""""""""""""""""""
-" => Shell section
+"#   => Shell section
 """"""""""""""""""""""""""""""
 if exists('$TMUX')
     if has('nvim')
@@ -105,12 +113,11 @@ endif
 
 
 """"""""""""""""""""""""""""""
-" => Twig section
+"   => Twig section
 """"""""""""""""""""""""""""""
-" autocmd BufRead *.twig set syntax=html filetype=html
+autocmd BufRead *.twig set syntax=html filetype=html
 
-
-
+"#   => Other filetype related autocommand (венегрет целый)
 " --- HTML ---
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
@@ -131,7 +138,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 "
-" Delete trailing white space on save, useful for some filetypes ;)
+"#  Delete trailing whitespace on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
@@ -139,24 +146,15 @@ fun! CleanExtraSpaces()
     call setpos('.', save_cursor)
     call setreg('/', old_query)
 endfun
-
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+    autocmd BufWritePre *.txt,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
 
-"prettier - for javascript
+" prettier - for javascript
 "run prettier before saving
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
 
 
-function! s:GetVisualSelection()
-  let [lnum1, col1] = getpos("'<")[1:2]
-  let [lnum2, col2] = getpos("'>")[1:2]
-  let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][:col2 - (&selection == 'inclusive' ? 1 : 2)]
-  let lines[0] = lines[0][col1 - 1:]
-  return join(lines, "\n")
-endfunction
 

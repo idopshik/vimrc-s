@@ -13,7 +13,7 @@ let g:quickmenu_options = "LH"
 call g:quickmenu#reset()
 
 
-" section 1, text starting with "#" represents a section (see the screen capture below)
+"# section 1, text starting with "#" represents a section (see the screen capture below)
 call g:quickmenu#append('#File Encoding', '')
 
 call g:quickmenu#append('windows-1251', 'e ++enc=cp1251 ++ff=dos', 'set Windows-1251')
@@ -22,7 +22,7 @@ call g:quickmenu#append('koi8-r', "e ++enc=koi8-r", 'set koi8-r encoding')
 call g:quickmenu#append('Save as utf-8', 'w ++enc=utf8', ':w ++enc=utf8')
 call g:quickmenu#append('cp866', 'e ++enc=cp866 ++ff=dos', 'set cp866')
 
-" section 2
+"# section 2
 call g:quickmenu#append('# Misc', '')
 
 
@@ -54,7 +54,7 @@ if has('win32') || has('win64') || has('win16') || has('win95')
 endif
 
 "----------------------------------------------------------------------
-" List of my keybidings I'm learning!
+"# List of my keybidings I'm learning!
 "----------------------------------------------------------------------
 call quickmenu#current(1)
 call quickmenu#reset()

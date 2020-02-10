@@ -3,6 +3,23 @@
 # запуск строго как ./linux.sh или bash linux.sh
 # из каталога
 # Внимание!!! старые данные ~/.vim/ и .vim* будут удалены
+set -e
+
+if [ ! -n "$Vim_RCs" ]; then
+  Vim_RCs=~/.vim_runtime/vimrcs/
+fi
+
+if [ -d "$Vim_RCs" ]; then
+        echo "You already have Vim installed"
+        echo "You'll need to remove $Vim_RCs if you want to reinstall your settings"
+  exit
+fi
+
+echo "Cloning Vimrc's.."
+hash git >/dev/null 2>&1 && /usr/bin/env git clone https://github.com/idopshik/vimrc-s  $Vim_RCs || {
+  echo "git not installed"
+  exit
+}
 
 echo "----------------------------------------"
 echo "    Programms vor vim                   "
@@ -22,12 +39,11 @@ mkdir ~/.vim/swapfiles > /dev/null 2>&1
 mkdir ~/.vim/undodir > /dev/null 2>&1
 echo "directories for swap and backup created"
 
-Это АРХИважно. Потому что в штатном jecuken точка и запятая на цифрах. Я так не привык!
+#Это АРХИважно. Потому что в штатном jecuken точка и запятая на цифрах. Я так не привык!
 echo "----------------------------"
 echo "     ru.vim    "
 echo "----------------------------"
-
-sudo cp /home/st/Dropbox/Linux_or_Vim_related/vim_savings/put_it_it_keymap_folder/ru.vim /usr/share/vim/vim82/keymap
+sudo cp -TRv /home/st/Dropbox/Linux_or_Vim_related/vim_savings/put_it_it_keymap_folder/ru.vim /usr/share/vim/vim82/keymap
 
 echo "----------------------------"
 echo ".vimrc for Linux"
@@ -63,13 +79,19 @@ echo "----------------------------"
 echo ".vimrc for Linux"
 echo "----------------------------"
 
-git clone https://github.com/idopshik/vimrc-s ~/.vim_runtime/
 
-TODO надо первые 20 строк
+#TODO надо первые 20 строк
 # копирование .vimrc
-cp /home/st/.vim_runtime/vimrcs/vimrc_memo  ~/.vimrc
+cp -TRv /home/st/.vim_runtime/vimrcs/vimrc_memo  ~/.vimrc
 echo "*** .vimrc copied"
 echo
+
+
+echo "----------------------------"
+echo "custome Folds files"
+echo "----------------------------"
+#Это точно рабочая команда!
+cp -TRv /home/st/Dropbox/Linux_or_Vim_related/vim_savings/after/ ~/.vim/after/
 
 
 git clone https://github.com/powerline/fonts.git --depth=1

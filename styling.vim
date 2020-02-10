@@ -5,8 +5,9 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 set guicursor+=a:blinkon0
 set background=dark
 
+
 "=====================================================
-" Font
+"#   Font
 "=====================================================
 if has('win32')
     " :set guifont=lucida_console:h12:w6:b:cRUSSIAN
@@ -27,7 +28,7 @@ if has('unix')
 endif
 
 "=====================================================
-" Colorscheme
+"#   Colorscheme
 "=====================================================
 if has('gui_running')
     colorscheme PaperColor "dark and nice
@@ -44,9 +45,10 @@ endif
 "must be here. AFTER colorscheme set up"
 hi lCursor guibg=#00ff00          "highlight green cursor when keymap activated 
 
+
+
 "=====================================================
-"" Separators in airline-statusline
+"#   Separators in airline-statusline
 "=====================================================
-"
     let g:airline_left_sep = "\uE0C6" "pixels
     let g:airline_right_sep = "\uE0C7"

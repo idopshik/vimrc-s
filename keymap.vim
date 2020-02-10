@@ -1,8 +1,16 @@
+
+"=====================================================
+"#       Terminal
+"=====================================================
+"vert[ical] term[imal]. Close it by <esc><esc>:q<CR>
+cmap vt vertical terminal
+tmap <S-Insert> <C-W>"+
+tnoremap <ESC><ESC> <C-\><C-N> " хотя лучше бы запомнить <C-W>N и всё. Это команда перехода в нормальный режим. выход из него по вводу i/a
 " Sample open-file mapping
 nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
 
 "=====================================================
-"" KEY mapping
+"#       KEY mapping
 "=====================================================
 "line move related mappings
 "The timeout settings are used to work around the ambiguity with escape sequences. Esc
@@ -70,9 +78,8 @@ fun! RangerChooser()
     redraw!
 endfun
 "
-"Пробельный символ вконце здесь нужен. Без всяких alefix здесь!
+"was written what whitespace at the end was mandatory. But w/o it - all works well.
 map <Leader>l :Leaderf self<CR>
-
 
 let g:UltiSnipsExpandTrigger = '<Leader>s' "Select snippet in drop out menu Youcompletemy
 
@@ -85,7 +92,10 @@ nnoremap <leader>ee :so $MYVIMRC<CR>
 
 " map <F3> <Esc>:w<CR>:!C:\Progs\anaconda\Scripts\pylint.exe %<CR>
 
-"----------- RUN  ----------------"
+"=====================================================
+"# ------ RUN  ----------------
+"=====================================================
+"
 autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox %:p &<CR>
 " autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python %<CR>
 " autocmd FileType html nnoremap <F6> :exe ':silent !firefox %'<CR>
@@ -203,7 +213,7 @@ endfor
 "nnoremap tl :tabprev<CR>
 "nnoremap tn :tabnew<CR>
 
-"---------Window's-----------
+"# -------Window's-----------
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -211,7 +221,7 @@ map <C-l> <C-W>l
 "
 "
 "=====================================================
-"      Toggle bar's and fullscreen Windows only
+"#        Toggle bar's and fullscreen Windows only
 "=====================================================
 "Toggle munu-bar, status-bar,right scroll line
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
@@ -219,7 +229,7 @@ nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 
 "=====================================================
-"       VimWiki
+"#        VimWiki
 "=====================================================
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 :autocmd FileType vimwiki map <Leader>d :VimwikiMakeDiaryNote<CR>

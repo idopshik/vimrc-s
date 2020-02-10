@@ -9,7 +9,7 @@
 "                                                                              "
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
-"Windows options here
+"#    Windows options here
     
 if has("win32")
         "Убираем крякозябры из-за CP-1251 Windows. Работает только в начале файла
@@ -107,7 +107,7 @@ endif
 syntax enable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
+"#   Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
@@ -127,19 +127,22 @@ set autoindent              "Auto indent
 set smartindent             "Smart indentt
 set wrap                    "Wrap lines
 
+set showbreak=↳                "↪ как альтернатива
 
 """"""""""""""""""""""""""""""
-" => Lot's of other's
+"#   Lot's of other's
 """"""""""""""""""""""""""""""
 " automatically changes Vim's working dir to the current file:
 :autocmd BufEnter * silent! :lcd%:p:h
 
 " less FOLDs:
 set foldlevel=4
+
+"Убираю это. Мешает это обобщение. 
 " au BufRead * normal zR не работает                 "Autocommand- UNFOLD everything at reading file.
-set foldlevelstart=20
-autocmd Syntax c,cpp,vim,xml,html,xhtml,python setlocal foldmethod=syntax
-autocmd Syntax c,cpp,vim,xml,html,xhtml,python normal zR
+"set foldlevelstart=20
+"autocmd Syntax c,cpp,vim,xml,html,xhtml,python setlocal foldmethod=syntax
+"autocmd Syntax c,cpp,vim,xml,html,xhtml,python normal zR
 
 
 " highlight lCursor guifg=NONE guibg=Cyan    " to be visible"
@@ -209,8 +212,12 @@ set tabstop=4                   " set tabs for a shifttabs logic
 set exrc                       " enable usage of additional .vimrc files from working directory
 set secure                      " prohibit .vimrc files to execute shell, create files, etc...
 "
+" Do not show stupid q: window
+ map q: :q
+
 "=====================================================
-"" Russian localisation
+"
+"#    Russian localisation
 "=====================================================
 "set keymap=russian-jcukenwin   name of the file"
 set keymap=ru                  "отредактированный из Dropbox! "
@@ -218,13 +225,13 @@ set iminsert=0
 set imsearch=0                   "Начинаать с латинской keemap
 
 "=====================================================
-"" Tabs / Buffers settings
+"#    Tabs / Buffers settings
 "=====================================================
 tab sball
 set switchbuf=useopen
 
 """"""""""""""""""""""""""""""
-" => Visual mode related
+"#    Visual mode related
 """"""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann

@@ -1,6 +1,5 @@
-
-    "=====================================================
-""  GitGutter
+"=====================================================
+"#       GitGutter  {{{
 "=====================================================
 " Use fontawesome icons as signs
 let g:gitgutter_sign_added = '+'
@@ -16,44 +15,9 @@ highlight SignColumn guibg=bg
 "
 " Update sign column every quarter second
 set updatetime=250  "Это есть и в другом файле (бэйсик что-ли) и может заторможить вим.
-
+"}}}
 "=====================================================
-"" Jedi-vim
-"=====================================================
-" <leader>r comflict! Я использую вызов :Files для папка с VIMRC
-" Deactivate it here.
-let g:jedi#rename_command="<Nop>"   " Она и так у меня не работала. Моргала и всё
-
-
-
-
-"=====================================================
-"" Gundo
-"=====================================================
-if has('python3')
-    let g:gundo_prefer_python3 = 1
-endif
-
-"=====================================================
-"" fzf
-"=====================================================
-" Вот с этой строчкой не работает поиск файлов!!!
-" let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
-
-"=====================================================
-"" snippets
-"=====================================================
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-s>"
-let g:UltiSnipsJumpForwardTrigger="<C-b>"
-let g:UltiSnipsJumpBackwardTrigger="<C-z>"
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-"
-
-
-"=====================================================
-""YouCompleteMe
+"#       YouCompleteMe  {{{
 "=====================================================
 "special option, turned off YCM diagnostic display features. In feavour to Syntastic to
 "work
@@ -83,8 +47,9 @@ let g:ycm_semantic_triggers = {
     \   'css': [ 're!^', 're!^\s+', ': ' ],
     \   'scss': [ 're!^', 're!^\s+', ': ' ],
     \ }
+"}}}
 "=====================================================
-"" NERDTree settings
+"#       NERDTree settings {{{
 "=====================================================
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$', 'tags']     " Ignore files in NERDTree
 let NERDTreeWinSize=35
@@ -96,18 +61,9 @@ let g:NERDTreeDirArrowCollapsible = '-'
 "let g:NERDTreeDirArrowCollapsible = '?'  "windows can't show int"
 let g:NERDSpaceDelims = 1
 let NERDTreeShowHidden=0
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"}}}
 "=====================================================
-""                 Toggle bar's and fullscreen
-"=====================================================
-"Toggle munu-bar, status-bar,right scroll line (Windows only)
-nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
-nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
-
-"=====================================================
-"                 TagBar settings
+"#       TagBar settings   {{{
 "=====================================================
 let g:tagbar_autofocus=0
 let g:tagbar_width=42
@@ -135,8 +91,10 @@ let g:tagbar_type_vimwiki = {
           \ , 'ctagsbin':'~/.vim_runtime/vimrcs/vwtags.py'
           \ , 'ctagsargs': 'default'
           \ }
-
-"---------------------IndentLines-------------------
+"}}}
+"=====================================================
+"#       IndentLines   {{{
+"=====================================================
 "         Возможно это требуется для WINDOWS. В линуксах всё это давало мне
 "         оражневый фон под чёрточками
 " Vim
@@ -149,10 +107,10 @@ let g:tagbar_type_vimwiki = {
 " let g:indentLine_bgcolor_term = 202
 " let g:indentLine_char = '¦'     " ¦, ┆, │, ▏
 
-" let g:indentLine_setColors = 0 - show grayish highlights
-
+" let g:indentLine_setColors = 0 - show grayish highlights }}}
+"
 "=====================================================
-"         === Syntastic ===
+"#       Syntastic === {{{
 "=====================================================
 "SyntasticInfo - list of avalible linters
 set statusline+=%#warningmsg#
@@ -182,8 +140,9 @@ let g:syntastic_mode_map = {
 
 "Keep sign column always open(vim's thing, not syntastic)
 set signcolumn=yes
+"}}}
 "=====================================================
-"         === w0rp/ale settings (linter)===
+"#       w0rp/ale settings (linter)=== {{{
 "=====================================================
 " apt-get install shellcheck   - только так, если хочеть ALE вместо древнего синтастика
 " ALEInfo - list of configs and enabled linters"
@@ -242,8 +201,9 @@ let g:ale_linters = {'c': [], 'cpp' : []}  " disable ale for c language
 "
 " Autocopletion for ALE especially for JS. (I'm testing it)
 let g:ale_completion_enabled = 1
+"}}}
 "=====================================================
-"      === easytag settings (autogenerate tag's ))===
+"#       easytag settings (autogenerate tag's ))=== {{{
 "=====================================================
 "// istead of ~/.vimtags
 let g:easytags_file = './tags'
@@ -261,16 +221,9 @@ let g:easytags_async = 1
 " ctags -R *  Run in in bash in target folder, don't work instead
 "
 "
-"
+"}}}
 "=====================================================
-"" Fugitive
-"=====================================================
-"
-"bind git alias 'git lg' to fugitive-handled 'Glg' inside vim
-command -nargs=* Glg Git! lg <args>
-"
-"=====================================================
-"" AirLine settings
+"#       AirLine settings {{{
 "=====================================================
 " let g:airline_theme='base16'
 " let g:airline_theme='badwolf'
@@ -279,7 +232,7 @@ if has('gui_running')
     " let g:airline_theme='solarized' "subdued
     " let g:airline_theme='dark_minimal' "yellow
     " let g:airline_theme='night_owl' "nice pastelle
-     " let g:airline_theme='ouo' "nice colorfull blue-green
+    " let g:airline_theme='ouo' "nice colorfull blue-green
     let g:airline_theme='badcat' "supernice contrast black-gray
     ""let g:airline_theme='raven' "grayish supernice
     "simple - very good too"
@@ -292,7 +245,7 @@ let g:airline_powerline_fonts = 1
 
 
 
-        " " Enable the list of buffers
+" " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 
 " " Show just the filename
@@ -327,10 +280,9 @@ let airline#extensions#ale#warning_symbol = 'W:'
 let airline#extensions#ale#show_line_numbers = 1
 
 let g:airline#extensions#keymap#enabled = 0
-
-
+" }}}
 "=====================================================
-"                  --=====  LeaderF  =====--
+"#       LeaderF        {{{
 "=====================================================
 " Define prefix dictionary
 let g:lmap =  {}
@@ -338,8 +290,57 @@ let g:lmap =  {}
 " Second level dictionaries:
 let g:lmap.f = { 'name' : 'File Menu' }
 let g:lmap.o = { 'name' : 'Open Stuff' }
+"}}}
+"=====================================================
+"#       Fugitive
+"=====================================================
+"
+"bind git alias 'git lg' to fugitive-handled 'Glg' inside vim
+command -nargs=* Glg Git! lg <args>
+"
+"=====================================================
+"#       Toggle bar's and fullscreen
+"=====================================================
+"Toggle munu-bar, status-bar,right scroll line (Windows only)
+nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
+
+"=====================================================
+"#       Jedi-vim
+"=====================================================
+" <leader>r comflict! Я использую вызов :Files для папка с VIMRC
+" Deactivate it here.
+let g:jedi#rename_command="<Nop>"   " Она и так у меня не работала. Моргала и всё
 
 
 
 
+"=====================================================
+"#       Gundo
+"=====================================================
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
 
+"=====================================================
+"" fzf
+"=====================================================
+" Вот с этой строчкой не работает поиск файлов!!!
+" let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+
+"=====================================================
+"#       snippets
+"=====================================================
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-s>"
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+"
+
+"=====================================================
+"#       Clap
+"=====================================================
+let g:clap_theme = 'material_design_dark'  "to guarantee right coloring
