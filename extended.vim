@@ -114,10 +114,7 @@ Plug 'ErichDonGubler/vim-sublime-monokai'
 "
 Plug 'severin-lemaignan/vim-minimap'  "minimap!
 
-if has('gui_running')  "не смог победить обрезанные иконки в gvim
-else
-    Plug 'ryanoasis/vim-devicons' "очень спорные иконки.
-endif
+Plug 'ryanoasis/vim-devicons' "очень спорные иконки.
 "
 "---------------===Session====------------------------"
 ""Plug 'xolox/vim-session' "got bored with errors at start
