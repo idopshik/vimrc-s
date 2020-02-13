@@ -135,22 +135,6 @@ set showbreak=↳                "↪ как альтернатива
 " automatically changes Vim's working dir to the current file:
 :autocmd BufEnter * silent! :lcd%:p:h
 
-" less FOLDs:
-set foldlevel=4
-
-"Убираю это. Мешает это обобщение. 
-" au BufRead * normal zR не работает                 "Autocommand- UNFOLD everything at reading file.
-"set foldlevelstart=20
-"autocmd Syntax c,cpp,vim,xml,html,xhtml,python setlocal foldmethod=syntax
-"autocmd Syntax c,cpp,vim,xml,html,xhtml,python normal zR
-
-
-" highlight lCursor guifg=NONE guibg=Cyan    " to be visible"
-
-":setlocal spell spelllang=ru_ru,en_us      "ru_jo, ru_us by default, it't for YO letter"
-"
-"
-"
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
@@ -165,7 +149,8 @@ else
 endif
 
 " Return to last edit position when opening files (You want this!)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+autocmd BufLeave,BufWinLeave * silent! mkview
+autocmd BufReadPost * silent! loadview
 
 " 'this one for t-pope's commenter plugin"
 autocmd FileType apache setlocal commentstring=#\ %s
@@ -238,24 +223,3 @@ set switchbuf=useopen
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-" Execution permissions by default to shebang (#!) files {{{
-" Work's only on creation through :e and at first time saving having shabang 
-augroup shebang_chmod
-  autocmd!
-  autocmd BufNewFile  * let b:brand_new_file = 1
-  autocmd BufWritePost * unlet! b:brand_new_file
-  autocmd BufWritePre *
-        \ if exists('b:brand_new_file') |
-        \   if getline(1) =~ '^#!' |
-        \     let b:chmod_post = '+x' |
-        \   endif |
-        \ endif
-  autocmd BufWritePost,FileWritePost *
-        \ if exists('b:chmod_post') && executable('chmod') |
-        \   silent! execute '!chmod '.b:chmod_post.' "<afile>"' |
-        \   unlet b:chmod_post |
-        \ endif
-augroup END
-
-" }}}
-"

@@ -108,11 +108,6 @@ nnoremap <silent> <leader>bb :silent update<Bar>silent !firefox %:p &<CR>
 
 autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
 
-
-" When pressing <leader>cd switch to the directory of the open buffer Не надо, это
-" автоматом где-то настроено.
-map <Leader>cd :lcd %:p:h<CR>:pwd<CR>
-
 "%% ic Command-line mode to refer to the directory of the current file, regardledd of pwd.
 "
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
@@ -132,65 +127,22 @@ map <C-c> <plug>NERDCommenterToggle
 
 map <C-n> :NERDTreeToggle<CR>
 
-function! WhichTab(filename)
-    " Try to determine whether file is open in any tab.
-    " Return number of tab it's open in
-    let buffername = bufname(a:filename)
-    if buffername == ""
-        return 0
-    endif
-    let buffernumber = bufnr(buffername)
-
-    " tabdo will loop through pages and leave you on the last one;
-    " this is to make sure we don't leave the current page
-    let currenttab = tabpagenr()
-    let tab_arr = []
-    tabdo let tab_arr += tabpagebuflist()
-
-    " return to current page
-    exec "tabnext ".currenttab
-
-    " Start checking tab numbers for matches
-    let i = 0
-    for tnum in tab_arr
-        let i += 1
-        echo "tnum: ".tnum." buff: ".buffernumber." i: ".i
-        if tnum == buffernumber
-            return i
-        endif
-    endfor
-
-endfunction
-
-function! WhichWindow(filename)
-    " Try to determine whether the file is open in any GVIM *window*
-    let serverlist = split(serverlist(),"\n")
-
-    "let currentserver = ????
-    for server in serverlist
-        let remotetabnum = remote_expr(server,
-            \"WhichTab('".a:filename."')")
-        if remotetabnum != 0
-            return server
-        endif
-    endfor
-
-endfunction
-
-
-" exec "tabnext ".WhichTab('my_filename')
-
-" echo remote_foreground( WhichWindow('my_filename') )
-
+let g:CheetOpened=0
+let g:CheetOpened=0
 function! Window_close()
-    if bufwinnr('MyVimCheatSheet.wiki') > 0
+    if g:CheetOpened > 0
         if bufname('%') == 'MyVimCheatSheet.wiki'
             silent close!
+            let g:CheetOpened=0
         else
-            echo "Already open"
+            exe g:CheetWindow . "wincmd w" | wincmd c 
+            let g:CheetOpened=0
+            echo "Closed anyway regarles of location and newly stuff in \"cheet\" window"
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/personal.wiki/MyVimCheatSheet.wiki
+        :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/MyVimCheatSheet.wiki
+        let g:CheetWindow=winnr()
+        let g:CheetOpened=1
     endif
 endfunc
 
@@ -207,11 +159,6 @@ for c in range(1, 9)
     let n = c - '0'
     exec "map <M-". n ."> ". n ."gt"
 endfor
-
-" Alternatively use
-"nnoremap th :tabnext<CR>
-"nnoremap tl :tabprev<CR>
-"nnoremap tn :tabnew<CR>
 
 "# -------Window's-----------
 map <C-j> <C-W>j

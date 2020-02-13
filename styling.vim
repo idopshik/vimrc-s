@@ -31,8 +31,8 @@ endif
 "#   Colorscheme
 "=====================================================
 if has('gui_running')
-    colorscheme PaperColor "dark and nice
-    " colorscheme gruvbox
+    " colorscheme PaperColor "dark and nice
+    colorscheme gruvbox
     " set background=light
     " colorscheme solarized  "blue subdued
     " colorscheme OceanicNext

@@ -16,6 +16,17 @@ highlight SignColumn guibg=bg
 " Update sign column every quarter second
 set updatetime=250  "Это есть и в другом файле (бэйсик что-ли) и может заторможить вим.
 "}}}
+
+"=====================================================
+"#       CoC  {{{
+"=====================================================
+set statusline^=%{coc#status()} "Diagnostics info 
+"
+"for coc-vimlsp
+let g:markdown_fenced_languages = [
+      \ 'vim',
+      \ 'help'
+      \]
 "=====================================================
 "#       YouCompleteMe  {{{
 "=====================================================
@@ -344,3 +355,11 @@ let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 "#       Clap
 "=====================================================
 let g:clap_theme = 'material_design_dark'  "to guarantee right coloring
+
+"=====================================================
+"#      vimwiki   {{{
+"=====================================================
+" let g:vimwiki_folding='list' "неприлично долго искал собой же созданную проблуму.
+"Либо эта переменная, либо уже foldmethod=syntax.
+let g:vimwiki_folding='syntax'
+

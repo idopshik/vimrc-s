@@ -87,8 +87,8 @@ Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea 
 Plug 'metakirby5/codi.vim'             "Cool. But my Laptop isn't fast enough!
 
 " Обязательно как нибудь попробовать.Вместо YouCompleteMe
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
-Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
+" Plug 'Valloric/YouCompleteMe'
 "
 Plug 'davidhalter/jedi-vim'            "Pydoc support (Shift+k).
 
@@ -282,20 +282,19 @@ else
         let g:UltiSnipsSnippetDirectories=[$HOME.'/Dropbox/.vim_cloud/vim-snippets/UltiSnips']
 
         let g:vimwiki_list = [
-                                \{'path': '~/Dropbox/.vim_cloud/vimwiki/personal.wiki',
+                                \{'path': '~/Dropbox/.vim_cloud/vimwiki/tech.wiki',
                                 \ 'template_path': '~/Dropbox/.vim_cloud/vimwiki/templates',
                                 \ 'template_default': 'default',
                                 \ 'template_ext': '.html' },
-                                \{'path': '~/Dropbox/.vim_cloud/vimwiki/tech.wiki'}
+                                \{'path': '~/Dropbox/.vim_cloud/vimwiki/personal.wiki'}
                         \]
   endif
 endif
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+if !exists(":BufDiff")
+    command BufDiff vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
 endif
  
