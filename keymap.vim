@@ -66,7 +66,7 @@ cmap w!! w !sudo tee > /dev/null %
 if has('gui_running')
     "Это такой костыль. Не знаю как не назначть в gvim.
 else
-map <Leader>x :call RangerChooser()<CR>
+    map <Leader>x :call RangerChooser()<CR>
 endif
 
 fun! RangerChooser()
@@ -112,6 +112,10 @@ autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
 "
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
+"temporary
+" nmap <c-N> :CocCommand explorer<CR>
+
+map <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>nn :NERDTreeFind<CR>
 
 nmap <F3> <Plug>(ale_fix)

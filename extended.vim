@@ -224,8 +224,8 @@ if has("win32")
     "essues
     " }}}
 "=====================================================
-"#      Files, backups and undo {{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"#      Files, backups and undo     {{{
+"=====================================================
 else
   if has("unix")
 
@@ -277,7 +277,7 @@ else
         call MakeDirIfNoExists("~/.vim/tmp/backup")
         call MakeDirIfNoExists("~/.vim/undodir")
         call MakeDirIfNoExists("~/.vim/swapfiles")
-        "}}}
+        "
         "" SnipMate settings Не знаю, я не испльзую пока "свои"
         let g:UltiSnipsSnippetDirectories=[$HOME.'/Dropbox/.vim_cloud/vim-snippets/UltiSnips']
 
@@ -290,6 +290,8 @@ else
                         \]
   endif
 endif
+" }}}
+"=====================================================
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.

@@ -21,12 +21,12 @@ set updatetime=250  "Это есть и в другом файле (бэйсик
 "#       CoC  {{{
 "=====================================================
 set statusline^=%{coc#status()} "Diagnostics info 
-"
 "for coc-vimlsp
 let g:markdown_fenced_languages = [
       \ 'vim',
       \ 'help'
       \]
+"}}}
 "=====================================================
 "#       YouCompleteMe  {{{
 "=====================================================
@@ -68,10 +68,14 @@ let NERDTreeWinSize=35
 let NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-"let g:NERDTreeDirArrowExpandable = '?'  "windows can't show int"
-"let g:NERDTreeDirArrowCollapsible = '?'  "windows can't show int"
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDSpaceDelims = 1
 let NERDTreeShowHidden=0
+
+"close vim if nerd three left alone
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 "}}}
 "=====================================================
 "#       TagBar settings   {{{
