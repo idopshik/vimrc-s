@@ -74,6 +74,8 @@ fun! WikiEncrypt()
                 :call delete(expand('%')) | bdelete!
                 echo "File encrypted (gpg async.). buf wiped."
             endif
+        else
+            echo "For VimWiki only!"
     endif
     " redraw!
 endfun

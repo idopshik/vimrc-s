@@ -14,7 +14,7 @@
 set fdm=syntax 
 "
 "instead autocommand you can use  ~/.vim/after/ftplugin/vimwiki.vim
-au FileType vimwiki map <buffer> F :set foldmethod=syntax<cr>
+au FileType vimwiki map <buffer> F :set foldmethod=syntax<cr>   "as example
 
 augroup filetype_vim
     autocmd!

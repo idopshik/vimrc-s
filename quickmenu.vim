@@ -13,6 +13,7 @@ let g:quickmenu_options = "LH"
 call g:quickmenu#reset()
 
 
+
 "# section 1, text starting with "#" represents a section (see the screen capture below)
 call g:quickmenu#append('#File Encoding', '')
 

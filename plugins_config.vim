@@ -15,6 +15,7 @@ highlight SignColumn guibg=bg
 "
 " Update sign column every quarter second
 set updatetime=250  "Это есть и в другом файле (бэйсик что-ли) и может заторможить вим.
+autocmd BufWritePost * GitGutter  "force to refresh sighns - they always unrelayible!
 "}}}
 
 "=====================================================
