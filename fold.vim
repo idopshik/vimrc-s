@@ -13,14 +13,15 @@
 " Вот эта сточка как будто игнорируется на некоторых расширениях
 set fdm=syntax 
 "
-"instead autocommand you can use  ~/.vim/after/ftplugin/vimwiki.vim
 au FileType vimwiki map <buffer> F :set foldmethod=syntax<cr>   "as example
 
 augroup filetype_vim
     autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType vim set foldlevelstart=0
-    autocmd FileType vim setlocal foldmarker={{{,}}}
+    " Это всё здесь примеры. Для этого типа используется fdm=expr задан через
+    " /.vim/after/ftplugin/vim/fold.vim
+    " autocmd FileType vim setlocal foldmethod=marker
+    " autocmd FileType vim set foldlevelstart=0
+    " autocmd FileType vim setlocal foldmarker={{{,}}}
 augroup END
 
 "Для си,по FileType работает, а для питона и html - Нет

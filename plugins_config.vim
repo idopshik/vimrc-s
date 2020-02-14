@@ -1,3 +1,4 @@
+" vim: fdm=expr
 "=====================================================
 "#       GitGutter  {{{
 "=====================================================
@@ -17,7 +18,6 @@ highlight SignColumn guibg=bg
 set updatetime=250  "Это есть и в другом файле (бэйсик что-ли) и может заторможить вим.
 autocmd BufWritePost * GitGutter  "force to refresh sighns - they always unrelayible!
 "}}}
-
 "=====================================================
 "#       CoC  {{{
 "=====================================================
@@ -124,7 +124,6 @@ let g:tagbar_type_vimwiki = {
 " let g:indentLine_char = '¦'     " ¦, ┆, │, ▏
 
 " let g:indentLine_setColors = 0 - show grayish highlights }}}
-"
 "=====================================================
 "#       Syntastic === {{{
 "=====================================================
@@ -330,8 +329,6 @@ nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 let g:jedi#rename_command="<Nop>"   " Она и так у меня не работала. Моргала и всё
 
 
-
-
 "=====================================================
 "#       Gundo
 "=====================================================
@@ -362,7 +359,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 let g:clap_theme = 'material_design_dark'  "to guarantee right coloring
 
 "=====================================================
-"#      vimwiki   {{{
+"#       vimwiki   {{{
 "=====================================================
 " let g:vimwiki_folding='list' "неприлично долго искал собой же созданную проблуму.
 "Либо эта переменная, либо уже foldmethod=syntax.

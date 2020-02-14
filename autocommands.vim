@@ -19,13 +19,12 @@ augroup shebang_chmod
         \   unlet b:chmod_post |
         \ endif
 augroup END
-
 " }}}
 
 autocmd FileType c autocmd BufWritePost <buffer> :SyntasticCheck make  "Без этого YC мешает или окно сразу закрывается
 
-function! DeleteInactiveBufs()
- "From tabpagebuflist() help, get a list of all buffers in all tabs {{{
+function! DeleteInactiveBufs() "{{{
+ "From tabpagebuflist() help, get a list of all buffers in all tabs 
   let tablist = []
   for i in range(tabpagenr('$'))
     call extend(tablist, tabpagebuflist(i + 1))
@@ -47,15 +46,17 @@ endfunction
 command! Ball :call DeleteInactiveBufs()
 "}}}
 
-
 " Encryption gpg support
 " :sil => :h silent  :silent, :execute, and :sbuffer    {{{
 augroup encrypted
   autocmd!
-  autocmd BufReadPre,FileReadPre *.gpg,*.gpg.wiki setl noswapfile noundofile nobackup viminfo=
-  autocmd BufReadPost *.gpg,*.gpg.wiki :sil %!GPG_TTY=/dev/tty gpg --decrypt 2> /dev/null
-  autocmd BufWritePre *.gpg,*.gpg.wiki :sil %!GPG_TTY=/dev/tty gpg -e --default-recipient-self
-  autocmd BufWritePost *.gpg,*.gpg.wiki :sil undo
+  autocmd BufReadPre,FileReadPre *.gpg.wiki setl bin noswapfile noundofile nobackup viminfo=
+  autocmd BufReadPost *.gpg.wiki execute "'[,']!gpg --decrypt --default-recipient-self 2> /dev/null"  |
+    \ setlocal nobin |
+    \ execute "doautocmd BufReadPost *.wiki"  
+
+  autocmd BufWritePre *.gpg.wiki setl bin | :sil %!GPG_TTY=/dev/tty gpg -e --default-recipient-self
+  autocmd BufWritePost *.gpg.wiki :sil undo | setl nobin
 augroup END
 
 " Essentially, we disable auto-saving the .viminfo file, and then we disable swap files, undo files and backup files. After the buffer is read, we decrypt it with GPG, so that we are able to read the content in Vim. Before we eventually save our file, we encrypt the entire file with the user ID of the default key as the recipient of our message, and finally after writing the file we undo the last action, so that the file is still readable to us.
@@ -67,7 +68,9 @@ fun! WikiEncrypt()
     let l:curdirname=expand('%:p:h')
     let l:tmpfilename=l:curdirname."/tmp_f"
     if expand('%:e')=='wiki'
+        setlocal bin 
         sil %!GPG_TTY=/dev/tty gpg -e --output tmp_f --default-recipient-self
+        setlocal nobin
             if rename(l:tmpfilename, l:newfilename) != 0
               echo "Unable to rename "
             else

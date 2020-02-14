@@ -150,11 +150,9 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-
 " prettier - for javascript
 "run prettier before saving
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
-
 
 

@@ -1,29 +1,27 @@
+"
+"          '||
+"           ||                    ''
+"           ||''|,  '''|.  (''''  ||  .|'',
+"           ||  || .|''||   `''\  ||  ||
+"          .||..|' `|..||. `...' .||. `|..'
+"
 
-"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-"                                                                              "
-"                      __   _ _ _ __ ___  _ __ ___                             "
-"                      \ \ / / | '_ ` _ \| '__/ __|                            "
-"                       \ V /| | | | | | | | | (__                             "
-"                        \_/ |_|_| |_| |_|_|  \___|                            "
-"                                                                              "
-"                                                                              "
-"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 "#    Windows options here
-    
+
 if has("win32")
         "Убираем крякозябры из-за CP-1251 Windows. Работает только в начале файла
     set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
         language en                 " sets the language of the messages / ui (vim)
         " Specific machine's file system related path's:
-    " set encoding=utf-8      "Got strange symbols in meny w/o that  
+    " set encoding=utf-8      "Got strange symbols in meny w/o that
     " set termencoding=utf-8
 
     "language en_US.utf8
     :let &pythonthreehome = 'C:\progs\Python37\'
-    
+
     :let &pythonthreedll = 'C:\progs\Python37\python37.dll'
-    
+
     :let &pythonhome = 'C:\progs\Python27\'
     :let &pythondll = 'C:\progs\Python27\python27.dll'
 endif
@@ -144,7 +142,7 @@ set showbreak=↳                "↪ как альтернатива
 
 if has("win32")
     set viminfo='10,\"100,:20,%,nc:\\Users\\user\\_viminfo
-else 
+else
     set viminfo='10,\"100,:20,%,n~/.viminfo
 endif
 
@@ -222,4 +220,3 @@ set switchbuf=useopen
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
