@@ -21,12 +21,34 @@ autocmd BufWritePost * GitGutter  "force to refresh sighns - they always unrelay
 "=====================================================
 "#       CoC  {{{
 "=====================================================
-set statusline^=%{coc#status()} "Diagnostics info 
+
 "for coc-vimlsp
 let g:markdown_fenced_languages = [
       \ 'vim',
       \ 'help'
       \]
+
+	function! StatusDiagnostic() abort
+	  let info = get(b:, 'coc_diagnostic_info', {})
+	  if empty(info) | return '' | endif
+	  let msgs = []
+	  if get(info, 'error', 0)
+	    call add(msgs, 'E' . info['error'])
+	  endif
+	  if get(info, 'warning', 0)
+	    call add(msgs, 'W' . info['warning'])
+	  endif
+	  return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
+	endfunction
+
+" set statusline+=%{StatusDiagnostic()}
+set statusline^=%{coc#status()} "Diagnostics info 
+
+	let g:airline#extensions#coc#enabled = 1
+	let airline#extensions#coc#error_symbol = '⨉'
+	let airline#extensions#coc#warning_symbol = '⚠'
+	let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+	let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 "}}}
 "=====================================================
 "#       YouCompleteMe  {{{
@@ -127,10 +149,14 @@ let g:tagbar_type_vimwiki = {
 "=====================================================
 "#       Syntastic === {{{
 "=====================================================
+"НЕ МЕНЯЙ БЕЗДУМНО ЭТИ НАСТРОЙКИ. ЧИТАЙ ОЧЕНЬ ВНИМАТЕЛЬНО.
+"ПРО ОБА ЛИНТЕРА (они здесь друг друга дополняют)
 "SyntasticInfo - list of avalible linters
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+
+"Разкомментируй три следующих строки и закомментируй в Coc! 
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -146,7 +172,7 @@ let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 let g:syntastic_mode_map = {
     \ "mode": "passive",
     \ "active_filetypes": ["c","h"],  
-    \ "passive_filetypes": ["sh"] } "Задолбал этот синтаситик. Пока не научился им ползоваться.
+    \ "passive_filetypes": ["sh","javascript"] } "Задолбал этот синтаситик. Пока не научился им ползоваться.
 "в active можно добавить sh - будет его проверять
 "и наоборот. Можно поствить его в пассиве - но это мало чего изменит
 "SyntasticCheck - команда возбуждает линтер даже в пассивном состоянии
@@ -159,9 +185,7 @@ set signcolumn=yes
 "=====================================================
 "#       w0rp/ale settings (linter)=== {{{
 "=====================================================
-" apt-get install shellcheck   - только так, если хочеть ALE вместо древнего синтастика
-" ALEInfo - list of configs and enabled linters"
-" PROBABLY FONT can't handle it out
+"СЕЙЧАС ВСЕ ЛИНТЕРЫ ОТКЛЮЧЕНЫ.
 let g:ale_sign_error = '⨉'
 let g:ale_sign_warning = '⚠'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
@@ -175,7 +199,8 @@ let g:airline#extensions#ale#enabled = 1
 
 "Show 5 lines of errors (default: 10)
 let g:ale_list_window_size = 5
-" let g:ale_sign_column_always = 1   "Не закрывать лоток задрало мелькать "
+" let g:ale_sign_column_always = 1  "keep sign column on (prevent flickering which I hate
+
 ":help g:ale_echo_msg_format
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -187,10 +212,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " some other plugin which sets quickfix errors, etc.
 let g:ale_keep_list_window_open = 0
 
-" Check Python files with flake8 and pylint.
-" let b:ale_linters = ['flake8', 'pylint']
-" :ALEFix  - to run fixer
-" Fix Python files with autopep8 and yapf.
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['black', 'yapf', 'autopep8'],
@@ -205,17 +226,17 @@ let b:ale_warn_about_trailing_whitespace = 0
 " let g:ale_lint_on_enter = 0
 "
 "Проблемы с gcc - не линтеры не понимают, что avr папка на отшибе в gcc"
-"об этом знает тлько мэйк (gcc and avrgcc косячат)
+"об этом знает только make (gcc and avrgcc косячат)
   " let g:ale_linters = {'c': ['make']}
   " let g:ale_linters = {'c': ['clangtidy']}
   "cpp - ale так видит h - заголовочники в AVR проектах
-let g:ale_linters = {'c': [], 'cpp' : []}  " disable ale for c language
-" let g:ale_sign_column_always = 1  "keep sign column on (prevent flickering which I
+  " let b:ale_linters = ['flake8', 'pylint']
+let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : []}  " disable ale for c language
 " hate.Don't set it on - vim has signcolumn=yes
 "
 "
 " Autocopletion for ALE especially for JS. (I'm testing it)
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1 (tested. worked well. But Coc.)
 "}}}
 "=====================================================
 "#       easytag settings (autogenerate tag's ))=== {{{
@@ -240,8 +261,6 @@ let g:easytags_async = 1
 "=====================================================
 "#       AirLine settings {{{
 "=====================================================
-" let g:airline_theme='base16'
-" let g:airline_theme='badwolf'
 ":AirlineTheme
 if has('gui_running')
     " let g:airline_theme='solarized' "subdued
@@ -258,8 +277,6 @@ endif
 
 let g:airline_powerline_fonts = 1
 
-
-
 " " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 
@@ -273,15 +290,11 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-" "like powerline - issues!!
-" let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 
 " let g:airline_section_warning = ''
 " let g:airline_section_error = ''
-" let g:airline#extensions#fugitiveline#enabled = 1
+let g:airline#extensions#fugitiveline#enabled = 1
 
-
-let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 

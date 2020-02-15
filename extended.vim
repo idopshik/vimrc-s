@@ -22,6 +22,8 @@ filetype off                  " required
 "=====================================================
 call plug#begin('~/.vim/plugged')
 
+"## ------------------=== Other ===----------------------
+
 "Just trying it
 "Plug 'rbong/pimodoro'                     "needs place in my statusline!"
 
@@ -32,7 +34,6 @@ Plug 'lambdalisue/vim-fullscreen'          "Ctrl + <CR> (does) :FullscreenToggle
 Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 
-"------------------=== Other ===----------------------
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'               " Parentheses, brackets, quotes, XML tags, and more
@@ -54,17 +55,9 @@ Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
 Plug 'turbio/bracey.vim' " css,html,js live
 
 "## --------------=== Snippets support ===---------------
-Plug 'honza/vim-snippets'               "common snippets
-
-"doesn't come with any snippets itself- it's a manager, need Python
-Plug 'sirver/ultisnips'
-"Был закомменчен сниппет-менеджер, и юкомплитми всё арвно показывало все снапы. Я работал
-"с bash совершенно прекрасно. И javascript почти весь нормально работал. Проверяю, в
-"общем, раскомментить.
-" Такое чувство, что без снипмэйт нифига не работает. По крйней мере
-" ЮКОМПЛИТМИ не показывает *snap свои"
-" Trying to uncomment - what will happen?
-Plug 'garbas/vim-snipmate'              " Snippets manager, need written in VimL
+Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself
+Plug 'honza/vim-snippets'               "commn snippets. Not enough.
+Plug 'garbas/vim-snipmate'              " Snippets manager. Additional snippets.
 Plug 'MarcWeber/vim-addon-mw-utils'     " dependencies #1
 Plug 'tomtom/tlib_vim'                  " dependencies #2
 
@@ -89,11 +82,12 @@ Plug 'metakirby5/codi.vim'             "Cool. But my Laptop isn't fast enough!
 " Обязательно как нибудь попробовать.Вместо YouCompleteMe
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
 " Plug 'Valloric/YouCompleteMe'
-"
+
 Plug 'davidhalter/jedi-vim'            "Pydoc support (Shift+k).
 
-Plug 'w0rp/ale'                        "Лучше и новее синтастика
-Plug 'vim-syntastic/syntastic'      "Дело не в плагине, а в линтерах. Надо долго
+" Отключил оба в пользу Сос.
+" Plug 'w0rp/ale'                        "Лучше и новее синтастика
+" Plug 'vim-syntastic/syntastic'      "Дело не в плагине, а в линтерах. Надо долго
 " разбираться. AVR никак не могут нормально линтить
 " В линтерах был косяк, оказалось что ни для питона, ни для джаваскрипт не было. Хотя я
 " якобы помнил, что точно работало.

@@ -29,6 +29,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set noshowmode          " Don't show mode in cmd window - doesn't work.
+
 "can be overridden be extended fiel"
 set history=1000
 set undofile
