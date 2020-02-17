@@ -1,4 +1,3 @@
-"
 "          '||
 "           ||                    ''
 "           ||''|,  '''|.  (''''  ||  .|'',
@@ -6,6 +5,7 @@
 "          .||..|' `|..||. `...' .||. `|..'
 "
 
+" ALWAYS clear the folder .vim/view to accept changes.
 
 "#    Windows options here
 
@@ -29,7 +29,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set noshowmode          " Don't show mode in cmd window - doesn't work.
+" Don't show mode in cmd window - doesn't work.:w
+set noshowmode          
 
 "can be overridden be extended fiel"
 set history=1000
@@ -201,7 +202,6 @@ set secure                      " prohibit .vimrc files to execute shell, create
  map q: :q
 
 "=====================================================
-"
 "#    Russian localisation
 "=====================================================
 "set keymap=russian-jcukenwin   name of the file"

@@ -151,6 +151,7 @@ let g:tagbar_type_vimwiki = {
 "=====================================================
 "НЕ МЕНЯЙ БЕЗДУМНО ЭТИ НАСТРОЙКИ. ЧИТАЙ ОЧЕНЬ ВНИМАТЕЛЬНО.
 "ПРО ОБА ЛИНТЕРА (они здесь друг друга дополняют)
+"Currend state  - активно для с при сохранени. Для остальных пассивно.
 "SyntasticInfo - list of avalible linters
 
 "Разкомментируй три следующих строки и закомментируй в Coc! 
@@ -377,4 +378,17 @@ let g:clap_theme = 'material_design_dark'  "to guarantee right coloring
 " let g:vimwiki_folding='list' "неприлично долго искал собой же созданную проблуму.
 "Либо эта переменная, либо уже foldmethod=syntax.
 let g:vimwiki_folding='syntax'
+
+"=====================================================
+"#       Prettier  {{{
+"=====================================================
+" <leader>-p - default prettier command
+"на нравятся подтормаживания при запуске по F6. Буду "в ручную" гонять.
+" autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
+
+" forced async
+    let g:prettier#exec_cmd_async = 1 
+" Running before saving async
+  let g:prettier#autoformat = 0 
+""}}
 

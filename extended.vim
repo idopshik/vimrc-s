@@ -1,3 +1,4 @@
+" После изменения ALWAYS очищай папку .vim/view - Иначе хлопот не оберёшься.
 " ________________________________________________________________________
 "                ____  _  _  ____  ____  _  _  ____  ____  ____
 "               ( ___)( \/ )(_  _)( ___)( \( )(  _ \( ___)(  _ \
@@ -9,17 +10,15 @@
 " On Windows, use '.vim' instead of 'vimfiles': this makes synchronization
 " across heterogeneous Windows/POSIX environments easier.
 " let s:MSWindows = has('win95') + has('win16') + has('win32') + has('win64')
-"
+
 " if s:MSWindows
 "    set runtimepath=$VIM/.vim,$VIMRUNTIME,$VIM/vimfiles/after,$VIM/.vim/after
 " endif
 
-
-filetype off                  " required
-
 "=====================================================
 "#      Plug settings {{{
 "=====================================================
+filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 "## ------------------=== Other ===----------------------
@@ -27,8 +26,7 @@ call plug#begin('~/.vim/plugged')
 "Just trying it
 "Plug 'rbong/pimodoro'                     "needs place in my statusline!"
 
-"sudo apt-get install wmctrl     # Ubuntu/Debian - needed. Terminal dosn't execute
-"ctrl+<CR>
+"sudo apt-get install wmctrl    # Ubuntu/Debian - needed. Terminal dosn't execute ctrl+<CR>
 Plug 'lambdalisue/vim-fullscreen'          "Ctrl + <CR> (does) :FullscreenToggle  On linux only.
 
 Plug 'vimwiki/vimwiki'
@@ -42,8 +40,9 @@ Plug 'vim-scripts/closetag.vim'        "Не знаю может и не над�
 Plug 'scrooloose/nerdcommenter'         " :help nerdcommenter
 Plug 'godlygeek/tabular'
 Plug 'tmhedberg/simpylfold'                 "No-BS Python code folding for Vim
-" Как же она затрахала!
-" Plug 'jiangmiao/auto-pairs'             " :h autopairs
+" Как же она затрахала
+ " Plug 'jiangmiao/auto-pairs'             " :h autopairs
+Plug 'Raimondi/delimitMate'
 
 Plug 'mhinz/vim-startify'               " Nice start screen (COW)
 Plug 'sjl/gundo.vim'                    "visualise undu tree
@@ -85,9 +84,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend
 
 Plug 'davidhalter/jedi-vim'            "Pydoc support (Shift+k).
 
-" Отключил оба в пользу Сос.
-" Plug 'w0rp/ale'                        "Лучше и новее синтастика
-" Plug 'vim-syntastic/syntastic'      "Дело не в плагине, а в линтерах. Надо долго
+" syntastici:w
+Plug 'w0rp/ale'                        "Лучше и новее синтастика
+Plug 'vim-syntastic/syntastic'      "Дело не в плагине, а в линтерах. Надо долго
 " разбираться. AVR никак не могут нормально линтить
 " В линтерах был косяк, оказалось что ни для питона, ни для джаваскрипт не было. Хотя я
 " якобы помнил, что точно работало.
@@ -293,4 +292,4 @@ if !exists(":BufDiff")
     command BufDiff vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
 endif
- 
+"" vim: fdm=expr

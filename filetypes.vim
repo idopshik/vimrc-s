@@ -24,7 +24,7 @@ let g:jedi#completions_command = "<C-N>" "omnicompletion to <C-N> instead of <Ct
 "uncomment in order to not let jedi show docstrings
 "autocmd FileType python set completeopt-=preview
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
-\ formatoptions+=croq softtabstop=4 smartindent
+\  softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 " Пытаюсь решить пробему с джеди - с открытием нового окна "
 py3 import os; sys.executable=os.path.join(sys.prefix, 'python.exe')
@@ -62,30 +62,30 @@ autocmd FileType python vnoremap <buffer> <F9> :<C-U>exec '!clear;  python' shel
 """"""""""""""""""""""""""""""
 "#   => JavaScript section
 """""""""""""""""""""""""""""""
-let javascript_enable_domhtmlcss=1
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+" let javascript_enable_domhtmlcss=1
+" autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+" autocmd BufNewFile,BufRead *.json setlocal ft=javascript
 
-au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
-au FileType javascript setl nocindent
+" au FileType javascript call JavaScriptFold()
+" au FileType javascript setl foldenable
+" au FileType javascript setl nocindent
 
-au FileType javascript imap <c-t> $log();<esc>hi
-au FileType javascript imap <c-a> alert();<esc>hi
+" au FileType javascript imap <c-t> $log();<esc>hi
+" au FileType javascript imap <c-a> alert();<esc>hi
 
-au FileType javascript inoremap <buffer> $r return
-au FileType javascript inoremap <buffer> $f // --- PH<esc>FP2xi
+" au FileType javascript inoremap <buffer> $r return
+" au FileType javascript inoremap <buffer> $f // --- PH<esc>FP2xi
 
-function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+" function! JavaScriptFold()
+    " setl foldmethod=syntax
+    " setl foldlevelstart=1
+    " syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 
-    function! FoldText()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
+    " function! FoldText()
+        " return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    " endfunction
+    " setl foldtext=FoldText()
+" endfunction
 
 
 """"""""""""""""""""""""""""""
@@ -150,9 +150,5 @@ if has("autocmd")
     autocmd BufWritePre *.txt,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-" prettier - for javascript
-"run prettier before saving
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
 
 

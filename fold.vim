@@ -34,4 +34,3 @@ autocmd BufRead *.html setlocal foldmethod=indent
 
 " less FOLDs: (overriden by file's sets. basic.vim Saving cursor position thing.)
 set foldlevel=4
-

@@ -1,6 +1,5 @@
-
 "=====================================================
-"#       Terminal
+"#        Terminal
 "=====================================================
 "vert[ical] term[imal]. Close it by <esc><esc>:q<CR>
 cmap vt vertical terminal
@@ -10,7 +9,7 @@ tnoremap <ESC><ESC> <C-\><C-N> " хотя лучше бы запомнить <C-
 nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
 
 "=====================================================
-"#       KEY mapping
+"#        KEY mapping
 "=====================================================
 "line move related mappings
 "The timeout settings are used to work around the ambiguity with escape sequences. Esc
@@ -46,23 +45,23 @@ map <silent> <leader><cr> :noh<cr>
 "fzf - search in folder
 " map <C-p> :Files ~/.config/<CR>
 map <C-p> :Files<CR>
-"TODO fix linux/windows прикол с этим underslacs-точка.
+"TODO fix linux/windows прикол с этим underslacKEY mappings again
 map <Leader>r :Files ~/.vim_runtime/<CR>
 nnoremap <silent> <leader><Space> :FZFMru<CR>
 nnoremap <silent> <leader>. :Files <C-r>=expand("%:h")<CR>
 nnoremap <silent> <leader>b :Buffers <CR>
 nnoremap <silent> <leader>h :Helptags<CR>
 
-
 map <Space> :noh<cr>
-map c-<tab> :bn<CR>
+map <C-tab> :bn<CR>
+
 "" Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
 " Use Ranger as a file explorer {{{
 
 " TERMINAL only! Ranger won't work in Gui
-"
+
 if has('gui_running')
     "Это такой костыль. Не знаю как не назначть в gvim.
 else
@@ -90,37 +89,39 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 "Reload vimrc w/o restarting VIM
 nnoremap <leader>ee :so $MYVIMRC<CR>
 
-" map <F3> <Esc>:w<CR>:!C:\Progs\anaconda\Scripts\pylint.exe %<CR>
-
 "=====================================================
-"# ------ RUN  ----------------
+"#        RUN (F5, F6)                  
 "=====================================================
 "
+autocmd FileType html nnoremap <F5> :exe ':silent !firefox %'<CR>
 autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox %:p &<CR>
-" autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python %<CR>
-" autocmd FileType html nnoremap <F6> :exe ':silent !firefox %'<CR>
 
+autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python %<CR>
 autocmd FileType python nnoremap <buffer> <F6> :exec '!python' shellescape(@%, 1)<cr>
 
-autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :!clear; node %<CR>
-autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR>:! clear; node %<CR>
-nnoremap <silent> <leader>bb :silent update<Bar>silent !firefox %:p &<CR>
+autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
+ "Избыточная копия F5
+autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 
+
+autocmd FileType sh nnoremap <buffer> <F6><Esc>:w<CR>:! ./%<CR>
 autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
 
-"%% ic Command-line mode to refer to the directory of the current file, regardledd of pwd.
-"
+"=====================================================
+"#        KEY mappings again
+"=====================================================
+nnoremap <silent> <leader>bb :silent update<Bar>silent !firefox %:p &<CR>
+
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-"temporary
-" nmap <c-N> :CocCommand explorer<CR>
-
 map <C-n> :NERDTreeToggle<CR>
+
 nnoremap <leader>nn :NERDTreeFind<CR>
 
-nmap <F3> <Plug>(ale_fix)
+nmap <F3> :ALEFix <CR>
+" map <F3> <Esc>:w<CR>:!C:\Progs\anaconda\Scripts\pylint.exe %<CR>
 
-map <F4> <Esc>:w<CR>:! ./%<CR>
+nmap <F4> :Prettier <CR>
 
 nnoremap <F7> :GundoToggle<CR>
 
@@ -133,7 +134,7 @@ map <C-n> :NERDTreeToggle<CR>
 
 let g:CheetOpened=0
 let g:CheetOpened=0
-function! Window_close()
+function! VimNotesWindowToggle()
     if g:CheetOpened > 0
         if bufname('%') == 'MyVimCheatSheet.wiki'
             silent close!
@@ -150,10 +151,8 @@ function! Window_close()
     endif
 endfunc
 
-"Откроем мой файл с тем, что надо поучить!"
-noremap <silent><Leader>k :call Window_close()<cr>
+noremap <silent><Leader>k :call VimNotesWindowToggle()<cr>
 noremap <silent><Leader>m :call quickmenu#toggle(0)<cr><cr>
-
 
 " map <alt+n> to navigate through tabs
 for c in range(1, 9)
@@ -164,13 +163,12 @@ for c in range(1, 9)
     exec "map <M-". n ."> ". n ."gt"
 endfor
 
-"# -------Window's-----------
+"#        Window's           
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-"
-"
+
 "=====================================================
 "#        Toggle bar's and fullscreen Windows only
 "=====================================================
@@ -180,7 +178,7 @@ nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 
 "=====================================================
-"#        VimWiki
+"#        VimWiki-calendar
 "=====================================================
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 :autocmd FileType vimwiki map <Leader>d :VimwikiMakeDiaryNote<CR>
@@ -200,3 +198,11 @@ endfunction
 
 "Решение проблемы - когда буфер вики в фоне - нельзя даже c (change) сделать!"
 :autocmd FileType vimwiki map <leader>c :call ToggleCalendar()<CR>
+
+
+"  `\|||/´         MMM           \|/            www            __^__          ~
+"   (o o)         (o o)          @ @           (O-O)          /(o o)\\        ~
+"ooO_(_)_Ooo__ ooO_(_)_Ooo___oOO_(_)_OOo___oOO__(_)__OOo___oOO__(_)__OOo_____ ~
+"_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|____ ~
+"__|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_ ~
+"_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|____ ~
