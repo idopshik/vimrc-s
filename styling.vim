@@ -38,7 +38,8 @@ if has('gui_running')
     " colorscheme OceanicNext
     " colorscheme spacegray
 else
-    colorscheme OceanicNext
+    colorscheme jellybeans
+    " colorscheme OceanicNext
     " colorscheme gruvbox
 endif
 

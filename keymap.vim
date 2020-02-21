@@ -11,6 +11,10 @@ nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
 "=====================================================
 "#        KEY mapping
 "=====================================================
+
+"Это открывает fullscreen. Переношу в автокоманды.
+" noremap <C-CR> :!wmctrl -r ':ACTIVE:' -b toggle,fullscreen <CR>
+
 "line move related mappings
 "The timeout settings are used to work around the ambiguity with escape sequences. Esc
 "and j sent within 50ms will be mapped to <A-j>, greater than 50ms will count as separate "keys.

@@ -42,7 +42,6 @@ Plug 'godlygeek/tabular'
 Plug 'tmhedberg/simpylfold'                 "No-BS Python code folding for Vim
 " Как же она затрахала
  " Plug 'jiangmiao/auto-pairs'             " :h autopairs
-Plug 'Raimondi/delimitMate'
 
 Plug 'mhinz/vim-startify'               " Nice start screen (COW)
 Plug 'sjl/gundo.vim'                    "visualise undu tree
@@ -80,7 +79,7 @@ Plug 'metakirby5/codi.vim'             "Cool. But my Laptop isn't fast enough!
 
 " Обязательно как нибудь попробовать.Вместо YouCompleteMe
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
-" Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 
 Plug 'davidhalter/jedi-vim'            "Pydoc support (Shift+k).
 

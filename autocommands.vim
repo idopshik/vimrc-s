@@ -1,4 +1,6 @@
 " vim: foldmethod=marker
+"fullscreen. But need enter hitting every time. Probably - not a great idea.
+" autocmd VimEnter * :! wmctrl -r ':ACTIVE:' -b toggle,fullscreen "Gvim also broken!
 
 " chebang_chmod     
 " Execution permissions by default to shebang (#!) files "{{{

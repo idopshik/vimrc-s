@@ -47,7 +47,8 @@ call quickmenu#append('Check: pylint', 'call asclib#lint_pylint("")', 'run pylin
 
 call quickmenu#append('# Other', '')
 call quickmenu#append('Bracey start', 'Bracey', 'Bracey. to stop call :BraceyStop')
-call quickmenu#append('Mimimap', 'Minimap', 'Minimap show   MinimapClose (manually)')
+" call quickmenu#append('Mimimap', 'Minimap', 'Minimap show   MinimapClose (manually)')
+call quickmenu#append('Clean ~/vim/view/', '!rm -f -r ~/.vim/view/*', 'First try this to resolve anything you can think of "strange" in vim!')
 
 if has('win32') || has('win64') || has('win16') || has('win95')
     call quickmenu#append('Open cmd', 'call menu#WinOpen("cmd")', 'Open cmd.exe in current file directory')

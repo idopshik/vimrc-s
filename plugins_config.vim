@@ -28,27 +28,27 @@ let g:markdown_fenced_languages = [
       \ 'help'
       \]
 
-	function! StatusDiagnostic() abort
-	  let info = get(b:, 'coc_diagnostic_info', {})
-	  if empty(info) | return '' | endif
-	  let msgs = []
-	  if get(info, 'error', 0)
-	    call add(msgs, 'E' . info['error'])
-	  endif
-	  if get(info, 'warning', 0)
-	    call add(msgs, 'W' . info['warning'])
-	  endif
-	  return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
-	endfunction
+    function! StatusDiagnostic() abort
+      let info = get(b:, 'coc_diagnostic_info', {})
+      if empty(info) | return '' | endif
+      let msgs = []
+      if get(info, 'error', 0)
+        call add(msgs, 'E' . info['error'])
+      endif
+      if get(info, 'warning', 0)
+        call add(msgs, 'W' . info['warning'])
+      endif
+      return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
+    endfunction
 
 " set statusline+=%{StatusDiagnostic()}
-set statusline^=%{coc#status()} "Diagnostics info 
+set statusline^=%{coc#status()} "Diagnostics info
 
-	let g:airline#extensions#coc#enabled = 1
-	let airline#extensions#coc#error_symbol = '⨉'
-	let airline#extensions#coc#warning_symbol = '⚠'
-	let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-	let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+    let g:airline#extensions#coc#enabled = 1
+    let airline#extensions#coc#error_symbol = '⨉'
+    let airline#extensions#coc#warning_symbol = '⚠'
+    let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+    let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 "}}}
 "=====================================================
 "#       YouCompleteMe  {{{
@@ -154,7 +154,7 @@ let g:tagbar_type_vimwiki = {
 "Currend state  - активно для с при сохранени. Для остальных пассивно.
 "SyntasticInfo - list of avalible linters
 
-"Разкомментируй три следующих строки и закомментируй в Coc! 
+"Разкомментируй три следующих строки и закомментируй в Coc!
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
@@ -172,7 +172,7 @@ let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 " YouCompleteMe не даёт ему работать make линтеру с "c" языком. Не знаю как исправить
 let g:syntastic_mode_map = {
     \ "mode": "passive",
-    \ "active_filetypes": ["c","h"],  
+    \ "active_filetypes": ["c","h"],
     \ "passive_filetypes": ["sh","javascript"] } "Задолбал этот синтаситик. Пока не научился им ползоваться.
 "в active можно добавить sh - будет его проверять
 "и наоборот. Можно поствить его в пассиве - но это мало чего изменит
@@ -272,8 +272,8 @@ if has('gui_running')
     ""let g:airline_theme='raven' "grayish supernice
     "simple - very good too"
 else
+    " let g:airline_theme='raven' "grayish supernice
     " let g:airline_theme='angr'
-    let g:airline_theme='raven' "grayish supernice
 endif
 
 let g:airline_powerline_fonts = 1
@@ -361,8 +361,15 @@ endif
 "=====================================================
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-s>"
-let g:UltiSnipsJumpForwardTrigger="<C-b>"
-let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+" Пока не уверен, что мне нужна TAB
+" let g:UltiSnipsJumpForwardTrigger = '<TAB>'
+" let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
+"Это вообще 'валяется' на будущее. Возможно. 
+" let g:coc_snippet_next = '<TAB>'
+" let g:coc_snippet_prev = '<S-TAB>'
+
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 "
@@ -387,8 +394,7 @@ let g:vimwiki_folding='syntax'
 " autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
 
 " forced async
-    let g:prettier#exec_cmd_async = 1 
+    let g:prettier#exec_cmd_async = 1
 " Running before saving async
-  let g:prettier#autoformat = 0 
+  let g:prettier#autoformat = 0
 ""}}
-
