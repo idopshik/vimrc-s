@@ -1,4 +1,6 @@
 set cursorline
+set cursorcolumn
+
 hi CursorLine term=bold cterm=bold guibg=Grey40
 " :nnoremap H :set cursorline! cursorcolumn!<CR>
 :nnoremap H :set cursorline!<CR>

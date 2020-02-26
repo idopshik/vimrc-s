@@ -9,6 +9,9 @@ endfunc
 " enable cursorline (L) and cmdline help (H)
 let g:quickmenu_options = "LH"
 
+" Replace the origin title of `QuickMenu X.X.X`
+call g:quickmenu#header('<leader-2>  menu#2')
+
 " clear all the items
 call g:quickmenu#reset()
 
@@ -26,20 +29,12 @@ call g:quickmenu#append('cp866', 'e ++enc=cp866 ++ff=dos', 'set cp866')
 "# section 2
 call g:quickmenu#append('# Misc', '')
 
-
 call quickmenu#append("Turn paste %{&paste? 'off':'on'}", "set paste!", "enable/disable paste mode (:set paste!)")
 call quickmenu#append("Turn spell %{&spell? 'off':'on'}", "set spell!", "enable/disable spell check (:set spell!)")
 
 call quickmenu#append('Spellang toggle', ':call quickmenu#ToggleSpelllang()', 'set spelllang')
 
 call quickmenu#append('Ignore Case %{&ignorecase? "[x]" :"[ ]"}', 'set ignorecase!', 'set ignorecase!')
-
-call g:quickmenu#append('# Calendar', '')
-call quickmenu#append('Calendar', 'Calendar', 'show Calendar')
-
-call quickmenu#append('# Terminal', '')
-call quickmenu#append('Open Terminal Below', 'belowright term ++rows=10', 'Open terminal below current window')
-call quickmenu#append('Open Python Below', 'belowright term ++rows=10 python', 'Open python below current window')
 
 
 call quickmenu#append('Check: flake8', 'call asclib#lint_flake8("")', 'run flake8 in current document, [e to display error', 'python')
@@ -48,7 +43,6 @@ call quickmenu#append('Check: pylint', 'call asclib#lint_pylint("")', 'run pylin
 call quickmenu#append('# Other', '')
 call quickmenu#append('Bracey start', 'Bracey', 'Bracey. to stop call :BraceyStop')
 " call quickmenu#append('Mimimap', 'Minimap', 'Minimap show   MinimapClose (manually)')
-call quickmenu#append('Clean ~/vim/view/', '!rm -f -r ~/.vim/view/*', 'First try this to resolve anything you can think of "strange" in vim!')
 
 if has('win32') || has('win64') || has('win16') || has('win95')
     call quickmenu#append('Open cmd', 'call menu#WinOpen("cmd")', 'Open cmd.exe in current file directory')
@@ -61,8 +55,23 @@ endif
 call quickmenu#current(1)
 call quickmenu#reset()
 
-call quickmenu#append('# keybidings', '')
-call quickmenu#append('# % - парнаф скобка', '')
-call quickmenu#append('# ls - список буферов', '')
+
+"----------------------------------------------------------------------
+"# Some other raraly used things. And probable useless.
+"----------------------------------------------------------------------
+call quickmenu#append('Calendar', 'Calendar', 'show Calendar')
+
+call g:quickmenu#append('# Vim "strange"', '')
+call quickmenu#append('Clean ~/vim/view/', '!rm -f -r ~/.vim/view/*', 'First try this to resolve anything you can think of "strange" in vim!')
+call quickmenu#append('Clean undo/swap dirs!', '!rm -f -r ~/.vim/undodir/* ~/.vim/swapfiles/*', 'There was case that "strange" bahavior was illiminated only after this!')
+
+call quickmenu#append('# Terminal', '')
+call quickmenu#append('Open Terminal Below', 'belowright term ++rows=10', 'Open terminal below current window')
+call quickmenu#append('Open Python Below', 'belowright term ++rows=10 python', 'Open python below current window')
+
+"----------------------------------------------------------------------
+"# Some info probably useless too
+"----------------------------------------------------------------------
+call quickmenu#append('# Keybidings I"m learning', '')
 call quickmenu#append('# С-f - редактирование в коммандрой строке', '')
-call quickmenu#append('# ds) - delete surrounding', '')
+call quickmenu#append('# !ranger - you can do it in Gvim too', '')

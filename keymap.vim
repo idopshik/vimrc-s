@@ -1,4 +1,14 @@
 "=====================================================
+"#        Automatically closing braces (hate plugin bahaviour)
+"=====================================================
+inoremap (; (<CR>);<C-c>O
+inoremap (, (<CR>),<C-c>O
+inoremap {; {<CR>};<C-c>O
+inoremap {, {<CR>},<C-c>O
+inoremap [; [<CR>];<C-c>O
+inoremap [, [<CR>],<C-c>O
+
+"=====================================================
 "#        Terminal
 "=====================================================
 "vert[ical] term[imal]. Close it by <esc><esc>:q<CR>
@@ -157,6 +167,7 @@ endfunc
 
 noremap <silent><Leader>k :call VimNotesWindowToggle()<cr>
 noremap <silent><Leader>m :call quickmenu#toggle(0)<cr><cr>
+noremap <silent><Leader>2 :call quickmenu#toggle(1)<cr><cr> 
 
 " map <alt+n> to navigate through tabs
 for c in range(1, 9)

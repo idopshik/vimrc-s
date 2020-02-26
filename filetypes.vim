@@ -128,6 +128,8 @@ autocmd BufNewFile,BufRead *.mako setlocal ft=mako
 autocmd BufNewFile,BufRead *.tmpl setlocal ft=htmljinja
 autocmd BufNewFile,BufRead *.py_tmpl setlocal ft=python
 let html_no_rendering=1
+
+"TODO What ist this for?
 let g:closetag_default_xml=1
 let g:sparkupNextMapping='<c-l>'
 autocmd FileType html,htmldjango,htmljinja,eruby,mako let b:closetag_html_style=1
@@ -136,6 +138,9 @@ autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako source ~/.vim/pl
 " --- CSS ---
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+
+" --- VimWiki ---
+autocmd FileType vimwiki setlocal spelllang=ru spell
 
 "
 "#  Delete trailing whitespace on save, useful for some filetypes ;)

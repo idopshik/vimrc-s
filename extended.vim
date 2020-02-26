@@ -36,7 +36,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'               " Parentheses, brackets, quotes, XML tags, and more
 Plug 'xolox/vim-misc'                   " required
-Plug 'vim-scripts/closetag.vim'        "Не знаю может и не надо
 Plug 'scrooloose/nerdcommenter'         " :help nerdcommenter
 Plug 'godlygeek/tabular'
 Plug 'tmhedberg/simpylfold'                 "No-BS Python code folding for Vim
@@ -105,6 +104,8 @@ Plug 'vim-python/python-syntax'        "TEST IT TODO
 Plug 'pangloss/vim-javascript'               " Добавляет показатели вложенности в gutter.
 " post install (yarn install | npm install)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+" ---------------=== html ===-------------------
+Plug 'mattn/emmet-vim'
 "
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
