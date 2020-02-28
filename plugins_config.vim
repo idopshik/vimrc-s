@@ -19,7 +19,7 @@ highlight SignColumn guibg=bg
 " highlight SignColumn ctermbg=bg
 "
 " Update sign column every quarter second
-set updatetime=250  "Это есть и в другом файле (бэйсик что-ли) и может заторможить вим.
+set updatetime=250                " noplugins_vimrc - 1000. 
 autocmd BufWritePost * GitGutter  "force to refresh sighns - they always unrelayible!
 "}}}
 "=====================================================
@@ -364,7 +364,9 @@ endif
 "#       snippets
 "=====================================================
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-s>"
+
+"c-expand mnemonic
+let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 " Пока не уверен, что мне нужна TAB

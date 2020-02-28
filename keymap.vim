@@ -47,6 +47,21 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 "<Plug> - Вот через это фуфло GitGutter так и не работли команды.
 
 "change keymap file (winh a trick to override plugin's mapping)
+
+"TODO Убрать это отсюда
+function! ChangeLayout()
+    if &keymap == 'ru'
+    else
+    endif
+endfunction
+
+"TODO проверить полезность этого
+function! InsertLeaveFun()
+    " silent !setxkbmap us "Ломает" системную переключалку
+    " setxkbmap ru
+endfunction
+
+autocmd InsertLeave * call InsertLeaveFun()
 autocmd VimEnter * map! <C-k> <C-^>
 
 " vimwiki
@@ -94,7 +109,8 @@ endfun
 "was written what whitespace at the end was mandatory. But w/o it - all works well.
 map <Leader>l :Leaderf self<CR>
 
-let g:UltiSnipsExpandTrigger = '<Leader>s' "Select snippet in drop out menu Youcompletemy
+"TODO из-за этого на русском тормози буква б. Не сталь ничего на imap
+" let g:UltiSnipsExpandTrigger = '<Leader>s' "Select snippet in drop out menu Youcompletemy
 
 "%% ic Command-line mode to refer to the directory of the current file, regardledd of pwd.
 "Windows-прикол какой-то? На Linux ./ и куча пробелов

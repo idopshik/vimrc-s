@@ -140,9 +140,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 
 " --- VimWiki ---
-autocmd FileType vimwiki setlocal spelllang=ru spell
 
-"
 "#  Delete trailing whitespace on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")

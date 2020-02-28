@@ -23,18 +23,19 @@ call g:quickmenu#append('#File Encoding', '')
 call g:quickmenu#append('windows-1251', 'e ++enc=cp1251 ++ff=dos', 'set Windows-1251')
 call g:quickmenu#append('utf-8', 'e ++enc=utf8', 'set utf-8')
 call g:quickmenu#append('koi8-r', "e ++enc=koi8-r", 'set koi8-r encoding')
-call g:quickmenu#append('Save as utf-8', 'w ++enc=utf8', ':w ++enc=utf8')
+call g:quickmenu#append('save as utf-8', 'w ++enc=utf8', ':w ++enc=utf8')
 call g:quickmenu#append('cp866', 'e ++enc=cp866 ++ff=dos', 'set cp866')
 
 "# section 2
 call g:quickmenu#append('# Misc', '')
 
-call quickmenu#append("Turn paste %{&paste? 'off':'on'}", "set paste!", "enable/disable paste mode (:set paste!)")
-call quickmenu#append("Turn spell %{&spell? 'off':'on'}", "set spell!", "enable/disable spell check (:set spell!)")
+call quickmenu#append("Ru Spell", "setlocal spelllang=ru spell", "set local Russian spelling")
+call quickmenu#append("turn paste %{&paste? 'off':'on'}", "set paste!", "enable/disable paste mode (:set paste!)")
+call quickmenu#append("turn spell %{&spell? 'off':'on'}", "set spell!", "enable/disable spell check (:set spell!)")
 
-call quickmenu#append('Spellang toggle', ':call quickmenu#ToggleSpelllang()', 'set spelllang')
+call quickmenu#append('spellang toggle', ':call quickmenu#ToggleSpelllang()', 'set spelllang')
 
-call quickmenu#append('Ignore Case %{&ignorecase? "[x]" :"[ ]"}', 'set ignorecase!', 'set ignorecase!')
+call quickmenu#append('ignore case %{&ignorecase? "[x]" :"[ ]"}', 'set ignorecase!', 'set ignorecase!')
 
 
 call quickmenu#append('Check: flake8', 'call asclib#lint_flake8("")', 'run flake8 in current document, [e to display error', 'python')
@@ -74,4 +75,3 @@ call quickmenu#append('Open Python Below', 'belowright term ++rows=10 python', '
 "----------------------------------------------------------------------
 call quickmenu#append('# Keybidings I"m learning', '')
 call quickmenu#append('# С-f - редактирование в коммандрой строке', '')
-call quickmenu#append('# !ranger - you can do it in Gvim too', '')
