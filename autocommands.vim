@@ -66,10 +66,13 @@ augroup END
 fun! WikiEncrypt()
     let filename=expand('%:t:r') 
     let l:newfilename=filename.".gpg.wiki"
-    
     let l:curdirname=expand('%:p:h')
     let l:tmpfilename=l:curdirname."/tmp_f"
-    if expand('%:e')=='wiki'
+
+    if filereadable(l:newfilename)
+        echom "=>     warning!  <="
+        echo "File already exists!"
+    elseif expand('%:e')=='wiki'
         setlocal bin 
         sil %!GPG_TTY=/dev/tty gpg -e --output tmp_f --default-recipient-self
         setlocal nobin
@@ -79,13 +82,12 @@ fun! WikiEncrypt()
                 :call delete(expand('%')) | bdelete!
                 echo "File encrypted (gpg async.). buf wiped."
             endif
-        else
-            echo "For VimWiki only!"
+    else
+        echo "For VimWiki only!"
     endif
-    " redraw!
 endfun
 
-cmap we :call WikiEncrypt()<CR>
+:command WikiEncrypt :call WikiEncrypt()<CR>
 "}}
 "
 ":Redir Комманда для перенаправления вывода в буфер
