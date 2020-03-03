@@ -79,6 +79,7 @@ set whichwrap+=<,>,h,l
 "=====================================================
 set incsearch                   " incremental searching
 set showmatch                   " show pairs match
+set matchtime=3                 " было 5. Но это долго для меня
 set hlsearch                    " highlight search results
 set smartcase                   " smart case ignore
 set ignorecase                  " ignore case letters

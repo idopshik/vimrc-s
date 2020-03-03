@@ -6,6 +6,21 @@ function! quickmenu#ToggleSpelllang()
     endif
 endfunc
 
+function! quickmenu#ToggleConceallevel()
+    if &conceallevel > 0
+        set conceallevel=0
+    else
+        set conceallevel=1
+    endif
+endfunc
+
+function! quickmenu#ToggleFoldcolumn()
+    if &foldcolumn > 0
+        set foldcolumn=0
+    else
+        set foldcolumn=1
+    endif
+endfunc
 " enable cursorline (L) and cmdline help (H)
 let g:quickmenu_options = "LH"
 
@@ -40,6 +55,11 @@ call quickmenu#append('ignore case %{&ignorecase? "[x]" :"[ ]"}', 'set ignorecas
 
 call quickmenu#append('Check: flake8', 'call asclib#lint_flake8("")', 'run flake8 in current document, [e to display error', 'python')
 call quickmenu#append('Check: pylint', 'call asclib#lint_pylint("")', 'run pylint in current document, [e to display error', 'python')
+
+
+call quickmenu#append('# JavaScript', '', '', 'javascript')
+call quickmenu#append('conceallevel %{&conceallevel? "[x]" :"[ ]"}', ':call quickmenu#ToggleConceallevel()', 'for js filetype vim-javascript could show glypths', 'javascript')
+call quickmenu#append('foldcolumn %{&foldcolumn? "[x]" :"[ ]"}', ':call quickmenu#ToggleFoldcolumn()', 'foldcolumn - show fold column in gutter', 'javascript')
 
 call quickmenu#append('# Other', '')
 call quickmenu#append('Bracey start', 'Bracey', 'Bracey. to stop call :BraceyStop')

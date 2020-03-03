@@ -50,6 +50,7 @@ Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
 " Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке! Без неё не заработает!
 Plug 'turbio/bracey.vim' " css,html,js live
+Plug 'junegunn/goyo.vim' " :Gojo
 
 "## --------------=== Snippets support ===---------------
 Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself
@@ -101,7 +102,7 @@ Plug 'vim-python/python-syntax'        "TEST IT TODO
 
 
 " ---------------=== Javascript ===-------------------
-Plug 'pangloss/vim-javascript'               " Добавляет показатели вложенности в gutter.
+Plug 'pangloss/vim-javascript'               " better indentetion and highlighting
 " post install (yarn install | npm install)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " ---------------=== html ===-------------------

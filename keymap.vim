@@ -148,6 +148,7 @@ map <C-n> :NERDTreeToggle<CR>
 
 nnoremap <leader>nn :NERDTreeFind<CR>
 
+ 
 nmap <F3> :ALEFix <CR>
 " map <F3> <Esc>:w<CR>:!C:\Progs\anaconda\Scripts\pylint.exe %<CR>
 
@@ -162,7 +163,6 @@ map <C-c> <plug>NERDCommenterToggle
 
 map <C-n> :NERDTreeToggle<CR>
 
-let g:CheetOpened=0
 let g:CheetOpened=0
 function! VimNotesWindowToggle()
     if g:CheetOpened > 0
@@ -181,6 +181,26 @@ function! VimNotesWindowToggle()
     endif
 endfunc
 
+let g:CommonOpened=0
+function! CommonNotesWindowToggle()
+    if g:CommonOpened > 0
+        if bufname('%') == 'CommonNotes.txt'
+            silent close!
+            let g:CommonOpened=0
+        else
+            exe g:CheetWindow . "wincmd w" | wincmd c 
+            let g:CommonOpened=0
+            echo "Closed anyway regarles of location and newly stuff in \"cheet\" window"
+        endif
+    else
+        :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.txt
+        let g:CheetWindow=winnr()
+        let g:CommonOpened=1
+    endif
+endfunc
+
+
+noremap <silent><Leader>n :call CommonNotesWindowToggle()<cr>
 noremap <silent><Leader>k :call VimNotesWindowToggle()<cr>
 noremap <silent><Leader>m :call quickmenu#toggle(0)<cr><cr>
 noremap <silent><Leader>2 :call quickmenu#toggle(1)<cr><cr> 
