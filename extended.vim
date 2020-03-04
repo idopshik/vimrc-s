@@ -50,7 +50,7 @@ Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
 " Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке! Без неё не заработает!
 Plug 'turbio/bracey.vim' " css,html,js live
-Plug 'junegunn/goyo.vim' " :Gojo
+Plug 'junegunn/goyo.vim' " :Goyo
 
 "## --------------=== Snippets support ===---------------
 Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself

@@ -79,7 +79,7 @@ fun! WikiEncrypt()
             if rename(l:tmpfilename, l:newfilename) != 0
               echo "Unable to rename "
             else
-                :call delete(expand('%')) | bdelete!
+                call delete(expand('%')) | bdelete!
                 echo "File encrypted (gpg async.). buf wiped."
             endif
     else
@@ -87,7 +87,7 @@ fun! WikiEncrypt()
     endif
 endfun
 
-:command WikiEncrypt :call WikiEncrypt()<CR>
+:command WikiEncrypt :call WikiEncrypt()
 "}}
 "
 ":Redir Комманда для перенаправления вывода в буфер

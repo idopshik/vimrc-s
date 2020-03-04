@@ -135,7 +135,7 @@ set showbreak=↳                "↪ как альтернатива
 "#   Lot's of other's
 """"""""""""""""""""""""""""""
 " automatically changes Vim's working dir to the current file:
-:autocmd BufEnter * silent! :lcd%:p:h
+:autocmd BufEnter * silent! :lcd%:p:h | redraw!
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files

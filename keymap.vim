@@ -48,18 +48,20 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
 "change keymap file (winh a trick to override plugin's mapping)
 
-"TODO Убрать это отсюда
-function! ChangeLayout()
-    if &keymap == 'ru'
-    else
-    endif
-endfunction
-
-"TODO проверить полезность этого
+"требует установить xkb-switch
+let g:XkbSwitchLib = "/lib/libxkbswitch.so"
 function! InsertLeaveFun()
+    "решает проблему с языком системы при выходе из insert
+    " call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
+
     " silent !setxkbmap us "Ломает" системную переключалку
-    " setxkbmap ru
+    " echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
 endfunction
+" nnoremap о  call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
+" nnoremap л  call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
+
+" nmap о call InsertLeaveFun() " было бы классно, но это не работает.
+inoremap <C-х>  <ESC>
 
 autocmd InsertLeave * call InsertLeaveFun()
 autocmd VimEnter * map! <C-k> <C-^>
@@ -185,12 +187,14 @@ let g:CommonOpened=0
 function! CommonNotesWindowToggle()
     if g:CommonOpened > 0
         if bufname('%') == 'CommonNotes.txt'
-            silent close!
+            w
+            bd
+            " silent close!
             let g:CommonOpened=0
         else
             exe g:CheetWindow . "wincmd w" | wincmd c 
             let g:CommonOpened=0
-            echo "Closed anyway regarles of location and newly stuff in \"cheet\" window"
+            echo "Closing note's buf forcelly"
         endif
     else
         :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.txt

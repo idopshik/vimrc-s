@@ -1,7 +1,5 @@
 " vim: fdm=expr
-"=====================================================
-"#       template {{{
-"=====================================================
+"no need in {{{
 
 "=====================================================
 "#       GitGutter  {{{
@@ -19,14 +17,34 @@ highlight SignColumn guibg=bg
 " highlight SignColumn ctermbg=bg
 "
 " Update sign column every quarter second
-set updatetime=250                " noplugins_vimrc - 1000. 
+set updatetime=250                " noplugins_vimrc - 1000.
 autocmd BufWritePost * GitGutter  "force to refresh sighns - they always unrelayible!
 "}}}
 "=====================================================
 "#       CoC  {{{
 "=====================================================
-
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 "for coc-vimlsp
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 let g:markdown_fenced_languages = [
       \ 'vim',
       \ 'help'
@@ -45,8 +63,10 @@ let g:markdown_fenced_languages = [
       return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
     endfunction
 
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " set statusline+=%{StatusDiagnostic()}
-set statusline^=%{coc#status()} "Diagnostics info
+" set statusline^=%{coc#status()} "Diagnostics info
 
     let g:airline#extensions#coc#enabled = 1
     let airline#extensions#coc#error_symbol = '⨉'
@@ -284,7 +304,6 @@ let g:airline_powerline_fonts = 1
 
 " " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-
 " " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 0
@@ -312,6 +331,7 @@ let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
 let airline#extensions#ale#show_line_numbers = 1
 
+let g:airline#extensions#xkblayout#enabled = 0
 let g:airline#extensions#keymap#enabled = 0
 " }}}
 "=====================================================
@@ -346,7 +366,6 @@ nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 " Deactivate it here.
 let g:jedi#rename_command="<Nop>"   " Она и так у меня не работала. Моргала и всё
 
-
 "=====================================================
 "#       Gundo
 "=====================================================
@@ -372,7 +391,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 " Пока не уверен, что мне нужна TAB
 " let g:UltiSnipsJumpForwardTrigger = '<TAB>'
 " let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
-"Это вообще 'валяется' на будущее. Возможно. 
+"Это вообще 'валяется' на будущее. Возможно.
 " let g:coc_snippet_next = '<TAB>'
 " let g:coc_snippet_prev = '<S-TAB>'
 
@@ -406,10 +425,10 @@ let g:vimwiki_folding='syntax'
 ""}}
 
 "=====================================================
-"#       vim-javascript 
+"#       vim-javascript
 "=====================================================
 " не знаю что это
-let g:javascript_plugin_jsdoc = 1   
+let g:javascript_plugin_jsdoc = 1
 
 " set conceallevel=0 Почему-0то игрнорируется.
 
@@ -427,3 +446,7 @@ let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
 
+"=====================================================
+"#       Goyo
+"=====================================================
+let g:goyo_width=100

@@ -140,3 +140,9 @@ echo "----------------------------"
 sudo apt-get install npm
 
 sudo npm install -g jshint
+
+echo "----------------------------"
+echo "   боль с клавиатурой
+echo "----------------------------"
+
+sudo npm install -g jshint
