@@ -43,7 +43,7 @@ Plug 'tmhedberg/simpylfold'                 "No-BS Python code folding for Vim
  " Plug 'jiangmiao/auto-pairs'             " :h autopairs
 
 Plug 'mhinz/vim-startify'               " Nice start screen (COW)
-Plug 'sjl/gundo.vim'                    "visualise undu tree
+Plug 'mbbill/undotree'                    "another one
 Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
 
 " html b md показывает, css b js нет.

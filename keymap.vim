@@ -1,5 +1,5 @@
 "=====================================================
-"#        Automatically closing braces (hate plugin bahaviour)
+"#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
 inoremap (; (<CR>);<C-c>O
 inoremap (, (<CR>),<C-c>O
@@ -31,9 +31,9 @@ nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
 "all this replaced  Plug 'matze/vim-move'
 let c='a'
 while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
+    exec "set <A-".c.">=\e".c
+    exec "imap \e".c." <A-".c.">"
+    let c = nr2char(1+char2nr(c))
 endw
 set timeout ttimeoutlen=50   " can ponentially cause problems. Blame this first!
 nnoremap <silent><A-j> :m .+1<CR>==
@@ -52,16 +52,14 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 let g:XkbSwitchLib = "/lib/libxkbswitch.so"
 function! InsertLeaveFun()
     "решает проблему с языком системы при выходе из insert
-    " call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
-
+    call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
     " silent !setxkbmap us "Ломает" системную переключалку
     " echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
 endfunction
-" nnoremap о  call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
-" nnoremap л  call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
 
-" nmap о call InsertLeaveFun() " было бы классно, но это не работает.
-inoremap <C-х>  <ESC>
+"TODO почему это не работает?
+" nnoremap о  call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
+" inoremap <C-х>  <ESC>
 
 autocmd InsertLeave * call InsertLeaveFun()
 autocmd VimEnter * map! <C-k> <C-^>
@@ -132,7 +130,7 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python %<CR>
 autocmd FileType python nnoremap <buffer> <F6> :exec '!python' shellescape(@%, 1)<cr>
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
- "Избыточная копия F5
+"Избыточная копия F5
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 
 
@@ -150,13 +148,13 @@ map <C-n> :NERDTreeToggle<CR>
 
 nnoremap <leader>nn :NERDTreeFind<CR>
 
- 
+
 nmap <F3> :ALEFix <CR>
 " map <F3> <Esc>:w<CR>:!C:\Progs\anaconda\Scripts\pylint.exe %<CR>
 
 nmap <F4> :Prettier <CR>
 
-nnoremap <F7> :GundoToggle<CR>
+nnoremap <F7> ::UndotreeToggle<CR>
 
 map <F8> :TagbarToggle<CR>
 
@@ -238,17 +236,17 @@ nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 au BufRead,BufNewFile *.wiki set filetype=vimwiki
 :autocmd FileType vimwiki map <Leader>d :VimwikiMakeDiaryNote<CR>
 function! ToggleCalendar()
-  execute ":Calendar"
-  if exists("g:calendar_open")
-    if g:calendar_open == 1
-      execute "q"
-      unlet g:calendar_open
+    execute ":Calendar"
+    if exists("g:calendar_open")
+        if g:calendar_open == 1
+            execute "q"
+            unlet g:calendar_open
+        else
+            g:calendar_open = 1
+        end
     else
-      g:calendar_open = 1
+        let g:calendar_open = 1
     end
-  else
-    let g:calendar_open = 1
-  end
 endfunction
 
 "Решение проблемы - когда буфер вики в фоне - нельзя даже c (change) сделать!"
