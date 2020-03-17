@@ -1,3 +1,6 @@
+command! Debug !node inspect ./%
+command! Mk !node ./%
+
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
@@ -48,6 +51,9 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
 "change keymap file (winh a trick to override plugin's mapping)
 
+"//ПРОСТО ВЕЛИКОЛЕПИЕ. Столько лет боли с раскладками.
+"//Просто всегда при выходе из insert - en! Гениально. Надо (редко) - входишь в ru! 
+"//Но только в терминале. В Gvim - сосамба.
 "требует установить xkb-switch
 let g:XkbSwitchLib = "/lib/libxkbswitch.so"
 function! InsertLeaveFun()
@@ -62,7 +68,8 @@ endfunction
 " inoremap <C-х>  <ESC>
 
 autocmd InsertLeave * call InsertLeaveFun()
-autocmd VimEnter * map! <C-k> <C-^>
+" Никак не могу приспособиться к этому.I literally hate it!
+" autocmd VimEnter * map! <C-k> <C-^>
 
 " vimwiki
 map <leader>wp <Plug>VimwikiDiaryPrevDay
@@ -130,8 +137,8 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python %<CR>
 autocmd FileType python nnoremap <buffer> <F6> :exec '!python' shellescape(@%, 1)<cr>
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
-"Избыточная копия F5
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
+autocmd FileType javascript set makeprg=node\ %
 
 
 autocmd FileType sh nnoremap <buffer> <F6><Esc>:w<CR>:! ./%<CR>

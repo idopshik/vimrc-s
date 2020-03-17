@@ -1,9 +1,9 @@
 set cursorline
 set cursorcolumn
 
-hi CursorLine term=bold cterm=bold guibg=Grey40
-" :nnoremap H :set cursorline! cursorcolumn!<CR>
-:nnoremap H :set cursorline!<CR>
+" hi CursorLine term=bold cterm=bold guibg=Grey40
+nnoremap H :set cursorline! cursorcolumn!<CR>
+" :nnoremap H :set cursorline!<CR>
 set guicursor+=a:blinkon0
 set background=dark
 
@@ -26,7 +26,7 @@ if has('unix')
     " :set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 15
     " :set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ Oblique\ 15     "italic"
     " :set guifont=DroidSansMono\ Nerd\ Font\ Oblique\ 15
-    :set guifont=DroidSansMono\ Nerd\ Font\ 15
+    :set guifont=DroidSansMono\ Nerd\ Font\ 17
 endif
 if has("unix")
     function! FontSizePlus ()
@@ -73,6 +73,7 @@ else
     colorscheme jellybeans
     " colorscheme OceanicNext
     " colorscheme gruvbox
+    " colorscheme solarized  "blue subdued
 endif
 
 "must be here. AFTER colorscheme set up"

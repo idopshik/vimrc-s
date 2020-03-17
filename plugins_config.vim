@@ -28,7 +28,8 @@ set shortmess+=c
 "for coc-vimlsp
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+"Doesn't work for me. Way more inportant - gi - go inputed recently
+" nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
@@ -297,6 +298,7 @@ if has('gui_running')
     "simple - very good too"
 else
     " let g:airline_theme='raven' "grayish supernice
+    let g:airline_theme='badcat' "supernice contrast black-gray
     " let g:airline_theme='angr'
 endif
 
@@ -333,6 +335,8 @@ let airline#extensions#ale#show_line_numbers = 1
 
 let g:airline#extensions#xkblayout#enabled = 0
 let g:airline#extensions#keymap#enabled = 0
+
+let airline#extensions#tabline#ignore_bufadd_pat = 'undotree|tagbar|nerd_tree'
 " }}}
 "=====================================================
 "#       LeaderF        {{{
@@ -444,3 +448,11 @@ let g:javascript_conceal_underscore_arrow_function = "🞅"
 "=====================================================
 let g:goyo_width=100
 let g:goyo_hight=70
+
+"=====================================================
+"#       Undotree
+"=====================================================
+let g:undotree_SplitWidth=30
+let g:undotree_ShortIndicators = 1
+let g:undotree_DiffAutoOpen = 0
+

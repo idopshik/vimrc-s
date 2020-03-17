@@ -24,6 +24,7 @@ call plug#begin('~/.vim/plugged')
 "## ------------------=== Other ===----------------------
 
 "Just trying it
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'rbong/pimodoro'                     "needs place in my statusline!"
 
 "sudo apt-get install wmctrl    # Ubuntu/Debian - needed. Terminal dosn't execute ctrl+<CR>
