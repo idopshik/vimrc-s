@@ -20,7 +20,7 @@ augroup filetype_vim
     " Это всё здесь примеры. Для этого типа используется fdm=expr задан через
     " /.vim/after/ftplugin/vim/fold.vim
     " autocmd FileType vim setlocal foldmethod=marker
-    " autocmd FileType vim set foldlevelstart=0
+    autocmd FileType vim set foldlevelstart=0
     " autocmd FileType vim setlocal foldmarker={{{,}}}
 augroup END
 

@@ -1,14 +1,11 @@
-set cursorline
-set cursorcolumn
+"#   Cursor line/column/color style
+"=====================================================
+" autocmd WinEnter * setlocal cursorline cursorcolumn
+" autocmd WinLeave * setlocal nocursorline nocursorcolumn
+" set guicursor+=a:blinkon0
 
-" hi CursorLine term=bold cterm=bold guibg=Grey40
-nnoremap H :set cursorline! cursorcolumn!<CR>
-" :nnoremap H :set cursorline!<CR>
-set guicursor+=a:blinkon0
 set background=dark
 
-
-"=====================================================
 "#   Font
 "=====================================================
 if has('win32')
@@ -26,7 +23,7 @@ if has('unix')
     " :set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 15
     " :set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ Oblique\ 15     "italic"
     " :set guifont=DroidSansMono\ Nerd\ Font\ Oblique\ 15
-    :set guifont=DroidSansMono\ Nerd\ Font\ 17
+    :set guifont=DroidSansMono\ Nerd\ Font\ 19
 endif
 if has("unix")
     function! FontSizePlus ()
@@ -59,19 +56,18 @@ else
 endif
 
 command Font :call FontSizePlus()
-"=====================================================
+
 "#   Colorscheme
 "=====================================================
 if has('gui_running')
     " colorscheme PaperColor "dark and nice
-    colorscheme gruvbox
-    " set background=light
-    " colorscheme solarized  "blue subdued
+    " colorscheme gruvbox
+    colorscheme solarized  "blue subdued
     " colorscheme OceanicNext
     " colorscheme spacegray
 else
-    colorscheme jellybeans
-    " colorscheme OceanicNext
+    colorscheme OceanicNext
+    " colorscheme jellybeans
     " colorscheme gruvbox
     " colorscheme solarized  "blue subdued
 endif
@@ -81,7 +77,6 @@ hi lCursor guibg=#00ff00          "highlight green cursor when keymap activated
 
 
 
-"=====================================================
 "#   Separators in airline-statusline
 "=====================================================
     let g:airline_left_sep = "\uE0C6" "pixels

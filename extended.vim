@@ -5,7 +5,7 @@
 "                )__)  )  (   )(   )__)  )  (  )(_) ))__)  )(_) )
 "               (____)(_/\_) (__) (____)(_)\_)(____/(____)(____/
 "_________________________________________________________________________
-
+"#      Annotation
 " Maybee I should do this:
 " On Windows, use '.vim' instead of 'vimfiles': this makes synchronization
 " across heterogeneous Windows/POSIX environments easier.
@@ -40,17 +40,14 @@ Plug 'xolox/vim-misc'                   " required
 Plug 'scrooloose/nerdcommenter'         " :help nerdcommenter
 Plug 'godlygeek/tabular'
 Plug 'tmhedberg/simpylfold'                 "No-BS Python code folding for Vim
-" Как же она затрахала
- " Plug 'jiangmiao/auto-pairs'             " :h autopairs
+" Plug 'jiangmiao/auto-pairs'             " :h autopairs  Как же она затрахала
 
 Plug 'mhinz/vim-startify'               " Nice start screen (COW)
-Plug 'mbbill/undotree'                    "another one
-Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
+Plug 'mbbill/undotree'                   
 
 " html b md показывает, css b js нет.
 " Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке! Без неё не заработает!
-Plug 'turbio/bracey.vim' " css,html,js live
 Plug 'junegunn/goyo.vim' " :Goyo
 
 "## --------------=== Snippets support ===---------------
@@ -71,6 +68,7 @@ Plug 'liuchengxu/vim-clap'      "TODO texs it!
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
+Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.
 
@@ -106,6 +104,7 @@ Plug 'vim-python/python-syntax'        "TEST IT TODO
 Plug 'pangloss/vim-javascript'               " better indentetion and highlighting
 " post install (yarn install | npm install)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'turbio/bracey.vim' " css,html,js live 
 " ---------------=== html ===-------------------
 Plug 'mattn/emmet-vim'
 "

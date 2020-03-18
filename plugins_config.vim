@@ -257,7 +257,7 @@ let b:ale_warn_about_trailing_whitespace = 0
   " let g:ale_linters = {'c': ['clangtidy']}
   "cpp - ale так видит h - заголовочники в AVR проектах
   " let b:ale_linters = ['flake8', 'pylint']
-let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : []}  " disable ale for c language
+let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : []}  " disable ale for them;
 " hate.Don't set it on - vim has signcolumn=yes
 "
 "

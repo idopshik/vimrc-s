@@ -182,10 +182,10 @@ set tags=./tags,tags;$HOME
 set ignorecase
 set hidden
 
-hi cursorline cterm=none term=none
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
-highlight CursorLine guibg=#303000 ctermbg=234
+" hi cursorline cterm=none term=none
+" autocmd WinEnter * setlocal cursorline
+" autocmd WinLeave * setlocal nocursorline
+" highlight CursorLine guibg=#303000 ctermbg=234
 
 set pumheight=10
 set fillchars+=vert:\
