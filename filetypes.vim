@@ -62,6 +62,10 @@ autocmd FileType python vnoremap <buffer> <F9> :<C-U>exec '!clear;  python' shel
 """"""""""""""""""""""""""""""
 "#   => JavaScript section
 """""""""""""""""""""""""""""""
+
+" To get correct comment highlighting
+  autocmd FileType json syntax match Comment +\/\/.\+$+
+
 " let javascript_enable_domhtmlcss=1
 " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 " autocmd BufNewFile,BufRead *.json setlocal ft=javascript

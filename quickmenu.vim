@@ -62,7 +62,8 @@ call quickmenu#append('conceallevel %{&conceallevel? "[x]" :"[ ]"}', ':call quic
 call quickmenu#append('foldcolumn %{&foldcolumn? "[x]" :"[ ]"}', ':call quickmenu#ToggleFoldcolumn()', 'foldcolumn - show fold column in gutter', 'javascript')
 
 call quickmenu#append('# Other', '')
-call quickmenu#append('Bracey start', 'Bracey', 'Bracey. to stop call :BraceyStop')
+call quickmenu#append('Bracey start', 'Bracey', 'Bracey. to stop call :BraceyStop', 'html')
+call quickmenu#append('Livedown server toggle', 'LivedownToggle', 'Open md in browser/stop server', 'markdown')
 " call quickmenu#append('Mimimap', 'Minimap', 'Minimap show   MinimapClose (manually)')
 
 if has('win32') || has('win64') || has('win16') || has('win95')

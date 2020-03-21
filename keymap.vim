@@ -4,12 +4,12 @@ command! Mk !node ./%
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
-inoremap (; (<CR>);<C-c>O
-inoremap (, (<CR>),<C-c>O
-inoremap {; {<CR>};<C-c>O
-inoremap {, {<CR>},<C-c>O
-inoremap [; [<CR>];<C-c>O
-inoremap [, [<CR>],<C-c>O
+inoremap (; (<CR>)<C-c>O
+inoremap (, (<CR>)<C-c>O
+inoremap {; {<CR>}<C-c>O
+inoremap {, {<CR>}<C-c>O
+inoremap [; [<CR>]<C-c>O
+inoremap [, [<CR>]<C-c>O
 
 "=====================================================
 "#        Terminal
@@ -202,7 +202,7 @@ function! CommonNotesWindowToggle()
             echo "Closing note's buf forcelly"
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.txt
+        :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.md
         let g:CheetWindow=winnr()
         let g:CommonOpened=1
     endif

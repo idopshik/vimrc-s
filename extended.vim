@@ -46,7 +46,7 @@ Plug 'mhinz/vim-startify'               " Nice start screen (COW)
 Plug 'mbbill/undotree'                   
 
 " html b md показывает, css b js нет.
-" Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
+Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке! Без неё не заработает!
 Plug 'junegunn/goyo.vim' " :Goyo
 
@@ -76,6 +76,8 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
 Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea yet.
 Plug 'metakirby5/codi.vim'             "Cool. But my Laptop isn't fast enough!
 
+Plug 'godlygeek/tabular'               "Markdown
+Plug 'plasticboy/vim-markdown'
 " Обязательно как нибудь попробовать.Вместо YouCompleteMe
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
 "Plug 'Valloric/YouCompleteMe'
