@@ -337,6 +337,11 @@ let g:airline#extensions#xkblayout#enabled = 0
 let g:airline#extensions#keymap#enabled = 0
 
 let airline#extensions#tabline#ignore_bufadd_pat = 'undotree|tagbar|nerd_tree'
+
+ " Separators in airline-statusline - need's real NERD font!
+let g:airline_left_sep = "\uE0C6" "pixels
+let g:airline_right_sep = "\uE0C7"
+
 " }}}
 "=====================================================
 "#       LeaderF        {{{
@@ -428,11 +433,11 @@ let g:vimwiki_folding='syntax'
 let g:javascript_plugin_jsdoc = 1
 
 " set conceallevel=0 Почему-0то игрнорируется.
-
 " откуда-то ставится conceallevel=2. Не ясно чем.
+
 " let g:javascript_conceal_function             = "ƒ"
 let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
+" let g:javascript_conceal_this                 = "@"
 " let g:javascript_conceal_return               = "⇚"
 let g:javascript_conceal_undefined            = "¿"
 let g:javascript_conceal_NaN                  = "ℕ"

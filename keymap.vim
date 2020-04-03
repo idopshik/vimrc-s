@@ -1,5 +1,9 @@
+" vim: fdm=expr
 command! Debug !node inspect ./%
 command! Mk !node ./%
+
+"" crear register command  
+command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
@@ -147,7 +151,7 @@ autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
 "=====================================================
 "#        KEY mappings again
 "=====================================================
-nnoremap <silent> <leader>bb :silent update<Bar>silent !firefox %:p &<CR>
+nnoremap <silent> <leader>bb :silent update<Bar>silent !google-chrome %:p &<CR>
 
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 

@@ -6,6 +6,9 @@
 
 set background=dark
 
+" set t_Co=256 "TODO basic?
+
+set termguicolors
 "#   Font
 "=====================================================
 if has('win32')
@@ -18,12 +21,15 @@ if has('win32')
 endif
 
 if has('unix')
-    " :set guifont=Monospace\ 14  
+    " :set guifont=Monospace\ 14
     " :set guifont=Droid_Sans_Mono_Dotted_for_Powerline/10
     " :set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 15
     " :set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ Oblique\ 15     "italic"
     " :set guifont=DroidSansMono\ Nerd\ Font\ Oblique\ 15
-    :set guifont=DroidSansMono\ Nerd\ Font\ 19
+    " :set guifont=DroidSansMono\ Nerd\ Font\ 19
+
+    :set guifont=Iosevka\ Expanded\ 19
+    " :set guifont=Iosevka\ Nerd\ Font\ Complete\ Mono\ 19
 endif
 if has("unix")
     function! FontSizePlus ()
@@ -73,11 +79,4 @@ else
 endif
 
 "must be here. AFTER colorscheme set up"
-hi lCursor guibg=#00ff00          "highlight green cursor when keymap activated 
-
-
-
-"#   Separators in airline-statusline
-"=====================================================
-    let g:airline_left_sep = "\uE0C6" "pixels
-    let g:airline_right_sep = "\uE0C7"
+hi lCursor guibg=#00ff00          "highlight green cursor when keymap activated

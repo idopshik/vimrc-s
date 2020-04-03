@@ -89,6 +89,11 @@ endfun
 
 :command WikiEncrypt :call WikiEncrypt()
 "}}
-"
+
+augroup NoApostrotheNames
+    autocmd BufWriteCMD ' :echohl WarningMsg | echo " Apostrophe-names aren't allowed!" | echohl Non
+    " autocmd BufWriteCMD ' :echohl " Apostrophe-names aren't allowed!"
+augroup END
+
 ":Redir Комманда для перенаправления вывода в буфер
 command! -nargs=+ -complete=command Redir let s:reg = @@ | redir @"> | silent execute <q-args> | redir END | new | pu | 1,2d_ | let @@ = s:reg

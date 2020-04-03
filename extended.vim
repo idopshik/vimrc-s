@@ -25,7 +25,6 @@ call plug#begin('~/.vim/plugged')
 
 "Just trying it
 Plug 'christoomey/vim-tmux-navigator'
-"Plug 'rbong/pimodoro'                     "needs place in my statusline!"
 
 "sudo apt-get install wmctrl    # Ubuntu/Debian - needed. Terminal dosn't execute ctrl+<CR>
 Plug 'lambdalisue/vim-fullscreen'          "Ctrl + <CR> (does) :FullscreenToggle  On linux only.
@@ -39,15 +38,15 @@ Plug 'tpope/vim-surround'               " Parentheses, brackets, quotes, XML tag
 Plug 'xolox/vim-misc'                   " required
 Plug 'scrooloose/nerdcommenter'         " :help nerdcommenter
 Plug 'godlygeek/tabular'
-Plug 'tmhedberg/simpylfold'                 "No-BS Python code folding for Vim
-" Plug 'jiangmiao/auto-pairs'             " :h autopairs  Как же она затрахала
+Plug 'tmhedberg/simpylfold'             " No-BS Python code folding for Vim
+" Plug 'jiangmiao/auto-pairs'           " :h autopairs  Как же она затрахала
 
 Plug 'mhinz/vim-startify'               " Nice start screen (COW)
 Plug 'mbbill/undotree'                   
 
 " html b md показывает, css b js нет.
 Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
-"Смотри на сайте. Есть доп.команда по установке! Без неё не заработает!
+"Смотри на сайте. Есть доп.команда по установке!
 Plug 'junegunn/goyo.vim' " :Goyo
 
 "## --------------=== Snippets support ===---------------
@@ -69,31 +68,30 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
+Plug 'blueyed/vim-diminactive'
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.
 
 "## --------------=== Languages support ===-------------
+
+Plug 'ap/vim-css-color'
+
 Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea yet.
 Plug 'metakirby5/codi.vim'             "Cool. But my Laptop isn't fast enough!
 
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
-" Обязательно как нибудь попробовать.Вместо YouCompleteMe
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
-"Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 Plug 'davidhalter/jedi-vim'            "Pydoc support (Shift+k).
 
 " syntastici:w
 Plug 'w0rp/ale'                        "Лучше и новее синтастика
-Plug 'vim-syntastic/syntastic'      "Дело не в плагине, а в линтерах. Надо долго
-" разбираться. AVR никак не могут нормально линтить
-" В линтерах был косяк, оказалось что ни для питона, ни для джаваскрипт не было. Хотя я
-" якобы помнил, что точно работало.
+Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.
 
 Plug 'Chiel92/vim-autoformat'          "Используется внешний форматтер, надо установить
 Plug 'Yggdroot/indentLine'             "Вертикальные линии
-
 
 Plug 'sheerun/vim-polyglot'
 " ---------------=== Python ===-------------------
@@ -152,11 +150,6 @@ function! MakeDirIfNoExistsWindows(path)
     endif
 endfunction
 
-"Пришлось отдельную функцию делать, потому что не получается избавиться от дабавления
-"запятой в конце файла. Дело или в двойных и перепутанных слэшах-бэкслэшах, или в
-"разворачивании пути. Час бился. Гугли. Запятая хоть ты тресни. А если передавать
-"сразу путь - нормально.
-"upd. Ну ты и придурок! Смотри по коду, сам же добавляшь точку!
 function! MakeDirIfNoExistsWindows(dir)
   if !isdirectory(a:dir)
     if exists("*mkdir")
@@ -206,7 +199,6 @@ if has("win32")
     call MakeDirIfNoExistsWindows($HOME . '/.vim/swapfiles')
     call MakeDirIfNoExistsWindows($HOME . '/.vim/undodir')
 
-
     let g:startify_bookmarks = ['c:\Users\isairon\vimfiles\vimrc']     "Bookmarks'mhinz/vim-startify
 
     "python pep 8 не уверен, надо ли
@@ -254,27 +246,11 @@ else
             set undodir+=.                        "last resort
         endif
 
-        "Wincent said abaun double underslaches at the end lf "set dir's command"
-        "TODO надо ли их ставить? //
-
-         " ================ Persistent Undo ==================
-        " Keep undo history across sessions, by storing in file.
-        " Only works all the time.
-        "
-        " History and permanent undo levels
-
-        " if has('persistent_undo') && isdirectory(expand('~').'/.vim/backups')
-          " silent !mkdir ~/.vim/backups > /dev/null 2>&1
-          " set undodir=~/.vim/backups
-          " set undofile
-        " endif
-
         " make this dirs if no exists previously
         call MakeDirIfNoExists("~/.vim/tmp/backup")
         call MakeDirIfNoExists("~/.vim/undodir")
         call MakeDirIfNoExists("~/.vim/swapfiles")
-        "
-        "" SnipMate settings Не знаю, я не испльзую пока "свои"
+        
         let g:UltiSnipsSnippetDirectories=[$HOME.'/Dropbox/.vim_cloud/vim-snippets/UltiSnips']
 
         let g:vimwiki_list = [
