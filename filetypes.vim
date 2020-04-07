@@ -56,8 +56,8 @@ function! s:GetVisualSelection()
   let lines[0] = lines[0][col1 - 1:]
   return join(lines, "\n")
 endfunction
-"autocmd for Visual mode
-autocmd FileType python vnoremap <buffer> <F9> :<C-U>exec '!clear;  python' shellescape(<SID>GetVisualSelection(), 1)<CR>
+"autocmd for Visual mode -   DONT WORK TODO replace or delete it
+" autocmd FileType python vnoremap <buffer> <F9> :<C-U>exec '!clear;  python3' shellescape(<SID>GetVisualSelection(), 1)<CR>
 
 """"""""""""""""""""""""""""""
 "#   => JavaScript section

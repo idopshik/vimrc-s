@@ -1,10 +1,16 @@
 " vim: fdm=expr
 command! Debug !node inspect ./%
 command! Mk !node ./%
+command! Cursor set cursorline | set cursorcolumn
 
 "" crear register command  
 command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
+fu PyRun() range
+  echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
+endf
+
+vmap <F9> :call PyRun()<CR>
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
@@ -137,6 +143,7 @@ nnoremap <leader>ee :so $MYVIMRC<CR>
 autocmd FileType html nnoremap <F5> :exe ':silent !firefox %'<CR>
 autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox %:p &<CR>
 
+autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python %<CR>
 autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python %<CR>
 autocmd FileType python nnoremap <buffer> <F6> :exec '!python' shellescape(@%, 1)<cr>
 

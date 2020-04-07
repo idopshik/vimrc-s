@@ -182,11 +182,6 @@ set tags=./tags,tags;$HOME
 set ignorecase
 set hidden
 
-" hi cursorline cterm=none term=none
-" autocmd WinEnter * setlocal cursorline
-" autocmd WinLeave * setlocal nocursorline
-" highlight CursorLine guibg=#303000 ctermbg=234
-
 set pumheight=10
 set fillchars+=vert:\
 filetype off
@@ -223,3 +218,10 @@ set switchbuf=useopen
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+
+""""""""""""""""""""""""""""""
+"#  kitty terminal vim bug
+" https://sw.kovidgoyal.net/kitty/faq.html 
+""""""""""""""""""""""""""""""
+let &t_ut=''

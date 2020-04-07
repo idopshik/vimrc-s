@@ -50,13 +50,15 @@ Plug 'shime/vim-livedown' "До установки установить $ npm in
 Plug 'junegunn/goyo.vim' " :Goyo
 
 "## --------------=== Snippets support ===---------------
-Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself
+"coc snippets could bit this. let's see!
+" Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself
 Plug 'honza/vim-snippets'               "commn snippets. Not enough.
-Plug 'garbas/vim-snipmate'              " Snippets manager. Additional snippets.
-Plug 'MarcWeber/vim-addon-mw-utils'     " dependencies #1
-Plug 'tomtom/tlib_vim'                  " dependencies #2
+" Plug 'garbas/vim-snipmate'              " Snippets manager. Additional snippets.
+" Plug 'MarcWeber/vim-addon-mw-utils'     " dependencies #1
+" Plug 'tomtom/tlib_vim'                  " dependencies #2
 
 "## --------------=== Code/project navigation ===-------------
+Plug 'luochen1990/rainbow'   "colorful paranpheses
 Plug 'skywind3000/quickmenu.vim'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
@@ -68,7 +70,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
-Plug 'blueyed/vim-diminactive'
+
+" TODO делаем debug здесь. Если перестанут затемняться страницы  и не нужно будте удалять view - 
+" виноват и этот плагин и view. Но возможно перестань я использовать view этой проблемы не было бы.
+" А если сохранится. то будет очивидно, на это не недеюсь, скорее всего тут combo. И надо выбрать из двух зол. Либо не дим, либо удалять. Bug  сам не найду.
+" Plug 'blueyed/vim-diminactive'
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.
 
@@ -82,7 +88,7 @@ Plug 'metakirby5/codi.vim'             "Cool. But my Laptop isn't fast enough!
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 
 Plug 'davidhalter/jedi-vim'            "Pydoc support (Shift+k).
 
@@ -122,6 +128,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'ajh17/spacegray.vim'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'haishanh/night-owl.vim'
 "
@@ -204,12 +211,6 @@ if has("win32")
     "python pep 8 не уверен, надо ли
     let g:ale_python_autopep8_executable = 'C:\Progs\Python37\Scripts\autopep8.exe'
     let g:ale_python_autopep8_use_global = 1
-
-    "" SnipMate settings Это для винды было, пол года не использовалось.
-    " let g:snippets_dir='~/vimfiles/vim-snippets/snippets'
-    "
-    "Use /C: to search through the entire document and fix all the path-like
-    "essues
     " }}}
 "=====================================================
 "#      Files, backups and undo     {{{

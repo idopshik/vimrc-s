@@ -64,6 +64,7 @@ call quickmenu#append('foldcolumn %{&foldcolumn? "[x]" :"[ ]"}', ':call quickmen
 call quickmenu#append('# Other', '')
 call quickmenu#append('Bracey start', 'Bracey', 'Bracey. to stop call :BraceyStop', 'html')
 call quickmenu#append('Livedown server toggle', 'LivedownToggle', 'Open md in browser/stop server', 'markdown')
+call quickmenu#append('raibow brackets', 'RainbowToggle', 'Colurful brackets toggle. :RainbowToggle')
 " call quickmenu#append('Mimimap', 'Minimap', 'Minimap show   MinimapClose (manually)')
 
 if has('win32') || has('win64') || has('win16') || has('win95')

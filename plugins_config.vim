@@ -211,7 +211,8 @@ set signcolumn=yes
 "=====================================================
 "#       w0rp/ale settings (linter)=== {{{
 "=====================================================
-"СЕЙЧАС ВСЕ ЛИНТЕРЫ ОТКЛЮЧЕНЫ.
+" Некоторые линтеры отключены - смотри массив внизу. 
+
 let g:ale_sign_error = '⨉'
 let g:ale_sign_warning = '⚠'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
@@ -257,7 +258,7 @@ let b:ale_warn_about_trailing_whitespace = 0
   " let g:ale_linters = {'c': ['clangtidy']}
   "cpp - ale так видит h - заголовочники в AVR проектах
   " let b:ale_linters = ['flake8', 'pylint']
-let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : []}  " disable ale for them;
+let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : []}  " disable ale for them;
 " hate.Don't set it on - vim has signcolumn=yes
 "
 "
@@ -387,19 +388,16 @@ let g:jedi#rename_command="<Nop>"   " Она и так у меня не рабо
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 
 "c-expand mnemonic
-let g:UltiSnipsExpandTrigger="<C-e>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-b>"
-" Пока не уверен, что мне нужна TAB
-" let g:UltiSnipsJumpForwardTrigger = '<TAB>'
-" let g:UltiSnipsJumpBackwardTrigger = '<S-TAB>'
-"Это вообще 'валяется' на будущее. Возможно.
-" let g:coc_snippet_next = '<TAB>'
-" let g:coc_snippet_prev = '<S-TAB>'
+" let g:UltiSnipsExpandTrigger="<C-e>"
+" let g:UltiSnipsJumpForwardTrigger="<C-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-"
+"Coc over Ultisnips
+imap <C-e> <Plug>(coc-snippets-expand)
+vmap <C-j> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-b>'
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 "=====================================================
 "#       Clap
@@ -436,17 +434,17 @@ let g:javascript_plugin_jsdoc = 1
 " откуда-то ставится conceallevel=2. Не ясно чем.
 
 " let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
+" let g:javascript_conceal_null                 = "ø"
 " let g:javascript_conceal_this                 = "@"
 " let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_undefined            = "¿"
-let g:javascript_conceal_NaN                  = "ℕ"
-let g:javascript_conceal_prototype            = "¶"
-let g:javascript_conceal_static               = "•"
-let g:javascript_conceal_super                = "Ω"
-let g:javascript_conceal_arrow_function       = "⇒"
-let g:javascript_conceal_noarg_arrow_function = "🞅"
-let g:javascript_conceal_underscore_arrow_function = "🞅"
+" let g:javascript_conceal_undefined            = "¿"
+" let g:javascript_conceal_NaN                  = "ℕ"
+" let g:javascript_conceal_prototype            = "¶"
+" let g:javascript_conceal_static               = "•"
+" let g:javascript_conceal_super                = "Ω"
+" let g:javascript_conceal_arrow_function       = "⇒"
+" let g:javascript_conceal_noarg_arrow_function = "🞅"
+" let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 "=====================================================
 "#       Goyo
@@ -460,4 +458,6 @@ let g:goyo_hight=70
 let g:undotree_SplitWidth=30
 let g:undotree_ShortIndicators = 1
 let g:undotree_DiffAutoOpen = 0
+"#       Misc
 
+let g:rainbow_active = 0 "set to 0 if you want to enable it later via :RainbowToggle

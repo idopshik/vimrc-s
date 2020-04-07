@@ -6,28 +6,16 @@
 
 set background=dark
 
-" set t_Co=256 "TODO basic?
+set t_Co=256
 
 set termguicolors
 "#   Font
 "=====================================================
 if has('win32')
-    " :set guifont=lucida_console:h12:w6:b:cRUSSIAN
-    " :set guifont=DejaVu_Sans_Mono_for_Powerline:h10
-    " :set guifont=InconsolataCyr:h13  Eсть на Yдиске"
-    " :set guifont=Droid_Sans_Mono_Dotted_for_Powerline:h12
-    " :set guifont=Droid_Sans_Mono_for_Powerline:h10:cRUSSIAN:qDRAFT
     :set  guifont=DejaVu_Sans_Mono_for_Powerline:h10:cRUSSIAN:qDRAFT
 endif
 
 if has('unix')
-    " :set guifont=Monospace\ 14
-    " :set guifont=Droid_Sans_Mono_Dotted_for_Powerline/10
-    " :set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 15
-    " :set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ Oblique\ 15     "italic"
-    " :set guifont=DroidSansMono\ Nerd\ Font\ Oblique\ 15
-    " :set guifont=DroidSansMono\ Nerd\ Font\ 19
-
     :set guifont=Iosevka\ Expanded\ 19
     " :set guifont=Iosevka\ Nerd\ Font\ Complete\ Mono\ 19
 endif
@@ -63,19 +51,19 @@ endif
 
 command Font :call FontSizePlus()
 
+let g:solarized_termcolors=256
+
 "#   Colorscheme
 "=====================================================
 if has('gui_running')
-    " colorscheme PaperColor "dark and nice
     " colorscheme gruvbox
-    colorscheme solarized  "blue subdued
-    " colorscheme OceanicNext
+    colorscheme solarized8_flat  "blue subdued
     " colorscheme spacegray
 else
-    colorscheme OceanicNext
-    " colorscheme jellybeans
+    " colorscheme OceanicNext
+    " colorscheme PaperColor "dark and nice
+    colorscheme solarized8_flat  "blue subdued
     " colorscheme gruvbox
-    " colorscheme solarized  "blue subdued
 endif
 
 "must be here. AFTER colorscheme set up"
