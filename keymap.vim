@@ -14,6 +14,8 @@ vmap <F9> :call PyRun()<CR>
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
+
+inoremap (<Space> ()<Esc>i
 inoremap (; (<CR>)<C-c>O
 inoremap (, (<CR>)<C-c>O
 inoremap {; {<CR>}<C-c>O
