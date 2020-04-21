@@ -40,24 +40,30 @@ nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
 "Это открывает fullscreen. Переношу в автокоманды.
 " noremap <C-CR> :!wmctrl -r ':ACTIVE:' -b toggle,fullscreen <CR>
 
+"TODO в TMUX каким-то побразом ctrl [  вызывает alt и я двигаю строки.
 "line move related mappings
 "The timeout settings are used to work around the ambiguity with escape sequences. Esc
 "and j sent within 50ms will be mapped to <A-j>, greater than 50ms will count as separate "keys.
 "all this replaced  Plug 'matze/vim-move'
-let c='a'
-while c <= 'z'
-    exec "set <A-".c.">=\e".c
-    exec "imap \e".c." <A-".c.">"
-    let c = nr2char(1+char2nr(c))
-endw
-set timeout ttimeoutlen=50   " can ponentially cause problems. Blame this first!
-nnoremap <silent><A-j> :m .+1<CR>==
-nnoremap <silent><A-k> :m .-2<CR>==
-inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
-inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
-vnoremap <silent><A-j> :m '>+1<CR>gv=gv
-vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
+if exists('$TMUX')
+    "возможно, может мне пригодиться это, и очень скоро.
+else
+endif
+
+    let c='a'
+    while c <= 'z'
+        exec "set <A-".c.">=\e".c
+        exec "imap \e".c." <A-".c.">"
+        let c = nr2char(1+char2nr(c))
+    endw
+    set timeout ttimeoutlen=10   " can ponentially cause problems. Blame this first!
+    nnoremap <silent><A-j> :m .+1<CR>==
+    nnoremap <silent><A-k> :m .-2<CR>==
+    inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
+    inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
+    vnoremap <silent><A-j> :m '>+1<CR>gv=gv
+    vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
 "<Plug> - Вот через это фуфло GitGutter так и не работли команды.
 

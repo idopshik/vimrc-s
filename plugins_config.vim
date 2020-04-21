@@ -458,6 +458,20 @@ let g:goyo_hight=70
 let g:undotree_SplitWidth=30
 let g:undotree_ShortIndicators = 1
 let g:undotree_DiffAutoOpen = 0
+"#       Startify
+"=====================================================
+
+    let g:startify_lists = [
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
+
+    let g:startify_bookmarks = [ {'s': '~/Documents/MyJsScripts/six.js'}]
+
 "#       Misc
 
 let g:rainbow_active = 0 "set to 0 if you want to enable it later via :RainbowToggle
+
+
