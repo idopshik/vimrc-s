@@ -33,7 +33,9 @@ Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 
 Plug 'vim-airline/vim-airline'
+
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'tpope/vim-surround'               " Parentheses, brackets, quotes, XML tags, and more
 Plug 'xolox/vim-misc'                   " required
 Plug 'scrooloose/nerdcommenter'         " :help nerdcommenter
@@ -80,10 +82,12 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
 
 "## --------------=== Languages support ===-------------
 
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+
 Plug 'ap/vim-css-color'
 
 Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea yet.
-Plug 'metakirby5/codi.vim'             "Cool. But my Laptop isn't fast enough!
+" Plug 'metakirby5/codi.vim'     I't just deepshit Need to remove it.
 
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'

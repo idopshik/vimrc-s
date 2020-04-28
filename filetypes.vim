@@ -58,7 +58,10 @@ function! s:GetVisualSelection()
 endfunction
 "autocmd for Visual mode -   DONT WORK TODO replace or delete it
 " autocmd FileType python vnoremap <buffer> <F9> :<C-U>exec '!clear;  python3' shellescape(<SID>GetVisualSelection(), 1)<CR>
-
+""""""""""""""""""""""""""""""
+"#   => Golang section
+"""""""""""""""""""""""""""""""
+autocmd FileType go set omnifunc=go#complete#Complete
 """"""""""""""""""""""""""""""
 "#   => JavaScript section
 """""""""""""""""""""""""""""""

@@ -1,6 +1,7 @@
 " vim: fdm=expr
 command! Debug !node inspect ./%
 command! Mk !node ./%
+command! T :tabnew ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/tasks.wiki
 command! Cursor set cursorline | set cursorcolumn
 
 "" crear register command  
@@ -16,6 +17,8 @@ vmap <F9> :call PyRun()<CR>
 "=====================================================
 
 inoremap (<Space> ()<Esc>i
+inoremap [<Space> []<Esc>i
+inoremap {<Space> {}<Esc>i
 inoremap (; (<CR>)<C-c>O
 inoremap (, (<CR>)<C-c>O
 inoremap {; {<CR>}<C-c>O

@@ -136,7 +136,9 @@ let g:tagbar_width=42
 "let g:tagbar_map_close = '<C-m>'   "hidious bag - tag bar closing by <CR>
 " let g:tagbar_iconchars = ['+', '-'] only on win32 there uggy fonts
 "only for specific filetypes
-autocmd FileType python nested :TagbarOpen
+
+" Раздражает это
+" autocmd FileType python nested :TagbarOpen
 
 "let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
 "На линуксе теги сами обновляются с этими настройками - я проверял. Ничего
@@ -458,6 +460,48 @@ let g:goyo_hight=70
 let g:undotree_SplitWidth=30
 let g:undotree_ShortIndicators = 1
 let g:undotree_DiffAutoOpen = 0
+
+
+"#       Emmet
+"=====================================================
+
+
+  " let g:user_emmet_expandabbr_key = '<C-y>,'
+  " let g:user_emmet_expandword_key = '<C-y>;'
+  " let g:user_emmet_update_tag = '<C-y>u'
+  " let g:user_emmet_balancetaginward_key = '<C-y>d'
+  " let g:user_emmet_balancetagoutward_key = '<C-y>D'
+  let g:user_emmet_next_key = '<C-y>j'
+  let g:user_emmet_prev_key = '<C-y>b'
+  " let g:user_emmet_imagesize_key = '<C-y>i'
+  " let g:user_emmet_togglecomment_key = '<C-y>/'
+  " let g:user_emmet_splitjointag_key = '<C-y>j'
+  " let g:user_emmet_removetag_key = '<C-y>k'
+  " let g:user_emmet_anchorizeurl_key = '<C-y>a'
+  " let g:user_emmet_anchorizesummary_key = '<C-y>A'
+  " let g:user_emmet_mergelines_key = '<C-y>m'
+  " let g:user_emmet_codepretty_key = '<C-y>c'
+
+
+"#      Vim-go 
+"=====================================================
+
+let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
+
+" Open :GoDeclsDir with ctrl-g
+au FileType go map <C-g> :GoDeclsDir<cr>
+au FileType go imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+
+
 "#       Startify
 "=====================================================
 

@@ -67,8 +67,10 @@ if has('gui_running')
 else
     " colorscheme OceanicNext
     " colorscheme PaperColor "dark and nice
-    colorscheme solarized8_flat  "blue subdued
-    " colorscheme gruvbox
+    " colorscheme solarized8_flat  "blue subdued
+    " colorscheme solarized8
+    colorscheme gruvbox
+    
 endif
 
 "must be here. AFTER colorscheme set up"

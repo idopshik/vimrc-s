@@ -53,9 +53,6 @@ call quickmenu#append('spellang toggle', ':call quickmenu#ToggleSpelllang()', 's
 call quickmenu#append('ignore case %{&ignorecase? "[x]" :"[ ]"}', 'set ignorecase!', 'set ignorecase!')
 
 
-call quickmenu#append('Check: flake8', 'call asclib#lint_flake8("")', 'run flake8 in current document, [e to display error', 'python')
-call quickmenu#append('Check: pylint', 'call asclib#lint_pylint("")', 'run pylint in current document, [e to display error', 'python')
-
 
 call quickmenu#append('# JavaScript', '', '', 'javascript')
 call quickmenu#append('conceallevel %{&conceallevel? "[x]" :"[ ]"}', ':call quickmenu#ToggleConceallevel()', 'for js filetype vim-javascript could show glypths', 'javascript')
@@ -85,8 +82,8 @@ call quickmenu#reset()
 call quickmenu#append('Calendar', 'Calendar', 'show Calendar')
 
 call g:quickmenu#append('# Vim "strange"', '')
-call quickmenu#append('Clean ~/vim/view/', '!rm -f -r ~/.vim/view/*', 'First try this to resolve anything you can think of "strange" in vim!')
 call quickmenu#append('Clean undo/swap dirs!', '!rm -f -r ~/.vim/undodir/* ~/.vim/swapfiles/*', 'There was case that "strange" bahavior was illiminated only after this!')
+call quickmenu#append('Clean ~/vim/view/', '!rm -f -r ~/.vim/view/*', 'First try this to resolve anything you can think of "strange" in vim!')
 
 call quickmenu#append('# Terminal', '')
 call quickmenu#append('Open Terminal Below', 'belowright term ++rows=10', 'Open terminal below current window')
