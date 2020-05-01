@@ -82,7 +82,7 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
 
 "## --------------=== Languages support ===-------------
 
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 Plug 'ap/vim-css-color'
 
