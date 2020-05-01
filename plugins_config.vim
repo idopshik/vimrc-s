@@ -390,21 +390,16 @@ let g:jedi#rename_command="<Nop>"   " Она и так у меня не рабо
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 
 "c-expand mnemonic
-" let g:UltiSnipsExpandTrigger="<C-e>"
-" let g:UltiSnipsJumpForwardTrigger="<C-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+let g:UltiSnipsExpandTrigger="<C-e>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
 "Coc over Ultisnips
-imap <C-e> <Plug>(coc-snippets-expand)
-vmap <C-j> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-b>'
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-"=====================================================
-"#       Clap
-"=====================================================
-let g:clap_theme = 'material_design_dark'  "to guarantee right coloring
+" imap <C-e> <Plug>(coc-snippets-expand)
+" vmap <C-j> <Plug>(coc-snippets-select)
+" let g:coc_snippet_next = '<c-j>'
+" let g:coc_snippet_prev = '<c-b>'
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 "=====================================================
 "#       vimwiki   {{{

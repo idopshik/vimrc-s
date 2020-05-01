@@ -134,8 +134,13 @@ set showbreak=↳                "↪ как альтернатива
 """"""""""""""""""""""""""""""
 "#   Lot's of other's
 """"""""""""""""""""""""""""""
+"   Причина ошибки в GOLANG and workaround
+
 " automatically changes Vim's working dir to the current file:
-:autocmd BufEnter * silent! :lcd%:p:h | redraw!
+autocmd BufEnter * silent! :lcd%:p:h | redraw!
+
+autocmd BufLeave,BufWinLeave * silent! mkview
+autocmd BufReadPost * silent! loadview
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -143,7 +148,6 @@ set showbreak=↳                "↪ как альтернатива
 "  :20  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
-
 if has("win32")
     set viminfo='10,\"100,:20,%,nc:\\Users\\user\\_viminfo
 else
@@ -152,12 +156,9 @@ else
     set viminfo='100,n$HOME/.vim/files/info/viminfo
 endif
 
-" Return to last edit position when opening files (You want this!)
-autocmd BufLeave,BufWinLeave * silent! mkview
-autocmd BufReadPost * silent! loadview
 
-" 'this one for t-pope's commenter plugin"
-autocmd FileType apache setlocal commentstring=#\ %s
+" 'this one for t-pope's commenter plugin - который я не использую!
+" autocmd FileType apache setlocal commentstring=#\ %s
 
 filetype on
 filetype plugin on

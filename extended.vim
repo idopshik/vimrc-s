@@ -53,7 +53,7 @@ Plug 'junegunn/goyo.vim' " :Goyo
 
 "## --------------=== Snippets support ===---------------
 "coc snippets could bit this. let's see!
-" Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself
+Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself
 Plug 'honza/vim-snippets'               "commn snippets. Not enough.
 " Plug 'garbas/vim-snipmate'              " Snippets manager. Additional snippets.
 " Plug 'MarcWeber/vim-addon-mw-utils'     " dependencies #1
@@ -66,7 +66,6 @@ Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-Plug 'liuchengxu/vim-clap'      "TODO texs it!
 ":h fzf-vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -82,7 +81,7 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
 
 "## --------------=== Languages support ===-------------
 
-" Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 Plug 'ap/vim-css-color'
 
@@ -92,7 +91,7 @@ Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea 
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
-" Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 Plug 'davidhalter/jedi-vim'            "Pydoc support (Shift+k).
 
