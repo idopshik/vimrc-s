@@ -89,10 +89,10 @@ Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea 
 
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
+" Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
 Plug 'Valloric/YouCompleteMe'
 
-Plug 'davidhalter/jedi-vim'            "Pydoc support (Shift+k).
+Plug 'davidhalter/jedi-vim'     
 
 " syntastici:w
 Plug 'w0rp/ale'                        "Лучше и новее синтастика
@@ -103,9 +103,9 @@ Plug 'Yggdroot/indentLine'             "Вертикальные линии
 
 Plug 'sheerun/vim-polyglot'
 " ---------------=== Python ===-------------------
-Plug 'mitsuhiko/vim-jinja'              " Jinja support for vim
-Plug 'mitsuhiko/vim-python-combined'    " Combined Python 2/3 for Vim
-Plug 'vim-python/python-syntax'        "TEST IT TODO
+" Plug 'mitsuhiko/vim-jinja'              " Jinja support for vim
+" Plug 'mitsuhiko/vim-python-combined'    " Combined Python 2/3 for Vim
+" Plug 'vim-python/python-syntax'        "TEST IT TODO
 
 
 " ---------------=== Javascript ===-------------------

@@ -44,30 +44,12 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 let g:markdown_fenced_languages = [
       \ 'vim',
       \ 'help'
       \]
-
-    function! StatusDiagnostic() abort
-      let info = get(b:, 'coc_diagnostic_info', {})
-      if empty(info) | return '' | endif
-      let msgs = []
-      if get(info, 'error', 0)
-        call add(msgs, 'E' . info['error'])
-      endif
-      if get(info, 'warning', 0)
-        call add(msgs, 'W' . info['warning'])
-      endif
-      return join(msgs, ' ') . ' ' . get(g:, 'coc_status', '')
-    endfunction
-
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" set statusline+=%{StatusDiagnostic()}
-" set statusline^=%{coc#status()} "Diagnostics info
 
     let g:airline#extensions#coc#enabled = 1
     let airline#extensions#coc#error_symbol = '⨉'
