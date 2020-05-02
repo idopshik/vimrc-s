@@ -154,9 +154,8 @@ nnoremap <leader>ee :so $MYVIMRC<CR>
 autocmd FileType html nnoremap <F5> :exe ':silent !firefox %'<CR>
 autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox %:p &<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python %<CR>
-autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python %<CR>
-autocmd FileType python nnoremap <buffer> <F6> :exec '!python' shellescape(@%, 1)<cr>
+autocmd FileType python map <F6> <Esc>:w<CR>:!clear;/bin/python3 %<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:!clear;/bin/python2.7 %<CR>
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>

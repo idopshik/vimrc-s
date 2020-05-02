@@ -25,7 +25,7 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 """"""""""""""""""""""""""""""
 "#   => Golang section
 """""""""""""""""""""""""""""""
-" autocmd FileType go set omnifunc=go#complete#Complete
+autocmd FileType go set omnifunc=go#complete#Complete
 
 """"""""""""""""""""""""""""""
 "#   => JavaScript section

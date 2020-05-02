@@ -60,6 +60,12 @@ let g:markdown_fenced_languages = [
 "=====================================================
 "#       YouCompleteMe  {{{
 "=====================================================
+"""""newly recompiled YCM  (on my way. Haven't done "step3 for clang"
+" let g:ycm_clangd_binary_path = "/path/to/clangd"
+" You need to change /path/to/clangd with the path of binary you downloaded in step 3.
+
+
+
 "special option, turned off YCM diagnostic display features. In feavour to Syntastic to
 "work
 "If you're using YCM's identifier completer in C-family languages but cannot use the clang-based
