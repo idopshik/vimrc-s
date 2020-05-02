@@ -89,7 +89,7 @@ Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea 
 
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
 Plug 'Valloric/YouCompleteMe'
 
 Plug 'davidhalter/jedi-vim'     
