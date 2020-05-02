@@ -483,10 +483,8 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
 
-" Open :GoDeclsDir with ctrl-g
-au FileType go map <C-g> :GoDeclsDir<cr>
-au FileType go imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
-
+"должно быть и так включено
+let g:go_code_completion_enabled = 1
 
 "#       Startify
 "=====================================================
