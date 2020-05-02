@@ -83,7 +83,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "If you're using YCM's identifier completer in C-family languages but cannot use the clang-based
 "semantic completer for those languages and want to use the GCC Syntastic checkers, unset this option.
 
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_show_diagnostics_ui = 0
+nmap <leader>g :YcmCompleter GoTo<CR>   "Это делает и джеди
 
 
 " set completeopt-=preview "не показывать окно preview с документацией.
@@ -92,20 +93,19 @@ let g:ycm_autoclose_preview_window_after_completion=0
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=-1
 
-" nmap <leader>g :YcmCompleter GoTo<CR>   "Это делает и джеди
-" nmap <leader>d :YcmCompleter GoToDefinition<CR> "Это глючит как и у джеди
 
-let g:ycm_server_python_interpreter='python' "Это ничего не поменяло
-let g:ycm_key_list_select_completion = ['<Down>']
+" let g:ycm_server_python_interpreter='python' "Это ничего не поменяло
+" let g:ycm_key_list_select_completion = ['<Down>']
 
+"css - for Coc
 " let g:ycm_semantic_triggers = {
    " \   'css': [ 're!^\s{4}', 're!:\s+' ],
    " \ }
    "w/o whis css completion isn't working
-let g:ycm_semantic_triggers = {
-    \   'css': [ 're!^', 're!^\s+', ': ' ],
-    \   'scss': [ 're!^', 're!^\s+', ': ' ],
-    \ }
+"let g:ycm_semantic_triggers = {
+"    \   'css': [ 're!^', 're!^\s+', ': ' ],
+"    \   'scss': [ 're!^', 're!^\s+', ': ' ],
+"    \ }
 "}}}
 "=====================================================
 "#       NERDTree settings {{{
@@ -385,8 +385,8 @@ let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
-"Coc over Ultisnips
-" imap <C-e> <Plug>(coc-snippets-expand)
+"you should not remap c-e for it plugin!
+" imap <C-e> <Plug>(coc-snippets-expand) 
 " vmap <C-j> <Plug>(coc-snippets-select)
 " let g:coc_snippet_next = '<c-j>'
 " let g:coc_snippet_prev = '<c-b>'
@@ -472,6 +472,19 @@ let g:undotree_DiffAutoOpen = 0
 "#      Vim-go 
 "=====================================================
 
+let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
+
+"должно быть и так включено
+let g:go_code_completion_enabled = 0
 
 "#       Startify
 "=====================================================
