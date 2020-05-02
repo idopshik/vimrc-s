@@ -65,7 +65,6 @@ Plug 'skywind3000/quickmenu.vim'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 ":h fzf-vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'

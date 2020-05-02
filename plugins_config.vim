@@ -347,15 +347,6 @@ let g:airline_right_sep = "\uE0C7"
 
 " }}}
 "=====================================================
-"#       LeaderF        {{{
-"=====================================================
-" Define prefix dictionary
-let g:lmap =  {}
-
-" Second level dictionaries:
-let g:lmap.f = { 'name' : 'File Menu' }
-let g:lmap.o = { 'name' : 'Open Stuff' }
-"}}}
 "=====================================================
 "#       Fugitive
 "=====================================================
