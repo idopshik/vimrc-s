@@ -90,7 +90,7 @@ Plug 'plasticboy/vim-markdown'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'js', 'html','vim' , 'css']}
 Plug 'Valloric/YouCompleteMe'
-" let g:ycm_gopls_binary_path = ''
+
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }

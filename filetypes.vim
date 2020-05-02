@@ -27,6 +27,29 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 """""""""""""""""""""""""""""""
 autocmd FileType go set omnifunc=go#complete#Complete
 
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+function! Auto_complete_string()
+    if pumvisible()
+        return "\<C-n>"
+    else
+        return "\<C-x>\<C-o>\<C-r>=Auto_complete_opened()\<CR>"
+    end
+endfunction
+
+function! Auto_complete_opened()
+    if pumvisible()
+        return "\<Down>"
+    end
+    return ""
+endfunction
+
+inoremap <expr> <Nul> Auto_complete_string()
+inoremap <expr> <C-Space> Auto_complete_string()
+
+
+
 """"""""""""""""""""""""""""""
 "#   => JavaScript section
 """""""""""""""""""""""""""""""
