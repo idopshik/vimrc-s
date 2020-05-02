@@ -23,6 +23,10 @@ autocmd BufWritePost * GitGutter  "force to refresh sighns - they always unrelay
 "=====================================================
 "#       CoC  {{{
 "=====================================================
+" Производит много проблем.
+" autocmd BufNew,BufEnter *.json,*.vim, *.js, *.html, *.css execute "silent! CocEnable"
+" autocmd BufLeave *.py,*.go execute "silent! CocDisable"
+
 " Don't pass messages to |ins-completion-menu|.
 " set shortmess+=c
 "for coc-vimlsp

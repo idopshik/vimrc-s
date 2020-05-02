@@ -140,7 +140,8 @@ set showbreak=↳                "↪ как альтернатива
 autocmd BufEnter * silent! :lcd%:p:h | redraw!
 
 autocmd BufLeave,BufWinLeave * silent! mkview
-autocmd BufReadPost * silent! loadview
+"Я устал это этого всего. Особенно от этого <-----------------------------------------------------
+" autocmd BufReadPost * silent! loadview
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
