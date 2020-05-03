@@ -227,6 +227,5 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
 """"""""""""""""""""""""""""""
 "#  kitty terminal vim bug
-" https://sw.kovidgoyal.net/kitty/faq.html 
 """"""""""""""""""""""""""""""
 let &t_ut=''

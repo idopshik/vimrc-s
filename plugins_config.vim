@@ -94,7 +94,12 @@ let g:ycm_filetype_blacklist = { 'go': 1 }
 let g:deoplete#enable_at_startup = 0  " 0 is default anyway
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/home/st/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-autocmd FileType go call deoplete#enable()
+" autocmd FileType go call deoplete#enable()
+
+"вот здесь не ясно, на что он ругается. 
+" autocmd BufNew,BufEnter *.go execute "call deoplete#enable() | CocDisable"
+autocmd BufNew,BufEnter *.go execute "call deoplete#enable()"
+autocmd BufLeave *.go execute "call deoplete#disable()"
 
 "=====================================================
 "#       GitGutter
