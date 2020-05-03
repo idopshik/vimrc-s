@@ -141,7 +141,6 @@ map <Leader>l :Leaderf self<CR>
 " let g:UltiSnipsExpandTrigger = '<Leader>s' "Select snippet in drop out menu Youcompletemy
 
 "%% ic Command-line mode to refer to the directory of the current file, regardledd of pwd.
-"Windows-прикол какой-то? На Linux ./ и куча пробелов
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
 "Reload vimrc w/o restarting VIM (with view's deleting!)
@@ -153,7 +152,6 @@ if !exists('*ReloadVim')
     endfun
 endif
 nnoremap <leader>ee :call ReloadVim()<cr>
-" nnoremap <leader>ee :silent exec "!rm -f -r ~/.vim/view/*" :autocmd! AutoGroup :so $MYVIMRC<CR>
 
 "=====================================================
 "#        RUN (F5, F6)                  

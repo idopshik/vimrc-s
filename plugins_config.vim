@@ -148,27 +148,23 @@ let g:tagbar_width=42
 "autocmd BufEnter *.py :call tagbar#autoopen(0)
 "autocmd FileType * nested :call tagbar#autoopen(0)
 
-"let g:tagbar_map_close = '<C-m>'   "hidious bag - tag bar closing by <CR>
-" let g:tagbar_iconchars = ['+', '-'] only on win32 there uggy fonts
-"only for specific filetypes
+" let g:tagbar_map_close = '<C-m>'   "hidious bag - tag bar closing by <CR>
+" let g:tagbar_iconchars = ['+', '-'] 
 
 " Раздражает это
 " autocmd FileType python nested :TagbarOpen
 
 "let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
-"На линуксе теги сами обновляются с этими настройками - я проверял. Ничего
-"самому запускать не надо
 "
 "----------------------------------------------------------------------
 "                       vimwiki integration
-
 let g:tagbar_type_vimwiki = {
           \   'ctagstype':'vimwiki'
           \ , 'kinds':['h:header']
           \ , 'sro':'&&&'
           \ , 'kind2scope':{'h':'header'}
           \ , 'sort':0
-          \ , 'ctagsbin':'~/.vim_runtime/vimrcs/vwtags.py'
+          \ , 'ctagsbin':'/home/st/Dropbox/Linux_or_Vim_related/vim_savings/vwtags.py'
           \ , 'ctagsargs': 'default'
           \ }
 "}}}
