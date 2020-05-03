@@ -88,10 +88,19 @@ Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea 
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'js', 'html','vim' , 'css']}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css']}
 Plug 'Valloric/YouCompleteMe'
 
+"pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
+Plug 'Shougo/deoplete.nvim'
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+" let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/home/st/go/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+autocmd FileType go call deoplete#enable()
 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 

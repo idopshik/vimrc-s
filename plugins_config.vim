@@ -85,7 +85,7 @@ let g:ycm_autoclose_preview_window_after_completion=0
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=-1
 
-
+let g:ycm_filetype_blacklist = { 'go': 1 }
 " let g:ycm_server_python_interpreter='python' "Это ничего не поменяло
 " let g:ycm_key_list_select_completion = ['<Down>']
 
