@@ -1,10 +1,6 @@
 " vim: foldmethod=marker
-"fullscreen. But need enter hitting every time. Probably - not a great idea.
-" autocmd VimEnter * :! wmctrl -r ':ACTIVE:' -b toggle,fullscreen "Gvim also broken!
 
-" chebang_chmod     
-" Execution permissions by default to shebang (#!) files "{{{
-" Work's only on creation through :e and at first time saving having shabang 
+" only by creation through :e and at first time saving and having shabang (!#)
 augroup shebang_chmod  
   autocmd! 
   autocmd BufNewFile  * let b:brand_new_file = 1
@@ -21,19 +17,15 @@ augroup shebang_chmod
         \   unlet b:chmod_post |
         \ endif
 augroup END
-" }}}
 
-autocmd FileType c autocmd BufWritePost <buffer> :SyntasticCheck make  "Без этого YC мешает или окно сразу закрывается
 
-function! DeleteInactiveBufs() "{{{
+function! DeleteInactiveBufs()
  "From tabpagebuflist() help, get a list of all buffers in all tabs 
   let tablist = []
   for i in range(tabpagenr('$'))
     call extend(tablist, tabpagebuflist(i + 1))
   endfor
  
-  "Below originally inspired by Hara Krishna Dara and Keith Roberts
- "http://tech.groups.yahoo.com/group/vim/message/56425
   let nWipeouts = 0
   for i in range(1, bufnr('$'))
     if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
@@ -46,10 +38,9 @@ function! DeleteInactiveBufs() "{{{
 endfunction
 
 command! Ball :call DeleteInactiveBufs()
-"}}}
 
 " Encryption gpg support
-" :sil => :h silent  :silent, :execute, and :sbuffer    {{{
+" :sil => :h silent  :silent, :execute, and :sbuffer
 augroup encrypted
   autocmd!
   autocmd BufReadPre,FileReadPre *.gpg.wiki setl bin noswapfile noundofile nobackup viminfo=
@@ -88,15 +79,17 @@ fun! WikiEncrypt()
 endfun
 
 :command WikiEncrypt :call WikiEncrypt()
-"}}
 
 augroup NoApostrotheNames
     autocmd BufWriteCMD ' :echohl WarningMsg | echo " Apostrophe-names aren't allowed!" | echohl Non
-    " autocmd BufWriteCMD ' :echohl " Apostrophe-names aren't allowed!"
 augroup END
 
 ":Redir Комманда для перенаправления вывода в буфер
-command! -nargs=+ -complete=command Redir let s:reg = @@ | redir @"> | silent execute <q-args> | redir END | new | pu | 1,2d_ | let @@ = s:reg
+command! -nargs=+ -complete=command Redir let s:reg = @@ |
+            \redir @"> | silent execute <q-args> | redir END |
+            \new | pu | 1,2d_ | let @@ = s:reg
 
-"Prevent Vim from clearing the clipboard on exit
+" Prevent Vim from clearing the clipboard on exit 
+" (all linux apps do that! it's normal) 
+" Have to use clipboard manager if you want win-like bahaviour
 autocmd VimLeave * call system("xsel -ib", getreg('+'))

@@ -5,25 +5,15 @@
 "          .||..|' `|..||. `...' .||. `|..'
 "
 
-" ALWAYS clear the folder .vim/view to accept changes.
-
-"#    Windows options here
-
 if has("win32")
-        "Убираем крякозябры из-за CP-1251 Windows. Работает только в начале файла
-    set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
-        language en                 " sets the language of the messages / ui (vim)
-        " Specific machine's file system related path's:
-    " set encoding=utf-8      "Got strange symbols in meny w/o that
+    set langmenu=en_US.UTF-8              "menu (gvim)
+    language en                           "messages / ui (vim)
+    " set encoding=utf-8                  "menu 
     " set termencoding=utf-8
-
-    "language en_US.utf8
-    :let &pythonthreehome = 'C:\progs\Python37\'
-
-    :let &pythonthreedll = 'C:\progs\Python37\python37.dll'
-
-    :let &pythonhome = 'C:\progs\Python27\'
-    :let &pythondll = 'C:\progs\Python27\python27.dll'
+    let &pythonthreehome = 'C:\progs\Python37\'
+    let &pythonthreedll = 'C:\progs\Python37\python37.dll'
+    let &pythonhome = 'C:\progs\Python27\'
+    let &pythondll = 'C:\progs\Python27\python27.dll'
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -54,28 +44,18 @@ let mapleader = ","
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set scrolloff=10               " let 10 lines before/after cursor during scroll
-
-" Avoid garbled characters in Chinese language windows OS
-if has("win32")
-        "Убираем крякозябры из-за CP-1251 Windows. Работает только в начале файла
-        set langmenu=en_US.UTF-8    " sets the language of the menu (gvim)
-        language en                 " sets the language of the messages / ui (vim)
-endif
-
-set showcmd                     " shows partial commands
-set hidden                      " hide the inactive buffers
+set scrolloff=10                " let 10 lines before/after cursor during scroll
 set showcmd                     " shows partial commands
 set hidden                      " hide the inactive buffers
 set ruler                       " sets a permanent rule
 set lazyredraw                  " only redraws if it is needed
 
-" Configure backspace so it acts as it should act
+"backspace
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
 "====================================================
-"" Search settings
+"" Search
 "=====================================================
 set incsearch                   " incremental searching
 set showmatch                   " show pairs match
@@ -103,13 +83,12 @@ if has("win16") || has("win32")
 else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
-" }}}
 
 " Enable syntax highlighting
 syntax enable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"#   Text, tab and indent related
+"#    Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
@@ -132,7 +111,7 @@ set wrap                    "Wrap lines
 set showbreak=↳                "↪ как альтернатива
 
 """"""""""""""""""""""""""""""
-"#   Lot's of other's
+"#    Lot's of other's
 """"""""""""""""""""""""""""""
 
 " automatically changes Vim's working dir to the current file:
@@ -159,10 +138,6 @@ else
 endif
 
 
-" 'this one for t-pope's commenter plugin - который я не использую!
-" autocmd FileType apache setlocal commentstring=#\ %s
-
-filetype on
 filetype plugin on
 filetype plugin indent on
 
@@ -177,28 +152,22 @@ set laststatus=2                "always show status bar
 set timeoutlen=350
 set ttimeoutlen=0
 
-set encoding=utf-8  " The encoding displayed.
-set fileencoding=utf-8  " The encoding written to file.
+set encoding=utf-8              " The encoding displayed.
+set fileencoding=utf-8          " The encoding written to file.
 
 set splitright
 set splitbelow
 set nocompatible                "use Vim settings, ratheset enc=utf-8
 set tags=./tags,tags;$HOME
-set ignorecase
 set hidden
 
 set pumheight=10
 set fillchars+=vert:\
-filetype off
-filetype plugin on
-filetype plugin indent on
-set nu
-set rnu                          " rnu а значит relative number. It was three hours of my live
-set belloff=all                 "desable bell
-set tabstop=4                   " set tabs for a shifttabs logic
-set exrc                       " enable usage of additional .vimrc files from working directory
-set secure                      " prohibit .vimrc files to execute shell, create files, etc...
-"
+set rnu                          "relative number. It was three hours of my live
+set belloff=all                  "desable bell
+set exrc                         "enable usage of additional .vimrc files from working directory
+set secure                       "prohibit .vimrc files to execute shell, create files, etc...
+
 " Do not show stupid q: window
  map q: :q
 
@@ -224,8 +193,13 @@ set switchbuf=useopen
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
-
 """"""""""""""""""""""""""""""
-"#  kitty terminal vim bug
+"#    Kitty terminal vim bug
 """"""""""""""""""""""""""""""
 let &t_ut=''
+
+"=====================================================
+"#    =>  Plug loading started here
+"=====================================================
+filetype off                  " required
+call plug#begin('~/.vim/plugged')

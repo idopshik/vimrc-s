@@ -14,10 +14,8 @@
 " endif
 
 "=====================================================
-"#      Plug settings {{{
+"#      Plug loading begins in ./basic.vim
 "=====================================================
-filetype off                  " required
-call plug#begin('~/.vim/plugged')
 
 "## ------------------=== Other ===----------------------
 Plug 'christoomey/vim-tmux-navigator'
@@ -29,7 +27,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 
 Plug 'vim-airline/vim-airline'
-
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'tpope/vim-surround'               " Parentheses, brackets, quotes, XML tags, and more
@@ -47,8 +44,8 @@ Plug 'shime/vim-livedown' "До установки установить $ npm in
 Plug 'junegunn/goyo.vim' " :Goyo
 
 "## --------------=== Snippets support ===---------------
-Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself
-Plug 'honza/vim-snippets'               "commn snippets. Not enough.
+Plug 'sirver/ultisnips'                   "doesn't come with any snippets itself
+Plug 'honza/vim-snippets'                 "commn snippets. Not enough.
 " Plug 'garbas/vim-snipmate'              " Snippets manager. Additional snippets.
 " Plug 'MarcWeber/vim-addon-mw-utils'     " dependencies #1
 " Plug 'tomtom/tlib_vim'                  " dependencies #2
@@ -72,30 +69,10 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
 
 Plug 'ap/vim-css-color'
 
-Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea yet.
-" Plug 'metakirby5/codi.vim'     I't just deepshit Need to remove it.
-
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
 
-" but if you open buff with these filetypes and return /
-" /to your ft=go buffer - Coc wont't swithed off - you'll get conflict
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css']}
-Plug 'Valloric/YouCompleteMe' "python, c, c++, h only 
-
-"pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
-"Только потому, что за 2-3 дня не смог настроить ycm и coc для golang.
-Plug 'Shougo/deoplete.nvim'
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'davidhalter/jedi-vim'     
-
-" syntastici:w
-Plug 'w0rp/ale'                        "Лучше и новее синтастика
+Plug 'w0rp/ale'                        
 Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.
 
 Plug 'Chiel92/vim-autoformat'          "Используется внешний форматтер, надо установить
@@ -103,20 +80,6 @@ Plug 'Yggdroot/indentLine'             "Вертикальные линии
 
 Plug 'sheerun/vim-polyglot'
 
-" ---------------=== Python ===-------------------
-" Plug 'mitsuhiko/vim-jinja'              " Jinja support for vim
-" Plug 'mitsuhiko/vim-python-combined'    " Combined Python 2/3 for Vim
-" Plug 'vim-python/python-syntax'        " это всё установлено, но я не работал с Python достаточно плотно для теста.
-
-
-" ---------------=== Javascript ===-------------------
-Plug 'pangloss/vim-javascript'               " better indentetion and highlighting
-" post install (yarn install | npm install)
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'turbio/bracey.vim' " css,html,js live 
-
-" ---------------=== html ===-------------------
-Plug 'mattn/emmet-vim'
 "
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
@@ -136,16 +99,16 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'haishanh/night-owl.vim'
 "
-Plug 'severin-lemaignan/vim-minimap'
-
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "
+"Закончили загрузку(распределена по файлам)
 call plug#end() " }}}
     
 "=====================================================
 "#      Path's (по системам) {{{
 "=====================================================
+
 function! MakeDirIfNoExists(path)
     if !isdirectory(expand(a:path))
         call mkdir(expand(a:path), "p")

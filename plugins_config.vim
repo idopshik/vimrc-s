@@ -1,107 +1,6 @@
 " vim: fdm=expr
 
 "=====================================================
-"#       Common completion options
-"=====================================================
-
-set completeopt-=preview "не показывать окно preview с документацией.
-
-
-
-"=====================================================
-"#       CoC  {{{
-"=====================================================
-" Производит много проблем.
-" autocmd BufNew,BufEnter *.json,*.vim, *.js, *.html, *.css execute "silent! CocEnable"
-" autocmd BufLeave *.py,*.go execute "silent! CocDisable"
-
-" Don't pass messages to |ins-completion-menu|.
-" set shortmess+=c
-"for coc-vimlsp
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-"Doesn't work for me. Way more inportant - gi - go inputed recently
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
-let g:markdown_fenced_languages = [
-      \ 'vim',
-      \ 'help'
-      \]
-
-    let g:airline#extensions#coc#enabled = 1
-    let airline#extensions#coc#error_symbol = '⨉'
-    let airline#extensions#coc#warning_symbol = '⚠'
-    let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-    let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
-"}}}
-"=====================================================
-"#       YouCompleteMe  {{{
-"=====================================================
-"""""newly recompiled YCM  (on my way. Haven't done "step3 for clang"
-" let g:ycm_clangd_binary_path = "/path/to/clangd"
-" You need to change /path/to/clangd with the path of binary you downloaded in step 3.
-
-
-
-"special option, turned off YCM diagnostic display features. In feavour to Syntastic to
-"work
-"If you're using YCM's identifier completer in C-family languages but cannot use the clang-based
-"semantic completer for those languages and want to use the GCC Syntastic checkers, unset this option.
-
-" let g:ycm_show_diagnostics_ui = 0
-nmap <leader>g :YcmCompleter GoTo<CR>   "Это делает и джеди
-
-
-let g:ycm_autoclose_preview_window_after_completion=0
-
-let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf=-1
-
-let g:ycm_filetype_whitelist = {'python': 1, 'c': 1, 'cpp': 1, 'h': 1}
-"redundant
-let g:ycm_filetype_blacklist = { 'go': 1 } 
-
-"css - for Coc
-" let g:ycm_semantic_triggers = {
-   " \   'css': [ 're!^\s{4}', 're!:\s+' ],
-   " \ }
-   "w/o whis css completion isn't working
-"let g:ycm_semantic_triggers = {
-"    \   'css': [ 're!^', 're!^\s+', ': ' ],
-"    \   'scss': [ 're!^', 're!^\s+', ': ' ],
-"    \ }
-
-
-"=====================================================
-"#       Deoplete
-"=====================================================
-
-let g:deoplete#enable_at_startup = 0  " 0 is default anyway
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/home/st/go/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-" autocmd FileType go call deoplete#enable()
-
-"вот здесь не ясно, на что он ругается. 
-" autocmd BufNew,BufEnter *.go execute "call deoplete#enable() | CocDisable"
-autocmd BufNew,BufEnter *.go execute "call deoplete#enable()"
-autocmd BufLeave *.go execute "call deoplete#disable()"
-
-"=====================================================
 "#       GitGutter
 "=====================================================
 
@@ -217,6 +116,8 @@ let g:syntastic_mode_map = {
 "SyntasticCheck - команда возбуждает линтер даже в пассивном состоянии
 "ALE не может проверять SH (по карйней мере пришлось поставить shellcheck чтобы он начал,
 "а синтастик и так мог. Штатным средвством sh)."
+
+autocmd FileType c autocmd BufWritePost <buffer> :SyntasticCheck make  "Без этого YC мешает или окно сразу закрывается
 
 "Keep sign column always open(vim's thing, not syntastic)
 set signcolumn=yes
