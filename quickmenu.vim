@@ -63,7 +63,8 @@ call quickmenu#append('CocDisable', 'CocDisable', 'CocDisable')
 
 call quickmenu#append('# JavaScript', '', '', 'javascript')
 call quickmenu#append('conceallevel %{&conceallevel? "[x]" :"[ ]"}', ':call quickmenu#ToggleConceallevel()', 'for js filetype vim-javascript could show glypths', 'javascript')
-call quickmenu#append('foldcolumn %{&foldcolumn? "[x]" :"[ ]"}', ':call quickmenu#ToggleFoldcolumn()', 'foldcolumn - show fold column in gutter', 'javascript')
+" call quickmenu#append('foldcolumn %{&foldcolumn? "[x]" :"[ ]"}', ':call quickmenu#ToggleFoldcolumn()', 'foldcolumn - show fold column in gutter', 'javascript')
+call quickmenu#append('foldcolumn %{&foldcolumn? "[x]" :"[ ]"}', ':call quickmenu#ToggleFoldcolumn()', 'foldcolumn - show fold column in gutter')
 
 call quickmenu#append('# Other', '')
 call quickmenu#append('Bracey start', 'Bracey', 'Bracey. to stop call :BraceyStop', 'html')

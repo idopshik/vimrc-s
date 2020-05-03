@@ -335,6 +335,9 @@ let g:go_highlight_generate_tags = 1
 "должно быть и так включено
 let g:go_code_completion_enabled = 0
 
+" bug with FOLDs go-vim https://github.com/fatih/vim-go/issues/502
+let g:go_fmt_experimental = 1
+
 "=====================================================
 "#       Jedi-vim
 "=====================================================

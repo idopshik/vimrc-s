@@ -48,8 +48,6 @@ endfunction
 inoremap <expr> <Nul> Auto_complete_string()
 inoremap <expr> <C-Space> Auto_complete_string()
 
-
-
 """"""""""""""""""""""""""""""
 "#   => JavaScript section
 """""""""""""""""""""""""""""""

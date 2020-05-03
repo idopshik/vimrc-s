@@ -174,7 +174,8 @@ autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
 "=====================================================
 "#        KEY mappings again
 "=====================================================
-nnoremap <silent> <leader>bb :silent update<Bar>silent !google-chrome %:p &<CR>
+"мешает переключению буферов. надо перемапить.
+" nnoremap <silent> <leader>bb :silent update<Bar>silent !google-chrome %:p &<CR>
 
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 

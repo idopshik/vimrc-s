@@ -118,9 +118,9 @@ set showbreak=↳                "↪ как альтернатива
 augroup AutoGroup
   autocmd!
     autocmd BufEnter * silent! :lcd%:p:h | redraw!
-    autocmd BufLeave,BufWinLeave * silent! mkview
+    autocmd BufWritePost,BufLeave,WinLeave ?* mkview
                                            " <-----------------------------------------------------
-    autocmd BufReadPost * silent! loadview
+    autocmd BufReadPost ?* silent loadview
 augroup END
 
 " Tell vim to remember certain things when we exit
@@ -164,6 +164,7 @@ set hidden
 set pumheight=10
 set fillchars+=vert:\
 set rnu                          "relative number. It was three hours of my live
+set nu                           "number. current's line nummer 
 set belloff=all                  "desable bell
 set exrc                         "enable usage of additional .vimrc files from working directory
 set secure                       "prohibit .vimrc files to execute shell, create files, etc...

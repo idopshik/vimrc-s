@@ -12,6 +12,7 @@ Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
+
 "либо так либо не иначе
 let g:deoplete#enable_at_startup = 1
 " autocmd FileType go call deoplete#enable()
@@ -21,9 +22,6 @@ set completeopt-=preview
 
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/home/st/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-
-
-call plug#end() " }}}
 
 
 "=====================================================
@@ -43,5 +41,3 @@ endif
 "=====================================================
 set guifont=Iosevka\ Expanded\ 19
 let g:solarized_termcolors=256
-colorscheme spacegray
-

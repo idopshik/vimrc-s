@@ -73,5 +73,10 @@ else
     
 endif
 
+"temporary  
+if $GO
+    colorscheme spacegray
+endif
+
 "must be here. AFTER colorscheme set up"
 hi lCursor guibg=#00ff00          "highlight green cursor when keymap activated

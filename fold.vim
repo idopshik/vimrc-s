@@ -12,25 +12,20 @@
 
 " Вот эта строчка как будто игнорируется на некоторых расширениях
 set fdm=syntax 
-"
+
 au FileType vimwiki map <buffer> F :set foldmethod=syntax<cr>   "as example
 
 augroup filetype_vim
     autocmd!
-    " Это всё здесь примеры. Для этого типа используется fdm=expr задан через
+    " Это примеры. Для этого типа используется fdm=expr задан через
     " /.vim/after/ftplugin/vim/fold.vim
-    " autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType vim set foldlevelstart=0
-    " autocmd FileType vim setlocal foldmarker={{{,}}}
 augroup END
 
 "Для си,по FileType работает, а для питона и html - Нет
 autocmd FileType c setlocal foldmethod=indent
 " Для HTML работает только по расширению. По FileType - нет
 autocmd BufRead *.html setlocal foldmethod=indent
-" Для python работает только по расширению. По FileType - нет
-"autocmd BufRead *.py setlocal foldmethod=indent
-"Вся надежда на плагин по складкам
 
 " less FOLDs: (overriden by file's sets. basic.vim Saving cursor position thing.)
 set foldlevel=4
