@@ -2,16 +2,6 @@
 "#   => Python settings
 "=====================================================
 
-" highlight 'long' lines (>= 80 symbols) in python files
-augroup vimrc_autocmds
-    autocmd!
-    " autocmd FileType python,rst,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
-    " autocmd FileType python,rst,c,cpp match Excess /\%81v.*/
-    "match Error /\%81v.\+/  "Бескопромисное решение
-    ""set colorcolumn+80     "Серенькая полосочка
-    autocmd FileType python,rst,c,cpp set nowrap
-augroup END
-
 " Jedy
 " let g:jedi#completions_command = "<C-N>" "omnicompletion to <C-N> instead of <Ctrl-Space>
 " au FileType python set cindent

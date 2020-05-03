@@ -1,5 +1,10 @@
 " vim: foldmethod=marker
 
+"formatoptions - got problem at least once after major wiping all configs. Restore partially.
+"Сильно не вчитывался. При любых проблемых с переносами, комментами, чем угодно BLAME IT FIRST
+autocmd BufNewFile,BufRead * setlocal formatoptions+=cqn
+
+
 " only by creation through :e and at first time saving and having shabang (!#)
 augroup shebang_chmod  
   autocmd! 

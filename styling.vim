@@ -4,6 +4,14 @@
 " autocmd WinLeave * setlocal nocursorline nocursorcolumn
 " set guicursor+=a:blinkon0
 
+augroup ColorColumn
+    autocmd!
+    " match Error /\%81v.\+/  "Подсвечить красным
+    "set colorcolumn+80     "Серенькая полосочка
+    "highlight Excess ctermbg=DarkGrey guibg=Black "Тоже полосочка
+    autocmd FileType python,rst,c,cpp,go set nowrap
+augroup END
+
 set background=dark
 set t_Co=256
 
