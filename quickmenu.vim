@@ -52,7 +52,14 @@ call quickmenu#append('spellang toggle', ':call quickmenu#ToggleSpelllang()', 's
 
 call quickmenu#append('ignore case %{&ignorecase? "[x]" :"[ ]"}', 'set ignorecase!', 'set ignorecase!')
 
+"preview это commma-separated-list. Вот как проверить вхождение в этот лист, я найти и понять не смог.
+call quickmenu#append('preview enable', 'set completeopt+=preview', 'set completeopt+=preview')
+call quickmenu#append('preview autoclose', 'autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif', ' autocommand for InsertLeave')
 
+call quickmenu#append('deoplete#enable', 'call deoplete#enable()', 'call deoplete#enable()')
+call quickmenu#append('deoplete#disable', 'call deoplete#disable()', 'call deoplete#disable()')
+call quickmenu#append('CocEnable', 'CocEnable', 'CocEnable')
+call quickmenu#append('CocDisable', 'CocDisable', 'CocDisable')
 
 call quickmenu#append('# JavaScript', '', '', 'javascript')
 call quickmenu#append('conceallevel %{&conceallevel? "[x]" :"[ ]"}', ':call quickmenu#ToggleConceallevel()', 'for js filetype vim-javascript could show glypths', 'javascript')

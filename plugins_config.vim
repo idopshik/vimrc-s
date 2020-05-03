@@ -85,9 +85,9 @@ let g:ycm_autoclose_preview_window_after_completion=0
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf=-1
 
-let g:ycm_filetype_blacklist = { 'go': 1 }
-" let g:ycm_server_python_interpreter='python' "Это ничего не поменяло
-" let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_filetype_whitelist = {'python': 1, 'c': 1, 'cpp': 1, 'h': 1}
+"redundant
+let g:ycm_filetype_blacklist = { 'go': 1 } 
 
 "css - for Coc
 " let g:ycm_semantic_triggers = {

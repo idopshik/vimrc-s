@@ -97,7 +97,8 @@ Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
-" let g:deoplete#enable_at_startup = 1
+
+let g:deoplete#enable_at_startup = 0
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/home/st/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 autocmd FileType go call deoplete#enable()
