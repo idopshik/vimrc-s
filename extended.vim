@@ -1,4 +1,3 @@
-" После изменения ALWAYS очищай папку .vim/view - Иначе хлопот не оберёшься.
 " ________________________________________________________________________
 "                ____  _  _  ____  ____  _  _  ____  ____  ____
 "               ( ___)( \/ )(_  _)( ___)( \( )(  _ \( ___)(  _ \
@@ -6,7 +5,6 @@
 "               (____)(_/\_) (__) (____)(_)\_)(____/(____)(____/
 "_________________________________________________________________________
 "#      Annotation
-" Maybee I should do this:
 " On Windows, use '.vim' instead of 'vimfiles': this makes synchronization
 " across heterogeneous Windows/POSIX environments easier.
 " let s:MSWindows = has('win95') + has('win16') + has('win32') + has('win64')
@@ -22,8 +20,6 @@ filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 "## ------------------=== Other ===----------------------
-
-"Just trying it
 Plug 'christoomey/vim-tmux-navigator'
 
 "sudo apt-get install wmctrl    # Ubuntu/Debian - needed. Terminal dosn't execute ctrl+<CR>
@@ -41,12 +37,11 @@ Plug 'xolox/vim-misc'                   " required
 Plug 'scrooloose/nerdcommenter'         " :help nerdcommenter
 Plug 'godlygeek/tabular'
 Plug 'tmhedberg/simpylfold'             " No-BS Python code folding for Vim
-" Plug 'jiangmiao/auto-pairs'           " :h autopairs  Как же она затрахала
 
 Plug 'mhinz/vim-startify'               " Nice start screen (COW)
 Plug 'mbbill/undotree'                   
 
-" html b md показывает, css b js нет.
+" html md показывает, css js нет.
 Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке!
 Plug 'junegunn/goyo.vim' " :Goyo
@@ -70,15 +65,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
 
-" TODO делаем debug здесь. Если перестанут затемняться страницы  и не нужно будте удалять view - 
-" виноват и этот плагин и view. Но возможно перестань я использовать view этой проблемы не было бы.
-" А если сохранится. то будет очивидно, на это не недеюсь, скорее всего тут combo. И надо выбрать из двух зол. Либо не дим, либо удалять. Bug  сам не найду.
-" Plug 'blueyed/vim-diminactive'
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.
 
 "## --------------=== Languages support ===-------------
-
 
 Plug 'ap/vim-css-color'
 
@@ -87,24 +77,21 @@ Plug 'Shougo/deol.nvim'                "Terminal support - haven't got the idea 
 
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} "" Use release branch (Recommend)
+
+" but if you open buff with these filetypes and return /
+" /to your ft=go buffer - Coc wont't swithed off - you'll get conflict
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css']}
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe' "python, c, c++, h only 
 
 "pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
+"Только потому, что за 2-3 дня не смог настроить ycm и coc для golang.
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
-let g:deoplete#enable_at_startup = 0
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/home/st/go/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-autocmd FileType go call deoplete#enable()
-
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-
 Plug 'davidhalter/jedi-vim'     
 
 " syntastici:w
@@ -115,10 +102,11 @@ Plug 'Chiel92/vim-autoformat'          "Используется внешний 
 Plug 'Yggdroot/indentLine'             "Вертикальные линии
 
 Plug 'sheerun/vim-polyglot'
+
 " ---------------=== Python ===-------------------
 " Plug 'mitsuhiko/vim-jinja'              " Jinja support for vim
 " Plug 'mitsuhiko/vim-python-combined'    " Combined Python 2/3 for Vim
-" Plug 'vim-python/python-syntax'        "TEST IT TODO
+" Plug 'vim-python/python-syntax'        " это всё установлено, но я не работал с Python достаточно плотно для теста.
 
 
 " ---------------=== Javascript ===-------------------
@@ -126,13 +114,14 @@ Plug 'pangloss/vim-javascript'               " better indentetion and highlighti
 " post install (yarn install | npm install)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'turbio/bracey.vim' " css,html,js live 
+
 " ---------------=== html ===-------------------
 Plug 'mattn/emmet-vim'
 "
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter' "
-Plug 'junegunn/gv.vim'       "commit browser. :GV
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/gv.vim'
 
 "## --------------=== Colorschemes====-----------------
 Plug 'NLKNguyen/papercolor-theme'
@@ -147,12 +136,13 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'haishanh/night-owl.vim'
 "
-Plug 'severin-lemaignan/vim-minimap'  "minimap!
+Plug 'severin-lemaignan/vim-minimap'
 
-Plug 'ryanoasis/vim-devicons' "очень спорные иконки.
+Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "
 call plug#end() " }}}
+    
 "=====================================================
 "#      Path's (по системам) {{{
 "=====================================================
@@ -203,9 +193,6 @@ if has("win32")
     :let g:easytags_cmd = 'c:\Progs\ctags58\ctags.exe'
     :let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
 
-    " устарело. :let g:vimwiki_list = [{ 'path': 'c:/Users/isairon/Dropbox/vimwiki/'}]
-
-
     cd c:\Users\isairon\Documents\                       "Home directory
 
     set backupdir=~\.vim\tmp\backup
@@ -226,7 +213,7 @@ if has("win32")
     "python pep 8 не уверен, надо ли
     let g:ale_python_autopep8_executable = 'C:\Progs\Python37\Scripts\autopep8.exe'
     let g:ale_python_autopep8_use_global = 1
-    " }}}
+
 "=====================================================
 "#      Files, backups and undo     {{{
 "=====================================================
@@ -239,7 +226,6 @@ else
     endif
 
     "Linux here (not Darvin)"
-
         if exists($SUDO_USER)
             set nobackup                            "don't make backups if sudo"
             set nowritebackup
@@ -278,7 +264,7 @@ else
                         \]
   endif
 endif
-" }}}
+
 "=====================================================
 
 " Convenient command to see the difference between the current buffer and the

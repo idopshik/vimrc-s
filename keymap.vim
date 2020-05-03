@@ -144,8 +144,16 @@ map <Leader>l :Leaderf self<CR>
 "Windows-прикол какой-то? На Linux ./ и куча пробелов
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-"Reload vimrc w/o restarting VIM
-nnoremap <leader>ee :so $MYVIMRC<CR>
+"Reload vimrc w/o restarting VIM (with view's deleting!)
+if !exists('*ReloadVim')
+    fun ReloadVim()
+        exec "!rm -f -r ~/.vim/view/*"
+        autocmd! AutoGroup
+        exec "so $MYVIMRC"
+    endfun
+endif
+nnoremap <leader>ee :call ReloadVim()<cr>
+" nnoremap <leader>ee :silent exec "!rm -f -r ~/.vim/view/*" :autocmd! AutoGroup :so $MYVIMRC<CR>
 
 "=====================================================
 "#        RUN (F5, F6)                  

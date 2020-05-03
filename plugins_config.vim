@@ -1,25 +1,13 @@
 " vim: fdm=expr
-"no need in {{{
 
 "=====================================================
-"#       GitGutter  {{{
+"#       Common completion options
 "=====================================================
-" Use fontawesome icons as signs
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '>'
-let g:gitgutter_sign_removed = '-'
-let g:gitgutter_sign_removed_first_line = '^'
-let g:gitgutter_sign_modified_removed = '<'
 
-let g:gitgutter_override_sign_column_highlight = 1
-highlight SignColumn guibg=bg
+set completeopt-=preview "не показывать окно preview с документацией.
 
-" highlight SignColumn ctermbg=bg
-"
-" Update sign column every quarter second
-set updatetime=250                " noplugins_vimrc - 1000.
-autocmd BufWritePost * GitGutter  "force to refresh sighns - they always unrelayible!
-"}}}
+
+
 "=====================================================
 "#       CoC  {{{
 "=====================================================
@@ -79,7 +67,6 @@ let g:markdown_fenced_languages = [
 nmap <leader>g :YcmCompleter GoTo<CR>   "Это делает и джеди
 
 
-" set completeopt-=preview "не показывать окно preview с документацией.
 let g:ycm_autoclose_preview_window_after_completion=0
 
 let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
@@ -98,7 +85,38 @@ let g:ycm_filetype_blacklist = { 'go': 1 }
 "    \   'css': [ 're!^', 're!^\s+', ': ' ],
 "    \   'scss': [ 're!^', 're!^\s+', ': ' ],
 "    \ }
-"}}}
+
+
+"=====================================================
+"#       Deoplete
+"=====================================================
+
+let g:deoplete#enable_at_startup = 0  " 0 is default anyway
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/home/st/go/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+autocmd FileType go call deoplete#enable()
+
+"=====================================================
+"#       GitGutter
+"=====================================================
+
+" Use fontawesome icons as signs
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
+
+let g:gitgutter_override_sign_column_highlight = 1
+highlight SignColumn guibg=bg
+
+" highlight SignColumn ctermbg=bg
+"
+" Update sign column every quarter second
+set updatetime=250                " noplugins_vimrc - 1000.
+autocmd BufWritePost * GitGutter  "force to refresh sighns - they always unrelayible!
+
+
 "=====================================================
 "#       NERDTree settings {{{
 "=====================================================
@@ -355,13 +373,6 @@ nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 
 "=====================================================
-"#       Jedi-vim
-"=====================================================
-" <leader>r comflict! Я использую вызов :Files для папка с VIMRC
-" Deactivate it here.
-let g:jedi#rename_command="<Nop>"   " Она и так у меня не работала. Моргала и всё
-
-"=====================================================
 "" fzf
 "=====================================================
 " Вот с этой строчкой не работает поиск файлов!!!
@@ -403,6 +414,31 @@ let g:vimwiki_folding='syntax'
 " Running before saving async
   let g:prettier#autoformat = 0
 ""}}
+
+"=====================================================
+"#       Vim-go 
+"=====================================================
+
+let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
+
+"должно быть и так включено
+let g:go_code_completion_enabled = 0
+
+"=====================================================
+"#       Jedi-vim
+"=====================================================
+" <leader>r comflict! Я использую вызов :Files для папка с VIMRC
+" Deactivate it here.
+let g:jedi#rename_command="<Nop>"   " Она и так у меня не работала. Моргала и всё
 
 "=====================================================
 "#       vim-javascript
@@ -460,23 +496,6 @@ let g:undotree_DiffAutoOpen = 0
   " let g:user_emmet_mergelines_key = '<C-y>m'
   " let g:user_emmet_codepretty_key = '<C-y>c'
 
-
-"#      Vim-go 
-"=====================================================
-
-let g:go_fmt_command = "goimports"
-let g:go_autodetect_gopath = 1
-let g:go_list_type = "quickfix"
-
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_generate_tags = 1
-
-"должно быть и так включено
-let g:go_code_completion_enabled = 0
 
 "#       Startify
 "=====================================================

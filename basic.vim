@@ -134,14 +134,15 @@ set showbreak=↳                "↪ как альтернатива
 """"""""""""""""""""""""""""""
 "#   Lot's of other's
 """"""""""""""""""""""""""""""
-"   Причина ошибки в GOLANG and workaround
 
 " automatically changes Vim's working dir to the current file:
-autocmd BufEnter * silent! :lcd%:p:h | redraw!
-
-autocmd BufLeave,BufWinLeave * silent! mkview
-"Я устал это этого всего. Особенно от этого <-----------------------------------------------------
-" autocmd BufReadPost * silent! loadview
+augroup AutoGroup
+  autocmd!
+    autocmd BufEnter * silent! :lcd%:p:h | redraw!
+    autocmd BufLeave,BufWinLeave * silent! mkview
+                                           " <-----------------------------------------------------
+    autocmd BufReadPost * silent! loadview
+augroup END
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
