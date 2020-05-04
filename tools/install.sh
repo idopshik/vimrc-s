@@ -80,10 +80,9 @@ echo ".vimrc for Linux"
 echo "----------------------------"
 
 
-#TODO надо первые 20 строк
 # копирование .vimrc
-cp -TRv /home/st/.vim_runtime/vimrcs/vimrc_memo  ~/.vimrc
-echo "*** .vimrc copied"
+echo "source ~/.vim_runtime/vimrcs/sammeln.vim" > ~/.vimrc
+echo "*** .vimrc created"
 echo
 
 
@@ -112,17 +111,15 @@ sudo apt-get install wmctrl
 
 
 echo
-echo "fzf .bashrc integration"
-echo "vi - norc alias"
-echo "vimwiki from bash by n<CR> "
-echo
-cat ~/.vim_runtime/vimrcs/tools/bashrc_lines >> ~/.bashrc
-
-echo
-echo "git_aliases to .gitconfig"
-echo
-cat git_aliases >> ~/.gitconfig
-
+echo "My DOTFILES"
+echo "Cloning Dotfiles.."
+hash git >/dev/null 2>&1 && /usr/bin/env git clone https://github.com/idopshik/dotfiles  $HOME || {
+  echo "dotfiles not installed"
+  echo
+  echo "Don't forget to run -  createLink.sh  - and prabably give rights for that firstly"
+  echo
+  exit
+}
 
 echo "----------------------------"
 echo "   linters"
@@ -142,7 +139,5 @@ sudo apt-get install npm
 sudo npm install -g jshint
 
 echo "----------------------------"
-echo "   боль с клавиатурой
+echo "   боль с клавиатурой       "
 echo "----------------------------"
-
-sudo npm install -g jshint

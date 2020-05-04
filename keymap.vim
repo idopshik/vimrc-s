@@ -4,7 +4,7 @@ command! Mk !node ./%
 command! T :tabnew ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/tasks.wiki
 command! Cursor set cursorline | set cursorcolumn
 
-"" crear register command  
+"" crear register command
 command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 fu PyRun() range
@@ -40,11 +40,7 @@ nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
 "#        KEY mapping
 "=====================================================
 
-"Это открывает fullscreen. Переношу в автокоманды.
-" noremap <C-CR> :!wmctrl -r ':ACTIVE:' -b toggle,fullscreen <CR>
 
-"TODO в TMUX каким-то побразом ctrl [  вызывает alt и я двигаю строки.
-"line move related mappings
 "The timeout settings are used to work around the ambiguity with escape sequences. Esc
 "and j sent within 50ms will be mapped to <A-j>, greater than 50ms will count as separate "keys.
 "all this replaced  Plug 'matze/vim-move'
@@ -68,25 +64,18 @@ endif
     vnoremap <silent><A-j> :m '>+1<CR>gv=gv
     vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
-"<Plug> - Вот через это фуфло GitGutter так и не работли команды.
+"<Plug> - через это не все команды работают.
 
-"change keymap file (winh a trick to override plugin's mapping)
 
-"//ПРОСТО ВЕЛИКОЛЕПИЕ. Столько лет боли с раскладками.
-"//Просто всегда при выходе из insert - en! Гениально. Надо (редко) - входишь в ru! 
-"//Но только в терминале. В Gvim - сосамба.
-"требует установить xkb-switch
+"//Просто всегда при выходе из insert - en! genuine and simple. Надо (редко) - входишь в ru!
+"//terminal only. doesn't work in Gvim.
+"xkb-switch required
 let g:XkbSwitchLib = "/lib/libxkbswitch.so"
 function! InsertLeaveFun()
-    "решает проблему с языком системы при выходе из insert
     call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
-    " silent !setxkbmap us "Ломает" системную переключалку
+    " silent !setxkbmap us "Ломает системную переключалку
     " echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
 endfunction
-
-"TODO почему это не работает?
-" nnoremap о  call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
-" inoremap <C-х>  <ESC>
 
 autocmd InsertLeave * call InsertLeaveFun()
 " Никак не могу приспособиться к этому.I literally hate it!
@@ -96,13 +85,8 @@ autocmd InsertLeave * call InsertLeaveFun()
 map <leader>wp <Plug>VimwikiDiaryPrevDay
 map <leader>wn <Plug>VimwikiDiaryNextDay
 
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
-"fzf - search in folder
-" map <C-p> :Files ~/.config/<CR>
+"fzf
 map <C-p> :Files<CR>
-"TODO fix linux/windows прикол с этим underslacKEY mappings again
 map <Leader>r :Files ~/.vim_runtime/<CR>
 nnoremap <silent> <leader><Space> :FZFMru<CR>
 nnoremap <silent> <leader>. :Files <C-r>=expand("%:h")<CR>
@@ -115,11 +99,8 @@ map <C-tab> :bn<CR>
 "" Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
-" Use Ranger as a file explorer {{{
-
-" TERMINAL only! Ranger won't work in Gui
-
 if has('gui_running')
+    " TERMINAL only! Ranger won't work in Gui
     "Это такой костыль. Не знаю как не назначть в gvim.
 else
     map <Leader>x :call RangerChooser()<CR>
@@ -133,12 +114,6 @@ fun! RangerChooser()
     endif
     redraw!
 endfun
-"
-"was written what whitespace at the end was mandatory. But w/o it - all works well.
-map <Leader>l :Leaderf self<CR>
-
-"TODO из-за этого на русском тормози буква б. Не сталь ничего на imap
-" let g:UltiSnipsExpandTrigger = '<Leader>s' "Select snippet in drop out menu Youcompletemy
 
 "%% ic Command-line mode to refer to the directory of the current file, regardledd of pwd.
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
@@ -154,9 +129,9 @@ endif
 nnoremap <leader>ee :call ReloadVim()<cr>
 
 "=====================================================
-"#        RUN (F5, F6)                  
+"#        RUN (F5, F6)
 "=====================================================
-"
+
 autocmd FileType html nnoremap <F5> :exe ':silent !firefox %'<CR>
 autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox %:p &<CR>
 
@@ -167,7 +142,6 @@ autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :!
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 autocmd FileType javascript set makeprg=node\ %
 
-
 autocmd FileType sh nnoremap <buffer> <F6><Esc>:w<CR>:! ./%<CR>
 autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
 
@@ -177,15 +151,11 @@ autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
 "мешает переключению буферов. надо перемапить.
 " nnoremap <silent> <leader>bb :silent update<Bar>silent !google-chrome %:p &<CR>
 
-cnoremap %% <C-R>=expand('%:h').'/'<CR>
-
 map <C-n> :NERDTreeToggle<CR>
 
 nnoremap <leader>nn :NERDTreeFind<CR>
 
-
 nmap <F3> :ALEFix <CR>
-" map <F3> <Esc>:w<CR>:!C:\Progs\anaconda\Scripts\pylint.exe %<CR>
 
 nmap <F4> :Prettier <CR>
 
@@ -193,10 +163,8 @@ nnoremap <F7> ::UndotreeToggle<CR>
 
 map <F8> :TagbarToggle<CR>
 
-map <C-_> NerdCommentToggle "doesn't work in linux
+" map <C-_> NerdCommentToggle "doesn't work in linux
 map <C-c> <plug>NERDCommenterToggle
-
-map <C-n> :NERDTreeToggle<CR>
 
 let g:CheetOpened=0
 function! VimNotesWindowToggle()
@@ -205,7 +173,7 @@ function! VimNotesWindowToggle()
             silent close!
             let g:CheetOpened=0
         else
-            exe g:CheetWindow . "wincmd w" | wincmd c 
+            exe g:CheetWindow . "wincmd w" | wincmd c
             let g:CheetOpened=0
             echo "Closed anyway regarles of location and newly stuff in \"cheet\" window"
         endif
@@ -225,7 +193,7 @@ function! CommonNotesWindowToggle()
             " silent close!
             let g:CommonOpened=0
         else
-            exe g:CheetWindow . "wincmd w" | wincmd c 
+            exe g:CheetWindow . "wincmd w" | wincmd c
             let g:CommonOpened=0
             echo "Closing note's buf forcelly"
         endif
@@ -236,13 +204,12 @@ function! CommonNotesWindowToggle()
     endif
 endfunc
 
-
 noremap <silent><Leader>n :call CommonNotesWindowToggle()<cr>
 noremap <silent><Leader>k :call VimNotesWindowToggle()<cr>
 noremap <silent><Leader>m :call quickmenu#toggle(0)<cr><cr>
-noremap <silent><Leader>2 :call quickmenu#toggle(1)<cr><cr> 
+noremap <silent><Leader>2 :call quickmenu#toggle(1)<cr><cr>
 
-" map <alt+n> to navigate through tabs
+" map <alt+n> to navigate through tabs (redundant for me)
 for c in range(1, 9)
     exec "set <A-".c.">=\e".c
     exec "map \e".c." <A-".c.">"
@@ -251,7 +218,7 @@ for c in range(1, 9)
     exec "map <M-". n ."> ". n ."gt"
 endfor
 
-"#        Window's           
+"#        Window's
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h

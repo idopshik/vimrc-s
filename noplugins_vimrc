@@ -1,5 +1,8 @@
 "" N O   R C  "" 
 
+".bashrc contains alias vi="vim -u ~/.vim_runtime/vimrcs/noplugins_vimrc" 
+"TODO it's redundant file! insert it in loading sequence.
+
 set noshowmode          
 
 "can be overridden be extended fiel"
