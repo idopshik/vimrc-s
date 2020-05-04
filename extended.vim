@@ -51,6 +51,8 @@ Plug 'honza/vim-snippets'                 "commn snippets. Not enough.
 " Plug 'tomtom/tlib_vim'                  " dependencies #2
 
 "## --------------=== Code/project navigation ===-------------
+Plug 'airblade/vim-rooter'
+let g:rooter_silent_chdir = 1 "silent
 Plug 'luochen1990/rainbow'   "colorful paranpheses
 Plug 'skywind3000/quickmenu.vim'
 Plug 'xolox/vim-easytags'

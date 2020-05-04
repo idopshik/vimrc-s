@@ -2,11 +2,6 @@
 "#   => Python settings
 "=====================================================
 
-" Jedy
-# " au FileType python set cindent
-# " au FileType python set cinkeys-=0#
-# " au FileType python set indentkeys-=0#
-
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 \ softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with

@@ -117,7 +117,8 @@ set showbreak=↳                "↪ как альтернатива
 " automatically changes Vim's working dir to the current file:
 augroup AutoGroup
   autocmd!
-    autocmd BufEnter * silent! :lcd%:p:h | redraw!
+  "vim-rooter,maybe
+    " autocmd BufEnter * silent! :lcd%:p:h | redraw!
     autocmd BufWritePost,BufLeave,WinLeave ?* mkview
                                            " <-----------------------------------------------------
     autocmd BufReadPost ?* silent loadview
