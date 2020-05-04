@@ -3,14 +3,17 @@
 "=====================================================
 
 " Jedy
-" let g:jedi#completions_command = "<C-N>" "omnicompletion to <C-N> instead of <Ctrl-Space>
-" au FileType python set cindent
-" au FileType python set cinkeys-=0#
-" au FileType python set indentkeys-=0#
+# " au FileType python set cindent
+# " au FileType python set cinkeys-=0#
+# " au FileType python set indentkeys-=0#
 
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
-\  softtabstop=4 smartindent
+\ softtabstop=4 smartindent
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
+\ formatoptions=crql
+\ cindent cinkeys-=0# indentkeys-=0#
+" последняя строка для jedy
+
 
 """"""""""""""""""""""""""""""
 "#   => Golang section
