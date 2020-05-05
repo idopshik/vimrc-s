@@ -126,7 +126,8 @@ if !exists('*ReloadVim')
         exec "so $MYVIMRC"
     endfun
 endif
-nnoremap <leader>ee :call ReloadVim()<cr>
+
+command! VimReload :call ReloadVim()<cr>
 
 "=====================================================
 "#        RUN (F5, F6)

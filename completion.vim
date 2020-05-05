@@ -1,5 +1,5 @@
 "  +-----------------------------------------------------------+
-"  |-------------=== Completion extentions ===-----------------|
+"  |-----=== Completion and lang-support extentions ===--------|
 "  +-----------------------------------------------------------+
 
 " but if you open buff with these filetypes and return /

@@ -91,7 +91,6 @@ call quickmenu#append('Calendar', 'Calendar', 'show Calendar')
 
 call g:quickmenu#append('# Vim "strange"', '')
 call quickmenu#append('Clean undo/swap dirs!', '!rm -f -r ~/.vim/undodir/* ~/.vim/swapfiles/*', 'There was case that "strange" bahavior was illiminated only after this!')
-call quickmenu#append('Clean ~/vim/view/', '!rm -f -r ~/.vim/view/*', 'First try this to resolve anything you can think of "strange" in vim!')
 
 call quickmenu#append('# Terminal', '')
 call quickmenu#append('Open Terminal Below', 'belowright term ++rows=10', 'Open terminal below current window')
