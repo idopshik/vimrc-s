@@ -23,7 +23,6 @@ Plug 'christoomey/vim-tmux-navigator'
 "sudo apt-get install wmctrl    # Ubuntu/Debian - needed. Terminal dosn't execute ctrl+<CR>
 Plug 'lambdalisue/vim-fullscreen'          "Ctrl + <CR> (does) :FullscreenToggle  On linux only.
 
-Plug 'vimwiki/vimwiki'
 Plug 'mattn/calendar-vim'
 
 Plug 'vim-airline/vim-airline'
@@ -35,7 +34,6 @@ Plug 'scrooloose/nerdcommenter'         " :help nerdcommenter
 Plug 'godlygeek/tabular'
 Plug 'tmhedberg/simpylfold'             " No-BS Python code folding for Vim
 
-Plug 'mhinz/vim-startify'               " Nice start screen (COW)
 Plug 'mbbill/undotree'                   
 
 " html md показывает, css js нет.
@@ -57,12 +55,6 @@ Plug 'luochen1990/rainbow'   "colorful paranpheses
 Plug 'skywind3000/quickmenu.vim'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-":h fzf-vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'pbogut/fzf-mru.vim'
-Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
 
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.
@@ -104,9 +96,6 @@ Plug 'haishanh/night-owl.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "
-"Закончили загрузку(распределена по файлам)
-call plug#end() " }}}
-    
 "=====================================================
 "#      Path's (по системам) {{{
 "=====================================================
@@ -138,13 +127,6 @@ function! MakeDirIfNoExistsWindows(dir)
   endif
 endfunction
 
-let g:vimwiki_list = [
-            \{'path': '~/Dropbox/.vim_cloud/vimwiki/personal.wiki',
-            \ 'template_path': '~/Dropbox/.vim_cloud/vimwiki/templates',
-            \ 'template_default': 'default',
-            \ 'template_ext': '.html' },
-            \{'path': '~/Dropbox/.vim_cloud/vimwiki/tech.wiki'}
-            \]
 
 
 if has("win32")
@@ -220,13 +202,6 @@ else
         
         let g:UltiSnipsSnippetDirectories=[$HOME.'/Dropbox/.vim_cloud/vim-snippets/UltiSnips']
 
-        let g:vimwiki_list = [
-                                \{'path': '~/Dropbox/.vim_cloud/vimwiki/tech.wiki',
-                                \ 'template_path': '~/Dropbox/.vim_cloud/vimwiki/templates',
-                                \ 'template_default': 'default',
-                                \ 'template_ext': '.html' },
-                                \{'path': '~/Dropbox/.vim_cloud/vimwiki/personal.wiki'}
-                        \]
   endif
 endif
 

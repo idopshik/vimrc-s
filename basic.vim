@@ -1,3 +1,4 @@
+
 "          '||
 "           ||                    ''
 "           ||''|,  '''|.  (''''  ||  .|'',
@@ -5,54 +6,21 @@
 "          .||..|' `|..||. `...' .||. `|..'
 "
 
-if has("win32")
-    set langmenu=en_US.UTF-8              "menu (gvim)
-    language en                           "messages / ui (vim)
-    " set encoding=utf-8                  "menu 
-    " set termencoding=utf-8
-    let &pythonthreehome = 'C:\progs\Python37\'
-    let &pythonthreedll = 'C:\progs\Python37\python37.dll'
-    let &pythonhome = 'C:\progs\Python27\'
-    let &pythondll = 'C:\progs\Python27\python27.dll'
-endif
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Don't show mode in cmd window - doesn't work.:w
-set noshowmode          
 
-"can be overridden be extended fiel"
 set history=1000
 set undofile
 set undoreload=1000
 
-" Enable filetype plugins
 filetype plugin on
 filetype indent on
+syntax enable
 
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
-
-" Fast saving - только мешает
-" nmap <leader>w :w!<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set scrolloff=10                " let 10 lines before/after cursor during scroll
-set showcmd                     " shows partial commands
-set hidden                      " hide the inactive buffers
-set ruler                       " sets a permanent rule
-set lazyredraw                  " only redraws if it is needed
-
-"backspace
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
+set timeoutlen=350
+set ttimeoutlen=0
 
 "====================================================
 "" Search
@@ -63,98 +31,6 @@ set matchtime=3                 " было 5. Но это долго для ме
 set hlsearch                    " highlight search results
 set smartcase                   " smart case ignore
 set ignorecase                  " ignore case letters
-
-" Wildmenu {{{
-
-set wildmenu                        " Command line autocompletion
-set wildmode=list:longest,full      " Shows all the options
-
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.bak,*.?~,*.??~,*.???~,*.~      " Backup files
-set wildignore+=*.luac                           " Lua byte code
-set wildignore+=*.jar                            " java archives
-set wildignore+=*.pyc                            " Python byte code
-set wildignore+=*.stats                          " Pylint stats
-set wildignore=*.o,*~
-
-" Ignore compiled files
-if has("win16") || has("win32")
-    set wildignore+=.git\*,.hg\*,.svn\*
-else
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-endif
-
-" Enable syntax highlighting
-syntax enable
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"#    Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
-
-" Be smart when using tabs ;)
-set smarttab
-
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
-
-" Linebreak on 90 characters
-set lbr
-set textwidth=90
-
-set autoindent              "Auto indent
-set smartindent             "Smart indentt
-set wrap                    "Wrap lines
-
-set showbreak=↳                "↪ как альтернатива
-
-""""""""""""""""""""""""""""""
-"#    Lot's of other's
-""""""""""""""""""""""""""""""
-
-" automatically changes Vim's working dir to the current file:
-augroup AutoGroup
-  autocmd!
-  "vim-rooter,maybe
-    " autocmd BufEnter * silent! :lcd%:p:h | redraw!
-    autocmd BufWritePost,BufLeave,WinLeave ?* mkview
-                                           " <-----------------------------------------------------
-    autocmd BufReadPost ?* silent loadview
-augroup END
-
-" Tell vim to remember certain things when we exit
-"  '10  :  marks will be remembered for up to 10 previously edited files
-"  "100 :  will save up to 100 lines for each register
-"  :20  :  up to 20 lines of command-line history will be remembered
-"  %    :  saves and restores the buffer list
-"  n... :  where to save the viminfo files
-if has("win32")
-    set viminfo='10,\"100,:20,%,nc:\\Users\\user\\_viminfo
-else
-    " set viminfo='10,\"100,:20,%,n~/.viminfo
-    "Commented line above and pasted line below - from startify-faq "history files doesn't appears"
-    set viminfo='100,n$HOME/.vim/files/info/viminfo
-endif
-
-
-filetype plugin on
-filetype plugin indent on
-
-" by default, hide gui menus
-set guioptions=i
-set guioptions-=m               "remove menu bar
-set guioptions-=T               "remove toolbar
-
-set softtabstop=4
-" Set to auto read when a file is changed from the outside
-set laststatus=2                "always show status bar
-set timeoutlen=350
-set ttimeoutlen=0
-
-set encoding=utf-8              " The encoding displayed.
-set fileencoding=utf-8          " The encoding written to file.
 
 set splitright
 set splitbelow
@@ -167,41 +43,14 @@ set fillchars+=vert:\
 set rnu                          "relative number. It was three hours of my live
 set nu                           "number. current's line nummer 
 set belloff=all                  "desable bell
-set exrc                         "enable usage of additional .vimrc files from working directory
 set secure                       "prohibit .vimrc files to execute shell, create files, etc...
 
-" Do not show stupid q: window
- map q: :q
+set encoding=utf-8              " The encoding displayed.
+set fileencoding=utf-8          " The encoding written to file.
 
+"====================================================
+"" Dot't leave lot's of something after yourself
 "=====================================================
-"#    Russian localisation
-"=====================================================
-"set keymap=russian-jcukenwin   name of the file"
-set keymap=ru                  "отредактированный из Dropbox! "
-set iminsert=0
-set imsearch=0                   "Начинаать с латинской keemap
-
-"=====================================================
-"#    Tabs / Buffers settings
-"=====================================================
-tab sball
-set switchbuf=useopen
-
-""""""""""""""""""""""""""""""
-"#    Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
-""""""""""""""""""""""""""""""
-"#    Kitty terminal vim bug
-""""""""""""""""""""""""""""""
-let &t_ut=''
-
-"=====================================================
-"#    =>  Plug loading started here
-"=====================================================
-filetype off                  " required
-call plug#begin('~/.vim/plugged')
+set nobackup                            "don't make backups if sudo"
+set noswapfile                          "don't make swapfile if sudo"
+set noundofile                          "don't make undofile if sudo"
