@@ -82,7 +82,6 @@ Plug 'junegunn/gv.vim'
 
 "## --------------=== Colorschemes====-----------------
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'AlessandroYorba/Sierra'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'mhartington/oceanic-next'

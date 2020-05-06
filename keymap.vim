@@ -40,13 +40,11 @@ nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
 "#        KEY mapping
 "=====================================================
 
-
 "The timeout settings are used to work around the ambiguity with escape sequences. Esc
 "and j sent within 50ms will be mapped to <A-j>, greater than 50ms will count as separate "keys.
 "all this replaced  Plug 'matze/vim-move'
 
 if exists('$TMUX')
-    "возможно, может мне пригодиться это, и очень скоро.
 else
 endif
 
@@ -56,7 +54,7 @@ endif
         exec "imap \e".c." <A-".c.">"
         let c = nr2char(1+char2nr(c))
     endw
-    set timeout ttimeoutlen=10   " can ponentially cause problems. Blame this first!
+    set timeout ttimeoutlen=10   " can ponentially cause problems.
     nnoremap <silent><A-j> :m .+1<CR>==
     nnoremap <silent><A-k> :m .-2<CR>==
     inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
@@ -66,8 +64,7 @@ endif
 
 "<Plug> - через это не все команды работают.
 
-
-"//Просто всегда при выходе из insert - en! genuine and simple. Надо (редко) - входишь в ru!
+"//Просто всегда при выходе из insert - en! genuine and simple. Надо (редко) - входишь в ru
 "//terminal only. doesn't work in Gvim.
 "xkb-switch required
 let g:XkbSwitchLib = "/lib/libxkbswitch.so"
@@ -118,6 +115,8 @@ endfun
 "%% ic Command-line mode to refer to the directory of the current file, regardledd of pwd.
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
+map <Leader>cd :lcd%:p:h | redraw!
+
 "Reload vimrc w/o restarting VIM (with view's deleting!)
 if !exists('*ReloadVim')
     fun ReloadVim()
@@ -143,8 +142,8 @@ autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :!
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 autocmd FileType javascript set makeprg=node\ %
 
-autocmd FileType sh nnoremap <buffer> <F6><Esc>:w<CR>:! ./%<CR>
-autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<cr>
+autocmd FileType sh nnoremap <buffer> <F6><Esc>:w<CR>:! clear; ./%<CR>
+autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<CR>
 
 "=====================================================
 "#        KEY mappings again
@@ -233,27 +232,9 @@ nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 
-"=====================================================
-"#        VimWiki-calendar
-"=====================================================
-au BufRead,BufNewFile *.wiki set filetype=vimwiki
-:autocmd FileType vimwiki map <Leader>d :VimwikiMakeDiaryNote<CR>
-function! ToggleCalendar()
-    execute ":Calendar"
-    if exists("g:calendar_open")
-        if g:calendar_open == 1
-            execute "q"
-            unlet g:calendar_open
-        else
-            g:calendar_open = 1
-        end
-    else
-        let g:calendar_open = 1
-    end
-endfunction
+"TODO удали это когда забудель когда написал это Todo
+" au BufRead,BufNewFile *.wiki set filetype=vimwiki
 
-"Решение проблемы - когда буфер вики в фоне - нельзя даже c (change) сделать!"
-:autocmd FileType vimwiki map <leader>c :call ToggleCalendar()<CR>
 
 
 "  `\|||/´         MMM           \|/            www            __^__          ~

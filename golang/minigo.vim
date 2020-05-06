@@ -5,7 +5,7 @@ Plug 'mhinz/vim-startify'               " Nice start screen (COW)
 Plug 'sirver/ultisnips'                 "doesn't come with any snippets itself
 Plug 'honza/vim-snippets'               "commn snippets. Not enough.
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'AlessandroYorba/Sierra'
+Plug 'nanotech/jellybeans.vim'
 call plug#end() " }}}
 
 "#    Style
@@ -15,7 +15,7 @@ set t_Co=256
 "#   Font
 set guifont=Iosevka\ Expanded\ 19
 let g:solarized_termcolors=256
-colorscheme sierra
+colorscheme jellybeans
 
 "#    Go filetype
 autocmd FileType go set omnifunc=go#complete#Complete
