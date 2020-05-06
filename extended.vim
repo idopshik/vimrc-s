@@ -74,7 +74,6 @@ Plug 'Yggdroot/indentLine'             "Вертикальные линии
 
 " Plug 'sheerun/vim-polyglot' - стоил мне часа дебага. dipshit plugin
 
-"
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'

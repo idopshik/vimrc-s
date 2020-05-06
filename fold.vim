@@ -19,7 +19,7 @@ augroup filetype_vim
     autocmd!
     " Это примеры. Для этого типа используется fdm=expr задан через
     " /.vim/after/ftplugin/vim/fold.vim
-    autocmd FileType vim set foldlevelstart=0
+    autocmd FileType vim set foldlevelstart=2
 augroup END
 
 "Для си,по FileType работает, а для питона и html - Нет

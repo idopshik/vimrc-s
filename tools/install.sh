@@ -86,18 +86,16 @@ echo "*** .vimrc created"
 echo
 
 
-echo "----------------------------"
-echo "custome Folds files"
-echo "----------------------------"
-#Это точно рабочая команда!
-cp -TRv /home/st/Dropbox/Linux_or_Vim_related/vim_savings/after/ ~/.vim/after/
+echo "--------------------------------"
+echo "after/ftplugin sym lind creation"
+echo "--------------------------------"
+echo " do it by yourself ! just run script ~/Dropbox/Linux_or_Vim_related/after/createLink.sh"
 
 
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts     || exit
-./install.sh
-cd ..    || exit
-rm -rf fonts
+echo "--------------------------------"
+echo "Nerd Fonts installataion"
+echo "--------------------------------"
+echo "Also do it manually, three keyboard buttons hittion. You have them already on your Dropbox"
 
 
 echo "----------------------------"
@@ -121,23 +119,13 @@ hash git >/dev/null 2>&1 && /usr/bin/env git clone https://github.com/idopshik/d
   exit
 }
 
-echo "----------------------------"
-echo "   linters"
-echo "----------------------------"
-
-sudo apt-get install flake8
-sudo apt-get install mypy
-sudo apt-get install pylint
-sudo apt-get install pydocstyle
-
-echo "----------------------------"
-echo "  тут возможен косяк.       "
-echo "----------------------------"
-
-sudo apt-get install npm
-
-sudo npm install -g jshint
 
 echo "----------------------------"
 echo "   боль с клавиатурой       "
+echo "----------------------------"
+
+
+echo "----------------------------"
+echo "  npm, py, linters сам поставишь"
+echo "Moжет изменилось чего, руками надёжнее"
 echo "----------------------------"

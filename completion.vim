@@ -134,8 +134,6 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 " autocmd FileType go call deoplete#enable() (для питона выключен, включается только по
 " расширению , как и выключается coc.
 
-
-
 "=====================================================
 "#       Completiona overlap resolvin' !
 "=====================================================
