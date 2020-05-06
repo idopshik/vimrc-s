@@ -10,7 +10,6 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 " первые пять -избыток это и в basic, и даже no-rc
 " последняя строка для jedy
 
-
 """"""""""""""""""""""""""""""
 "#   => Golang section
 """""""""""""""""""""""""""""""

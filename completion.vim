@@ -144,7 +144,7 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 "Errors and warnings can be suppressed via the :silent!
 "Errors WILL happen since coc not always goint to be loaded at all
 " autocmd BufNew,BufEnter *.py silent! execute "CocDisable"
-autocmd BufNew,BufEnter *.py *.cpp *.c *.h silent! CocDisable
+autocmd BufNew,BufEnter *.py,*.cpp,*.c,*.h silent! CocDisable
 
 "-------- Coc/deoplete overlap----------
 autocmd BufNew,BufEnter *.go silent! execute "call deoplete#enable() | CocDisable"
