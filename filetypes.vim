@@ -7,6 +7,7 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 \ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 \ formatoptions=crql
 \ cindent cinkeys-=0# indentkeys-=0#
+" первые пять -избыток это и в basic, и даже no-rc
 " последняя строка для jedy
 
 

@@ -80,7 +80,7 @@ Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а 
 Plug 'Chiel92/vim-autoformat'          "Используется внешний форматтер, надо установить
 Plug 'Yggdroot/indentLine'             "Вертикальные линии
 
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot' - стоил мне часа дебага. dipshit plugin
 
 "
 "## --------------=== Git Integration====-----------------
