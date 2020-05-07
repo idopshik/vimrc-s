@@ -86,6 +86,7 @@ augroup AutoGroup
 augroup END
 set viewoptions-=options
 set viewoptions-=curdir
+set viewoptions-=folds   "error can't find folds get on my nerves
 
 "  '10  :  marks for up to 10 files
 "  "100 :  lines for each register

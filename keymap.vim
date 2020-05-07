@@ -115,7 +115,8 @@ endfun
 "%% ic Command-line mode to refer to the directory of the current file, regardledd of pwd.
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-map <Leader>cd :lcd%:p:h<cr> | redraw!
+" map <Leader>cd :lcd%:p:h<cr> | redraw!
+nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 "Reload vimrc w/o restarting VIM (with view's deleting!)
 if !exists('*ReloadVim')
