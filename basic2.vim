@@ -75,18 +75,18 @@ set showbreak=↳                "↪ как альтернатива
 "#    Lot's of other's
 """"""""""""""""""""""""""""""
 
-" automatically changes Vim's working dir to the current file:
-augroup AutoGroup
+augroup AutoSaveFolds
   autocmd!
-  "vim-rooter,maybe
-    " autocmd BufEnter * silent! :lcd%:p:h | redraw!
-    autocmd BufWritePost,BufLeave,WinLeave ?* mkview
-                                           " <-----------------------------------------------------
-    autocmd BufReadPost ?* silent loadview
-augroup END
-set viewoptions-=options
-set viewoptions-=curdir
-set viewoptions-=folds   "error can't find folds get on my nerves
+  " view files are about 500 bytes
+  " bufleave but not bufwinleave captures closing 2nd tab
+  " nested is needed by bufwrite* (if triggered via other autocmd)
+  autocmd BufWinLeave,BufLeave,BufWritePost ?* nested silent! mkview!
+"                                        <---------------------
+  autocmd BufWinEnter ?* silent! loadview
+augroup end
+
+set viewoptions=folds,cursor
+set sessionoptions=folds
 
 "  '10  :  marks for up to 10 files
 "  "100 :  lines for each register
