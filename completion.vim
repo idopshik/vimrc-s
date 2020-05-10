@@ -4,7 +4,8 @@
 
 " but if you open buff with these filetypes and return /
 " /to your ft=go buffer - Coc wont't swithed off - you'll get conflict
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css', 'htmljinja', 'jinja']}
+Plug 'neoclide/coc.nvim'   "// без вариантов. Загружать всегда.
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css', 'htmljinja', 'jinja']}
 Plug 'Valloric/YouCompleteMe' "python, c, c++, h only 
 
 "pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
@@ -143,10 +144,10 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 "Errors WILL happen since coc not always goint to be loaded at all
 " autocmd BufNew,BufEnter *.py silent! execute "CocDisable"
 autocmd BufNew,BufEnter *.py,*.cpp,*.c,*.h silent! CocDisable
+autocmd BufLeave *.py,*.cpp,*.c,*.h silent! CocEnable
 
 "-------- Coc/deoplete overlap----------
 autocmd BufNew,BufEnter *.go silent! execute "call deoplete#enable() | CocDisable"
-autocmd BufNew,BufEnter *.go silent! execute "call deoplete#enable()"
 autocmd BufLeave *.go silent! execute "call deoplete#disable()"
 
 "-------- deoplete/ycm overlap----------
