@@ -61,6 +61,7 @@ augroup END
 " Essentially, we disable auto-saving the .viminfo file, and then we disable swap files, undo files and backup files. After the buffer is read, we decrypt it with GPG, so that we are able to read the content in Vim. Before we eventually save our file, we encrypt the entire file with the user ID of the default key as the recipient of our message, and finally after writing the file we undo the last action, so that the file is still readable to us.
 
 fun! WikiEncrypt()
+    lcd %:p:h "Возможное решение бага
     let filename=expand('%:t:r') 
     let l:newfilename=filename.".gpg.wiki"
     let l:curdirname=expand('%:p:h')
@@ -73,6 +74,15 @@ fun! WikiEncrypt()
         setlocal bin 
         sil %!GPG_TTY=/dev/tty gpg -e --output tmp_f --default-recipient-self
         setlocal nobin
+        "debug section (had a Unable to rename message for some reason!)
+        " echo "curdirname  variable:"
+        " echo curdirname
+        " echo "filename  variable:"
+        " echo filename
+        " echo "tmpfilename variable:"
+        " echo l:tmpfilename
+        " echo "newfilename variable:"
+        " echo l:newfilename
             if rename(l:tmpfilename, l:newfilename) != 0
               echo "Unable to rename "
             else
