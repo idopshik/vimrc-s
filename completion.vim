@@ -114,6 +114,11 @@ let g:ycm_filetype_whitelist = {'python': 1, 'c': 1, 'cpp': 1, 'h': 1}
 "redundant
 let g:ycm_filetype_blacklist = { 'go': 1 } 
 
+" to bored with hover feature 
+let g:ycm_auto_hover = ''
+" Не для этого места в Keymap. Не могу настроить вызов по команде.
+" Если что, включу, но не думаю. Отвлекает.
+
 "css - for Coc
 " let g:ycm_semantic_triggers = {
    " \   'css': [ 're!^\s{4}', 're!:\s+' ],

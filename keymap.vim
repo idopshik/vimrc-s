@@ -83,6 +83,8 @@ map <leader>wp <Plug>VimwikiDiaryPrevDay
 map <leader>wn <Plug>VimwikiDiaryNextDay
 
 "fzf
+
+nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 map <C-p> :Files<CR>
 map <Leader>r :Files ~/.vim_runtime/<CR>
 nnoremap <silent> <leader><Space> :FZFMru<CR>
@@ -158,7 +160,9 @@ nnoremap <leader>nn :NERDTreeFind<CR>
 
 nmap <F3> :ALEFix <CR>
 
-nmap <F4> :Prettier <CR>
+" nmap <F4> :Prettier <CR>
+"TODO срасти leader-p (prettier) с питоном (autoformat) по типу файла.
+nmap <F4> :Autoformat <CR>
 
 nnoremap <F7> ::UndotreeToggle<CR>
 

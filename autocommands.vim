@@ -5,6 +5,11 @@
                                                         "and ~/.vim/after/*  - SECOND
 autocmd BufNewFile,BufRead * setlocal formatoptions+=cqn
 
+"check if file changed outside
+augroup auto_checktime
+  autocmd!
+  autocmd FocusGained,BufEnter,CursorHold * silent! checktime
+augroup end
 
 " only by creation through :e and at first time saving and having shabang (!#)
 augroup shebang_chmod  

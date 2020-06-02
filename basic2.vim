@@ -1,4 +1,4 @@
-
+"TODO у нас сломан persistant undo!
 " Don't show mode in cmd window - doesn't work.:w
 set noshowmode          
 
@@ -145,3 +145,5 @@ autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 
 
+"jump between matching html/xml tags (vim internal macro)
+runtime macros/matchit.vim
