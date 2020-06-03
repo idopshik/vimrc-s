@@ -10,9 +10,6 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set history=1000
-set undofile
-set undoreload=1000
 
 filetype plugin on
 filetype indent on
@@ -51,6 +48,7 @@ set fileencoding=utf-8          " The encoding written to file.
 "====================================================
 "" Dot't leave lot's of something after yourself
 "=====================================================
-set nobackup                            "don't make backups if sudo"
-set noswapfile                          "don't make swapfile if sudo"
-set noundofile                          "don't make undofile if sudo"
+" подкл. далее extended переопределяет это всё наоборот.
+set nobackup                    "don't make backups if sudo"
+set noswapfile                  "don't make swapfile if sudo"
+set noundofile                  "don't make undofile if sudo"

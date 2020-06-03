@@ -1,6 +1,10 @@
-"TODO у нас сломан persistant undo!
-" Don't show mode in cmd window - doesn't work.:w
+" Don't show mode in cmd window - doesn't work
 set noshowmode          
+
+"overriding basic (disable undo/swap for simple usages)
+set history=1000
+set undoreload=1000
+set undofile                    
 
 "when a file is changed from the outside
 set autoread

@@ -178,8 +178,9 @@ else
             set nobackup                            "don't make backups if sudo"
             set nowritebackup
         else
-            set backupdir=~/.vim/tmp/backup
+            set backupdir=~/.vim/backup
             set backupdir+=.                        "last resort
+            set backup
         endif
 
         if exists($SUDO_USER)
@@ -187,6 +188,7 @@ else
         else
             set directory=~/.vim/swapfiles    "must exist, vim doesn't create one
             set directory+=.                        "last resort
+            set swapfile
         endif
 
         if exists($SUDO_USER)
@@ -194,10 +196,11 @@ else
         else
             set undodir=~/.vim/undodir    "must exist, vim doesn't create one
             set undodir+=.                        "last resort
+            set undofile
         endif
 
         " make this dirs if no exists previously
-        call MakeDirIfNoExists("~/.vim/tmp/backup")
+        call MakeDirIfNoExists("~/.vim/backup")
         call MakeDirIfNoExists("~/.vim/undodir")
         call MakeDirIfNoExists("~/.vim/swapfiles")
         

@@ -8,7 +8,7 @@ command! Cursor set cursorline | set cursorcolumn
 command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 fu PyRun() range
-  echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
+    echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
 endf
 
 vmap <F9> :call PyRun()<CR>
@@ -48,19 +48,19 @@ if exists('$TMUX')
 else
 endif
 
-    let c='a'
-    while c <= 'z'
-        exec "set <A-".c.">=\e".c
-        exec "imap \e".c." <A-".c.">"
-        let c = nr2char(1+char2nr(c))
-    endw
-    set timeout ttimeoutlen=10   " can ponentially cause problems.
-    nnoremap <silent><A-j> :m .+1<CR>==
-    nnoremap <silent><A-k> :m .-2<CR>==
-    inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
-    inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
-    vnoremap <silent><A-j> :m '>+1<CR>gv=gv
-    vnoremap <silent><A-k> :m '<-2<CR>gv=gv
+let c='a'
+while c <= 'z'
+    exec "set <A-".c.">=\e".c
+    exec "imap \e".c." <A-".c.">"
+    let c = nr2char(1+char2nr(c))
+endw
+set timeout ttimeoutlen=10   " can ponentially cause problems.
+nnoremap <silent><A-j> :m .+1<CR>==
+nnoremap <silent><A-k> :m .-2<CR>==
+inoremap <silent><A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent><A-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent><A-j> :m '>+1<CR>gv=gv
+vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 
 "<Plug> - через это не все команды работают.
 
@@ -161,8 +161,14 @@ nnoremap <leader>nn :NERDTreeFind<CR>
 nmap <F3> :ALEFix <CR>
 
 " nmap <F4> :Prettier <CR>
-"TODO срасти leader-p (prettier) с питоном (autoformat) по типу файла.
-nmap <F4> :Autoformat <CR>
+" nmap <F4> :Autoformat <CR>
+" nmap <Leader>yp <Plug>(Prettier)
+" TODO Это не факт что будет удобно. И вообще работать.
+" это переопределяет prettier-keymap(плагином ставится) и работает.
+" но как оно будет работать на одном и том же процессе при разных беферах
+" друг рядом с другом и py и js?
+autocmd FileType python nnoremap <leader>p :Autoformat<CR>
+
 
 nnoremap <F7> ::UndotreeToggle<CR>
 
@@ -236,9 +242,6 @@ map <C-l> <C-W>l
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 nnoremap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
 nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
-
-"TODO удали это когда забудель когда написал это Todo
-" au BufRead,BufNewFile *.wiki set filetype=vimwiki
 
 
 
