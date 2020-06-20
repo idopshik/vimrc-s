@@ -42,13 +42,19 @@ Plug 'shime/vim-livedown' "До установки установить $ npm in
 Plug 'junegunn/goyo.vim' " :Goyo
 
 "## --------------=== Snippets support ===---------------
+Plug 'epilande/vim-react-snippets'
+
 Plug 'sirver/ultisnips'                   "doesn't come with any snippets itself
 Plug 'honza/vim-snippets'                 "commn snippets. Not enough.
+"TODO why is that ectually?
+" set runtimepath+=~/home/st/.vim/plugged/ultisnips
+
 " Plug 'garbas/vim-snipmate'              " Snippets manager. Additional snippets.
 " Plug 'MarcWeber/vim-addon-mw-utils'     " dependencies #1
 " Plug 'tomtom/tlib_vim'                  " dependencies #2
 
-"## --------------=== Code/project navigation ===-------------
+
+"## --------------=== Code/project navigation ===------------e
 Plug 'airblade/vim-rooter'
 let g:rooter_silent_chdir = 1 "silent
 Plug 'luochen1990/rainbow'   "colorful paranpheses
@@ -74,6 +80,7 @@ Plug 'Yggdroot/indentLine'             "Вертикальные линии
 
 Plug 'yuezk/vim-js' 
 Plug 'maxmellon/vim-jsx-pretty'        "Подсветка и инденты react jsx
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 " Plug 'sheerun/vim-polyglot' - стоил мне часа дебага. dipshit plugin
 
@@ -81,6 +88,10 @@ Plug 'maxmellon/vim-jsx-pretty'        "Подсветка и инденты rea
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
+
+Plug 'rhysd/git-messenger.vim'
+let g:git_messenger_close_on_cursor_moved = v:false " иначе мелькает и всё.
+
 
 "## --------------=== Colorschemes====-----------------
 Plug 'NLKNguyen/papercolor-theme'
@@ -93,6 +104,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'haishanh/night-owl.vim'
+
+Plug 'herrbischoff/cobalt2.vim'
 "
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -203,8 +216,6 @@ else
         call MakeDirIfNoExists("~/.vim/backup")
         call MakeDirIfNoExists("~/.vim/undodir")
         call MakeDirIfNoExists("~/.vim/swapfiles")
-        
-        let g:UltiSnipsSnippetDirectories=[$HOME.'/Dropbox/.vim_cloud/vim-snippets/UltiSnips']
 
   endif
 endif

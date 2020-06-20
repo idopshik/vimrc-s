@@ -5,7 +5,7 @@ command! T :tabnew ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/tasks.wiki
 command! Cursor set cursorline | set cursorcolumn
 
 "" crear register command
-command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+command! CleanReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 fu PyRun() range
     echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
@@ -15,13 +15,28 @@ vmap <F9> :call PyRun()<CR>
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
+"auto close {
+function! s:CloseBracket()
+    let line = getline('.')
+    if line =~# '^\s*\(struct\|class\|enum\) '
+        return "{\<Enter>};\<Esc>O"
+    elseif searchpair('(', '', ')', 'bmn', '', line('.'))
+        " Probably inside a function call. Close it off.
+        return "{\<Enter>});\<Esc>O"
+    else
+        return "{\<Enter>}\<Esc>O"
+    endif
+endfunction
+
+inoremap <expr> {; <SID>CloseBracket()
 
 inoremap (<Space> ()<Esc>i
 inoremap [<Space> []<Esc>i
 inoremap {<Space> {}<Esc>i
 inoremap (; (<CR>)<C-c>O
 inoremap (, (<CR>)<C-c>O
-inoremap {; {<CR>}<C-c>O
+" inoremap {; {<CR>}<C-c>O
+
 inoremap {, {<CR>}<C-c>O
 inoremap [; [<CR>]<C-c>O
 inoremap [, [<CR>]<C-c>O

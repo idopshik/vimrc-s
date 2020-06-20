@@ -33,7 +33,7 @@ let g:NERDTreeDirArrowCollapsible = '-'
 " let g:NERDTreeDirArrowExpandable = '▸'
 " let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDSpaceDelims = 1
-let NERDTreeShowHidden=0
+" let NERDTreeShowHidden=0 - в документации вообще не бьётся! Что это за чушь,
 
 "close vim if nerd three left alone
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -54,7 +54,24 @@ let g:tagbar_width=42
 " autocmd FileType python nested :TagbarOpen
 
 "let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
-"
+
+let g:tagbar_type_javascript = {
+      \ 'ctagstype': 'javascript',
+      \ 'kinds': [
+      \ 'A:arrays',
+      \ 'P:properties',
+      \ 'T:tags',
+      \ 'O:objects',
+      \ 'G:generator functions',
+      \ 'F:functions',
+      \ 'C:constructors/classes',
+      \ 'M:methods',
+      \ 'V:variables',
+      \ 'I:imports',
+      \ 'E:exports',
+      \ 'S:styled components'
+      \ ]}
+
 "----------------------------------------------------------------------
 "                       vimwiki integration
 let g:tagbar_type_vimwiki = {
@@ -172,7 +189,9 @@ let b:ale_warn_about_trailing_whitespace = 0
   " let g:ale_linters = {'c': ['clangtidy']}
   "cpp - ale так видит h - заголовочники в AVR проектах
   " let b:ale_linters = ['flake8', 'pylint']
-let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : []}  " disable ale for them;
+let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : [],
+                    \'javascriptreact': ['eslint', 'tsserver']} 
+
 " hate.Don't set it on - vim has signcolumn=yes
 "
 "
@@ -297,6 +316,12 @@ let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 " let g:coc_snippet_prev = '<c-b>'
 " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+"Я не задаю папку со своими сниппетами, взамен создана simlink на
+"UltiSnips папку в дропбоксе, ссылка указана в runtimepath, которая ~/.vim
+"поэтому плагин её находит. (он шарит во всей runtimepath)
+" UltiSnips и snipmate это разные типы снипетов, и их можно по отдельности
+" выключать и использовать.
+
 "=====================================================
 "#       vimwiki   {{{
 "=====================================================
@@ -412,7 +437,7 @@ let g:undotree_DiffAutoOpen = 0
           \ { 'type': 'commands',  'header': ['   Commands']       },
           \ ]
 
-    let g:startify_bookmarks = [ {'s': '~/Documents/MyJsScripts/six.js'}]
+    let g:startify_bookmarks = [ {'s': '~/Documents/MyJsScripts/s_module6/six.js'}]
 
 "#       Misc
 
