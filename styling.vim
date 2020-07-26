@@ -71,7 +71,7 @@ let g:solarized_termcolors=256
 if has('gui_running')
     " colorscheme gruvbox
     " colorscheme solarized8_flat  "blue subdued
-    colorscheme cobalt2
+    colorscheme solarized8_flat 
     " colorscheme spacegray
 else
     " colorscheme OceanicNext

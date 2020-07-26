@@ -4,8 +4,8 @@
 
 " but if you open buff with these filetypes and return /
 " /to your ft=go buffer - Coc wont't swithed off - you'll get conflict
-Plug 'neoclide/coc.nvim'   "// без вариантов. Загружать всегда.
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css', 'htmljinja', 'jinja']}
+" Plug 'neoclide/coc.nvim'   "// без вариантов. Загружать всегда.
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css', 'htmljinja', 'jinja']}
 Plug 'Valloric/YouCompleteMe' "python, c, c++, h only 
 
 "pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
@@ -102,7 +102,8 @@ let g:markdown_fenced_languages = [
 "semantic completer for those languages and want to use the GCC Syntastic checkers, unset this option.
 
 " let g:ycm_show_diagnostics_ui = 0
-nmap <leader>g :YcmCompleter GoTo<CR>   "Это делает и джеди
+" nmap <leader>g :YcmCompleter GoTo<CR>   "Это делает и джеди
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 let g:ycm_autoclose_preview_window_after_completion=0
@@ -128,6 +129,8 @@ let g:ycm_auto_hover = ''
 "    \   'css': [ 're!^', 're!^\s+', ': ' ],
 "    \   'scss': [ 're!^', 're!^\s+', ': ' ],
 "    \ }
+
+
 
 
 "=====================================================

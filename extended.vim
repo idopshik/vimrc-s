@@ -91,6 +91,7 @@ Plug 'junegunn/gv.vim'
 
 Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_close_on_cursor_moved = v:false " иначе мелькает и всё.
+let g:git_messenger_always_into_popup = v:true
 
 
 "## --------------=== Colorschemes====-----------------
@@ -105,8 +106,6 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'haishanh/night-owl.vim'
 
-Plug 'herrbischoff/cobalt2.vim'
-"
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "

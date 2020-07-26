@@ -160,6 +160,8 @@ autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :!
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 autocmd FileType javascript set makeprg=node\ %
 
+autocmd FileType typescript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! tsc %<CR>
+
 autocmd FileType sh nnoremap <buffer> <F6><Esc>:w<CR>:! clear; ./%<CR>
 autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<CR>
 

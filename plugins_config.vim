@@ -437,7 +437,10 @@ let g:undotree_DiffAutoOpen = 0
           \ { 'type': 'commands',  'header': ['   Commands']       },
           \ ]
 
-    let g:startify_bookmarks = [ {'s': '~/Documents/MyJsScripts/s_module6/six.js'}]
+    let g:startify_bookmarks = [
+          \ {'s': '~/Documents/MyJsScripts/s_module6/six.js'},
+          \ {'v': '~/Documents/MyPyScripts/seven.py'},
+          \ ]
 
 "#       Misc
 
