@@ -231,8 +231,8 @@ if has('gui_running')
     ""let g:airline_theme='raven' "grayish supernice
     "simple - very good too"
 else
-    " let g:airline_theme='raven' "grayish supernice
-    let g:airline_theme='badcat' "supernice contrast black-gray
+    let g:airline_theme='raven' "grayish supernice
+    " let g:airline_theme='badcat' "supernice contrast black-gray
     " let g:airline_theme='angr'
 endif
 
@@ -429,6 +429,9 @@ let g:undotree_DiffAutoOpen = 0
 
 "#       Startify
 "=====================================================
+
+let g:startify_session_dir = '~/.vim/session'
+let g:startify_files_number = 10
 
     let g:startify_lists = [
           \ { 'type': 'files',     'header': ['   MRU']            },

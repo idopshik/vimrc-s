@@ -1,10 +1,13 @@
 
+Plug 'michal-h21/vim-zettel'
+
 Plug 'lambdalisue/vim-fullscreen'          "Ctrl + <CR> (does) :FullscreenToggle  On linux only.
 Plug 'vimwiki/vimwiki'
 Plug 'mhinz/vim-startify'               " Nice start screen (COW)
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 ":h fzf-vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list

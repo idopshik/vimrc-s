@@ -82,7 +82,7 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 "//Просто всегда при выходе из insert - en! genuine and simple. Надо (редко) - входишь в ru
 "//terminal only. doesn't work in Gvim.
 "xkb-switch required
-let g:XkbSwitchLib = "/lib/libxkbswitch.so"
+let g:XkbSwitchLib = "/usr/lib/libxkbswitch.so.1.8.5"
 function! InsertLeaveFun()
     call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
     " silent !setxkbmap us "Ломает системную переключалку
@@ -153,7 +153,8 @@ command! VimReload :call ReloadVim()<cr>
 autocmd FileType html nnoremap <F5> :exe ':silent !firefox %'<CR>
 autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox %:p &<CR>
 
-autocmd FileType python map <F6> <Esc>:w<CR>:!clear;/bin/python3 %<CR>
+autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
+" autocmd FileType python map <F6> <Esc>:w<CR>:!clear;/bin/python3 %<CR>
 autocmd FileType python map <F5> <Esc>:w<CR>:!clear;/bin/python2.7 %<CR>
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
