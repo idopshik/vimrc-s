@@ -24,6 +24,9 @@ augroup END
 
 "Для си,по FileType работает, а для питона и html - Нет
 autocmd FileType c setlocal foldmethod=indent
+
+autocmd FileType python setlocal foldmethod=indent
+
 " Для HTML работает только по расширению. По FileType - нет
 autocmd BufRead *.html setlocal foldmethod=indent
 
