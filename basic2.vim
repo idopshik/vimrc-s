@@ -113,7 +113,7 @@ set guioptions-=T               "remove toolbar
 set laststatus=2                "always show status bar
 
 " Do not show stupid q: window
- map q: :q
+map q: :q
 
 "=====================================================
 "#    Russian localisation

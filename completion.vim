@@ -25,6 +25,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'mitsuhiko/vim-jinja'              " Jinja support for vim
 Plug 'mitsuhiko/vim-python-combined'    " Combined Python 2/3 for Vim
 Plug 'vim-python/python-syntax'        " это всё установлено, но я не работал с Python достаточно плотно для теста.
+" Или установи pip insall black в venv или гугли. Без этого не будет работать AleFix  
 
 " ---------------=== Javascript ===-------------------
 Plug 'pangloss/vim-javascript'               " better indentetion and highlighting

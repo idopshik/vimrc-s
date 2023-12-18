@@ -48,7 +48,7 @@ let g:tagbar_width=42
 "autocmd FileType * nested :call tagbar#autoopen(0)
 
 " let g:tagbar_map_close = '<C-m>'   "hidious bag - tag bar closing by <CR>
-" let g:tagbar_iconchars = ['+', '-'] 
+" let g:tagbar_iconchars = ['+', '-']
 
 " Раздражает это
 " autocmd FileType python nested :TagbarOpen
@@ -142,7 +142,7 @@ set signcolumn=yes
 "=====================================================
 "#       w0rp/ale settings (linter)=== {{{
 "=====================================================
-" Некоторые линтеры отключены - смотри массив внизу. 
+" Некоторые линтеры отключены - смотри массив внизу.
 
 let g:ale_sign_error = '⨉'
 let g:ale_sign_warning = '⚠'
@@ -190,7 +190,7 @@ let b:ale_warn_about_trailing_whitespace = 0
   "cpp - ale так видит h - заголовочники в AVR проектах
   " let b:ale_linters = ['flake8', 'pylint']
 let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : [],
-                    \'javascriptreact': ['eslint', 'tsserver']} 
+                    \'javascriptreact': ['eslint', 'tsserver']}
 
 " hate.Don't set it on - vim has signcolumn=yes
 "
@@ -310,7 +310,7 @@ let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
 "you should not remap c-e for it plugin!
-" imap <C-e> <Plug>(coc-snippets-expand) 
+" imap <C-e> <Plug>(coc-snippets-expand)
 " vmap <C-j> <Plug>(coc-snippets-select)
 " let g:coc_snippet_next = '<c-j>'
 " let g:coc_snippet_prev = '<c-b>'
@@ -343,7 +343,7 @@ let g:vimwiki_folding='syntax'
 ""}}
 
 "=====================================================
-"#       Vim-go 
+"#       Vim-go
 "=====================================================
 
 let g:go_fmt_command = "goimports"
@@ -448,5 +448,3 @@ let g:startify_files_number = 10
 "#       Misc
 
 let g:rainbow_active = 0 "set to 0 if you want to enable it later via :RainbowToggle
-
-
