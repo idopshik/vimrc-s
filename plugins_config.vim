@@ -43,7 +43,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "#       TagBar settings   {{{
 "=====================================================
 let g:tagbar_autofocus=0
-let g:tagbar_width=42
+let g:tagbar_width=36
 "autocmd BufEnter *.py :call tagbar#autoopen(0)
 "autocmd FileType * nested :call tagbar#autoopen(0)
 
@@ -54,6 +54,8 @@ let g:tagbar_width=42
 " autocmd FileType python nested :TagbarOpen
 
 "let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
+"Не сортировать по алфавиту по умолчанию
+let g:tagbar_sort = 0
 
 let g:tagbar_type_javascript = {
       \ 'ctagstype': 'javascript',

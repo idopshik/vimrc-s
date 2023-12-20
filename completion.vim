@@ -41,7 +41,7 @@ Plug 'mattn/emmet-vim'
 "#       Common completion options
 "=====================================================
 
-set completeopt-=preview "не показывать окно preview с документацией.
+" set completeopt-=preview "не показывать окно preview с документацией.
 
 
 

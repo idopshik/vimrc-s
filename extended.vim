@@ -21,7 +21,6 @@
 Plug 'christoomey/vim-tmux-navigator'
 
 "sudo apt-get install wmctrl    # Ubuntu/Debian - needed. Terminal dosn't execute ctrl+<CR>
-Plug 'lambdalisue/vim-fullscreen'          "Ctrl + <CR> (does) :FullscreenToggle  On linux only.
 
 Plug 'mattn/calendar-vim'
 
@@ -31,21 +30,20 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'               " Parentheses, brackets, quotes, XML tags, and more
 Plug 'xolox/vim-misc'                   " required
 Plug 'scrooloose/nerdcommenter'         " :help nerdcommenter
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'                " выравнять в ровные столбики по регулярке
 Plug 'tmhedberg/simpylfold'             " No-BS Python code folding for Vim
 
-Plug 'mbbill/undotree'                   
+Plug 'mbbill/undotree'
 
 " html md показывает, css js нет.
 Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке!
-Plug 'junegunn/goyo.vim' " :Goyo
 
 "## --------------=== Snippets support ===---------------
 Plug 'epilande/vim-react-snippets'
 
 Plug 'sirver/ultisnips'                   "doesn't come with any snippets itself
-Plug 'honza/vim-snippets'                 "commn snippets. Not enough.
+Plug 'honza/vim-snippets'                 "common snippets. Not enough.
 "TODO why is that ectually?
 " set runtimepath+=~/home/st/.vim/plugged/ultisnips
 
@@ -64,6 +62,7 @@ Plug 'majutsushi/tagbar'
 
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.
+                           "required $sudo apt-get install ack-grep
 
 "## --------------=== Languages support ===-------------
 
@@ -72,13 +71,13 @@ Plug 'ap/vim-css-color'
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
 
-Plug 'w0rp/ale'                        
+Plug 'w0rp/ale'
 Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.
 
 Plug 'Chiel92/vim-autoformat'          "Используется внешний форматтер, надо установить
 Plug 'Yggdroot/indentLine'             "Вертикальные линии
 
-Plug 'yuezk/vim-js' 
+Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'        "Подсветка и инденты react jsx
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
@@ -89,7 +88,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
 
-Plug 'rhysd/git-messenger.vim'
+Plug 'rhysd/git-messenger.vim'               "открывает окно по <leader>gm
 let g:git_messenger_close_on_cursor_moved = v:false " иначе мелькает и всё.
 let g:git_messenger_always_into_popup = v:true
 

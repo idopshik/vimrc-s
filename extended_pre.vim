@@ -1,5 +1,5 @@
 
-Plug 'michal-h21/vim-zettel'
+"Plug 'michal-h21/vim-zettel'
 
 Plug 'lambdalisue/vim-fullscreen'          "Ctrl + <CR> (does) :FullscreenToggle  On linux only.
 Plug 'vimwiki/vimwiki'
