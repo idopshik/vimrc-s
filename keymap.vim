@@ -5,13 +5,14 @@ command! T :tabnew ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/tasks.wiki
 command! Cursor set cursorline | set cursorcolumn
 
 "" crear register command
-command! CleanReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 fu PyRun() range
     echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
 endf
 
-vmap <F9> :call PyRun()<CR>
+"в VisualMode можно выполнить код
+vmap <F9> :call PyRun()<CR>   
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
