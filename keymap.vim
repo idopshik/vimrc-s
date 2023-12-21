@@ -172,6 +172,8 @@ autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<CR>
 "мешает переключению буферов. надо перемапить.
 " nnoremap <silent> <leader>bb :silent update<Bar>silent !google-chrome %:p &<CR>
 
+nnoremap <Leader>a :Ack<CR> " поиск слова под курсором. Мощнейший ack.
+
 map <C-n> :NERDTreeToggle<CR>
 
 nnoremap <leader>nn :NERDTreeFind<CR>
@@ -179,13 +181,14 @@ nnoremap <leader>nn :NERDTreeFind<CR>
 nmap <F3> :ALEFix <CR>
 
 " nmap <F4> :Prettier <CR>
-" nmap <F4> :Autoformat <CR>
+nmap <F4> :Autoformat <CR>
 " nmap <Leader>yp <Plug>(Prettier)
 " TODO Это не факт что будет удобно. И вообще работать.
 " это переопределяет prettier-keymap(плагином ставится) и работает.
 " но как оно будет работать на одном и том же процессе при разных беферах
 " друг рядом с другом и py и js?
-autocmd FileType python nnoremap <leader>p :Autoformat<CR>
+"autocmd FileType python nnoremap <leader>p :Autoformat<CR> Эта комбинация ещё
+"приготится.
 
 
 nnoremap <F7> ::UndotreeToggle<CR>

@@ -58,33 +58,33 @@ let g:tagbar_width=36
 let g:tagbar_sort = 0
 
 let g:tagbar_type_javascript = {
-      \ 'ctagstype': 'javascript',
-      \ 'kinds': [
-      \ 'A:arrays',
-      \ 'P:properties',
-      \ 'T:tags',
-      \ 'O:objects',
-      \ 'G:generator functions',
-      \ 'F:functions',
-      \ 'C:constructors/classes',
-      \ 'M:methods',
-      \ 'V:variables',
-      \ 'I:imports',
-      \ 'E:exports',
-      \ 'S:styled components'
-      \ ]}
+            \ 'ctagstype': 'javascript',
+            \ 'kinds': [
+                \ 'A:arrays',
+                \ 'P:properties',
+                \ 'T:tags',
+                \ 'O:objects',
+                \ 'G:generator functions',
+                \ 'F:functions',
+                \ 'C:constructors/classes',
+                \ 'M:methods',
+                \ 'V:variables',
+                \ 'I:imports',
+                \ 'E:exports',
+                \ 'S:styled components'
+                \ ]}
 
 "----------------------------------------------------------------------
 "                       vimwiki integration
 let g:tagbar_type_vimwiki = {
-          \   'ctagstype':'vimwiki'
-          \ , 'kinds':['h:header']
-          \ , 'sro':'&&&'
-          \ , 'kind2scope':{'h':'header'}
-          \ , 'sort':0
-          \ , 'ctagsbin':'/home/st/Dropbox/Linux_or_Vim_related/vim_savings/vwtags.py'
-          \ , 'ctagsargs': 'default'
-          \ }
+            \   'ctagstype':'vimwiki'
+            \ , 'kinds':['h:header']
+            \ , 'sro':'&&&'
+            \ , 'kind2scope':{'h':'header'}
+            \ , 'sort':0
+            \ , 'ctagsbin':'/home/st/Dropbox/Linux_or_Vim_related/vim_savings/vwtags.py'
+            \ , 'ctagsargs': 'default'
+            \ }
 "}}}
 "=====================================================
 "#       IndentLines   {{{
@@ -127,9 +127,9 @@ let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 " YouCompleteMe не даёт ему работать make линтеру с "c" языком. Не знаю как исправить
 let g:syntastic_mode_map = {
-    \ "mode": "passive",
-    \ "active_filetypes": ["c","h"],
-    \ "passive_filetypes": ["sh","javascript"] } "Задолбал этот синтаситик. Пока не научился им ползоваться.
+            \ "mode": "passive",
+            \ "active_filetypes": ["c","h"],
+            \ "passive_filetypes": ["sh","javascript"] } "Задолбал этот синтаситик. Пока не научился им ползоваться.
 "в active можно добавить sh - будет его проверять
 "и наоборот. Можно поствить его в пассиве - но это мало чего изменит
 "SyntasticCheck - команда возбуждает линтер даже в пассивном состоянии
@@ -173,9 +173,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_keep_list_window_open = 0
 
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['black', 'yapf', 'autopep8'],
-\}
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'python': ['black', 'yapf', 'autopep8'],
+            \}
 " Disable warnings about trailing whitespace for Python files.
 let b:ale_warn_about_trailing_whitespace = 0
 
@@ -187,12 +187,12 @@ let b:ale_warn_about_trailing_whitespace = 0
 "
 "Проблемы с gcc - не линтеры не понимают, что avr папка на отшибе в gcc"
 "об этом знает только make (gcc and avrgcc косячат)
-  " let g:ale_linters = {'c': ['make']}
-  " let g:ale_linters = {'c': ['clangtidy']}
-  "cpp - ale так видит h - заголовочники в AVR проектах
-  " let b:ale_linters = ['flake8', 'pylint']
+" let g:ale_linters = {'c': ['make']}
+" let g:ale_linters = {'c': ['clangtidy']}
+"cpp - ale так видит h - заголовочники в AVR проектах
+" let b:ale_linters = ['flake8', 'pylint']
 let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : [],
-                    \'javascriptreact': ['eslint', 'tsserver']}
+            \'javascriptreact': ['eslint', 'tsserver']}
 
 " hate.Don't set it on - vim has signcolumn=yes
 "
@@ -274,7 +274,7 @@ let g:airline#extensions#keymap#enabled = 0
 
 let airline#extensions#tabline#ignore_bufadd_pat = 'undotree|tagbar|nerd_tree'
 
- " Separators in airline-statusline - need's real NERD font!
+" Separators in airline-statusline - need's real NERD font!
 let g:airline_left_sep = "\uE0C6" "pixels
 let g:airline_right_sep = "\uE0C7"
 
@@ -300,6 +300,16 @@ nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 "=====================================================
 " Вот с этой строчкой не работает поиск файлов!!!
 " let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -l -g ""'
+
+"=====================================================
+"" Ack
+"=====================================================
+
+" cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack<CR>
+let g:ack_mappings = {
+            \  'v':  '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
+            \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J' }
 
 "=====================================================
 "#       snippets
@@ -334,15 +344,24 @@ let g:vimwiki_folding='syntax'
 "=====================================================
 "#       Prettier  {{{
 "=====================================================
+" для WEB (js)
 " <leader>-p - default prettier command
 "на нравятся подтормаживания при запуске по F6. Буду "в ручную" гонять.
 " autocmd BufWritePre *.jsx,*.js,*.json,*.css,*.scss,*.less,*.graphql Prettier
 
 " forced async
-    let g:prettier#exec_cmd_async = 1
+let g:prettier#exec_cmd_async = 1
 " Running before saving async
-  let g:prettier#autoformat = 0
+let g:prettier#autoformat = 0
+nmap <Leader>py <Plug>(Prettier)
 ""}}
+
+"=====================================================
+"#       Autoformat  {{{
+"=====================================================
+
+" let g:formatters_python = ['autopep8']     "Возможно, и не надо.
+" сам вроде находит и black и pep8
 
 "=====================================================
 "#       Vim-go
@@ -412,21 +431,21 @@ let g:undotree_DiffAutoOpen = 0
 "=====================================================
 
 
-  " let g:user_emmet_expandabbr_key = '<C-y>,'
-  " let g:user_emmet_expandword_key = '<C-y>;'
-  " let g:user_emmet_update_tag = '<C-y>u'
-  " let g:user_emmet_balancetaginward_key = '<C-y>d'
-  " let g:user_emmet_balancetagoutward_key = '<C-y>D'
-  let g:user_emmet_next_key = '<C-y>j'
-  let g:user_emmet_prev_key = '<C-y>b'
-  " let g:user_emmet_imagesize_key = '<C-y>i'
-  " let g:user_emmet_togglecomment_key = '<C-y>/'
-  " let g:user_emmet_splitjointag_key = '<C-y>j'
-  " let g:user_emmet_removetag_key = '<C-y>k'
-  " let g:user_emmet_anchorizeurl_key = '<C-y>a'
-  " let g:user_emmet_anchorizesummary_key = '<C-y>A'
-  " let g:user_emmet_mergelines_key = '<C-y>m'
-  " let g:user_emmet_codepretty_key = '<C-y>c'
+" let g:user_emmet_expandabbr_key = '<C-y>,'
+" let g:user_emmet_expandword_key = '<C-y>;'
+" let g:user_emmet_update_tag = '<C-y>u'
+" let g:user_emmet_balancetaginward_key = '<C-y>d'
+" let g:user_emmet_balancetagoutward_key = '<C-y>D'
+let g:user_emmet_next_key = '<C-y>j'
+let g:user_emmet_prev_key = '<C-y>b'
+" let g:user_emmet_imagesize_key = '<C-y>i'
+" let g:user_emmet_togglecomment_key = '<C-y>/'
+" let g:user_emmet_splitjointag_key = '<C-y>j'
+" let g:user_emmet_removetag_key = '<C-y>k'
+" let g:user_emmet_anchorizeurl_key = '<C-y>a'
+" let g:user_emmet_anchorizesummary_key = '<C-y>A'
+" let g:user_emmet_mergelines_key = '<C-y>m'
+" let g:user_emmet_codepretty_key = '<C-y>c'
 
 
 "#       Startify
@@ -435,17 +454,17 @@ let g:undotree_DiffAutoOpen = 0
 let g:startify_session_dir = '~/.vim/session'
 let g:startify_files_number = 10
 
-    let g:startify_lists = [
-          \ { 'type': 'files',     'header': ['   MRU']            },
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
-          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-          \ { 'type': 'commands',  'header': ['   Commands']       },
-          \ ]
+let g:startify_lists = [
+            \ { 'type': 'files',     'header': ['   MRU']            },
+            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ ]
 
-    let g:startify_bookmarks = [
-          \ {'s': '~/Documents/MyJsScripts/s_module6/six.js'},
-          \ {'v': '~/Documents/MyPyScripts/seven.py'},
-          \ ]
+let g:startify_bookmarks = [
+            \ {'s': '~/Documents/MyJsScripts/s_module6/six.js'},
+            \ {'v': '~/Documents/MyPyScripts/seven.py'},
+            \ ]
 
 "#       Misc
 

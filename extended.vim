@@ -81,8 +81,6 @@ Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'        "Подсветка и инденты react jsx
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
-" Plug 'sheerun/vim-polyglot' - стоил мне часа дебага. dipshit plugin
-
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
