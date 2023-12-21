@@ -59,7 +59,6 @@ Plug 'luochen1990/rainbow'   "colorful paranpheses
 Plug 'skywind3000/quickmenu.vim'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
-
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.
                            "required $sudo apt-get install ack-grep
@@ -221,7 +220,7 @@ endif
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 if !exists(":BufDiff")
-    command BufDiff vert new | set bt=nofile | r # | 0d_ | diffthis
+    command Bd vert new | set bt=nofile | r # | 0d_ | diffthis
                 \ | wincmd p | diffthis
 endif
 "" vim: fdm=expr
