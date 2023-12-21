@@ -306,7 +306,6 @@ nnoremap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
 "=====================================================
 
 " cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack<CR>
 let g:ack_mappings = {
             \  'v':  '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
             \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J' }
