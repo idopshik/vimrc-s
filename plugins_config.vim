@@ -359,7 +359,7 @@ nmap <Leader>py <Plug>(Prettier)
 "#       Autoformat  {{{
 "=====================================================
 
-" let g:formatters_python = ['autopep8']     "Возможно, и не надо.
+" let g:formatters_python = ['black', 'autopep8']     "Возможно, и не надо.
 " сам вроде находит и black и pep8
 
 "=====================================================

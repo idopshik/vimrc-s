@@ -49,6 +49,7 @@ function! DeleteInactiveBufs()
 endfunction
 
 command! Ball :call DeleteInactiveBufs()
+command! BAll :call DeleteInactiveBufs()
 
 " Encryption gpg support
 " :sil => :h silent  :silent, :execute, and :sbuffer

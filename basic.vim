@@ -38,7 +38,7 @@ set hidden
 set pumheight=10
 set fillchars+=vert:\
 set rnu                          "relative number. It was three hours of my live
-set nu                           "number. current's line nummer 
+set nu                           "number. current's line nummer
 set belloff=all                  "desable bell
 set secure                       "prohibit .vimrc files to execute shell, create files, etc...
 
@@ -46,7 +46,7 @@ set encoding=utf-8              " The encoding displayed.
 set fileencoding=utf-8          " The encoding written to file.
 
 "====================================================
-"" Dot't leave lot's of something after yourself
+" Dot't leave lot's of clutter after yourself
 "=====================================================
 " подкл. далее extended переопределяет это всё наоборот.
 set nobackup                    "don't make backups if sudo"

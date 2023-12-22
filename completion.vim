@@ -4,8 +4,7 @@
 
 " but if you open buff with these filetypes and return /
 " /to your ft=go buffer - Coc wont't swithed off - you'll get conflict
-" Plug 'neoclide/coc.nvim'   "// без вариантов. Загружать всегда.
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css', 'htmljinja', 'jinja']}
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css', 'htmljinja', 'jinja']}
 Plug 'Valloric/YouCompleteMe' "python, c, c++, h only 
 
 "pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
