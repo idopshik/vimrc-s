@@ -83,7 +83,6 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'  " :GV должна рисовать график. А выдаёт лишь список. но хоть так.
-Plug 'rbong/vim-flog'  "Тяжелее. надо ставить lua. А graph не рисовала так же! :-(
 Plug 'airblade/vim-gitgutter'
 
 Plug 'rhysd/git-messenger.vim'               "открывает окно по <leader>gm

@@ -4,11 +4,13 @@
 
 " but if you open buff with these filetypes and return /
 " /to your ft=go buffer - Coc wont't swithed off - you'll get conflict
+
 "Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css', 'htmljinja', 'jinja']}
 Plug 'Valloric/YouCompleteMe' "python, c, c++, h only 
 
 "pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
 "Только потому, что за 2-3 дня не смог настроить ycm и coc для golang.
+
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }

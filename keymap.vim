@@ -4,16 +4,17 @@ command! Mk !node ./%
 command! T :tabnew ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/tasks.wiki
 command! Cursor set cursorline | set cursorcolumn
 
-"" crear register command
+" crear register command
 command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 fu PyRun() range
-    echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
+echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
+
 endf
+
 
 python3 << EOL
 import vim
-
 def ExecuteSelectedLine(l1, l2):
     for i in range(l1-1,l2):
         print(">>" + vim.current.buffer[i])
@@ -21,10 +22,8 @@ def ExecuteSelectedLine(l1, l2):
 EOL
 command! -range Eval <line1>,<line2> python3 ExecuteSelectedLine(<line1>, <line2>)
 
-" vnoremap <F9> python3 ExecuteSelectedLine(a:firstline, a:lastline) -  сдаюсь,
-" не могу заставить работать.
-
-
+"python run - pun
+command -range=% -nargs=0 Pun :<line1>,<line2>call PyRun()
 
 "в VisualMode можно выполнить код
 vmap <F9> :call PyRun()<CR>   
@@ -33,15 +32,15 @@ vmap <F9> :call PyRun()<CR>
 "=====================================================
 "auto close {
 function! s:CloseBracket()
-    let line = getline('.')
-    if line =~# '^\s*\(struct\|class\|enum\) '
-        return "{\<Enter>};\<Esc>O"
-    elseif searchpair('(', '', ')', 'bmn', '', line('.'))
-        " Probably inside a function call. Close it off.
-        return "{\<Enter>});\<Esc>O"
-    else
-        return "{\<Enter>}\<Esc>O"
-    endif
+let line = getline('.')
+if line =~# '^\s*\(struct\|class\|enum\) '
+    return "{\<Enter>};\<Esc>O"
+elseif searchpair('(', '', ')', 'bmn', '', line('.'))
+    " Probably inside a function call. Close it off.
+    return "{\<Enter>});\<Esc>O"
+else
+    return "{\<Enter>}\<Esc>O"
+endif
 endfunction
 
 inoremap <expr> {; <SID>CloseBracket()
@@ -81,9 +80,9 @@ endif
 
 let c='a'
 while c <= 'z'
-    exec "set <A-".c.">=\e".c
-    exec "imap \e".c." <A-".c.">"
-    let c = nr2char(1+char2nr(c))
+exec "set <A-".c.">=\e".c
+exec "imap \e".c." <A-".c.">"
+let c = nr2char(1+char2nr(c))
 endw
 set timeout ttimeoutlen=10   " can ponentially cause problems.
 nnoremap <silent><A-j> :m .+1<CR>==
@@ -100,9 +99,9 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 "xkb-switch required
 let g:XkbSwitchLib = "/usr/lib/libxkbswitch.so.1.8.5"
 function! InsertLeaveFun()
-    call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
-    " silent !setxkbmap us "Ломает системную переключалку
-    " echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
+call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
+" silent !setxkbmap us "Ломает системную переключалку
+" echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
 endfunction
 
 autocmd InsertLeave * call InsertLeaveFun()
@@ -130,15 +129,15 @@ map <C-tab> :bn<CR>
 cmap w!! w !sudo tee > /dev/null %
 
 if has('gui_running')
-    " TERMINAL only! Ranger won't work in Gui
-    "Это такой костыль. Не знаю как не назначть в gvim.
+" TERMINAL only! Ranger won't work in Gui
+"Это такой костыль. Не знаю как не назначть в gvim.
 else
-    map <Leader>x :call RangerChooser()<CR>
+map <Leader>x :call RangerChooser()<CR>
 endif
 
 fun! RangerChooser()
-    exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
-    if filereadable('/tmp/chosenfile')
+exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
+if filereadable('/tmp/chosenfile')
         exec 'edit ' . system('cat /tmp/chosenfile')
         call system('rm /tmp/chosenfile')
     endif
