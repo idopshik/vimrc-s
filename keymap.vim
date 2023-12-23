@@ -11,6 +11,21 @@ fu PyRun() range
     echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
 endf
 
+python3 << EOL
+import vim
+
+def ExecuteSelectedLine(l1, l2):
+    for i in range(l1-1,l2):
+        print(">>" + vim.current.buffer[i])
+        exec(vim.current.buffer[i],globals())
+EOL
+command! -range Eval <line1>,<line2> python3 ExecuteSelectedLine(<line1>, <line2>)
+
+" vnoremap <F9> python3 ExecuteSelectedLine(a:firstline, a:lastline) -  сдаюсь,
+" не могу заставить работать.
+
+
+
 "в VisualMode можно выполнить код
 vmap <F9> :call PyRun()<CR>   
 "=====================================================
