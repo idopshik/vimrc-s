@@ -196,8 +196,9 @@ nnoremap <F7> ::UndotreeToggle<CR>
 
 map <F8> :TagbarToggle<CR>
 
-" map <C-_> NerdCommentToggle "doesn't work in linux
-map <C-c> <plug>NERDCommenterToggle
+"doesn't work in linux
+map <C-_> <plug>NERDCommenterToggle
+" map <C-c> <plug>NERDCommenterToggle
 
 let g:CheetOpened=0
 function! VimNotesWindowToggle()
