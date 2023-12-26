@@ -194,6 +194,7 @@ map <C-n> :NERDTreeToggle<CR>
 nnoremap <leader>nn :NERDTreeFind<CR>
 
 nmap <F3> :ALEFix <CR>
+nmap <F2> :ALEPopulateQuickfix <CR>
 
 " nmap <F4> :Prettier <CR>
 nmap <F4> :Autoformat <CR>

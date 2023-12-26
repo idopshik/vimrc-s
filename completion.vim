@@ -22,7 +22,7 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " ---------------=== Python ===-------------------
-Plug 'davidhalter/jedi-vim'     
+"Plug 'davidhalter/jedi-vim'     
 Plug 'mitsuhiko/vim-jinja'              " Jinja support for vim
 Plug 'mitsuhiko/vim-python-combined'    " Combined Python 2/3 for Vim
 Plug 'vim-python/python-syntax'        " это всё установлено, но я не работал с Python достаточно плотно для теста.

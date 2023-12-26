@@ -65,6 +65,11 @@ call quickmenu#append('# JavaScript', '', '', 'javascript')
 call quickmenu#append('conceallevel %{&conceallevel? "[x]" :"[ ]"}', ':call quickmenu#ToggleConceallevel()', 'for js filetype vim-javascript could show glypths', 'javascript')
 " call quickmenu#append('foldcolumn %{&foldcolumn? "[x]" :"[ ]"}', ':call quickmenu#ToggleFoldcolumn()', 'foldcolumn - show fold column in gutter', 'javascript')
 call quickmenu#append('foldcolumn %{&foldcolumn? "[x]" :"[ ]"}', ':call quickmenu#ToggleFoldcolumn()', 'foldcolumn - show fold column in gutter')
+call quickmenu#append('ALEToggle', 'ALEToggle', 'run ALEToggle to stop linters', 'python')
+"Не могу экранировать пробел. Не помогает // /  \  Идеи кончились. 
+"call quickmenu#append('jedi %{&echo_g:jedi#completions_enabled "[x]" :"[ ]"}', ':let g:jedi#completions_enabled = 0', 'toggle jedi completion', 'python')
+"TODO надо это отладить, что-то дополняет всё равно.
+call quickmenu#append('jedi completion off ', ':let g:jedi#completions_enabled = 0', 'turn off jedi completion', 'python')
 
 call quickmenu#append('# Other', '')
 call quickmenu#append('Bracey start', 'Bracey', 'Bracey. to stop call :BraceyStop', 'html')

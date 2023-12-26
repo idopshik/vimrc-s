@@ -191,7 +191,7 @@ let b:ale_warn_about_trailing_whitespace = 0
 " let g:ale_linters = {'c': ['clangtidy']}
 "cpp - ale так видит h - заголовочники в AVR проектах
 " let b:ale_linters = ['flake8', 'pylint']
-let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : [],
+let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : ['flake8', 'pylint'],
             \'javascriptreact': ['eslint', 'tsserver']}
 
 " hate.Don't set it on - vim has signcolumn=yes
@@ -359,7 +359,7 @@ nmap <Leader>py <Plug>(Prettier)
 "#       Autoformat  {{{
 "=====================================================
 
-" let g:formatters_python = ['black', 'autopep8']     "Возможно, и не надо.
+" let g:formatters_python = ['autopep8', 'black']     "Возможно, и не надо.
 " сам вроде находит и black и pep8
 
 "=====================================================
