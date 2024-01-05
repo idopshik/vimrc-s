@@ -115,3 +115,40 @@ command! -nargs=+ -complete=command Redir let s:reg = @@ |
 " (all linux apps do that! it's normal) 
 " Have to use clipboard manager if you want win-like bahaviour
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
+
+autocmd FileType python map <buffer> <F12> :w<CR>:call Redirpython('!python3 '.expand('%'))<CR>
+
+"this has a flow. Need to be fixed
+function! Execpython(cmd)
+    redir @x
+    exec printf('silent %s',a:cmd)
+    redir END
+    tabnew
+    norm "xp
+endfunction
+
+"Wonderfull! Open vertical split!
+function! Redirpython(cmd)
+  for win in range(1, winnr('$'))
+    if getwinvar(win, 'scratch')
+      execute win . 'windo close'
+    endif
+  endfor
+  if a:cmd =~ '^!'
+    let output = system(matchstr(a:cmd, '^!\zs.*'))
+  else
+    redir => output
+    execute a:cmd
+    redir END
+  endif
+  botright vnew
+  let w:scratch = 1
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+  call setline(1, split(output, "\n"))
+endfunction
+"`:Redir` followed by either shell or vim command
+command! -nargs=+ -complete=command Redir silent call Redir(<q-args>)
+
+
+

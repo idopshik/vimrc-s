@@ -65,13 +65,17 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
 
 "## --------------=== Languages support ===-------------
 
+" ---------------Most important thing in the entire set of plugings
+Plug 'w0rp/ale'
+Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.
+
+
+
 Plug 'ap/vim-css-color'
 
 Plug 'godlygeek/tabular'               "Markdown
 Plug 'plasticboy/vim-markdown'
 
-Plug 'w0rp/ale'
-Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.
 
 Plug 'Chiel92/vim-autoformat'          "Используется внешний форматтер, надо установить
 Plug 'Yggdroot/indentLine'             "Вертикальные линии

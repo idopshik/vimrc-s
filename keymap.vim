@@ -1,11 +1,11 @@
-" vim: fdm=expr
+" "vim: fdm=expr
 command! Debug !node inspect ./%
 command! Mk !node ./%
 command! T :tabnew ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/tasks.wiki
 command! Cursor set cursorline | set cursorcolumn
 
 " crear register command
-command! ClearReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+command! RegClear for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 fu PyRun() range
 echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "\n")))
@@ -64,7 +64,8 @@ cmap vt vertical terminal
 tmap <S-Insert> <C-W>"+
 tnoremap <ESC><ESC> <C-\><C-N> " хотя лучше бы запомнить <C-W>N и всё. Это команда перехода в нормальный режим. выход из него по вводу i/a
 " Sample open-file mapping
-nnoremap <leader><leader>v :vsplit ~/Documents/vimtest/test1.vim <cr>
+nnoremap <leader><leader>v :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/Python_brief_notes.wiki <cr>
+
 
 "=====================================================
 "#        KEY mapping
@@ -125,7 +126,7 @@ nnoremap <silent> <leader>h :Helptags<CR>
 map <Space> :noh<cr>
 map <C-tab> :bn<CR>
 
-"" Allow saving of files as sudo when I forgot to start vim using sudo.
+" Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
 
 if has('gui_running')
@@ -170,7 +171,7 @@ autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox 
 
 autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 " autocmd FileType python map <F6> <Esc>:w<CR>:!clear;/bin/python3 %<CR>
-autocmd FileType python map <F5> <Esc>:w<CR>:!clear;/bin/python2.7 %<CR>
+autocmd FileType python map <F5> <Esc>:This keemap is free to bind for smth. Press ESC
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>

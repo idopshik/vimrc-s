@@ -6,33 +6,36 @@
 " /to your ft=go buffer - Coc wont't swithed off - you'll get conflict
 
 "Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install', 'for': ['json', 'javascript', 'html','vim' , 'css', 'htmljinja', 'jinja']}
-Plug 'Valloric/YouCompleteMe' "python, c, c++, h only 
+
+"----------- ycm -----------------"
+"python, c, c++, h only
+Plug 'Valloric/YouCompleteMe'
 
 "pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
 "Только потому, что за 2-3 дня не смог настроить ycm и coc для golang.
 
-Plug 'Shougo/deoplete.nvim'
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+" Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
 
 " ---------------=== Golang ===-------------------
 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " ---------------=== Python ===-------------------
-"Plug 'davidhalter/jedi-vim'     
-Plug 'mitsuhiko/vim-jinja'              " Jinja support for vim
-Plug 'mitsuhiko/vim-python-combined'    " Combined Python 2/3 for Vim
-Plug 'vim-python/python-syntax'        " это всё установлено, но я не работал с Python достаточно плотно для теста.
-" Или установи pip insall black в venv или гугли. Без этого не будет работать AleFix  
+Plug 'davidhalter/jedi-vim'
+Plug 'mitsuhiko/vim-jinja'              "" Jinja support for vim
+Plug 'mitsuhiko/vim-python-combined'    "" Combined Python 2/3 for Vim
+Plug 'vim-python/python-syntax'         "" это всё установлено, но я не работал с Python достаточно плотно для теста.
+" Или установи pip insall black в venv или гугли. Без этого не будет работать AleFix
 
 " ---------------=== Javascript ===-------------------
 Plug 'pangloss/vim-javascript'               " better indentetion and highlighting
 " post install (yarn install | npm install)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'turbio/bracey.vim' " css,html,js live 
+Plug 'turbio/bracey.vim' " css,html,js live
 
 " ---------------=== html ===-------------------
 Plug 'mattn/emmet-vim'
@@ -42,7 +45,7 @@ Plug 'mattn/emmet-vim'
 "#       Common completion options
 "=====================================================
 
-" set completeopt-=preview "не показывать окно preview с документацией.
+" set completeopt-=preview ""не показывать окно preview с документацией.
 
 
 
@@ -115,9 +118,9 @@ let g:ycm_confirm_extra_conf=-1
 
 let g:ycm_filetype_whitelist = {'python': 1, 'c': 1, 'cpp': 1, 'h': 1}
 "redundant
-let g:ycm_filetype_blacklist = { 'go': 1 } 
+let g:ycm_filetype_blacklist = { 'go': 1 }
 
-" to bored with hover feature 
+" to bored with hover feature
 let g:ycm_auto_hover = ''
 " Не для этого места в Keymap. Не могу настроить вызов по команде.
 " Если что, включу, но не думаю. Отвлекает.
@@ -146,13 +149,12 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 " расширению , как и выключается coc.
 
 "=====================================================
-"#       Completiona overlap resolvin' !
+"       Completion overlap resolving !
 "=====================================================
 
 "-----------coc/ycm overlap-----------------"
 "Errors and warnings can be suppressed via the :silent!
 "Errors WILL happen since coc not always goint to be loaded at all
-" autocmd BufNew,BufEnter *.py silent! execute "CocDisable"
 autocmd BufNew,BufEnter *.py,*.cpp,*.c,*.h silent! CocDisable
 autocmd BufLeave *.py,*.cpp,*.c,*.h silent! CocEnable
 
@@ -162,4 +164,3 @@ autocmd BufLeave *.go silent! execute "call deoplete#disable()"
 
 "-------- deoplete/ycm overlap----------
 "Не перекрываются. deoplete работате только на go
-
