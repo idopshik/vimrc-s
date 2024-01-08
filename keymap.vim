@@ -210,7 +210,9 @@ nmap <F4> :Autoformat <CR>
 
 nnoremap <F7> ::UndotreeToggle<CR>
 
-map <F8> :TagbarToggle<CR>
+nnoremap <C-m> :TagbarToggle<CR>
+
+" map <F8> :TagbarToggle<CR>
 
 "doesn't work in linux
 map <C-_> <plug>NERDCommenterToggle
@@ -238,9 +240,7 @@ let g:CommonOpened=0
 function! CommonNotesWindowToggle()
     if g:CommonOpened > 0
         if bufname('%') == 'CommonNotes.txt'
-            w
-            bd
-            " silent close!
+            silent close!
             let g:CommonOpened=0
         else
             exe g:CheetWindow . "wincmd w" | wincmd c
@@ -248,7 +248,7 @@ function! CommonNotesWindowToggle()
             echo "Closing note's buf forcelly"
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.md
+        :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.txt
         let g:CheetWindow=winnr()
         let g:CommonOpened=1
     endif

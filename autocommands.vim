@@ -4,6 +4,9 @@
 "Сильно не вчитывался. При любых проблемых с переносами, комментами, чем угодно BLAME IT FIRST
                                                         "and ~/.vim/after/*  - SECOND
 autocmd BufNewFile,BufRead * setlocal formatoptions+=cqn
+autocmd BufNewFile,BufRead * setlocal formatoptions+=cqn
+" Чтобы по-умолчанию было выключено
+autocmd VimEnter * TransparentDisable
 
 "check if file changed outside
 augroup auto_checktime
@@ -51,6 +54,8 @@ endfunction
 command! Ball :call DeleteInactiveBufs()
 command! BAll :call DeleteInactiveBufs()
 
+   
+"## --------------=== Encrypted  ====-----------------
 " Encryption gpg support
 " :sil => :h silent  :silent, :execute, and :sbuffer
 augroup encrypted
@@ -105,6 +110,9 @@ endfun
 augroup NoApostrotheNames
     autocmd BufWriteCMD ' :echohl WarningMsg | echo " Apostrophe-names aren't allowed!" | echohl Non
 augroup END
+
+   
+"## --------------=== Redir  ====-----------------
 
 ":Redir Комманда для перенаправления вывода в буфер
 command! -nargs=+ -complete=command Redir let s:reg = @@ |

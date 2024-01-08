@@ -95,6 +95,8 @@ let g:git_messenger_always_into_popup = v:true
 
 
 "## --------------=== Colorschemes====-----------------
+Plug 'tribela/vim-transparent'
+
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nanotech/jellybeans.vim'
@@ -105,6 +107,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'haishanh/night-owl.vim'
+Plug 'ajmwagar/vim-deus'
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
