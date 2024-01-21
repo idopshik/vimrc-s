@@ -175,6 +175,7 @@ autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox 
 autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 " autocmd FileType python map <F6> <Esc>:w<CR>:!clear;/bin/python3 %<CR>
 autocmd FileType python map <F5> <Esc>:This keemap is free to bind for smth. Press ESC
+autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 -m pdb '%:p'<CR>
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>

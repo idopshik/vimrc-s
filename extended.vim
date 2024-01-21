@@ -17,6 +17,10 @@
 "#      Plug loading begins in ./basic.vim
 "=====================================================
 
+"## ------------------=== Debugger ===----------------------
+
+Plug 'puremourning/vimspector'
+
 "## ------------------=== Other ===----------------------
 Plug 'christoomey/vim-tmux-navigator'
 

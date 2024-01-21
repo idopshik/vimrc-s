@@ -123,7 +123,7 @@ command! -nargs=+ -complete=command Redir let s:reg = @@ |
             \new | pu | 1,2d_ | let @@ = s:reg
 
 
-autocmd FileType python map <buffer> <F12> :w<CR>:call Redirpython('!python3 '.expand('%'))<CR>
+" autocmd FileType python map <buffer> <F12> :w<CR>:call Redirpython('!python3 '.expand('%'))<CR>
 
 "this has a flow. Need to be fixed
 function! Execpython(cmd)

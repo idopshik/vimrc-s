@@ -16,6 +16,8 @@ filetype indent on
 syntax enable
 
 let mapleader = ","
+let maplocalleader = "\<Space>"
+
 set timeoutlen=350
 set ttimeoutlen=0
 
