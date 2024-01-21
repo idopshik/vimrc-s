@@ -43,7 +43,8 @@ echo "directories for swap and backup created"
 echo "----------------------------"
 echo "     ru.vim    "
 echo "----------------------------"
-sudo cp -TRv /home/st/Dropbox/Linux_or_Vim_related/vim_savings/put_it_it_keymap_folder/ru.vim /usr/share/vim/vim82/keymap
+
+sudo cp -TRv /home/st/Dropbox/Linux_or_Vim_related/vim_savings/Vim_file_useful_after_installin/put_it_it_keymap_folder/ru.vim
 
 echo "----------------------------"
 echo ".vimrc for Linux"

@@ -42,7 +42,7 @@ Plug 'shime/vim-livedown' "До установки установить $ npm in
 "## --------------=== Snippets support ===---------------
 Plug 'epilande/vim-react-snippets'
 
-Plug 'sirver/ultisnips'                   "doesn't come with any snippets itself
+Plug 'sirver/ultisnips'                   "Engine. doesn't come with any snippets itself
 Plug 'honza/vim-snippets'                 "common snippets. Not enough.
 "TODO why is that ectually?
 " set runtimepath+=~/home/st/.vim/plugged/ultisnips
@@ -101,7 +101,6 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'mhartington/oceanic-next'
-Plug 'ajh17/spacegray.vim'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'

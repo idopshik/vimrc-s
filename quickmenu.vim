@@ -99,7 +99,7 @@ call quickmenu#append('Clean undo/swap dirs!', '!rm -f -r ~/.vim/undodir/* ~/.vi
 
 call quickmenu#append('# Terminal', '')
 call quickmenu#append('Open Terminal Below', 'belowright term ++rows=10', 'Open terminal below current window')
-call quickmenu#append('Open Python Below', 'belowright term ++rows=10 python', 'Open python below current window')
+call quickmenu#append('Open Python Below', 'belowright term ++rows=10 ipython', 'Open python below current window')
 
 "----------------------------------------------------------------------
 "# Some info probably useless too

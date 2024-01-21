@@ -114,15 +114,13 @@ augroup END
    
 "## --------------=== Redir  ====-----------------
 
+"`:Redir` followed by either shell or vim command
+" command! -nargs=+ -complete=command Redir silent call Redir(<q-args>)
+
 ":Redir Комманда для перенаправления вывода в буфер
 command! -nargs=+ -complete=command Redir let s:reg = @@ |
             \redir @"> | silent execute <q-args> | redir END |
             \new | pu | 1,2d_ | let @@ = s:reg
-
-" Prevent Vim from clearing the clipboard on exit 
-" (all linux apps do that! it's normal) 
-" Have to use clipboard manager if you want win-like bahaviour
-autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 
 autocmd FileType python map <buffer> <F12> :w<CR>:call Redirpython('!python3 '.expand('%'))<CR>
@@ -155,8 +153,10 @@ function! Redirpython(cmd)
   setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
   call setline(1, split(output, "\n"))
 endfunction
-"`:Redir` followed by either shell or vim command
-command! -nargs=+ -complete=command Redir silent call Redir(<q-args>)
 
+" Prevent Vim from clearing the clipboard on exit 
+" (all linux apps do that! it's normal) 
+" Have to use clipboard manager if you want win-like bahaviour
+autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 

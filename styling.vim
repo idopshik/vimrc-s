@@ -84,7 +84,7 @@ endif
 
 "temporary  
 if $GO
-    colorscheme spacegray
+    colorscheme papercolor-theme
 endif
 
 "must be here. AFTER colorscheme set up"

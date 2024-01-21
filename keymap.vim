@@ -12,6 +12,10 @@ echo system('python3 -c ' . shellescape(join(getline(a:firstline, a:lastline), "
 
 endf
 
+if !exists(":DiffOrig")
+    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+          \ | wincmd p | diffthis
+endif
 
 python3 << EOL
 import vim
@@ -64,7 +68,6 @@ cmap vt vertical terminal
 tmap <S-Insert> <C-W>"+
 tnoremap <ESC><ESC> <C-\><C-N> " хотя лучше бы запомнить <C-W>N и всё. Это команда перехода в нормальный режим. выход из него по вводу i/a
 " Sample open-file mapping
-nnoremap <leader><leader>v :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/Python_brief_notes.wiki <cr>
 
 
 "=====================================================
@@ -210,24 +213,81 @@ nmap <F4> :Autoformat <CR>
 
 nnoremap <F7> ::UndotreeToggle<CR>
 
-nnoremap <C-m> :TagbarToggle<CR>
+nnoremap <F9> :TagbarToggle<CR>
 
-" map <F8> :TagbarToggle<CR>
+
+"These are the same in VIM
+" Ctrl-I Tab
+" Ctrl-[ Esc
+" Ctrl-M Enter
+" Ctrl-H Backspace
 
 "doesn't work in linux
 map <C-_> <plug>NERDCommenterToggle
 " map <C-c> <plug>NERDCommenterToggle
 
+
+
+
+
+"Объяснение криса из 
+"https://vi.stackexchange.com/questions/13391/how-to-save-a-specific-file-in-a-different-buffer
+" let bufnr=bufnr('name')
+" if bufnr > 0
+   " let curbuf=bufnr('%')
+   " try
+       " exe bufnr.','.bufnr.'bufdo :w'
+   " catch
+   " finally
+       " exe curbuf.'b'
+   " endtry
+" endif
+
+
+
+let g:PythonBriefNotesOpened=0
+function! PythonBriefNotesToggle()
+    if g:PythonBriefNotesOpened > 0
+        if bufname('%') == 'Python_brief_notes.wiki'
+            exec "wq"
+            let g:PythonBriefNotesOpened=0
+        else
+            let curbuf=bufnr('%')
+            try
+                exe g:PythonNotesWindow.','.g:PythonNotesWindow.'bufdo :wq'
+               " echo "Closed anyway regarles of location and newly stuff in \"pythonBrief\" window"
+            catch
+            finally
+                exe curbuf.'b'
+            endtry
+
+            let g:PythonBriefNotesOpened=0
+        endif
+    else
+        :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/Python_brief_notes.wiki
+        let g:PythonNotesWindow=bufnr()
+        let g:PythonBriefNotesOpened=1
+    endif
+endfunc
+
 let g:CheetOpened=0
-function! VimNotesWindowToggle()
+function! VimCheatToggle()
     if g:CheetOpened > 0
         if bufname('%') == 'MyVimCheatSheet.wiki'
-            silent close!
+            exec "wq"
             let g:CheetOpened=0
         else
-            exe g:CheetWindow . "wincmd w" | wincmd c
-            let g:CheetOpened=0
-            echo "Closed anyway regarles of location and newly stuff in \"cheet\" window"
+
+           let curbuf=bufnr('%')
+           try
+               exe g:CheetWindow.','.g:CheetWindow.'bufdo :wq'
+               " echo "Closed anyway regarles of location and newly stuff in \"pythonBrief\" window"
+           catch
+           finally
+               exe curbuf.'b'
+           endtry
+
+            let g:CheetOpened=1
         endif
     else
         :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/MyVimCheatSheet.wiki
@@ -240,24 +300,33 @@ let g:CommonOpened=0
 function! CommonNotesWindowToggle()
     if g:CommonOpened > 0
         if bufname('%') == 'CommonNotes.txt'
-            silent close!
+            exec "wq"
             let g:CommonOpened=0
         else
-            exe g:CheetWindow . "wincmd w" | wincmd c
-            let g:CommonOpened=0
-            echo "Closing note's buf forcelly"
+           let curbuf=bufnr('%')
+           try
+               exe g:CommonWindow.','.g:CommonWindow.'bufdo :wq'
+               " echo "Closed anyway regarles of location and newly stuff in \"pythonBrief\" window"
+           catch
+           finally
+               exe curbuf.'b'
+           endtry
+
+            let g:CommonOpened=1
+
         endif
     else
         :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.txt
-        let g:CheetWindow=winnr()
+        let g:CommonWindow=winnr()
         let g:CommonOpened=1
     endif
 endfunc
-
 noremap <silent><Leader>n :call CommonNotesWindowToggle()<cr>
-noremap <silent><Leader>k :call VimNotesWindowToggle()<cr>
+noremap <silent><Leader>k :call VimCheatToggle()<cr>
 noremap <silent><Leader>m :call quickmenu#toggle(0)<cr><cr>
 noremap <silent><Leader>2 :call quickmenu#toggle(1)<cr><cr>
+" nnoremap <leader><leader>v :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/Python_brief_notes.wiki <cr>
+nnoremap <leader><leader>v :call PythonBriefNotesToggle()<cr>
 
 " map <alt+n> to navigate through tabs (redundant for me)
 for c in range(1, 9)

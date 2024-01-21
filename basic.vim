@@ -52,3 +52,10 @@ set fileencoding=utf-8          " The encoding written to file.
 set nobackup                    "don't make backups if sudo"
 set noswapfile                  "don't make swapfile if sudo"
 set noundofile                  "don't make undofile if sudo"
+
+"====================================================
+" 'C-U in insert mode deletes unreversible' problem solving
+"=====================================================
+" Сразу после удаления делаешь ctrl-R двойная кавычка. (регистр) 
+inoremap <silent> <C-W> <C-\><C-O>db
+inoremap <silent> <C-U> <C-\><C-O>d0
