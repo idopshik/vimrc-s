@@ -21,6 +21,9 @@
 
 Plug 'puremourning/vimspector'
 
+"Очень непонятные комбинации пошли. может от этого.
+" Plug 'vim-vdebug/vdebug'
+
 "## ------------------=== Other ===----------------------
 Plug 'christoomey/vim-tmux-navigator'
 

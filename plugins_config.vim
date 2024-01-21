@@ -10,12 +10,16 @@
 let g:vimspector_install_gadgets = [ 'debugpy']
 
 " nnoremap <F10> :call vimspector#Launch()<CR>
-" nnoremap <F11> :call vimspector#Reset()<CR>
 nnoremap <F10> <Plug>VimspectorLaunch
 nnoremap <F12> <Plug>VimspectorContinue
 
 "Не работает почему-то.
-nnoremap <F11> <Plug>VimspectorReset 
+nnoremap <F10> <Plug>VimspectorLaunch
+nnoremap <F11> :call vimspector#Reset()<CR>
+" nnoremap <F12> <Plug>VimspectorContinue - space-c жмёшь.
+
+"Не работает почему-то.
+" nnoremap <F8> <Plug>VimspectorReset 
 
 
 " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
@@ -53,7 +57,11 @@ endfunction
 
 function! s:OnDebugEnd() abort
 
+<<<<<<< HEAD
   unlet maplocalleader
+=======
+  " unlet maplocalleader
+>>>>>>> d5fb11b (vimspector)
   let original_buf = bufnr()
   let hidden = &hidden
   augroup VimspectorSwapExists

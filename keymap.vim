@@ -165,6 +165,14 @@ endif
 
 command! VimReload :call ReloadVim()<cr>
 
+fun! RunVert()
+    echo "runned"
+    let ff=%
+    vertical terminal !python3 ff<CR>
+" autocmd FileType python map <F5> <Esc>:w<CR>:vs|term ++curwin python3 '%:p'<CR>
+endfun
+
+
 "=====================================================
 "#        RUN (F5, F6)
 "=====================================================
@@ -172,9 +180,19 @@ command! VimReload :call ReloadVim()<cr>
 autocmd FileType html nnoremap <F5> :exe ':silent !firefox %'<CR>
 autocmd FileType html nnoremap <buffer> <F6> :silent update<Bar>silent !firefox %:p &<CR>
 
-autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
-" autocmd FileType python map <F6> <Esc>:w<CR>:!clear;/bin/python3 %<CR>
-autocmd FileType python map <F5> <Esc>:This keemap is free to bind for smth. Press ESC
+
+autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 -m pdb '%:p'<CR>
+
+" autocmd FileType python map <F5> <Esc>:This keemap is free to bind for smth. Press ESC
+" autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 -m pdb '%:p'<CR>
+" autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 -m pdb '%:p'<CR>
+
+
+" autocmd FileType python map <F5> :call RunVert()<CR>
+" autocmd FileType python map <F5> <Esc>:w<CR>:vertical terminal| wincmd w | python3 %<CR> 
+" autocmd FileType python nnoremap <buffer> <F5> <Esc>:w<CR> <Esc> :vertical terminal | wincmd w <CR>
+" autocmd FileType python map <F5> <Esc>:w<CR>:vertical terminal  python3 %<CR> | wincmd w
+
 autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 -m pdb '%:p'<CR>
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
