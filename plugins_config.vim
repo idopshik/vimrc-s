@@ -9,7 +9,6 @@
 " now you can run :VimspectorInstall :VimspectorUpdate  with no arguments
 let g:vimspector_install_gadgets = [ 'debugpy']
 
-" nnoremap <F10> :call vimspector#Launch()<CR>
 nnoremap <F10> <Plug>VimspectorLaunch
 nnoremap <F12> <Plug>VimspectorContinue
 
@@ -57,11 +56,6 @@ endfunction
 
 function! s:OnDebugEnd() abort
 
-<<<<<<< HEAD
-  unlet maplocalleader
-=======
-  " unlet maplocalleader
->>>>>>> d5fb11b (vimspector)
   let original_buf = bufnr()
   let hidden = &hidden
   augroup VimspectorSwapExists
