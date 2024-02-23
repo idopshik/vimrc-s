@@ -100,6 +100,7 @@ Plug 'rhysd/git-messenger.vim'               "открывает окно по <
 let g:git_messenger_close_on_cursor_moved = v:false " иначе мелькает и всё.
 let g:git_messenger_always_into_popup = v:true
 
+Plug 'idanarye/vim-merginal'               "git branch diff tool
 
 "## --------------=== Colorschemes====-----------------
 Plug 'tribela/vim-transparent'
