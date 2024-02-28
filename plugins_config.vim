@@ -169,7 +169,7 @@ let g:tagbar_width=36
 " Раздражает это
 " autocmd FileType python nested :TagbarOpen
 
-let g:tagbar_ctags_bin = 'C:\Users\belousov\Progs\ctags\ctags.exe'
+" let g:tagbar_ctags_bin = 'C:\Users\belousov\Progs\ctags\ctags.exe'
 
 "let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
 "Не сортировать по алфавиту по умолчанию
@@ -323,7 +323,7 @@ let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : ['flake8
 "=====================================================
 "// istead of ~/.vimtags
 "
-let g:easytags_cmd = 'C:\Users\belousov\Progs\ctags\ctags.exe'
+" let g:easytags_cmd = 'C:\Users\belousov\Progs\ctags\ctags.exe'
 let g:easytags_file = './tags'
 
 "// no tag highlight
