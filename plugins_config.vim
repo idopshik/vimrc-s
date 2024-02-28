@@ -330,12 +330,15 @@ let g:easytags_file = './tags'
 let g:easytags_auto_highlight = 0
 
 "// (:help autocmd-events),events being watched by easytags
-let g:easytags_events = ['BufWritePost']
+" let g:easytags_events = ['BufWritePost']
 
 "// do not block vim during tag-file updating
-let g:easytags_async = 1
+"
+"hour and a half debugging freezing on NEOVIM. Because of this thing:
+" let g:easytags_async = 1
 " <C-]> Jump to tag
 
+"
 " ctags -R *  Run in in bash in target folder, don't work instead
 "
 "
