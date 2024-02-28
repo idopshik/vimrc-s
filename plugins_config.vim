@@ -1,6 +1,122 @@
 " vim: fdm=expr
 
 "=====================================================
+"#       Vimspector
+"=====================================================
+" установить с :VimspectorInstall debugpy
+" в каждом проекте должне быть свой .vimspector.json file
+
+" now you can run :VimspectorInstall :VimspectorUpdate  with no arguments
+let g:vimspector_install_gadgets = [ 'debugpy']
+
+nnoremap <F10> <Plug>VimspectorLaunch
+nnoremap <F12> <Plug>VimspectorContinue
+
+"Не работает почему-то.
+nnoremap <F10> <Plug>VimspectorLaunch
+nnoremap <F11> :call vimspector#Reset()<CR>
+" nnoremap <F12> <Plug>VimspectorContinue - space-c жмёшь.
+
+"Не работает почему-то.
+" nnoremap <F8> <Plug>VimspectorReset 
+
+
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
+nmap <Leader>db <Plug>VimspectorBreakpoints
+nmap <Leader>dt <Plug>VimspectorToggleBreakpoint
+
+let s:mapped = {}
+
+function! s:OnJumpToFrame() abort
+  if has_key( s:mapped, string( bufnr() ) )
+    return
+  endif
+
+  " надо убедиться что пробел не замаплен
+  nmap <LocalLeader>t :call vimspector#ToggleBreakpoint()<CR>
+  nmap <LocalLeader>T :call vimspector#ClearBreakpoints()<CR>
+
+  nmap <silent> <buffer> <LocalLeader>o <Plug>VimspectorStepOver
+  nmap <silent> <buffer> <LocalLeader>n <Plug>VimspectorStepInto
+  nmap <silent> <buffer> <LocalLeader>a <Plug>VimspectorStepOut
+  nmap <silent> <buffer> <LocalLeader>c <Plug>VimspectorContinue
+  nmap <silent> <buffer> <LocalLeader>i <Plug>VimspectorBalloonEval
+  xmap <silent> <buffer> <LocalLeader>i <Plug>VimspectorBalloonEval
+
+  let s:mapped[ string( bufnr() ) ] = { 'modifiable': &modifiable }
+
+  setlocal nomodifiable
+
+endfunction
+
+function! s:OnDebugEnd() abort
+
+  let original_buf = bufnr()
+  let hidden = &hidden
+  augroup VimspectorSwapExists
+    au!
+    autocmd SwapExists * let v:swapchoice='o'
+  augroup END
+
+  try
+    set hidden
+    for bufnr in keys( s:mapped )
+      try
+        execute 'buffer' bufnr
+
+        silent! nunmap <buffer> <LocalLeader>t
+        silent! nunmap <buffer> <LocalLeader>T
+
+        silent! nunmap <buffer> <LocalLeader>o
+        silent! nunmap <buffer> <LocalLeader>n
+        silent! nunmap <buffer> <LocalLeader>a
+        silent! nunmap <buffer> <LocalLeader>c
+        silent! nunmap <buffer> <LocalLeader>i
+        silent! xunmap <buffer> <LocalLeader>i
+
+        let &l:modifiable = s:mapped[ bufnr ][ 'modifiable' ]
+      endtry
+    endfor
+  finally
+    execute 'noautocmd buffer' original_buf
+    let &hidden = hidden
+  endtry
+
+  au! VimspectorSwapExists
+
+  let s:mapped = {}
+endfunction
+
+augroup TestCustomMappings
+  au!
+  autocmd User VimspectorJumpedToFrame call s:OnJumpToFrame()
+  autocmd User VimspectorDebugEnded ++nested call s:OnDebugEnd()
+augroup END
+
+" }}}
+
+" Custom mappings for special buffers {{{
+
+let g:vimspector_mappings = {
+      \   'stack_trace': {},
+      \   'variables': {
+      \    'set_value': [ '<Tab>', '<C-CR>', 'C' ],
+      \   }
+      \ }
+
+" }}}
+
+
+
+
+
+
+"=====================================================
 "#       GitGutter
 "=====================================================
 
