@@ -17,13 +17,13 @@ if !exists(":DiffOrig")
           \ | wincmd p | diffthis
 endif
 
-python3 << EOL
-import vim
-def ExecuteSelectedLine(l1, l2):
-    for i in range(l1-1,l2):
-        print(">>" + vim.current.buffer[i])
-        exec(vim.current.buffer[i],globals())
-EOL
+" python3 << EOL
+" import vim
+" def ExecuteSelectedLine(l1, l2):
+"     for i in range(l1-1,l2):
+"         print(">>" + vim.current.buffer[i])
+"         exec(vim.current.buffer[i],globals())
+" EOL
 command! -range Eval <line1>,<line2> python3 ExecuteSelectedLine(<line1>, <line2>)
 
 "python run - pun

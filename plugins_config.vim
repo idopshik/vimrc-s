@@ -169,6 +169,8 @@ let g:tagbar_width=36
 " Раздражает это
 " autocmd FileType python nested :TagbarOpen
 
+let g:tagbar_ctags_bin = 'C:\Users\belousov\Progs\ctags\ctags.exe'
+
 "let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
 "Не сортировать по алфавиту по умолчанию
 let g:tagbar_sort = 0
@@ -320,6 +322,8 @@ let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : ['flake8
 "#       easytag settings (autogenerate tag's ))=== {{{
 "=====================================================
 "// istead of ~/.vimtags
+"
+let g:easytags_cmd = 'C:\Users\belousov\Progs\ctags\ctags.exe'
 let g:easytags_file = './tags'
 
 "// no tag highlight
@@ -345,7 +349,7 @@ if has('gui_running')
     " let g:airline_theme='dark_minimal' "yellow
     " let g:airline_theme='night_owl' "nice pastelle
     " let g:airline_theme='ouo' "nice colorfull blue-green
-    let g:airline_theme='badcat' "supernice contrast black-gray
+    " let g:airline_theme='badcat' "supernice contrast black-gray
     ""let g:airline_theme='raven' "grayish supernice
     "simple - very good too"
 else

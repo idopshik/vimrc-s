@@ -158,12 +158,12 @@ if has("win32")
     "    :let &pythonthreehome = 'C:\Progs\python36\'
         ":let &pythonthreedll = 'C:\Progs\Python36\python36.dll'
         "
-    :let &pythonhome = 'C:\Progs\Python27\'
-    :let &pythondll = 'C:\Progs\Python27\python27.dll'
-    :let g:easytags_cmd = 'c:\Progs\ctags58\ctags.exe'
-    :let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
+"    :let &pythonhome = 'C:\Progs\Python27\'
+"    :let &pythondll = 'C:\Progs\Python27\python27.dll'
+"    :let g:easytags_cmd = 'c:\Progs\ctags58\ctags.exe'
+"    :let g:tagbar_ctags_bin = 'C:\Progs\ctags58\ctags.exe'
 
-    cd c:\Users\isairon\Documents\                       "Home directory
+    " cd c:\Users\isairon\Documents\                       "Home directory
 
     set backupdir=~\.vim\tmp\backup
     set backupdir+=.                        "last resort
@@ -178,10 +178,10 @@ if has("win32")
     call MakeDirIfNoExistsWindows($HOME . '/.vim/swapfiles')
     call MakeDirIfNoExistsWindows($HOME . '/.vim/undodir')
 
-    let g:startify_bookmarks = ['c:\Users\isairon\vimfiles\vimrc']     "Bookmarks'mhinz/vim-startify
+    " let g:startify_bookmarks = ['c:\Users\isairon\vimfiles\vimrc']     "Bookmarks'mhinz/vim-startify
 
     "python pep 8 не уверен, надо ли
-    let g:ale_python_autopep8_executable = 'C:\Progs\Python37\Scripts\autopep8.exe'
+"    let g:ale_python_autopep8_executable = 'C:\Progs\Python37\Scripts\autopep8.exe'
     let g:ale_python_autopep8_use_global = 1
 
 "=====================================================
