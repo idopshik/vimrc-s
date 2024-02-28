@@ -108,7 +108,7 @@ call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
 " echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
 endfunction
 
-autocmd InsertLeave * call InsertLeaveFun()
+"autocmd InsertLeave * call InsertLeaveFun()
 " Никак не могу приспособиться к этому.I literally hate it!
 " autocmd VimEnter * map! <C-k> <C-^>
 

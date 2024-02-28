@@ -98,7 +98,8 @@ set sessionoptions=folds
 "  %    :  buffer list
 "  n... :  where to save the viminfo files
 if has("win32")
-    set viminfo='10,\"100,:20,%,nc:\\Users\\user\\_viminfo
+"    set viminfo='10,\"100,:20,%,nc:\\Users\\user\\_viminfo
+    set viminfo='100,n$HOME/.vim/files/info/viminfo
 else
     " set viminfo='10,\"100,:20,%,n~/.viminfo
     "Commented line above and pasted line below - from startify-faq "history files doesn't appear"
