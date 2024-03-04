@@ -102,6 +102,7 @@ let g:git_messenger_always_into_popup = v:true
 
 Plug 'idanarye/vim-merginal'               "git branch diff tool
 
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 "## --------------=== Colorschemes====-----------------
 Plug 'tribela/vim-transparent'
 

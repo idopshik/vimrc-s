@@ -136,11 +136,21 @@ if has('gui_running')
 " TERMINAL only! Ranger won't work in Gui
 "Это такой костыль. Не знаю как не назначть в gvim.
 else
-map <Leader>x :call RangerChooser()<CR>
+" map <Leader>x :call RangerChooser()<CR>
+map <Leader>x :call LFChooser()<CR>
 endif
 
 fun! RangerChooser()
 exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
+if filereadable('/tmp/chosenfile')
+        exec 'edit ' . system('cat /tmp/chosenfile')
+        call system('rm /tmp/chosenfile')
+    endif
+    redraw!
+endfun
+
+fun! LFChooser()
+exec "silent !LF --choosefile=/tmp/chosenfile " . expand("%:p:h")
 if filereadable('/tmp/chosenfile')
         exec 'edit ' . system('cat /tmp/chosenfile')
         call system('rm /tmp/chosenfile')
@@ -185,9 +195,9 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 " autocmd FileType python map <F6> <Esc>:This keemap is free to bind for smth. Press ESC
 
-autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
+autocmd FileType python map <F6> <Esc>:w<CR>:py %<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 one.py<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:python one\.py<CR>
 
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
