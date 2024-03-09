@@ -1,7 +1,9 @@
 " "vim: fdm=expr
 command! Debug !node inspect ./%
 command! Mk !node ./%
-command! T :tabnew ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/tasks.wiki
+
+command! T :tabnew ~\Documents\MEGA\vimwiki\tech.wiki\tasks.wiki
+command! T :tabnew ~
 command! Cursor set cursorline | set cursorcolumn
 
 " crear register command
@@ -288,7 +290,7 @@ function! PythonBriefNotesToggle()
             let g:PythonBriefNotesOpened=0
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/Python_brief_notes.wiki
+        :vsplit ~\Documents\MEGA\vimwiki\tech.wiki\Python_brief_notes.wiki
         let g:PythonNotesWindow=bufnr()
         let g:PythonBriefNotesOpened=1
     endif
@@ -314,7 +316,7 @@ function! VimCheatToggle()
             let g:CheetOpened=1
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/MyVimCheatSheet.wiki
+        :vsplit ~\Documents\MEGA\vimwiki\tech.wiki\MyVimCheatSheet.wiki
         let g:CheetWindow=winnr()
         let g:CheetOpened=1
     endif
@@ -340,7 +342,7 @@ function! CommonNotesWindowToggle()
 
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.txt
+        :vsplit ~\Documents\MEGA\vimwiki\tech.wiki\CommonNotes.txt
         let g:CommonWindow=winnr()
         let g:CommonOpened=1
     endif

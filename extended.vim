@@ -46,6 +46,7 @@ Plug 'mbbill/undotree'
 Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке!
 
+
 "## --------------=== Snippets support ===---------------
 Plug 'epilande/vim-react-snippets'
 
@@ -60,6 +61,8 @@ Plug 'honza/vim-snippets'                 "common snippets. Not enough.
 
 
 "## --------------=== Code/project navigation ===------------e
+Plug 'RRethy/vim-illuminate' "auto-highlighting under cursor
+
 Plug 'airblade/vim-rooter'
 let g:rooter_silent_chdir = 1 "silent
 Plug 'luochen1990/rainbow'   "colorful paranpheses
@@ -93,6 +96,7 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'  " :GV должна рисовать график. А выдаёт лишь список. но хоть так.
 Plug 'airblade/vim-gitgutter'
 

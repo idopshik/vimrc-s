@@ -13,10 +13,16 @@ Plug 'pbogut/fzf-mru.vim'
 Plug 'fisadev/FixedTaskList.vim'        " Pending tasks list
 
 "TODO если оставишь, добавь поддрежку windows здесь
+        " let g:vimwiki_list = [
+                                " \{'path': '~/Dropbox/.vim_cloud/vimwiki/tech.wiki',
+                               " \ 'template_path': '~/Dropbox/.vim_cloud/vimwiki/templates',
+                                " \ 'template_default': 'default',
+                                " \ 'template_ext': '.html' }
+                                " \{'path': '~/Dropbox/.vim_cloud/vimwiki/personal.wiki'}
+                        " \]
         let g:vimwiki_list = [
-                                \{'path': '~/Dropbox/.vim_cloud/vimwiki/tech.wiki',
-                                \ 'template_path': '~/Dropbox/.vim_cloud/vimwiki/templates',
-                                \ 'template_default': 'default',
-                                \ 'template_ext': '.html' },
-                                \{'path': '~/Dropbox/.vim_cloud/vimwiki/personal.wiki'}
+                               \{'path': '~\Documents\MEGA\vimwiki\tech.wiki'}
                         \]
+
+
+
