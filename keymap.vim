@@ -1,7 +1,8 @@
 " "vim: fdm=expr
 command! Debug !node inspect ./%
 command! Mk !node ./%
-command! T :tabnew ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/tasks.wiki
+
+command! T :tabnew ~/MegaLinux/tech.wiki/tasks.wiki
 command! Cursor set cursorline | set cursorcolumn
 
 " crear register command
@@ -278,7 +279,7 @@ function! PythonBriefNotesToggle()
             let g:PythonBriefNotesOpened=0
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/Python_brief_notes.wiki
+        :vsplit ~/MegaLinux/tech.wiki/Python_brief_notes.wiki
         let g:PythonNotesWindow=bufnr()
         let g:PythonBriefNotesOpened=1
     endif
@@ -304,7 +305,7 @@ function! VimCheatToggle()
             let g:CheetOpened=1
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/MyVimCheatSheet.wiki
+        :vsplit ~/MegaLinux/tech.wiki/MyVimCheatSheet.wiki
         let g:CheetWindow=winnr()
         let g:CheetOpened=1
     endif
@@ -339,7 +340,7 @@ noremap <silent><Leader>n :call CommonNotesWindowToggle()<cr>
 noremap <silent><Leader>k :call VimCheatToggle()<cr>
 noremap <silent><Leader>m :call quickmenu#toggle(0)<cr><cr>
 noremap <silent><Leader>2 :call quickmenu#toggle(1)<cr><cr>
-" nnoremap <leader><leader>v :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/Python_brief_notes.wiki <cr>
+" nnoremap <leader><leader>v :vsplit ~/MegaLinux/tech.wiki/Python_brief_notes.wiki <cr>
 nnoremap <leader><leader>v :call PythonBriefNotesToggle()<cr>
 
 " map <alt+n> to navigate through tabs (redundant for me)

@@ -27,6 +27,8 @@ Plug 'puremourning/vimspector'
 "## ------------------=== Other ===----------------------
 Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'RRethy/vim-illuminate'
+
 "sudo apt-get install wmctrl    # Ubuntu/Debian - needed. Terminal dosn't execute ctrl+<CR>
 
 Plug 'mattn/calendar-vim'
@@ -45,6 +47,9 @@ Plug 'mbbill/undotree'
 " html md показывает, css js нет.
 Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке!
+
+"multycursor
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 "## --------------=== Snippets support ===---------------
 Plug 'epilande/vim-react-snippets'
