@@ -8,8 +8,13 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 \ formatoptions=crql
 \ cindent cinkeys-=0# indentkeys-=0#
 \ foldmethod=indent
+\ formatprg="python3 -m macchiato"
+
 " первые пять -избыток это и в basic, и даже no-rc
-" последняя строка для jedy
+" пятая строка для jedy
+" шестая - надо установить pip install macchiato и пользоваться им теперь gq(any
+" moving command). На строке будет работать. А не на файле, как АЛЕ.
+" gq - стандартная команда VIM. вызывает внешний fixer, если он есть.
 
 """"""""""""""""""""""""""""""
 "#   => Golang section
