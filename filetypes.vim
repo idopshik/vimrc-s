@@ -1,3 +1,6 @@
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab 
+            \ foldmethod=indent
+
 "=====================================================
 "#   => Python settings
 "=====================================================
@@ -8,7 +11,7 @@ autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4
 \ formatoptions=crql
 \ cindent cinkeys-=0# indentkeys-=0#
 \ foldmethod=indent
-\ formatprg="python3 -m macchiato"
+\ formatprg=python3\ -m\ macchiato
 
 " первые пять -избыток это и в basic, и даже no-rc
 " пятая строка для jedy

@@ -235,7 +235,8 @@ let g:tagbar_type_vimwiki = {
 
 " Background (Vim, GVim)
 " let g:indentLine_bgcolor_term = 202
-" let g:indentLine_char = '¦'     " ¦, ┆, │, ▏
+" let g:indentLine_char = '⦙' 
+" ¦, ┆, │, ▏ ⦙
 
 " let g:indentLine_setColors = 0 - show grayish highlights }}}
 "=====================================================
@@ -282,7 +283,8 @@ set signcolumn=yes
 "=====================================================
 " Некоторые линтеры отключены - смотри массив внизу.
 
-let g:ale_sign_error = '⨉'
+" let g:ale_sign_error = '⨉'
+let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 "
@@ -328,7 +330,7 @@ let b:ale_warn_about_trailing_whitespace = 0
 "cpp - ale так видит h - заголовочники в AVR проектах
 " let b:ale_linters = ['flake8', 'pylint']
 let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : ['flake8', 'pylint'],
-            \'javascriptreact': ['eslint', 'tsserver']}
+            \'javascriptreact': ['eslint', 'tsserver'], 'yaml': ['yamllint']}
 
 " hate.Don't set it on - vim has signcolumn=yes
 "

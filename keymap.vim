@@ -1,4 +1,21 @@
 " "vim: fdm=expr
+
+" Put word under cursor into search register and highlight
+nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+vnoremap <silent> <Leader>* :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy:let @/=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
+
+
+
+fun! Pytest() "{{{
+    execute '!python3 -m pytest -vs '
+endfunction "}}}
+command! Pytest call Pytest()
+
+
 command! Debug !node inspect ./%
 command! Mk !node ./%
 
@@ -31,7 +48,7 @@ command! -range Eval <line1>,<line2> python3 ExecuteSelectedLine(<line1>, <line2
 command -range=% -nargs=0 Pun :<line1>,<line2>call PyRun()
 
 "в VisualMode можно выполнить код
-vmap <F9> :call PyRun()<CR>   
+vmap <F9> :call PyRun()<CR>
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
@@ -166,12 +183,15 @@ endif
 
 command! VimReload :call ReloadVim()<cr>
 
+command! PyVert :call RunVert()<cr>
 fun! RunVert()
     echo "runned"
     let ff=%
     vertical terminal !python3 ff<CR>
-" autocmd FileType python map <F5> <Esc>:w<CR>:vs|term ++curwin python3 '%:p'<CR>
 endfun
+
+" возможно изза этого дичь
+" autocmd FileType python map <F8> <Esc>:w<CR>:vs|term ++curwin python3 '%:p'<CR>
 
 
 "=====================================================
@@ -188,7 +208,7 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 one.py<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 bl.py<CR>
 
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
@@ -245,7 +265,7 @@ map <C-_> <plug>NERDCommenterToggle
 
 
 
-"Объяснение криса из 
+"Объяснение криса из
 "https://vi.stackexchange.com/questions/13391/how-to-save-a-specific-file-in-a-different-buffer
 " let bufnr=bufnr('name')
 " if bufnr > 0

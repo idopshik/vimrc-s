@@ -96,6 +96,8 @@ Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'        "Подсветка и инденты react jsx
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
+Plug 'mechatroner/rainbow_csv'
+
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'  " :GV должна рисовать график. А выдаёт лишь список. но хоть так.
