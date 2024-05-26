@@ -256,7 +256,7 @@ map <C-_> <plug>NERDCommenterToggle
 
 
 
-"Объяснение криса из 
+"Объяснение криса из
 "https://vi.stackexchange.com/questions/13391/how-to-save-a-specific-file-in-a-different-buffer
 " let bufnr=bufnr('name')
 " if bufnr > 0
@@ -290,7 +290,7 @@ function! PythonBriefNotesToggle()
             let g:PythonBriefNotesOpened=0
         endif
     else
-        :vsplit ~\Documents\MEGA\vimwiki\tech.wiki\Python_brief_notes.wiki
+        :vsplit ~/MegaLinux/tech.wiki/Python_brief_notes.wiki
         let g:PythonNotesWindow=bufnr()
         let g:PythonBriefNotesOpened=1
     endif
@@ -316,7 +316,7 @@ function! VimCheatToggle()
             let g:CheetOpened=1
         endif
     else
-        :vsplit ~\Documents\MEGA\vimwiki\tech.wiki\MyVimCheatSheet.wiki
+        :vsplit ~/MegaLinux/tech.wiki/MyVimCheatSheet.wiki
         let g:CheetWindow=winnr()
         let g:CheetOpened=1
     endif
@@ -342,7 +342,7 @@ function! CommonNotesWindowToggle()
 
         endif
     else
-        :vsplit ~\Documents\MEGA\vimwiki\tech.wiki\CommonNotes.txt
+        :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.txt
         let g:CommonWindow=winnr()
         let g:CommonOpened=1
     endif

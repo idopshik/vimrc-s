@@ -24,6 +24,11 @@ Plug 'puremourning/vimspector'
 Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-dap-python'
 
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
+
+Plug 'mortepau/codicons.nvim'
+
 "Очень непонятные комбинации пошли. может от этого.
 " Plug 'vim-vdebug/vdebug'
 
@@ -208,7 +213,7 @@ else
             set nobackup                            "don't make backups if sudo"
             set nowritebackup
         else
-            set backupdir=~/.vim/backup
+            set backupdir=~/.nvim/backup
             set backupdir+=.                        "last resort
             set backup
         endif
@@ -216,7 +221,7 @@ else
         if exists($SUDO_USER)
             set noswapfile                          "don't make swapfile if sudo"
         else
-            set directory=~/.vim/swapfiles    "must exist, vim doesn't create one
+            set directory=~/.nvim/swapfiles    "must exist, vim doesn't create one
             set directory+=.                        "last resort
             set swapfile
         endif
@@ -224,15 +229,15 @@ else
         if exists($SUDO_USER)
             set noundofile                          "don't make undofile if sudo"
         else
-            set undodir=~/.vim/undodir    "must exist, vim doesn't create one
+            set undodir=~/.nvim/undodir    "must exist, vim doesn't create one
             set undodir+=.                        "last resort
             set undofile
         endif
 
         " make this dirs if no exists previously
-        call MakeDirIfNoExists("~/.vim/backup")
-        call MakeDirIfNoExists("~/.vim/undodir")
-        call MakeDirIfNoExists("~/.vim/swapfiles")
+        call MakeDirIfNoExists("~/.nvim/backup")
+        call MakeDirIfNoExists("~/.nvim/undodir")
+        call MakeDirIfNoExists("~/.nvim/swapfiles")
 
   endif
 endif

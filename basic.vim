@@ -17,7 +17,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+set mouse=a
 
 filetype plugin on
 filetype indent on
