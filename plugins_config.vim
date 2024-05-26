@@ -8,6 +8,35 @@
 "
 lua require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 
+
+lua << EOF
+    vim.keymap.set('n', '<F10>', function() require('dap').continue() end)
+    vim.keymap.set('n', '<Leader> o', function() require('dap').step_over() end)
+    vim.keymap.set('n', '<Leader> i', function() require('dap').step_into() end)
+    vim.keymap.set('n', '<Leader> u', function() require('dap').step_out() end)
+    vim.keymap.set('n', '<Leader>T', function() require('dap').toggle_breakpoint() end)
+    vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
+    vim.keymap.set({'n', 'v'}, '<Leader>H', function()
+      require('dap.ui.widgets').hover()
+    end)
+    vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+      require('dap.ui.widgets').preview()
+    end)
+    vim.keymap.set('n', '<Leader>df', function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.frames)
+    end)
+    vim.keymap.set('n', '<Leader>ds', function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.scopes)
+    end)
+EOF
+
+
+
+
+
+
 " lua << EOF
 " require("dap-python").setup("/usr/bin/python")
 
@@ -62,8 +91,9 @@ lua require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 " now you can run :vimspectorinstall :vimspectorupdate  with no arguments
 let g:vimspector_install_gadgets = [ 'debugpy']
 
-map <f10> <plug>vimspectorlaunch
-map <f12> <plug>vimspectorcontinue
+" Не работает в неовиме
+" map <f10> <plug>vimspectorlaunch
+" map <f12> <plug>vimspectorcontinue
 
 "не работает почему-то.
 " nnoremap <f10> <plug>vimspectorlaunch
@@ -77,7 +107,6 @@ map <f11> :call vimspector#reset()<cr>
 map <leader>db <plug>vimspectorbreakpoints
 
 
-" vim.keymap.set(n, ",<leader>dt", "<Cmd>vimspectortogglebreakpoint next", {silent = true, remap = true})
 
 map <leader>dt <plug>vimspectortogglebreakpoint
 
