@@ -23,7 +23,7 @@ endif
 " import vim
 " def ExecuteSelectedLine(l1, l2):
 "     for i in range(l1-1,l2):
-"         print(">>" + vim.current.buffer[i])
+"         print(">>" + vim.cuRrent.buffer[i])
 "         exec(vim.current.buffer[i],globals())
 " EOL
 command! -range Eval <line1>,<line2> python3 ExecuteSelectedLine(<line1>, <line2>)
@@ -122,7 +122,7 @@ map <leader>wn <Plug>VimwikiDiaryNextDay
 
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 map <C-p> :Files<CR>
-map <Leader>r :Files ~/.vim_runtime/<CR>
+map <Leader>r :Files ~/.config/nvim/vimrc-s/<CR>
 nnoremap <silent> <leader><Space> :FZFMru<CR>
 nnoremap <silent> <leader>. :Files <C-r>=expand("%:h")<CR>
 nnoremap <silent> <leader>b :Buffers <CR>
@@ -138,8 +138,8 @@ if has('gui_running')
 " TERMINAL only! Ranger won't work in Gui
 "Это такой костыль. Не знаю как не назначть в gvim.
 else
+map <Leader>x :call RangerChooser()<CR>
 " map <Leader>x :call RangerChooser()<CR>
-map <Leader>x :call LFChooser()<CR>
 endif
 
 fun! RangerChooser()

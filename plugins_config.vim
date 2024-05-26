@@ -1,54 +1,103 @@
 " vim: fdm=expr
+"
 
+
+"=====================================================
+"#       DAP
+"=====================================================
+"
+lua require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+
+" lua << EOF
+" require("dap-python").setup("/usr/bin/python")
+
+" table.insert(require("dap").configurations.python, {
+    " type = "python",
+    " request = "launch",
+    " name = "Module",
+    " console = "integratedTerminal",
+    " module = "src", -- edit this to be your app's main module
+    " cwd = "${workspaceFolder}",
+" })
+" EOF
+
+
+" lua << EOF
+    " vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
+    " vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+    " vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
+    " vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
+    " vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
+    " vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
+    " vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+    " vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+    " vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
+    " vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+      " require('dap.ui.widgets').hover()
+    " end)
+    " vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+      " require('dap.ui.widgets').preview()
+    " end)
+    " vim.keymap.set('n', '<Leader>df', function()
+      " local widgets = require('dap.ui.widgets')
+      " widgets.centered_float(widgets.frames)
+    " end)
+    " vim.keymap.set('n', '<Leader>ds', function()
+      " local widgets = require('dap.ui.widgets')
+      " widgets.centered_float(widgets.scopes)
+    " end)
+" EOF
+
+
+
+
+"
 "=====================================================
 "#       Vimspector
 "=====================================================
-" установить с :VimspectorInstall debugpy
+
+" установить с :vimspectorinstall debugpy
 " в каждом проекте должне быть свой .vimspector.json file
 
-" now you can run :VimspectorInstall :VimspectorUpdate  with no arguments
+" now you can run :vimspectorinstall :vimspectorupdate  with no arguments
 let g:vimspector_install_gadgets = [ 'debugpy']
 
-let g:vimspector_base_dir="C:/Users/belousov/.vim/plugged/vimspector"
+map <f10> <plug>vimspectorlaunch
+map <f12> <plug>vimspectorcontinue
 
-nnoremap <F10> <Plug>VimspectorLaunch
-nnoremap <F12> <Plug>VimspectorContinue
+"не работает почему-то.
+" nnoremap <f10> <plug>vimspectorlaunch
+map <f11> :call vimspector#reset()<cr>
+" nnoremap <f12> <plug>vimspectorcontinue - space-c жмёшь.
 
-"Не работает почему-то.
-nnoremap <F10> <Plug>VimspectorLaunch
-nnoremap <F11> :call vimspector#Reset()<CR>
-" nnoremap <F12> <Plug>VimspectorContinue - space-c жмёшь.
-
-"Не работает почему-то.
-" nnoremap <F8> <Plug>VimspectorReset 
+"не работает почему-то.
+" nnoremap <f8> <plug>vimspectorreset 
 
 
-" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-" for normal mode - the word under the cursor
-nmap <Leader>di <Plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
-xmap <Leader>di <Plug>VimspectorBalloonEval
+map <leader>db <plug>vimspectorbreakpoints
 
-nmap <Leader>db <Plug>VimspectorBreakpoints
-nmap <Leader>dt <Plug>VimspectorToggleBreakpoint
+
+" vim.keymap.set(n, ",<leader>dt", "<Cmd>vimspectortogglebreakpoint next", {silent = true, remap = true})
+
+map <leader>dt <plug>vimspectortogglebreakpoint
 
 let s:mapped = {}
 
-function! s:OnJumpToFrame() abort
+function! s:onjumptoframe() abort
   if has_key( s:mapped, string( bufnr() ) )
     return
   endif
 
   " надо убедиться что пробел не замаплен
-  nmap <LocalLeader>t :call vimspector#ToggleBreakpoint()<CR>
-  nmap <LocalLeader>T :call vimspector#ClearBreakpoints()<CR>
+  map <localleader>t :call vimspector#togglebreakpoint()<cr>
+  " map <localleader>t :call vimspector#clearbreakpoints()<cr>
 
-  nmap <silent> <buffer> <LocalLeader>o <Plug>VimspectorStepOver
-  nmap <silent> <buffer> <LocalLeader>n <Plug>VimspectorStepInto
-  nmap <silent> <buffer> <LocalLeader>a <Plug>VimspectorStepOut
-  nmap <silent> <buffer> <LocalLeader>c <Plug>VimspectorContinue
-  nmap <silent> <buffer> <LocalLeader>i <Plug>VimspectorBalloonEval
-  xmap <silent> <buffer> <LocalLeader>i <Plug>VimspectorBalloonEval
+  nmap <silent> <buffer> <localleader>o <plug>vimspectorstepover
+  nmap <silent> <buffer> <localleader>n <plug>vimspectorstepinto
+  nmap <silent> <buffer> <localleader>a <plug>vimspectorstepout
+  nmap <silent> <buffer> <localleader>c <plug>vimspectorcontinue
+  map <silent> <buffer> <localleader>i <plug>vimspectorballooneval
+  map <silent> <buffer> <localleader>i <plug>vimspectorballooneval
 
   let s:mapped[ string( bufnr() ) ] = { 'modifiable': &modifiable }
 
@@ -56,14 +105,14 @@ function! s:OnJumpToFrame() abort
 
 endfunction
 
-function! s:OnDebugEnd() abort
+function! s:ondebugend() abort
 
   let original_buf = bufnr()
   let hidden = &hidden
-  augroup VimspectorSwapExists
+  augroup vimspectorswapexists
     au!
-    autocmd SwapExists * let v:swapchoice='o'
-  augroup END
+    autocmd swapexists * let v:swapchoice='o'
+  augroup end
 
   try
     set hidden
@@ -71,15 +120,15 @@ function! s:OnDebugEnd() abort
       try
         execute 'buffer' bufnr
 
-        silent! nunmap <buffer> <LocalLeader>t
-        silent! nunmap <buffer> <LocalLeader>T
+        silent! nunmap <buffer> <localleader>t
+        silent! nunmap <buffer> <localleader>t
 
-        silent! nunmap <buffer> <LocalLeader>o
-        silent! nunmap <buffer> <LocalLeader>n
-        silent! nunmap <buffer> <LocalLeader>a
-        silent! nunmap <buffer> <LocalLeader>c
-        silent! nunmap <buffer> <LocalLeader>i
-        silent! xunmap <buffer> <LocalLeader>i
+        silent! nunmap <buffer> <localleader>o
+        silent! nunmap <buffer> <localleader>n
+        silent! nunmap <buffer> <localleader>a
+        silent! nunmap <buffer> <localleader>c
+        silent! nunmap <buffer> <localleader>i
+        silent! xunmap <buffer> <localleader>i
 
         let &l:modifiable = s:mapped[ bufnr ][ 'modifiable' ]
       endtry
@@ -89,29 +138,33 @@ function! s:OnDebugEnd() abort
     let &hidden = hidden
   endtry
 
-  au! VimspectorSwapExists
+  au! vimspectorswapexists
 
   let s:mapped = {}
 endfunction
 
-augroup TestCustomMappings
+augroup testcustommappings
   au!
-  autocmd User VimspectorJumpedToFrame call s:OnJumpToFrame()
-  autocmd User VimspectorDebugEnded ++nested call s:OnDebugEnd()
-augroup END
+  autocmd user vimspectorjumpedtoframe call s:onjumptoframe()
+  autocmd user vimspectordebugended ++nested call s:ondebugend()
+augroup end
 
 " }}}
 
-" Custom mappings for special buffers {{{
+" custom mappings for special buffers {{{
 
 let g:vimspector_mappings = {
       \   'stack_trace': {},
       \   'variables': {
-      \    'set_value': [ '<Tab>', '<C-CR>', 'C' ],
+      \    'set_value': [ '<tab>', '<c-cr>', 'c' ],
       \   }
       \ }
 
 " }}}
+
+
+
+
 
 
 

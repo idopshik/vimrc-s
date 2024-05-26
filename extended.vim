@@ -21,6 +21,9 @@
 
 Plug 'puremourning/vimspector'
 
+Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
+
 "Очень непонятные комбинации пошли. может от этого.
 " Plug 'vim-vdebug/vdebug'
 

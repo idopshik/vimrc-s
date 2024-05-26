@@ -1,34 +1,35 @@
 "env var GO exists (manually created)
     if $MINIGO
-        source ~/.vim_runtime/vimrcs/golang/minigo.vim
+        source ~/.config/nvim/vimrc-s/golang/minigo.vim
     else
         set runtimepath+=~/.vim_runtime
-        source ~/.vim_runtime/vimrcs/basic.vim
-        source ~/.vim_runtime/vimrcs/basic2.vim
+        source ~/.config/nvim/vimrc-s/basic.vim
+        source ~/.config/nvim/vimrc-s/basic2.vim
 
 "    => Plug loading started here
         filetype off
-        call plug#begin('~/.vim/plugged')
+        call plug#begin('~/.nvim/plugged')
 
         if $GO
-          source ~/.vim_runtime/vimrcs/golang/go_completion.vim
+          source ~/.config/nvim/vimrc-s/golang/go_completion.vim
         else
-          source ~/.vim_runtime/vimrcs/completion.vim
+          source ~/.config/nvim/vimrc-s/completion.vim
         endif
 
-        source ~/.vim_runtime/vimrcs/extended_pre.vim
-        source ~/.vim_runtime/vimrcs/extended.vim
+        source ~/.config/nvim/vimrc-s/extended_pre.vim
+        source ~/.config/nvim/vimrc-s/extended.vim
 
 "    => End of Plug loading
         call plug#end()
         filetype on
     
-        source ~/.vim_runtime/vimrcs/filetypes.vim
-        source ~/.vim_runtime/vimrcs/plugins_config.vim
-        source ~/.vim_runtime/vimrcs/styling.vim
-        source ~/.vim_runtime/vimrcs/keymap.vim
-        source ~/.vim_runtime/vimrcs/quickmenu.vim
-        source ~/.vim_runtime/vimrcs/autocommands.vim
-        source ~/.vim_runtime/vimrcs/fold.vim
+        source ~/.config/nvim/vimrc-s/filetypes.vim
+        source ~/.config/nvim/vimrc-s/plugins_config.vim
+        source ~/.config/nvim/vimrc-s/styling.vim
+        source ~/.config/nvim/vimrc-s/keymap.vim
+        source ~/.config/nvim/vimrc-s/quickmenu.vim
+        source ~/.config/nvim/vimrc-s/autocommands.vim
+        source ~/.config/nvim/vimrc-s/fold.vim
+
 
    endif

@@ -77,10 +77,10 @@ if has('gui_running')
     " colorscheme spacegray
 else
     " colorscheme OceanicNext
-    " colorscheme PaperColor "dark and nice
+    colorscheme PaperColor "dark and nice
     " colorscheme solarized8_flat  "blue subdued
     " colorscheme solarized8
-    colorscheme gruvbox
+    " colorscheme gruvbox
     
 endif
 
