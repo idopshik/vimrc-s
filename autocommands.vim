@@ -3,6 +3,8 @@
 "formatoptions - got problem at least once after major wiping all configs. Restore partially.
 "Сильно не вчитывался. При любых проблемых с переносами, комментами, чем угодно BLAME IT FIRST
                                                         "and ~/.vim/after/*  - SECOND
+autocmd FileType python nmap <buffer> <Leader>f <plug>(BlackMacchiatoCurrentLine)
+                                                        
 autocmd BufNewFile,BufRead * setlocal formatoptions+=cqn
 autocmd BufNewFile,BufRead * setlocal formatoptions+=cqn
 " Чтобы по-умолчанию было выключено

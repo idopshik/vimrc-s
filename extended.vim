@@ -45,6 +45,8 @@ Plug 'mbbill/undotree'
 " html md показывает, css js нет.
 Plug 'shime/vim-livedown' "До установки установить $ npm install -g livedown
 "Смотри на сайте. Есть доп.команда по установке!
+"
+Plug 'mechatroner/rainbow_csv'
 
 
 "## --------------=== Snippets support ===---------------
@@ -74,7 +76,8 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
                            "required $sudo apt-get install ack-grep
 
 "## --------------=== Languages support ===-------------
-
+"
+Plug 'smbl64/vim-black-macchiato'  "auto-edit one line
 " ---------------Most important thing in the entire set of plugings
 Plug 'w0rp/ale'
 Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.

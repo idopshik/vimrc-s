@@ -9,14 +9,15 @@
 " now you can run :VimspectorInstall :VimspectorUpdate  with no arguments
 let g:vimspector_install_gadgets = [ 'debugpy']
 
-let g:vimspector_base_dir="C:/Users/belousov/.vim/plugged/vimspector"
+" let g:vimspector_base_dir="C:/Users/belousov/.vim/plugged/vimspector"
 
 nnoremap <F10> <Plug>VimspectorLaunch
 nnoremap <F12> <Plug>VimspectorContinue
 
 "Не работает почему-то.
 nnoremap <F10> <Plug>VimspectorLaunch
-nnoremap <F11> :call vimspector#Reset()<CR>
+nnoremap <F12> :call vimspector#Reset()<CR>
+"
 " nnoremap <F12> <Plug>VimspectorContinue - space-c жмёшь.
 
 "Не работает почему-то.
