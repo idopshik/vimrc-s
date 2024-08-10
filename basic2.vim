@@ -14,10 +14,10 @@ if has("win32")
     language en                           "messages / ui (vim)
     set encoding=utf-8                  "menu 
     set termencoding=utf-8
-    let &pythonthreehome = 'C:\progs\Python37\'
-    let &pythonthreedll = 'C:\progs\Python37\python37.dll'
-    let &pythonhome = 'C:\progs\Python27\'
-    let &pythondll = 'C:\progs\Python27\python27.dll'
+    " let &pythonthreehome = 'C:\progs\Python37\'
+    " let &pythonthreedll = 'C:\progs\Python37\python37.dll'
+    " let &pythonhome = 'C:\progs\Python27\'
+    " let &pythondll = 'C:\progs\Python27\python27.dll'
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

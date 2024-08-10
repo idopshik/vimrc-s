@@ -76,7 +76,10 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
                            "required $sudo apt-get install ack-grep
 
 "## --------------=== Languages support ===-------------
+Plug 'smbl64/vim-black-macchiato' " autoformat python-code. Needs plugin to be installed by 
+                                  " pip install black-macchiato
 
+Plug 'untitled-ai/jupyter_ascending.vim'   " Jupyter notebook - extension - to control cells from vim
 " ---------------Most important thing in the entire set of plugings
 Plug 'w0rp/ale'
 Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.

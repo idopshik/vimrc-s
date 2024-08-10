@@ -43,12 +43,10 @@ nnoremap <F11> :call vimspector#Reset()<CR>
 
 " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
 " for normal mode - the word under the cursor
-nmap <Leader>di <Plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
-xmap <Leader>di <Plug>VimspectorBalloonEval
 
 nmap <Leader>db <Plug>VimspectorBreakpoints
 nmap <Leader>dt <Plug>VimspectorToggleBreakpoint
+nmap <Leader>dc :call vimspector#ClearBreakpoints()<CR>
 
 let s:mapped = {}
 
@@ -66,7 +64,6 @@ function! s:OnJumpToFrame() abort
   nmap <silent> <buffer> <LocalLeader>a <Plug>VimspectorStepOut
   nmap <silent> <buffer> <LocalLeader>c <Plug>VimspectorContinue
   nmap <silent> <buffer> <LocalLeader>i <Plug>VimspectorBalloonEval
-  xmap <silent> <buffer> <LocalLeader>i <Plug>VimspectorBalloonEval
 
   let s:mapped[ string( bufnr() ) ] = { 'modifiable': &modifiable }
 
