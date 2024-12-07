@@ -134,6 +134,9 @@ autocmd InsertLeave * call InsertLeaveFun()
 map <leader>wp <Plug>VimwikiDiaryPrevDay
 map <leader>wn <Plug>VimwikiDiaryNextDay
 
+nnoremap <leader>B i__import__('pdb').set_trace()<Esc>
+
+
 "fzf
 
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"

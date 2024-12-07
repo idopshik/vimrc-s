@@ -32,17 +32,12 @@ let g:vimspector_install_gadgets = [ 'debugpy']
 nnoremap <F10> <Plug>VimspectorLaunch
 nnoremap <F12> <Plug>VimspectorContinue
 
-"Не работает почему-то.
 nnoremap <F10> <Plug>VimspectorLaunch
 nnoremap <F11> :call vimspector#Reset()<CR>
 " nnoremap <F12> <Plug>VimspectorContinue - space-c жмёшь.
 
-"Не работает почему-то.
-" nnoremap <F8> <Plug>VimspectorReset 
 
 
-" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
-" for normal mode - the word under the cursor
 
 nmap <Leader>db <Plug>VimspectorBreakpoints
 nmap <Leader>dt <Plug>VimspectorToggleBreakpoint
@@ -64,6 +59,8 @@ function! s:OnJumpToFrame() abort
   nmap <silent> <buffer> <LocalLeader>a <Plug>VimspectorStepOut
   nmap <silent> <buffer> <LocalLeader>c <Plug>VimspectorContinue
   nmap <silent> <buffer> <LocalLeader>i <Plug>VimspectorBalloonEval
+  " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+  " for normal mode - the word under the cursor
 
   let s:mapped[ string( bufnr() ) ] = { 'modifiable': &modifiable }
 
