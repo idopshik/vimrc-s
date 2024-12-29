@@ -76,6 +76,8 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
                            "required $sudo apt-get install ack-grep
 
 "## --------------=== Languages support ===-------------
+" Plug 'stevearc/vim-arduino' " arduino-cli must be installed
+
 Plug 'smbl64/vim-black-macchiato' " autoformat python-code. Needs plugin to be installed by 
                                   " pip install black-macchiato
 

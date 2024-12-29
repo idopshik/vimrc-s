@@ -1,4 +1,42 @@
 " vim: fdm=expr
+"
+"=====================================================
+"#   => Arduino settings
+"=====================================================
+
+" Change these as desired
+autocmd FileType arduino nnoremap <buffer> <leader>aa <cmd>ArduinoAttach<CR>
+autocmd FileType arduino nnoremap <buffer> <leader>av <cmd>ArduinoVerify<CR>
+autocmd FileType arduino nnoremap <buffer> <leader>au <cmd>ArduinoUpload<CR>
+autocmd FileType arduino nnoremap <buffer> <leader>aus <cmd>ArduinoUploadAndSerial<CR>
+autocmd FileType arduino nnoremap <buffer> <leader>as <cmd>ArduinoSerial<CR>
+autocmd FileType arduino nnoremap <buffer> <leader>ab <cmd>ArduinoChooseBoard<CR>
+autocmd FileType arduino nnoremap <buffer> <leader>ap <cmd>ArduinoChoosePort<CR>
+autocmd FileType arduino nnoremap <buffer> <leader>ai <cmd>ArduinoInfo<CR>
+
+
+let g:arduino_serial_baud = 115200
+
+  " let g:arduino_serial_port = '/dev/ttyACM0'
+
+
+function! ArduinoStatusLine()
+    " my_file.ino [arduino:avr:uno] [arduino:usbtinyisp] (/dev/ttyACM0:9600)
+  let port = arduino#GetPort()
+  let line = '[' . g:arduino_board . '] [' . g:arduino_programmer . ']'
+  if !empty(port)
+    let line = line . ' (' . port . ':' . g:arduino_serial_baud . ')'
+  endif
+  return line
+endfunction
+
+augroup ArduinoStatusLine
+  autocmd! * <buffer>
+  autocmd BufWinEnter <buffer> setlocal stl=%f\ %h%w%m%r\ %{ArduinoStatusLine()}\ %=\ %(%l,%c%V\ %=\ %P%)
+augroup END
+
+
+autocmd BufNewFile,BufRead *.ino let g:airline_section_x='%{ArduinoStatusLine()}'
 
 
 "=====================================================
@@ -64,7 +102,7 @@ function! s:OnJumpToFrame() abort
 
   let s:mapped[ string( bufnr() ) ] = { 'modifiable': &modifiable }
 
-  setlocal nomodifiable
+  " setlocal nomodifiable
 
 endfunction
 

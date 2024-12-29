@@ -1,4 +1,7 @@
 
+" Plug 'vim-arduino-syntax'
+Plug 'stevearc/vim-arduino', {'for': 'arduino'}
+
 "Plug 'michal-h21/vim-zettel'
 
 Plug 'lambdalisue/vim-fullscreen'          "Ctrl + <CR> (does) :FullscreenToggle  On linux only.

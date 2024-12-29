@@ -82,7 +82,12 @@ inoremap [, [<CR>]<C-c>O
 "#        Terminal
 "=====================================================
 "vert[ical] term[imal]. Close it by <esc><esc>:q<CR>
+
+cmap pt belowright term ++rows=8 bpython
+cmap bt belowright term ++rows=8
+
 cmap vt vertical terminal
+
 tmap <S-Insert> <C-W>"+
 tnoremap <ESC><ESC> <C-\><C-N> " хотя лучше бы запомнить <C-W>N и всё. Это команда перехода в нормальный режим. выход из него по вводу i/a
 " Sample open-file mapping
@@ -211,7 +216,7 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 bl.py<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 emul.py<CR>
 
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
@@ -308,8 +313,12 @@ function! PythonBriefNotesToggle()
     endif
 endfunc
 
-let g:CheetOpened=0
 function! VimCheatToggle()
+    :vsplit ~/MegaLinux/tech.wiki/MyVimCheatSheet.wiki
+endfunc
+
+let g:CheetOpened=0
+function! VimCheatToggle_need_to_be_fixed_someday()
     if g:CheetOpened > 0
         if bufname('%') == 'MyVimCheatSheet.wiki'
             exec "wq"
