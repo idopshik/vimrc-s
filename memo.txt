@@ -1,0 +1,8 @@
+coздай файл init.vim в директории C:\Users\st\AppData\Local\nvim\
+
+c содержанием:
+source ~\_vim_runtime\vimrcs\truncated.vim
+
+установи GIT. Удостоверься, что он в path. Что он апускается из консоли. 
+Потом установи vim-plug (хоть как). И но опять же. Возможно нужно вC:\Users\st\AppData\Local\nvim\ будет установить.
+И только после этого срабоатает установка плагинов. 
