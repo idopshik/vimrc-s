@@ -1,5 +1,0 @@
-"Put this file in your home dir as .vimrc
-source ~/.vim_runtime/vimrcs/sammeln.vim
-
-" patern for windows machine
-source ~\_vim_runtime\vimrcs\basic.vim
