@@ -103,6 +103,26 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 Plug 'mechatroner/rainbow_csv'
 
+" open quickfix window automatically when AsyncRun is executed
+" set the quickfix window 6 lines height.
+let g:asyncrun_open = 6
+
+" ring the bell to notify you job finished
+let g:asyncrun_bell = 1
+
+
+"## --------------=== C language ====-----------------
+Plug 'skywind3000/asyncrun.vim'
+autocmd FileType c map <F5> <Esc>:w <CR> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+autocmd FileType c map <F6> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+" F12 to toggle quickfix window
+
+
+autocmd FileType c map <F8> <Esc>:w<CR>:!clear<CR> :!gcc % -o %< && ./%< <CR>
+
+nnoremap <F12> :call asyncrun#quickfix_toggle(6)<cr> "f12 - debugger
+
+
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'  " :GV должна рисовать график. А выдаёт лишь список. но хоть так.

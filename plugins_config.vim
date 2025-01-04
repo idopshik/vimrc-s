@@ -68,7 +68,9 @@ let g:VM_maps["Visual Cursors"]              = '\\c'
 let g:vimspector_install_gadgets = [ 'debugpy']
 
 nnoremap <F10> <Plug>VimspectorLaunch
-nnoremap <F12> <Plug>VimspectorContinue
+
+" nnoremap <F12> <Plug>VimspectorContinue //пока закрываю quickfix этим.
+autocmd FileType python map <F12> <Plug>VimspectorContinue
 
 nnoremap <F10> <Plug>VimspectorLaunch
 nnoremap <F11> :call vimspector#Reset()<CR>
