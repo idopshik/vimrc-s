@@ -62,7 +62,13 @@ Plug 'skywind3000/asyncrun.vim'
 
 
 
+
 call plug#end()
+
+set number                     " Show current line number
+set relativenumber             " Show relative line numbers
+
+set belloff=all
 
 set nomodeline
 
@@ -96,6 +102,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 map <F8> : !gcc % && .\a.out <CR>
+
 "   (o o)         (o o)          @ @           (O-O)          /(o o)\\        ~
 "ooO_(_)_Ooo__ ooO_(_)_Ooo___oOO_(_)_OOo___oOO__(_)__OOo___oOO__(_)__OOo_____ ~
 "_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|____ ~
