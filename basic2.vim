@@ -120,7 +120,7 @@ map q: :q
 "#    Russian localisation
 "=====================================================
 "set keymap=russian-jcukenwin   name of the file"
-set keymap=ru                  "отредактированный из Dropbox! "
+" set keymap=ru                  "отредактированный из Dropbox! "
 set iminsert=0
 set imsearch=0                   "Начинаать с латинской keemap
 
