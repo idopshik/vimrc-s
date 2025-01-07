@@ -18,6 +18,7 @@ let  g:python3_host_prog = 'C:\\Users\\st\\AppData\\Local\\Programs\\Python\\Pyt
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nomodeline
 
 
 filetype plugin on
