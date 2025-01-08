@@ -277,7 +277,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_c_checkers = ["make"]
+let g:syntastic_c_checkers = []
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
@@ -348,7 +348,9 @@ let b:ale_warn_about_trailing_whitespace = 0
 " let g:ale_linters = {'c': ['clangtidy']}
 "cpp - ale так видит h - заголовочники в AVR проектах
 " let b:ale_linters = ['flake8', 'pylint']
-let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : ['flake8', 'pylint'],
+" syntastic - не поддерживается. И я сейчас не могу понять, что делать, перенёс
+" линтер для СИ сюда. 
+let g:ale_linters = {'c': ["gcc", "make", "clangtidy"], 'cpp' : [], 'javascript' : [], 'python' : ['flake8', 'pylint'],
             \'javascriptreact': ['eslint', 'tsserver']}
 
 " hate.Don't set it on - vim has signcolumn=yes

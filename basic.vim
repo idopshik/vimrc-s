@@ -57,6 +57,8 @@ set secure                       "prohibit .vimrc files to execute shell, create
 set encoding=utf-8              " The encoding displayed.
 set fileencoding=utf-8          " The encoding written to file.
 
+set formatoptions -= cro        " disable continuation of comments to the next line
+
 "====================================================
 " Dot't leave lot's of clutter after yourself
 "=====================================================
