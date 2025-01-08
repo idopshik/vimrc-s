@@ -120,9 +120,18 @@ map q: :q
 "#    Russian localisation
 "=====================================================
 "set keymap=russian-jcukenwin   name of the file"
-" set keymap=ru                  "отредактированный из Dropbox! "
+set keymap=ru                  "отредактированный из Dropbox! "
+" Чтобы вместо Ctrl-^ нажимать Ctrl-L
+inoremap <C-l> <C-^> 
+highlight lCursor guifg=NONE guibg=Cyan " Смена цвета курсора
 set iminsert=0
 set imsearch=0                   "Начинаать с латинской keemap
+
+" Это есть в справке.  Полезно при использовании  keemap 
+inoremap <ESC> <ESC>:set iminsert=0<CR>   
+
+" set statusline+=%{printf('\ [%s]\ ',&iminsert?'ru':'en')}   "  должно менять цвет курсора на другой раскладке, но нет
+
 
 "=====================================================
 "#    Tabs / Buffers settings
