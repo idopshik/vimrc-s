@@ -48,6 +48,9 @@ Plug 'shime/vim-livedown' "До установки установить $ npm in
 "
 Plug 'mechatroner/rainbow_csv'
 
+let g:disable_rainbow_hover = 0
+" let g:rcsv_colorpairs = [['red', 'red'], ['blue', 'blue'], ['green', 'green'], ['magenta', 'magenta'], ['NONE', 'NONE'], ['darkred', 'darkred'], ['darkblue', 'darkblue'], ['darkgreen', 'darkgreen'], ['darkmagenta', 'darkmagenta'], ['darkcyan', 'darkcyan'], ['red', 'red'], ['blue', 'blue'], ['green', 'green'], ['magenta', 'magenta']]
+
 
 "## --------------=== Snippets support ===---------------
 Plug 'epilande/vim-react-snippets'
@@ -63,7 +66,7 @@ Plug 'honza/vim-snippets'                 "common snippets. Not enough.
 
 
 "## --------------=== Code/project navigation ===------------e
-Plug 'RRethy/vim-illuminate' "auto-highlighting under cursor
+" Plug 'RRethy/vim-illuminate' "auto-highlighting under cursor
 
 Plug 'airblade/vim-rooter'
 let g:rooter_silent_chdir = 1 "silent
