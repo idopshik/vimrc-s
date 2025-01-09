@@ -86,6 +86,8 @@ Plug 'w0rp/ale'
 Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.
 
 
+Plug 'rhysd/vim-clang-format'
+Plug 'skywind3000/asyncrun.vim'
 
 Plug 'ap/vim-css-color'
 
@@ -103,7 +105,7 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 "## --------------=== Git Integration====-----------------
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'junegunn/gv.vim'  " :GV должна рисовать график. А выдаёт лишь список. но хоть так.
+Plug 'junegunn/gv.vim' 
 Plug 'airblade/vim-gitgutter'
 
 Plug 'rhysd/git-messenger.vim'               "открывает окно по <leader>gm
@@ -116,6 +118,9 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 "## --------------=== Colorschemes====-----------------
 Plug 'tribela/vim-transparent'
 
+
+Plug 'joshdick/onedark.vim'
+Plug 'iCyMind/NeoSolarized'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
 Plug 'nanotech/jellybeans.vim'
