@@ -55,8 +55,8 @@ let g:disable_rainbow_hover = 0
 "## --------------=== Snippets support ===---------------
 Plug 'epilande/vim-react-snippets'
 
-Plug 'sirver/ultisnips'                   "Engine. doesn't come with any snippets itself
-Plug 'honza/vim-snippets'                 "common snippets. Not enough.
+" Plug 'sirver/ultisnips'                   "Engine. doesn't come with any snippets itself
+" Plug 'honza/vim-snippets'                 "common snippets. Not enough.
 "TODO why is that ectually?
 " set runtimepath+=~/home/st/.vim/plugged/ultisnips
 

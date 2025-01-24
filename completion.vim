@@ -9,7 +9,7 @@
 
 "----------- ycm -----------------"
 "python, c, c++, h only
-" Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 "pip3 install --user --upgrade pynvim     -после этого пропадёт ошибка при старте.
 "Только потому, что за 2-3 дня не смог настроить ycm и coc для golang.
