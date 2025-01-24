@@ -10,7 +10,10 @@ let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
+            \ "Standard" : "C++11",
+            \ "BreakBeforeBraces" : "Stroustrup",
+            \ "ColumnLimit" : "120"}
+" last option - string length. check others - run in terminal ""
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer> <Leader>cf :<C-u>ClangFormat<CR>

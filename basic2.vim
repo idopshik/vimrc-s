@@ -127,8 +127,6 @@ highlight lCursor guifg=NONE guibg=Cyan " Смена цвета курсора
 set iminsert=0
 set imsearch=0                   "Начинаать с латинской keemap
 
-" Это есть в справке.  Полезно при использовании  keemap 
-" inoremap <ESC> <ESC>:set iminsert=0<CR>  // дичайшая ср%нь.  
 
 " set statusline+=%{printf('\ [%s]\ ',&iminsert?'ru':'en')}   "  должно менять цвет курсора на другой раскладке, но нет
 
