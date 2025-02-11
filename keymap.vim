@@ -1,4 +1,20 @@
 " "vim: fdm=expr
+"
+" Put word under cursor into search register and highlight
+nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+vnoremap <silent> <Leader>* :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy:let @/=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
+
+
+
+fun! Pytest() "{{{
+    execute '!python3 -m pytest -vs '
+endfunction "}}}
+command! Pytest call Pytest()
+
 command! Debug !node inspect ./%
 command! Mk !node ./%
 
