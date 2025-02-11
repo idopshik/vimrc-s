@@ -49,6 +49,8 @@ autocmd FileType c,cpp,objc nnoremap <buffer> <F6> :AsyncRun -raw -cwd=$(VIM_FIL
 let g:vimspector_install_gadgets = [ 'debugpy']
 
 " let g:vimspector_base_dir="C:/Users/belousov/.vim/plugged/vimspector"
+" Это необходимо для работы Vimspector и даже для установки debugpy (автоматической)
+let g:vimspector_base_dir='C:\Users\st\.vim\plugged\vimspector'
 
 nnoremap <F10> <Plug>VimspectorLaunch
 nnoremap <F12> <Plug>VimspectorContinue
@@ -353,7 +355,7 @@ let b:ale_warn_about_trailing_whitespace = 0
 " let b:ale_linters = ['flake8', 'pylint']
 " syntastic - не поддерживается. И я сейчас не могу понять, что делать, перенёс
 " линтер для СИ сюда. 
-let g:ale_linters = {'c': ["gcc", "make", "clangtidy"], 'cpp' : [], 'javascript' : [], 'python' : ['flake8', 'pylint'],
+let g:ale_linters = {'c': [ "make", "clangtidy"], 'cpp' : [], 'javascript' : [], 'python' : ['flake8', 'pylint'],
             \'javascriptreact': ['eslint', 'tsserver']}
 
 " hate.Don't set it on - vim has signcolumn=yes
@@ -381,6 +383,7 @@ let g:easytags_auto_highlight = 0
 "hour and a half debugging freezing on NEOVIM. Because of this thing:
 " let g:easytags_async = 1
 " <C-]> Jump to tag
+"
 
 "
 " ctags -R *  Run in in bash in target folder, don't work instead
@@ -526,7 +529,7 @@ nmap <Leader>py <Plug>(Prettier)
 "#       Autoformat  {{{
 "=====================================================
 
-" let g:formatters_python = ['autopep8', 'black']     "Возможно, и не надо.
+let g:formatters_python = ['autopep8', 'black']     "Возможно, и не надо.
 " сам вроде находит и black и pep8
 
 "=====================================================

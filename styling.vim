@@ -25,7 +25,7 @@ endif
 "#   Font
 "=====================================================
 if has('win32')
-    " :set  guifont=DejaVu_Sans_Mono_for_Powerline:h10:cRUSSIAN:qDRAFT
+    :set  guifont=DejaVu_Sans_Mono_for_Powerline:h10:cRUSSIAN:qDRAFT
 "    :set guifont=DroidSansMono_Nerd_Font:h15
 
 endif

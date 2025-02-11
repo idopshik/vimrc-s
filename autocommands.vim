@@ -2,6 +2,11 @@
 
 "formatoptions - got problem at least once after major wiping all configs. Restore partially.
 "Сильно не вчитывался. При любых проблемых с переносами, комментами, чем угодно BLAME IT FIRST
+
+augroup NoAutoComment
+  au!
+  au FileType c setlocal formatoptions-=cro
+augroup end
                                                         "and ~/.vim/after/*  - SECOND
 autocmd FileType python nmap <buffer> <Leader>f <plug>(BlackMacchiatoCurrentLine)
                                                         
