@@ -215,7 +215,7 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 autocmd FileType python map <F6> <Esc>:w<CR>:py %<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:python one\.py<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:python3 %<CR>
 
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>

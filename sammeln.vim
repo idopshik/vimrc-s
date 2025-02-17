@@ -30,5 +30,6 @@
         source ~/.vim_runtime/vimrcs/quickmenu.vim
         source ~/.vim_runtime/vimrcs/autocommands.vim
         source ~/.vim_runtime/vimrcs/fold.vim
+        source ~/.vim_runtime/vimrcs/regexes.vim
 
    endif
