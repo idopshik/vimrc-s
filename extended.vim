@@ -72,7 +72,8 @@ Plug 'airblade/vim-rooter'
 let g:rooter_silent_chdir = 1 "silent
 Plug 'luochen1990/rainbow'   "colorful paranpheses
 Plug 'skywind3000/quickmenu.vim'
-Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-easytags'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.

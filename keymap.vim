@@ -213,10 +213,9 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 " autocmd FileType python map <F6> <Esc>:This keemap is free to bind for smth. Press ESC
 
-autocmd FileType python map <F6> <Esc>:w<CR>:py %<CR>
+autocmd FileType python map <F6> <Esc>:w<CR>:!py %<CR>
 
 autocmd FileType python map <F5> <Esc>:w<CR>:python3 %<CR>
-
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>

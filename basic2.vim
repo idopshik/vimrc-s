@@ -13,7 +13,7 @@ if has("win32")
     set langmenu=en_US.UTF-8              "menu (gvim)
     language en                           "messages / ui (vim)
     set encoding=utf-8                  "menu 
-    set termencoding=utf-8
+    " set termencoding=utf-8
 "    let &pythonthreehome = 'C:\progs\Python37\'
 "    let &pythonthreedll = 'C:\progs\Python37\python37.dll'
 "    let &pythonhome = 'C:\progs\Python27\'
@@ -107,7 +107,7 @@ else
 endif
 
 " by default, hide gui menus
-set guioptions=i
+" set guioptions=i
 set guioptions-=m               "remove menu bar
 set guioptions-=T               "remove toolbar
 

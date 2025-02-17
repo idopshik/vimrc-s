@@ -11,7 +11,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " let g:python3_host_prog='C:/Users/belousov/Documents/PyScripts/Envs/neovim4/Scripts/python'
-" let  g:python3_host_prog = 'C:\Users\belousov\AppData\Local\Programs\Python\Python312'
 let  g:python3_host_prog = "C:/Users/belousov/AppData/Local/Programs/Python/Python312/python.exe"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
