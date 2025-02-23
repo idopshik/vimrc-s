@@ -1,5 +1,5 @@
 " "vim: fdm=expr
-
+"
 " Put word under cursor into search register and highlight
 nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 vnoremap <silent> <Leader>* :<C-U>
@@ -15,11 +15,11 @@ fun! Pytest() "{{{
 endfunction "}}}
 command! Pytest call Pytest()
 
-
 command! Debug !node inspect ./%
 command! Mk !node ./%
 
-command! T :tabnew ~/MegaLinux/tech.wiki/tasks.wiki
+command! T :tabnew /home/st/MegaLinux/tech.wiki/tasks.wiki
+command! T :tabnew ~
 command! Cursor set cursorline | set cursorcolumn
 
 " crear register command
@@ -35,20 +35,20 @@ if !exists(":DiffOrig")
           \ | wincmd p | diffthis
 endif
 
-python3 << EOL
-import vim
-def ExecuteSelectedLine(l1, l2):
-    for i in range(l1-1,l2):
-        print(">>" + vim.current.buffer[i])
-        exec(vim.current.buffer[i],globals())
-EOL
+" python3 << EOL
+" import vim
+" def ExecuteSelectedLine(l1, l2):
+"     for i in range(l1-1,l2):
+"         print(">>" + vim.current.buffer[i])
+"         exec(vim.current.buffer[i],globals())
+" EOL
 command! -range Eval <line1>,<line2> python3 ExecuteSelectedLine(<line1>, <line2>)
 
 "python run - pun
 command -range=% -nargs=0 Pun :<line1>,<line2>call PyRun()
 
 "в VisualMode можно выполнить код
-vmap <F9> :call PyRun()<CR>
+vmap <F9> :call PyRun()<CR>   
 "=====================================================
 "#        AutomaticallommentToggle "doesn't work in linux
 "=====================================================
@@ -82,12 +82,7 @@ inoremap [, [<CR>]<C-c>O
 "#        Terminal
 "=====================================================
 "vert[ical] term[imal]. Close it by <esc><esc>:q<CR>
-
-cmap pt belowright term ++rows=8 bpython
-cmap bt belowright term ++rows=8
-
 cmap vt vertical terminal
-
 tmap <S-Insert> <C-W>"+
 tnoremap <ESC><ESC> <C-\><C-N> " хотя лучше бы запомнить <C-W>N и всё. Это команда перехода в нормальный режим. выход из него по вводу i/a
 " Sample open-file mapping
@@ -107,8 +102,8 @@ endif
 
 let c='a'
 while c <= 'z'
-exec "set <A-".c.">=\e".c
-exec "imap \e".c." <A-".c.">"
+" exec "set <A-".c.">=\e".c
+" exec "imap \e".c." <A-".c.">"
 let c = nr2char(1+char2nr(c))
 endw
 set timeout ttimeoutlen=10   " can ponentially cause problems.
@@ -131,16 +126,13 @@ call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
 " echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
 endfunction
 
-autocmd InsertLeave * call InsertLeaveFun()
+"autocmd InsertLeave * call InsertLeaveFun()
 " Никак не могу приспособиться к этому.I literally hate it!
 " autocmd VimEnter * map! <C-k> <C-^>
 
 " vimwiki
 map <leader>wp <Plug>VimwikiDiaryPrevDay
 map <leader>wn <Plug>VimwikiDiaryNextDay
-
-nnoremap <leader>B i__import__('pdb').set_trace()<Esc>
-
 
 "fzf
 
@@ -163,10 +155,20 @@ if has('gui_running')
 "Это такой костыль. Не знаю как не назначть в gvim.
 else
 map <Leader>x :call RangerChooser()<CR>
+" map <Leader>x :call LFChooser()<CR>
 endif
 
 fun! RangerChooser()
 exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
+if filereadable('/tmp/chosenfile')
+        exec 'edit ' . system('cat /tmp/chosenfile')
+        call system('rm /tmp/chosenfile')
+    endif
+    redraw!
+endfun
+
+fun! LFChooser()
+exec "silent !LF --choosefile=/tmp/chosenfile " . expand("%:p:h")
 if filereadable('/tmp/chosenfile')
         exec 'edit ' . system('cat /tmp/chosenfile')
         call system('rm /tmp/chosenfile')
@@ -191,15 +193,12 @@ endif
 
 command! VimReload :call ReloadVim()<cr>
 
-command! PyVert :call RunVert()<cr>
 fun! RunVert()
     echo "runned"
     let ff=%
     vertical terminal !python3 ff<CR>
+" autocmd FileType python map <F5> <Esc>:w<CR>:vs|term ++curwin python3 '%:p'<CR>
 endfun
-
-" возможно изза этого дичь
-" autocmd FileType python map <F8> <Esc>:w<CR>:vs|term ++curwin python3 '%:p'<CR>
 
 
 "=====================================================
@@ -214,9 +213,9 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 " autocmd FileType python map <F6> <Esc>:This keemap is free to bind for smth. Press ESC
 
-autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
+autocmd FileType python map <F6> <Esc>:w<CR>:py %<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:!clear;python3 bl.py<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:python one\.py<CR>
 
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
@@ -273,7 +272,7 @@ map <C-_> <plug>NERDCommenterToggle
 
 
 
-"Объяснение криса из
+"Объяснение криса из 
 "https://vi.stackexchange.com/questions/13391/how-to-save-a-specific-file-in-a-different-buffer
 " let bufnr=bufnr('name')
 " if bufnr > 0
@@ -307,18 +306,14 @@ function! PythonBriefNotesToggle()
             let g:PythonBriefNotesOpened=0
         endif
     else
-        :vsplit ~/MegaLinux/tech.wiki/Python_brief_notes.wiki
+        :vsplit /home/st/MegaLinux/tech.wiki/Python_brief_notes.wiki
         let g:PythonNotesWindow=bufnr()
         let g:PythonBriefNotesOpened=1
     endif
 endfunc
 
-function! VimCheatToggle()
-    :vsplit ~/MegaLinux/tech.wiki/MyVimCheatSheet.wiki
-endfunc
-
 let g:CheetOpened=0
-function! VimCheatToggle_need_to_be_fixed_someday()
+function! VimCheatToggle()
     if g:CheetOpened > 0
         if bufname('%') == 'MyVimCheatSheet.wiki'
             exec "wq"
@@ -337,7 +332,8 @@ function! VimCheatToggle_need_to_be_fixed_someday()
             let g:CheetOpened=1
         endif
     else
-        :vsplit ~/MegaLinux/tech.wiki/MyVimCheatSheet.wiki
+
+        :vsplit /home/st/MegaLinux/tech.wiki/MyVimCheatSheet.wiki
         let g:CheetWindow=winnr()
         let g:CheetOpened=1
     endif
@@ -363,7 +359,7 @@ function! CommonNotesWindowToggle()
 
         endif
     else
-        :vsplit ~/Dropbox/.vim_cloud/vimwiki/CommonNotes.txt
+        :vsplit /home/st/MegaLinux/tech.wiki/CommonNotes.txt
         let g:CommonWindow=winnr()
         let g:CommonOpened=1
     endif
@@ -372,13 +368,14 @@ noremap <silent><Leader>n :call CommonNotesWindowToggle()<cr>
 noremap <silent><Leader>k :call VimCheatToggle()<cr>
 noremap <silent><Leader>m :call quickmenu#toggle(0)<cr><cr>
 noremap <silent><Leader>2 :call quickmenu#toggle(1)<cr><cr>
-" nnoremap <leader><leader>v :vsplit ~/MegaLinux/tech.wiki/Python_brief_notes.wiki <cr>
+" nnoremap <leader><leader>v :vsplit ~/Dropbox/.vim_cloud/vimwiki/tech.wiki/Python_brief_notes.wiki <cr>
 nnoremap <leader><leader>v :call PythonBriefNotesToggle()<cr>
 
 " map <alt+n> to navigate through tabs (redundant for me)
 for c in range(1, 9)
-    exec "set <A-".c.">=\e".c
-    exec "map \e".c." <A-".c.">"
+ "    exec "set <A-".c.">=\e".c
+ "    exec "map \e".c." <A-".c.">"
+
 
     let n = c - '0'
     exec "map <M-". n ."> ". n ."gt"
