@@ -11,7 +11,7 @@ vnoremap <silent> <Leader>* :<C-U>
 
 
 fun! Pytest() "{{{
-    execute '!python3 -m pytest -vs '
+    execute 'terminal python -m pytest -vs '
 endfunction "}}}
 command! Pytest call Pytest()
 
