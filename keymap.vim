@@ -119,14 +119,20 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 "//Просто всегда при выходе из insert - en! genuine and simple. Надо (редко) - входишь в ru
 "//terminal only. doesn't work in Gvim.
 "xkb-switch required
-let g:XkbSwitchLib = "/usr/lib/libxkbswitch.so.1.8.5"
+" Надо на гитхабе найти, поставить (это для линукс). Оно через компилируемое. И всё. Сразу заработает.
+let g:XkbSwitchLib = "/usr/local/lib/libxkbswitch.so"
+
 function! InsertLeaveFun()
-call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
-" silent !setxkbmap us "Ломает системную переключалку
-" echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
+    call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
+
+    " Не надо это раскоменчивать, не знаю, что я хотел сделать, когда вставлял.
+    " Может быть у меня показометр какой-то где-то был.
+    " silent !setxkbmap us "Ломает системную переключалку
+    " echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
 endfunction
 
-"autocmd InsertLeave * call InsertLeaveFun()
+autocmd InsertLeave * call InsertLeaveFun()
+"
 " Никак не могу приспособиться к этому.I literally hate it!
 " autocmd VimEnter * map! <C-k> <C-^>
 
