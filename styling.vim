@@ -12,8 +12,6 @@ augroup ColorColumn
     autocmd FileType python,rst,c,cpp,go set nowrap
 augroup END
 
-set background=dark
-set t_Co=256
 
 " TMUX
 if exists('+termguicolors')
@@ -64,21 +62,20 @@ endif
 
 command Font :call FontSizePlus()
 
-let g:solarized_termcolors=256
 
 "#   Colorscheme
 "=====================================================
 if has('gui_running')
     " colorscheme gruvbox
     " colorscheme solarized8_flat  "blue subdued
-    colorscheme solarized8_flat 
+    " colorscheme solarized8_flat 
     " colorscheme spacegray
 else
     " colorscheme OceanicNext
     " colorscheme PaperColor "dark and nice
     " colorscheme solarized8_flat  "blue subdued
     " colorscheme solarized8
-    colorscheme gruvbox
+    " colorscheme gruvbox
     
 endif
 
@@ -87,5 +84,12 @@ if $GO
     colorscheme papercolor-theme
 endif
 
+syntax on
+let g:solarized_termcolors=256
+set background=dark
+set t_Co=256
+
 "must be here. AFTER colorscheme set up"
 hi lCursor guibg=#00ff00          "highlight green cursor when keymap activated
+
+colorscheme gruvbox

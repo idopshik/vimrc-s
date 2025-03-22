@@ -213,9 +213,9 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 " autocmd FileType python map <F6> <Esc>:This keemap is free to bind for smth. Press ESC
 
-autocmd FileType python map <F6> <Esc>:w<CR>:py %<CR>
+autocmd FileType python map <F6> <Esc>:w<CR>:!python %<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:python one\.py<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:!python3 bl.py<CR>
 
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
@@ -314,29 +314,8 @@ endfunc
 
 let g:CheetOpened=0
 function! VimCheatToggle()
-    if g:CheetOpened > 0
-        if bufname('%') == 'MyVimCheatSheet.wiki'
-            exec "wq"
-            let g:CheetOpened=0
-        else
-
-           let curbuf=bufnr('%')
-           try
-               exe g:CheetWindow.','.g:CheetWindow.'bufdo :wq'
-               " echo "Closed anyway regarles of location and newly stuff in \"pythonBrief\" window"
-           catch
-           finally
-               exe curbuf.'b'
-           endtry
-
-            let g:CheetOpened=1
-        endif
-    else
-
-        :vsplit /home/st/MegaLinux/tech.wiki/MyVimCheatSheet.wiki
-        let g:CheetWindow=winnr()
-        let g:CheetOpened=1
-    endif
+    " не могу дать ума. Закоменчиваю закрытие. закрывает вим мне. годами.
+    :vsplit /home/st/MegaLinux/tech.wiki/MyVimCheatSheet.wiki
 endfunc
 
 let g:CommonOpened=0
@@ -373,8 +352,8 @@ nnoremap <leader><leader>v :call PythonBriefNotesToggle()<cr>
 
 " map <alt+n> to navigate through tabs (redundant for me)
 for c in range(1, 9)
- "    exec "set <A-".c.">=\e".c
- "    exec "map \e".c." <A-".c.">"
+    exec "set <A-".c.">=\e".c
+    exec "map \e".c." <A-".c.">"
 
 
     let n = c - '0'

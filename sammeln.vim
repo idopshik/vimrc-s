@@ -32,10 +32,10 @@
     
         source ~/.vim_runtime/vimrcs/filetypes.vim
         source ~/.vim_runtime/vimrcs/plugins_config.vim
-        source ~/.vim_runtime/vimrcs/styling.vim
         source ~/.vim_runtime/vimrcs/keymap.vim
         source ~/.vim_runtime/vimrcs/quickmenu.vim
         source ~/.vim_runtime/vimrcs/autocommands.vim
         source ~/.vim_runtime/vimrcs/fold.vim
+        source ~/.vim_runtime/vimrcs/styling.vim
 
    endif
