@@ -10,6 +10,11 @@ vnoremap <silent> <Leader>* :<C-U>
 
 
 
+imap <C-b> __import__('pdb').set_trace()
+nnoremap <leader>B o__import__('pdb').set_trace()<ESC>
+
+
+            
 fun! Pytest() "{{{
     execute '!python3 -m pytest -vs '
 endfunction "}}}
@@ -42,7 +47,7 @@ endif
 "         print(">>" + vim.current.buffer[i])
 "         exec(vim.current.buffer[i],globals())
 " EOL
-command! -range Eval <line1>,<line2> python3 ExecuteSelectedLine(<line1>, <line2>)
+" command! -range Eval <line1>,<line2> python3 ExecuteSelectedLine(<line1>, <line2>)
 
 "python run - pun
 command -range=% -nargs=0 Pun :<line1>,<line2>call PyRun()
@@ -119,14 +124,21 @@ vnoremap <silent><A-k> :m '<-2<CR>gv=gv
 "//Просто всегда при выходе из insert - en! genuine and simple. Надо (редко) - входишь в ru
 "//terminal only. doesn't work in Gvim.
 "xkb-switch required
-let g:XkbSwitchLib = "/usr/lib/libxkbswitch.so.1.8.5"
+" Надо на гитхабе найти, поставить (это для линукс). Оно через компилируемое. И всё. Сразу заработает.
+let g:XkbSwitchLib = "/usr/local/lib/libxkbswitch.so"
+
 function! InsertLeaveFun()
-call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
-" silent !setxkbmap us "Ломает системную переключалку
-" echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
+    call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
+
+    " Не надо это раскоменчивать, не знаю, что я хотел сделать, когда вставлял.
+    " Может быть у меня показометр какой-то где-то был.
+    " silent !setxkbmap us "Ломает системную переключалку
+    " echo libcall(g:XkbSwitchLib, 'Xkb_Switch_getXkbLayout', '')
 endfunction
 
-"autocmd InsertLeave * call InsertLeaveFun()
+autocmd InsertLeave * call InsertLeaveFun()
+
+"
 " Никак не могу приспособиться к этому.I literally hate it!
 " autocmd VimEnter * map! <C-k> <C-^>
 
@@ -137,7 +149,7 @@ map <leader>wn <Plug>VimwikiDiaryNextDay
 "fzf
 
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
-map <C-p> :Files<CR>
+" map <C-p> :Files<CR>
 map <Leader>r :Files ~/.vim_runtime/<CR>
 nnoremap <silent> <leader><Space> :FZFMru<CR>
 nnoremap <silent> <leader>. :Files <C-r>=expand("%:h")<CR>
@@ -215,7 +227,11 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 autocmd FileType python map <F6> <Esc>:w<CR>:!python %<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:!python3 bl.py<CR>
+" autocmd FileType python map <F5> <Esc>:w<CR>:!python3 bl.py<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:terminal python3 bl.py<CR>
+
+autocmd FileType lua map <F5> <Esc>:w<CR>:terminal lua %<CR>
+autocmd FileType lua map <F6> <Esc>:w<CR>:terminal lua %<CR>
 
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>

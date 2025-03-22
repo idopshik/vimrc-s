@@ -316,15 +316,37 @@ set signcolumn=yes
 "#       w0rp/ale settings (linter)=== {{{
 "=====================================================
 " Некоторые линтеры отключены - смотри массив внизу.
+"
+
+
+" disable virtual text completely (show current line ro completely)
+" let g:ale_virtualtext_cursor = 'current'
+let g:ale_virtualtext_cursor = 'disabled'
+
+" on save only.
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
 
 " let g:ale_sign_error = '⨉'
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
 "
+" disabling highlighting - had a problems searching for words, with corrupted
+" highlighing :-(
+let g:ale_set_highlights = 0
+"
 "between error navigation
-nmap <silent> <M-A> <Plug>(ale_previous_wrap)
-nmap <silent> <M-a> <Plug>(ale_next_wrap)
+" может Alt и работал в виндовс, не знаю. На линуксе не работате. Придумать
+" компбиранию пока не могу.
+" nmap <silent> <M-A> <Plug>(ale_previous_wrap)
+" nmap <silent> <M-a> <Plug>(ale_next_wrap)
+nmap <LocalLeader>a <Plug>(ale_next_wrap)
+nmap <LocalLeader>A <Plug>(ale_previous_wrap)
+
 
 "show errors or warnings in my statusline
 let g:airline#extensions#ale#enabled = 1
@@ -363,7 +385,7 @@ let b:ale_warn_about_trailing_whitespace = 0
 " let g:ale_linters = {'c': ['clangtidy']}
 "cpp - ale так видит h - заголовочники в AVR проектах
 " let b:ale_linters = ['flake8', 'pylint']
-let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : ['flake8', 'pylint'],
+let g:ale_linters = {'c': [], 'cpp' : [], 'javascript' : [], 'python' : ['flake8', 'pyflakes', 'pylint', 'pyright', 'ruff', ],
             \'javascriptreact': ['eslint', 'tsserver'], 'yaml': ['yamllint']}
 
 " hate.Don't set it on - vim has signcolumn=yes
@@ -640,3 +662,18 @@ let g:startify_bookmarks = [
 "#       Misc
 
 let g:rainbow_active = 0 "set to 0 if you want to enable it later via :RainbowToggle
+
+
+
+"=====================================================
+"#       illuminate
+"отказываюсь, плохо видно
+"
+"=====================================================
+" augroup illuminate_augroup
+    " autocmd!
+    " autocmd VimEnter * hi illuminatedCurWord cterm=italic gui=italic
+" augroup END
+
+
+

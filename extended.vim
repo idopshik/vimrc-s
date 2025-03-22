@@ -25,9 +25,14 @@ Plug 'puremourning/vimspector'
 " Plug 'vim-vdebug/vdebug'
 
 "## ------------------=== Other ===----------------------
+
+Plug 'tpope/vim-obsession'
+
+
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'RRethy/vim-illuminate'
+" Plug 'RRethy/vim-illuminate'
+Plug 'itchyny/vim-cursorword'
 
 "sudo apt-get install wmctrl    # Ubuntu/Debian - needed. Terminal dosn't execute ctrl+<CR>
 
@@ -82,6 +87,7 @@ Plug 'smbl64/vim-black-macchiato' " autoformat python-code. Needs plugin to be i
                                   " pip install black-macchiato
 
 Plug 'untitled-ai/jupyter_ascending.vim'   " Jupyter notebook - extension - to control cells from vim
+"
 " ---------------Most important thing in the entire set of plugings
 Plug 'w0rp/ale'
 Plug 'vim-syntastic/syntastic'         "Настраивай линтеры, а не плагины.
