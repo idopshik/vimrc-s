@@ -137,7 +137,6 @@ function! InsertLeaveFun()
 endfunction
 
 autocmd InsertLeave * call InsertLeaveFun()
-
 "
 " Никак не могу приспособиться к этому.I literally hate it!
 " autocmd VimEnter * map! <C-k> <C-^>
