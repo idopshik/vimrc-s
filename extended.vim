@@ -80,7 +80,10 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
                            "required $sudo apt-get install ack-grep
 
 "## --------------=== Languages support ===-------------
-"
+
+Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'tag': 'v2.15' }
+
 Plug 'smbl64/vim-black-macchiato'  "auto-edit one line
 " ---------------Most important thing in the entire set of plugings
 Plug 'w0rp/ale'

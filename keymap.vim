@@ -10,8 +10,13 @@ vnoremap <silent> <Leader>* :<C-U>
 
 
 
+fun! Fix()
+    execute '!mkdir C:\Users\belousov\AppData\Local\Temp\nvim.0\'
+endfunction "}}}
+command! Fix call Fix()
+
 fun! Pytest() "{{{
-    execute '!python3 -m pytest -vs '
+    execute 'term python -m pytest -vs '
 endfunction "}}}
 command! Pytest call Pytest()
 
@@ -213,9 +218,10 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 
 " autocmd FileType python map <F6> <Esc>:This keemap is free to bind for smth. Press ESC
 
-autocmd FileType python map <F6> <Esc>:w<CR>:!py %<CR>
 
-autocmd FileType python map <F5> <Esc>:w<CR>:python3 %<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:terminal python bl.py<CR>
+
+autocmd FileType python map <F6> <Esc>:w<CR>:!py %<CR>
 
 autocmd FileType javascript nnoremap <buffer> <F5> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
 autocmd FileType javascript nnoremap <buffer> <F6> <Esc> :w<CR> <Esc> k <Esc> :! clear; node %<CR>
