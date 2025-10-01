@@ -16,7 +16,7 @@ endfunction "}}}
 command! Fix call Fix()
 
 fun! Pytest() "{{{
-    execute 'term python -m pytest -vs '
+    execute 'terminal python -m pytest -vs '
 endfunction "}}}
 command! Pytest call Pytest()
 
