@@ -1,35 +1,34 @@
-"env var GO exists (manually created)
-    if $MINIGO
-        source ~/.vim_runtime/vimrcs/golang/minigo.vim
-    else
-        set runtimepath+=~/.vim_runtime
-        source ~/.vim_runtime/vimrcs/basic.vim
-        source ~/.vim_runtime/vimrcs/basic2.vim
+" ==========================================================
+" sammeln.vim — главный сборщик конфигурации
+" ==========================================================
 
-"    => Plug loading started here
-        filetype off
-        call plug#begin('~/.vim/plugged')
+" === необходимость для запуска vim plug ===
+source ~/.vim_runtime/vimrcs/plugins.vim
+" === Базовая часть ===
+source ~/.vim_runtime/vimrcs/core.vim
+source ~/.vim_runtime/vimrcs/appearance.vim
 
-        if $GO
-          source ~/.vim_runtime/vimrcs/golang/go_completion.vim
-        else
-          source ~/.vim_runtime/vimrcs/completion.vim
-        endif
+" === Плагины ===
+source ~/.vim_runtime/vimrcs/plugins/nerdtree.vim
+source ~/.vim_runtime/vimrcs/plugins/tagbar.vim
+source ~/.vim_runtime/vimrcs/plugins/airline.vim
+source ~/.vim_runtime/vimrcs/plugins/lint.vim
+source ~/.vim_runtime/vimrcs/plugins/misc.vim
 
-        source ~/.vim_runtime/vimrcs/extended_pre.vim
-        source ~/.vim_runtime/vimrcs/extended.vim
+" === Автокоманды и функции ===
+source ~/.vim_runtime/vimrcs/autocmds.vim
+source ~/.vim_runtime/vimrcs/functions.vim
 
-"    => End of Plug loading
-        call plug#end()
-        filetype on
-    
-        source ~/.vim_runtime/vimrcs/filetypes.vim
-        source ~/.vim_runtime/vimrcs/plugins_config.vim
-        source ~/.vim_runtime/vimrcs/styling.vim
-        source ~/.vim_runtime/vimrcs/keymap.vim
-        source ~/.vim_runtime/vimrcs/quickmenu.vim
-        source ~/.vim_runtime/vimrcs/autocommands.vim
-        source ~/.vim_runtime/vimrcs/fold.vim
-        source ~/.vim_runtime/vimrcs/regexes.vim
+" === ОС-специфика ===
+if has("unix")
+    source ~/.vim_runtime/vimrcs/os/linux.vim
+elseif has("win32") || has("win64")
+    source ~/.vim_runtime/vimrcs/os/windows.vim
+endif
 
-   endif
+" === Редактор ===
+if has("nvim")
+    source ~/.vim_runtime/vimrcs/editor/nvim-only.vim
+else
+    source ~/.vim_runtime/vimrcs/editor/vim-only.vim
+endif
