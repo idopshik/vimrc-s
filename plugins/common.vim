@@ -1,0 +1,28 @@
+
+
+" ---------------- Общие плагины ----------------
+Plug 'preservim/nerdtree'
+Plug 'preservim/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-startify'
+Plug 'mileszs/ack.vim'
+Plug 'vim-scripts/Merginal'
+Plug 'mbbill/undotree'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdcommenter'
+Plug 'junegunn/gv.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'skywind3000/vim-quickmenu'
