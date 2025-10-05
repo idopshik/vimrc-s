@@ -663,6 +663,19 @@ let g:startify_bookmarks = [
 
 let g:rainbow_active = 0 "set to 0 if you want to enable it later via :RainbowToggle
 
+"
+"=====================================================
+"#       Vifm
+"=====================================================
+" Открывать Vifm в текущей директории
+let g:vifm_embed_split = 1
+
+" Или открывать в новой вкладке:
+" nnoremap <leader>v :tab Vifm<CR>
+
+" Настройки отображения
+let g:vifm_win_width = 85
+let g:vifm_win_height = 25
 
 
 "=====================================================

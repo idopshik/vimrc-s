@@ -76,6 +76,8 @@ Plug 'luochen1990/rainbow'   "colorful paranpheses
 Plug 'skywind3000/quickmenu.vim'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
+Plug 'vifm/vifm.vim'
+
 "---------===== Search with ACK ======---------------"
 Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает этот плагин.
                            "required $sudo apt-get install ack-grep
