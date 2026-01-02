@@ -1,12 +1,36 @@
 " "vim: fdm=expr
 "
-" Put word under cursor into search register and highlight
-nnoremap <silent> <Leader>* :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
-vnoremap <silent> <Leader>* :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy:let @/=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>:set hls<CR>
+"
+
+nnoremap <leader>] :call SmartOpenTmpPy()<CR>
+
+function! SmartOpenTmpPy()
+    let bufnum = bufnr('tmp.py')
+    if bufnum != -1
+        " Файл уже открыт - переходим к нему в существующем окне
+        execute 'sbuffer ' . bufnum  " Правильное объединение строк
+    else
+        " Файл не открыт - создаем вертикальный сплит
+        execute 'vs tmp.py'
+    endif
+endfunction
+"
+"
+"
+"
+function! SearchWordWithRg() abort
+    let l:word = expand('<cword>')
+    let l:cmd = 'rg --vimgrep --smart-case --hidden -g "!venv" -g "!tags" ' . shellescape(l:word)
+    let l:results = system(l:cmd)
+    if !empty(l:results)
+        call setqflist([], ' ', {'lines': split(l:results, "\n"), 'efm': '%f:%l:%c:%m'})
+        copen
+    else
+        echo "No results found for: " . l:word
+    endif
+endfunction
+
+nnoremap <Leader>f :call SearchWordWithRg()<CR>
 
 
 
@@ -230,7 +254,8 @@ autocmd FileType python map <F6> <Esc>:w<CR>:!clear;python3 %<CR>
 autocmd FileType python map <F6> <Esc>:w<CR>:!python %<CR>
 
 " autocmd FileType python map <F5> <Esc>:w<CR>:!python3 bl.py<CR>
-autocmd FileType python map <F5> <Esc>:w<CR>:terminal python3 bl.py<CR>
+" autocmd FileType python map <F5> <Esc>:w<CR>:terminal python3 bl.py<CR>
+autocmd FileType python map <F5> <Esc>:w<CR>:terminal python3 -m diagnostic_app.main<CR>
 
 autocmd FileType lua map <F5> <Esc>:w<CR>:terminal lua %<CR>
 autocmd FileType lua map <F6> <Esc>:w<CR>:terminal lua %<CR>
@@ -251,7 +276,10 @@ autocmd FileType sh nnoremap <buffer> <F5> <Esc>:w<CR> :! ./%<CR>
 "мешает переключению буферов. надо перемапить.
 " nnoremap <silent> <leader>bb :silent update<Bar>silent !google-chrome %:p &<CR>
 
+
 nnoremap <Leader>a :Ack<CR> " поиск слова под курсором. Мощнейший ack.
+let g:ackprg = 'ag --vimgrep --smart-case --hidden'
+
 
 map <C-n> :NERDTreeToggle<CR>
 

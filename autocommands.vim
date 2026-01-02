@@ -160,3 +160,12 @@ endfunction
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
 
 
+
+" autocmd BufWritePre *.py silent! :Black
+" autocmd BufWritePre *.py silent! :Isort
+
+" " Если у вас нет плагинов Black/Isort для vim:
+" autocmd BufWritePre *.py silent! !cd %:p:h && black --quiet --line-length=88 % 2>/dev/null
+" autocmd BufWritePre *.py silent! !cd %:p:h && isort --profile black --line-length=88 % 2>/dev/null
+" autocmd BufWritePost *.py silent! edit  " Перезагрузить файл после форматирования
+

@@ -504,6 +504,8 @@ let g:ack_mappings = {
             \  'v':  '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
             \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J' }
 
+" Установите сначала fd: https://github.com/sharkdp/fd
+command! -bang -nargs=* Fd call fzf#vim#files('', fzf#vim#with_preview({'source': 'fd --type f --hidden --exclude venv --exclude tags'}), <bang>0)
 "=====================================================
 "#       snippets
 "=====================================================
@@ -533,6 +535,15 @@ let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 " let g:vimwiki_folding='list' "неприлично долго искал собой же созданную проблуму.
 "Либо эта переменная, либо уже foldmethod=syntax.
 let g:vimwiki_folding='syntax'
+"
+" Настройка VimWiki
+" let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
+"
+" Вы можете добавить другие языки по мере необходимости
+let g:vimwiki_fenced_languages = ['python', 'bash', 'javascript', 'html']
+
+" Эта строка ключевая: заставляет VimWiki использовать правила Markdown для выделения блоков кода.
+let g:vimwiki_conceal_pre = 0
 
 "=====================================================
 "#       Prettier  {{{

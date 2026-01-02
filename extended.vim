@@ -17,6 +17,10 @@
 "#      Plug loading begins in ./basic.vim
 "=====================================================
 
+"
+" Plug 'sheerun/vim-polyglot' " Этот плагин содержит улучшенную подсветку для множества языков, включая Python.
+"
+"
 "## ------------------=== Debugger ===----------------------
 
 Plug 'puremourning/vimspector'
@@ -84,6 +88,15 @@ Plug 'mileszs/ack.vim'     "Возможно fzf-vim перекрывает эт
 
 "## --------------=== Languages support ===-------------
 " Plug 'stevearc/vim-arduino' " arduino-cli must be installed
+
+" Black форматирование
+Plug 'psf/black', { 'branch': 'stable' }
+
+" Isort для сортировки импортов
+Plug 'fisadev/vim-isort'
+
+" Flake8 линтинг
+Plug 'nvie/vim-flake8'
 
 Plug 'smbl64/vim-black-macchiato' " autoformat python-code. Needs plugin to be installed by 
                                   " pip install black-macchiato
