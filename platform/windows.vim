@@ -37,10 +37,12 @@ endif
 if isdirectory('C:\Progs\ctags')
     let g:easytags_cmd = 'C:\Progs\ctags\ctags.exe'
     let g:tagbar_ctags_bin = 'C:\Progs\ctags\ctags.exe'
+    let g:tagbar_use_cache = 0
 elseif executable('ctags')
     let g:easytags_cmd = 'ctags'
     let g:tagbar_ctags_bin = 'ctags'
 endif
+
 
 " === ALE Python ===
 " Укажи путь если autopep8 не в PATH
@@ -62,13 +64,11 @@ let g:startify_bookmarks = [expand('~/vimfiles/vimrc')]
 " cd ~\Documents
 
 " === Shell ===
-if executable('pwsh')
-    set shell=pwsh
-    set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-elseif executable('powershell')
-    set shell=powershell
-    set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-endif
+" Для совместимости с плагинами используем cmd.exe
+set shell=cmd.exe
+set shellcmdflag=/c
+set shellquote=
+set shellxquote=
 
 " === Browser для HTML preview ===
 let g:browser_cmd = 'start chrome'

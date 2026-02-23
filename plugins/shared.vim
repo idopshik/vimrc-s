@@ -48,7 +48,8 @@ Plug 'luochen1990/rainbow'
 Plug 'skywind3000/quickmenu.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'vifm/vifm.vim'
 
 " === Search ===
