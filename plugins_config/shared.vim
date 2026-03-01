@@ -5,7 +5,10 @@
 
 " === Загружаем конфиг COC ===
 " Это главный completion engine
-execute 'source ' . g:vim_runtime . '/plugins_config/coc.vim'
+" В начале секции COC:
+if exists('g:did_coc_loaded')
+    execute 'source ' . g:vim_runtime . '/plugins_config/coc.vim'
+endif
 
 "=====================================================
 "#       Multi-cursor

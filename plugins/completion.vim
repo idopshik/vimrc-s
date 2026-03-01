@@ -4,8 +4,24 @@
 " После установки выполни: :CocInstall coc-pyright coc-json coc-tsserver
 " ══════════════════════════════════════════════════════════════════════════════
 
-" === COC.NVIM (главный completion engine) ===
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" plugins/completion.vim
+" COC работает на Vim 8.1.1719+ и Neovim 0.4+
+
+" Проверка: Vim 8.1.1719+ ИЛИ Neovim
+let s:coc_supported = g:is_nvim || (v:version >= 801 && has('patch1719'))
+
+if s:coc_supported && executable('node')
+    " === COC для современных редакторов ===
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+else
+    " === Fallback: старый стек ===
+    Plug 'davidhalter/jedi-vim'
+    Plug 'dense-analysis/ale'
+endif
+
+" Общие
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " === Golang ===
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
