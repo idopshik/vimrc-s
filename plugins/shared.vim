@@ -1,5 +1,10 @@
 " plugins/shared.vim — Общие плагины (vim-plug)
 " ══════════════════════════════════════════════════════════════════════════════
+" ОБНОВЛЕНО: убраны устаревшие плагины, добавлены современные
+" ══════════════════════════════════════════════════════════════════════════════
+
+" === Startify (стартовый экран) ===
+Plug 'mhinz/vim-startify'
 
 " === Debugger ===
 Plug 'puremourning/vimspector'
@@ -22,7 +27,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " === Editing helpers ===
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
 
 " === Python folding ===
@@ -31,14 +36,13 @@ Plug 'tmhedberg/simpylfold'
 " === Undo tree ===
 Plug 'mbbill/undotree'
 
-" === Live preview ===
-Plug 'shime/vim-livedown'
+" === Live preview (Markdown) ===
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 
 " === Multi-cursor ===
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " === Snippets ===
-Plug 'epilande/vim-react-snippets'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -46,11 +50,7 @@ Plug 'honza/vim-snippets'
 Plug 'airblade/vim-rooter'
 Plug 'luochen1990/rainbow'
 Plug 'skywind3000/quickmenu.vim'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
-" Plug 'majutsushi/tagbar'
 Plug 'preservim/tagbar'
-Plug 'vifm/vifm.vim'
 
 " === Search ===
 Plug 'mileszs/ack.vim'
@@ -68,25 +68,16 @@ Plug 'pbogut/fzf-mru.vim'
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" === Python formatting ===
-Plug 'psf/black', { 'branch': 'stable' }
-Plug 'fisadev/vim-isort'
-Plug 'nvie/vim-flake8'
-Plug 'smbl64/vim-black-macchiato'
-
-" === Jupyter ===
-Plug 'untitled-ai/jupyter_ascending.vim'
-
-" === Linting (КРИТИЧНО!) ===
-Plug 'w0rp/ale'
-Plug 'vim-syntastic/syntastic'
+" === Linting — ALE остаётся для не-Python ===
+" Для Python используем ruff через coc
+Plug 'dense-analysis/ale'
 
 " === CSS color preview ===
 Plug 'ap/vim-css-color'
 
 " === Markdown ===
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'preservim/vim-markdown'
 
 " === Autoformat ===
 Plug 'Chiel92/vim-autoformat'
@@ -116,8 +107,9 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
-Plug 'lifepillar/vim-solarized8'
+Plug 'sainnhe/gruvbox-material'
+Plug 'folke/tokyonight.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'haishanh/night-owl.vim'
 Plug 'ajmwagar/vim-deus'
@@ -127,3 +119,19 @@ Plug 'ryanoasis/vim-devicons'
 
 " === Vimwiki ===
 Plug 'vimwiki/vimwiki'
+
+" === УДАЛЁННЫЕ ПЛАГИНЫ (заменены на coc) ===
+" xolox/vim-misc — не нужен без easytags
+" xolox/vim-easytags — устарел, медленный
+" vim-syntastic/syntastic — заменён на coc diagnostics
+" nvie/vim-flake8 — заменён на ruff через coc
+" fisadev/vim-isort — заменён на ruff через coc
+" psf/black — formatting через coc
+" smbl64/vim-black-macchiato — не работает
+" davidhalter/jedi-vim — заменён на coc-pyright
+" mitsuhiko/vim-jinja — редко нужен
+" mitsuhiko/vim-python-combined — устарел
+" shime/vim-livedown — заменён на markdown-preview.nvim
+" altercation/vim-colors-solarized — gruvbox лучше
+" lifepillar/vim-solarized8 — gruvbox лучше
+" vifm/vifm.vim — редко используется
