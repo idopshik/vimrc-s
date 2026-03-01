@@ -135,6 +135,10 @@ if g:is_nvim
 else
     call s:SourceIfExists('plugins_config/vim_only.vim')
 endif
+"
+"
+" Загрузка дополнительных конфигов
+call s:SourceIfExists('plugins_config/coc.vim')
 
 " ══════════════════════════════════════════════════════════════════════════════
 " ЭТАП 4: Keymaps (СВЯЩЕННЫЕ — загружаются последними)
