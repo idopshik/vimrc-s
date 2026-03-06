@@ -61,6 +61,62 @@ let g:startify_bookmarks = [
       \ { 'k': g:vim_runtime . '/core/keymap.vim' },
       \ ]
 
+
+" ======================================================
+" Startify + cowsay + vimtricks.com
+" ======================================================
+"
+" Шаг 1. Создай ~/.vim/vimtricks.txt — вручную или скриптом.
+"   Формат: блоки через пустую строку, каждая строка блока = строка цитаты.
+"
+"   Vim Calculator
+"   Perform calculations without leaving Vim.
+"
+"   Vim File Templates
+"   Use built-in skeleton files, no plugins needed.
+"
+" Шаг 2. Добавь в .vimrc один из вариантов ниже.
+
+" ── Вариант 1: через g:startify_custom_header_quotes (рекомендую) ──
+" Startify сам выбирает случайную цитату и рисует cowsay.
+" Никаких кастомных функций не нужно.
+
+let s:tips_file = expand('~/.vim/vimtricks.txt')
+
+function! s:load_vimtricks() abort
+    if !filereadable(s:tips_file)
+        return []
+    endif
+    let l:lines = readfile(s:tips_file)
+    let l:tips = []
+    let l:current = []
+    for l:line in l:lines
+        if l:line =~ '^\s*$'
+            if !empty(l:current)
+                call add(l:tips, l:current)
+                let l:current = []
+            endif
+        else
+            call add(l:current, l:line)
+        endif
+    endfor
+    if !empty(l:current)
+        call add(l:tips, l:current)
+    endif
+    return l:tips
+endfunction
+
+let s:vimtricks = s:load_vimtricks()
+if !empty(s:vimtricks)
+    let g:startify_custom_header_quotes = s:vimtricks
+endif
+
+" ── Вариант 2: без cowsay, просто текст в рамке ──
+" Раскомментируй это вместо Варианта 1, если хочешь boxed без коровы.
+"
+" let g:startify_custom_header =
+"       \ 'startify#pad(startify#fortune#boxed(g:startify_custom_header_quotes))'
+
 "=====================================================
 "#       Airline
 "=====================================================
