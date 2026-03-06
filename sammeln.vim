@@ -134,6 +134,9 @@ if g:is_nvim
     call s:SourceIfExists('plugins_config/nvim_only.vim')
     " Neovim which-key config
     call s:SourceIfExists('plugins_config/nvim_which_key.vim')
+    " Telescope config для Neovim
+    call s:SourceIfExists('plugins_config/nvim_telescope.vim')
+
 else
     call s:SourceIfExists('plugins_config/vim_only.vim')
 endif

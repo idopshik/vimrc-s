@@ -69,13 +69,18 @@ endif
 map <leader>wp <Plug>VimwikiDiaryPrevDay
 map <leader>wn <Plug>VimwikiDiaryNextDay
 
-" === FZF (КРИТИЧНО!) ===
-nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
-map <Leader>r :Files ~/.vim_runtime/<CR>
-nnoremap <silent> <leader><Space> :FZFMru<CR>
-nnoremap <silent> <leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>h :Helptags<CR>
+" === FZF (только Vim) или Telescope (только Neovim) ===
+if g:is_nvim
+    " Telescope keymaps будут загружены из nvim_telescope.vim
+else
+    " === FZF keymaps (Vim only) ===
+    nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+    map <Leader>r :Files ~/.vim_runtime/<CR>
+    nnoremap <silent> <leader><Space> :FZFMru<CR>
+    nnoremap <silent> <leader>. :Files <C-r>=expand("%:h")<CR>
+    nnoremap <silent> <leader>b :Buffers<CR>
+    nnoremap <silent> <leader>h :Helptags<CR>
+endif
 
 " === Clear search highlight ===
 map <Space> :noh<cr>

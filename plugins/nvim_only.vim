@@ -6,7 +6,7 @@
 
 " === Treesitter (улучшенный syntax highlighting) ===
 " Раскомментируй когда будешь готов к lua
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " === LSP (Language Server Protocol) ===
 " Пока используем YCM/Jedi, но вот заготовка для nvim-lsp:
@@ -19,9 +19,9 @@
 
 " === Telescope (замена fzf, но с теми же keymaps) ===
 " Пока используем fzf, но вот заготовка:
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 " === Nvim-tree (замена NERDTree, но с теми же keymaps) ===
 " Пока используем NERDTree, но вот заготовка:

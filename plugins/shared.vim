@@ -55,6 +55,7 @@ Plug 'preservim/tagbar'
 " === Search ===
 Plug 'mileszs/ack.vim'
 
+
 " === FZF (КРИТИЧНО!) ===
 if g:is_win
     Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
