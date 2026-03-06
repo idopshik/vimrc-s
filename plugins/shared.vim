@@ -120,6 +120,8 @@ Plug 'ryanoasis/vim-devicons'
 " === Vimwiki ===
 Plug 'vimwiki/vimwiki'
 
+Plug 'vifm/vifm.vim'
+
 " === УДАЛЁННЫЕ ПЛАГИНЫ (заменены на coc) ===
 " xolox/vim-misc — не нужен без easytags
 " xolox/vim-easytags — устарел, медленный

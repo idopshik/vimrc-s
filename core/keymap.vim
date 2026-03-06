@@ -89,14 +89,31 @@ if !g:is_win
 endif
 
 " === File manager (Ranger/LF) ===
-if !g:is_gui && g:is_linux
-    map <Leader>x :call RangerChooser()<CR>
-elseif g:is_win
-    map <Leader>x :call LFChooser()<CR>
-endif
+nnoremap <leader>x :call RangerChooser()<CR>
 
 " === Current directory in command line ===
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
+" === Exit to shell with context ===
+command! -nargs=0 Sh call s:ExitToShell()
+cabbrev sh Sh  " alias :sh -> :Sh
+function! s:ExitToShell() abort
+    let l:file = expand('%:p')
+    let l:dir = expand('%:p:h')
+    echo '╔════════════════════════════════════════╗'
+    echo '║  Выход в shell                         ║'
+    echo '╠════════════════════════════════════════╣'
+    echo '║  Файл: ' . l:file
+    echo '║  Директория: ' . l:dir
+    echo '╚════════════════════════════════════════╝'
+    echo ''
+    echo 'Введи exit или Ctrl+D для возврата в Vim'
+    if g:is_nvim
+        execute 'terminal'
+    else
+        execute 'shell'
+    endif
+endfunction
 
 " === Change to file's directory ===
 nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>

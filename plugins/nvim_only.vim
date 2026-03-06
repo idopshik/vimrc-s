@@ -29,7 +29,7 @@
 " Plug 'nvim-tree/nvim-tree.lua'
 
 " === Which-key (показывает доступные keymaps) ===
-" Plug 'folke/which-key.nvim'
+Plug 'folke/which-key.nvim'
 
 " === Better terminal ===
 " Plug 'akinsho/toggleterm.nvim'
