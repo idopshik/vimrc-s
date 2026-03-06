@@ -1,0 +1,38 @@
+lua << EOF
+require('nvim-treesitter.config').setup {
+  ensure_installed = {
+    "python", "vim", "lua", "javascript", "bash"
+  },
+  
+  highlight = {
+    enable = true,
+    disable = {},
+    additional_vim_regex_highlighting = false,
+  },
+  
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  
+  indent = {
+    enable = true,
+    disable = { "python" },
+  },
+  
+  fold = {
+    enable = true,
+  },
+}
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
+
+vim.cmd('command! TSStatus :echo "Treesitter OK"')
+EOF
