@@ -5,7 +5,7 @@ require('nvim-treesitter.install').compilers = { "gcc" }
 -- Опции установки
 require('nvim-treesitter.install').prefer_git = false
 
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.config').setup {
   ensure_installed = {
     "python", "vim", "lua", "javascript", "bash"
   },
