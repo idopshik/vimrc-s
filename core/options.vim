@@ -97,10 +97,12 @@ endif
 
 " === Clipboard (system clipboard integration) ===
 if has('clipboard')
+    " раздражает, что когда удаляю - портится то, что я держал в буфере и
+    " собирался вставить. 
     if has('unnamedplus')
-        set clipboard=unnamedplus
+        " set clipboard=unnamedplus
     else
-        set clipboard=unnamed
+        " set clipboard=unnamed
     endif
 endif
 

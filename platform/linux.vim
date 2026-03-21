@@ -43,7 +43,7 @@ let g:vimwiki_list = [{'path': '/home/st/MegaLinux/tech.wiki/',
 if has('clipboard')
     if has('unnamedplus')
         " Используем системный clipboard (Ctrl+C/V в других приложениях)
-        set clipboard=unnamedplus
+        " set clipboard=unnamedplus
     endif
 endif
 

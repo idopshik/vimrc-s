@@ -63,6 +63,21 @@ function! s:SourceIfExists(file) abort
     endif
 endfunction
 
+" === Clipboard для Linux (xclip) ===
+if g:is_linux && executable('xclip')
+    let g:clipboard = {
+        \   'name': 'xclip-xfsel',
+        \   'copy': {
+        \       '+': 'xclip -selection clipboard',
+        \       '*': 'xclip -selection primary',
+        \   },
+        \   'paste': {
+        \       '+': 'xclip -selection clipboard -o',
+        \       '*': 'xclip -selection primary -o',
+        \   },
+        \ }
+endif
+
 " ══════════════════════════════════════════════════════════════════════════════
 " ЭТАП 1: Базовые настройки (до плагинов)
 " ══════════════════════════════════════════════════════════════════════════════

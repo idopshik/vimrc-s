@@ -57,8 +57,7 @@ let g:startify_lists = [
       \ ]
 
 let g:startify_bookmarks = [
-      \ { 'v': g:vim_runtime . '/sammeln.vim' },
-      \ { 'k': g:vim_runtime . '/core/keymap.vim' },
+      \ { 's': g:vim_runtime . '/sammeln.vim' },
       \ ]
 
 
@@ -81,7 +80,7 @@ let g:startify_bookmarks = [
 " Startify сам выбирает случайную цитату и рисует cowsay.
 " Никаких кастомных функций не нужно.
 
-let s:tips_file = expand('~/.vim/vimtricks.txt')
+let s:tips_file = expand('~/Dropbox/.vim_cloud/vimtricks.txt')
 
 function! s:load_vimtricks() abort
     if !filereadable(s:tips_file)
