@@ -41,8 +41,10 @@ if $MINIGO
     finish
 endif
 
-" Добавляем runtime path
-let &runtimepath = g:vim_runtime . ',' . &runtimepath
+" Добавляем путь к Lua модулям
+if g:is_nvim
+    let &runtimepath = g:vim_runtime . '/lua,' . &runtimepath
+endif
 
 " === Функция безопасной загрузки ===
 function! s:Source(file) abort

@@ -1,4 +1,10 @@
 lua << EOF
+-- Явно указываем компилятор gcc
+require('nvim-treesitter.install').compilers = { "gcc" }
+
+-- Опции установки
+require('nvim-treesitter.install').prefer_git = false
+
 require('nvim-treesitter.config').setup {
   ensure_installed = {
     "python", "vim", "lua", "javascript", "bash"
@@ -27,6 +33,12 @@ require('nvim-treesitter.config').setup {
   
   fold = {
     enable = true,
+  },
+  
+  -- Настройки установки
+  install = {
+    ensure_installed = { "python", "vim", "lua", "bash" },
+    compilers = { "gcc" },
   },
 }
 
