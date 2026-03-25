@@ -39,8 +39,9 @@ if isdirectory('C:\Progs\ctags')
     let g:tagbar_ctags_bin = 'C:\Progs\ctags\ctags.exe'
     let g:tagbar_use_cache = 0
 elseif executable('ctags')
+    let g:tagbar_ctags_bin = 'C:/Users/belousov/Progs/ctags/ctags.exe'
     let g:easytags_cmd = 'ctags'
-    let g:tagbar_ctags_bin = 'ctags'
+    " let g:tagbar_ctags_bin = 'ctags'
 endif
 
 
