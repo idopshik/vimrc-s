@@ -1,0 +1,1194 @@
+🔧 Как компилировать LaTeX в Neovim с VimTeX
+
+Откройте любой .tex файл и нажмите:
+Команда	Действие
+,ll	Начать компиляцию (запускает latexmk в непрерывном режиме)
+,lv	Открыть PDF (или выполнить forward search — перейти к текущей позиции в PDF)
+,lc	Очистить временные файлы (удаляет build/ и другие артефакты)
+,lL	Остановить компиляцию
+,lo	Показать окно вывода компиляции (лог)
+,le	Показать ошибки компиляции (если есть)
+📝 Первый запуск
+
+    Откройте ваш .tex файл.
+
+    Нажмите ,ll (запятая, затем буква l дважды).
+
+        VimTeX создаст папку build/ (как вы настроили) и скомпилирует документ.
+
+        SumatraPDF откроется автоматически (если путь указан верно).
+
+    При каждом сохранении файла (:w) latexmk автоматически перекомпилирует PDF.
+
+    Чтобы обновить просмотр в SumatraPDF после компиляции, нажмите ,lv — курсор в редакторе переместит SumatraPDF на соответствующее место.
+
+⚠️ Если не работает
+
+    Убедитесь, что вы находитесь в режиме Normal (нажмите Esc).
+
+    Проверьте, что VimTeX установлен: :PlugStatus (должен быть lervag/vimtex).
+
+    Проверьте конфигурацию пути к SumatraPDF в вашем plugins_config/nvim_only.vim (должен быть полный путь к .exe).
+
+    Запустите вручную в командной строке: latexmk -pdf вашфайл.tex — если не работает, проблема в LaTeX-дистрибутиве.
+
+🧠 Альтернативный способ
+
+Если не хотите запоминать маппинги, можно использовать команду :VimtexCompile (автодополнение работает).
+
+Теперь просто набирайте текст, сохраняйте файл и наблюдайте, как PDF обновляется сам. Приятной работы!
+,ll
+
+не рабоает у меня!
+
+Мы видим проблему: пользователь нажимает ,ll и ничего не происходит. Нужно диагностировать, почему VimTeX не реагирует. Возможные причины: плагин не установлен, конфигурация не загрузилась, leader не тот, или VimTeX требует дополнительных настроек. Надо дать четкие шаги для проверки.
+
+Давайте разберемся, почему ,ll не работает. Это может быть связано с несколькими причинами. Пройдем по шагам диагностики.
+1. Убедитесь, что VimTeX установлен
+
+В Neovim выполните:
+text
+
+:PlugStatus
+
+Найдите в списке lervag/vimtex. Если его нет — значит плагин не установлен. Нужно выполнить :PlugInstall (после добавления строки в plugins/nvim_only.vim).
+2. Проверьте, загрузился ли VimTeX
+
+Выполните:
+text
+
+:scriptnames | grep vimtex
+
+Если ничего не показывает — плагин не загружен. Может быть, вы не перезапустили Neovim после установки.
+3. Убедитесь, что файл .tex распознается как tex
+
+Откройте ваш .tex файл и выполните:
+text
+
+:set filetype?
+
+Должно быть filetype=tex. Если нет — VimTeX не активируется. Можно принудительно: :set filetype=tex.
+4. Проверьте, какие маппинги вообще есть у VimTeX
+
+Выполните:
+text
+
+:imap ,l
+:nmap ,l
+
+Если ничего не выводится — значит маппинги VimTeX не установлены. Обычно VimTeX создает маппинги с лидером по умолчанию (\), но ваш лидер — ,. VimTeX должен автоматически подхватывать ваш g:mapleader. Проверьте значение лидера:
+text
+
+:echo mapleader
+
+Должно быть ,. Если нет — установите в конфиге (например, в core/options.vim): let mapleader = ",".
+5. Попробуйте вызвать компиляцию вручную
+
+Внутри .tex файла выполните команду:
+text
+
+:VimtexCompile
+
+Если команда не найдена (E492: Not an editor command), значит VimTeX не загрузился. Если команда работает — значит проблема именно в маппингах.
+6. Проверьте конфигурационный файл VimTeX
+
+Вы говорили, что добавили настройки в plugins_config/nvim_only.vim. Убедитесь, что этот файл действительно загружается. В Neovim выполните:
+text
+
+:echo g:vim_runtime
+
+И потом:
+text
+
+:echo filereadable(g:vim_runtime . '/plugins_config/nvim_only.vim')
+
+Если возвращает 1 — файл читается. Теперь проверьте, что код внутри выполнился: добавьте в начало этого файла временное сообщение:
+text
+
+echom "nvim_only.vim loaded"
+
+Перезапустите Neovim и выполните :messages — должно появиться это сообщение.
+7. Проблема с g:mapleader и временем загрузки
+
+В Vim/Neovim mapleader должен быть определен ДО загрузки VimTeX. В вашей структуре sammeln.vim загружает плагины (plug#end()), а потом загружает конфигурацию плагинов. Убедитесь, что mapleader установлен в core/options.vim (или в sammeln.vim до вызова plug#begin). Можно временно прописать в sammeln.vim перед плагинами:
+text
+
+let mapleader = ","
+
+8. Альтернативный вариант — явно указать маппинги VimTeX
+
+Если автоматические маппинги не работают, можно прописать их вручную в plugins_config/nvim_only.vim:
+vim
+
+" Ручные маппинги для VimTeX (если автоматические не работают)
+nmap <leader>ll :VimtexCompile<CR>
+nmap <leader>lv :VimtexView<CR>
+nmap <leader>lc :VimtexClean<CR>
+
+9. Самый быстрый тест
+
+Временно отключите все плагины, кроме VimTeX, и проверьте. Для этого можно запустить Neovim с минимальным конфигом:
+bash
+
+nvim -u NONE -c "set nocompatible" -c "set runtimepath+=~/.local/share/nvim/site/plugged/vimtex" -c "filetype plugin indent on" -c "syntax enable" test.tex
+
+(путь к vimtex нужно подставить свой)
+Вывод
+
+Скорее всего, либо VimTeX не установлен, либо mapleader установлен после загрузки VimTeX, либо вы не в режиме Normal (нажмите Esc перед ,ll).
+
+Пожалуйста, выполните пункты 1, 3, 4, 5 и напишите, что получилось. Так мы быстро найдем корень проблемы.
+Finished. 0 error(s).
+[=====================================================================]
+
+- indentLine: OK
+- vim-devicons: OK
+- markdown-preview.nvim: OK
+- fzf: OK
+- vim-snippets: OK
+- fzf-mru.vim: OK
+- vim-transparent: OK
+- vim-autoformat: OK
+- plenary.nvim: OK
+- vim-cursorword: OK
+- jellybeans.vim: OK
+- vim-nerdtree-syntax-highlight: OK
+- vim-js: OK
+- asyncrun.vim: OK
+- undotree: OK
+- vim-rooter: OK
+- vimspector: OK
+- tagbar: OK
+- nord-vim: OK
+- nvim-treesitter: OK
+- coc.nvim: OK
+- tokyonight.nvim: OK
+- vim-merginal: OK
+- vim-obsession: OK
+- gv.vim: OK
+- oceanic-next: OK
+- ack.vim: OK
+- vim-airline-themes: OK
+- vim-go: OK
+- git-messenger.vim: OK
+- gruvbox: OK
+- vim-gitgutter: OK
+- vim-airline: OK
+- vim-markdown: OK
+- vifm.vim: OK
+- papercolor-theme: OK
+- rainbow_csv: OK
+- vimwiki: OK
+- vim-jsx-pretty: OK
+- vim-python-pep8-indent: OK
+- telescope.nvim: OK
+- yats.vim: OK
+- night-owl.vim: OK
+- nerdtree: OK
+- ultisnips: OK
+- python-syntax: OK
+- vim-fugitive: OK
+- quickmenu.vim: OK
+- tabular: OK
+- vim-deus: OK
+- gruvbox-material: OK
+- simpylfold: OK
+- which-key.nvim: OK
+- vim-startify: OK
+- ale: OK
+- fzf.vim: OK
+- vim-tmux-navigator: OK
+- vim-visual-multi: OK
+- vim-sublime-monokai: OK
+- calendar-vim: OK
+- vim-css-color: OK
+- rainbow: OK
+- emmet-vim: OK
+- vim-surround: OK
+- catppuccin: OK
+- vim-javascript: OK
+- telescope-fzf-native.nvim: OK
+- nerdcommenter: OK
+- vimtex: OK
+
+Мы видим, что vimtex присутствует в списке установленных плагинов (последняя строка). Значит плагин установлен. Теперь нужно выяснить, почему маппинг ,ll не работает.
+
+Пользователь сообщил, что leader у него это , (запятая). VimTeX по умолчанию использует g:maplocalleader или g:mapleader? По документации VimTeX использует <localleader> по умолчанию (обратный слеш), но можно настроить. Однако часто VimTeX автоматически подхватывает g:mapleader. Но если leader — запятая, то ,ll может интерпретироваться как "нажать запятую (которая в Vim по умолчанию повторяет последнюю команду f/t), а затем ll". Это не сработает.
+
+В Vim запятая — это стандартная команда для повторения предыдущего движения f/F/t/T в обратном направлении. Если пользователь переопределил mapleader на запятую, то маппинги, использующие <leader>, будут ожидать нажатия , как лидера, но это конфликтует со стандартным поведением запятой. Тем не менее, маппинг <leader>ll должен работать, если правильно установлен mapleader.
+
+Нужно проверить:
+
+    Каково значение mapleader на момент загрузки VimTeX.
+
+    Загрузились ли маппинги VimTeX.
+
+    Может быть, VimTeX использует не <leader>, а <localleader>.
+
+Пользователь выполнил :PlugStatus, но не проверил другие команды. Предложим ему проверить :echo mapleader, :nmap ,l, :VimtexCompile и т.д.
+
+Следуя нашей предыдущей диагностике, нужно попросить пользователя выполнить конкретные шаги. Поскольку он написал, что ,ll не работает, и мы видим, что плагин установлен, наиболее вероятная причина: либо mapleader не установлен в ,, либо VimTeX использует другой префикс. В документации VimTeX: по умолчанию маппинги используют <localleader>, который по умолчанию равен \. Но можно изменить g:vimtex_mappings_enabled = 1 и g:vimtex_leader = ','.
+
+Предложим пользователю явно настроить лидер для VimTeX в его конфиге plugins_config/nvim_only.vim:
+vim
+
+let g:vimtex_leader = ','  " Явно указываем лидер для VimTeX
+
+После этого перезапустить Neovim и попробовать ,ll.
+
+Также можно предложить временно использовать команду :VimtexCompile, чтобы проверить работоспособность компиляции без маппингов.
+
+Ответим пользователю, объяснив эти моменты и дав конкретные шаги.
+
+Понял, проблема в том, что VimTeX по умолчанию использует <localleader>, а не g:mapleader. Стандартный <localleader> — это обратный слеш \. Поэтому ,ll не срабатывает.
+🔍 Диагностика (пожалуйста, выполните в Neovim)
+
+    Узнайте текущий localleader:
+    text
+
+    :echo maplocalleader
+
+    Скорее всего, вы увидите пустую строку или \.
+
+    Попробуйте стандартную комбинацию VimTeX:
+    text
+
+    \ll
+
+    (обратный слеш, затем ll). Если заработает — значит плагин исправен, просто не тот лидер.
+
+    Проверьте, работает ли команда компиляции вручную:
+    text
+
+    :VimtexCompile
+
+    Если команда есть и запускает компиляцию — плагин загружен нормально, проблема только в маппингах.
+
+✅ Решение: переназначить лидер для VimTeX
+
+Добавьте в ваш файл plugins_config/nvim_only.vim после всех остальных настроек VimTeX (или в конец файла):
+vim
+
+" Явно задаём лидер для VimTeX (запятая)
+let g:vimtex_leader = ','
+
+Если вы также хотите, чтобы VimTeX использовал именно , для всех своих маппингов, этого достаточно. После добавления строки перезапустите Neovim и откройте .tex файл заново.
+Альтернативный способ (если не поможет)
+
+Можно вручную прописать нужные маппинги (не полагаясь на автоматические):
+vim
+
+" В том же файле plugins_config/nvim_only.vim
+nmap <leader>ll :VimtexCompile<CR>
+nmap <leader>lv :VimtexView<CR>
+nmap <leader>lc :VimtexClean<CR>
+
+Но учтите, что g:vimtex_leader предпочтительнее, так он переопределит все внутренние маппинги VimTeX (а их много: lv, le, lo, lC и т.д.).
+🧪 Проверка после изменений
+
+    Перезапустите Neovim.
+
+    Откройте любой .tex файл.
+
+    Нажмите ,ll (запятая + две буквы l).
+
+    Должна начаться компиляция, и SumatraPDF откроется (если путь к нему прописан верно).
+
+Если всё равно не работает — выполните команду :nmap ,l и покажите вывод. Это покажет, какие маппинги на запятую у вас вообще есть.
+📌 Важное замечание
+
+Запятая в Vim — это стандартная команда (повтор предыдущего f/F/t/T в обратную сторону). Когда вы назначаете её лидером, она перестаёт работать как стандартная команда. В обычном режиме вы всё равно сможете использовать , как лидер для ваших маппингов, но её поведение "повторить обратное движение" исчезнет. Если вам это мешает, лучше оставить лидером обратный слеш \ (он редко используется в стандартных командах) и использовать \ll для LaTeX. Но если вы привыкли к запятой — ок, просто имейте в виду.
+echo maplocalleader - пустая строка у меня
+
+а-а-а! надо localleader - он у меня пробел.
+
+работает
+
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Fatal Package font
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Emergency stop.
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Fatal error o
+
+
+чё он хочет то?
+
+Мы видим, что пользователь наконец-то смог запустить компиляцию, но получил ошибку от пакета fontspec. Пользователь спрашивает "чё он хочет то?" - нужно объяснить, что fontspec требует компиляции через XeLaTeX или LuaLaTeX, а не pdflatex. Также возможно отсутствие нужных шрифтов.
+
+Нужно дать понятный ответ: как исправить, возможно, настроить latexmk на использование xelatex или lualatex, установить шрифты или изменить преамбулу.
+
+Отлично, что ,ll заработал! Ошибка с fontspec — классическая.
+Что случилось?
+
+Пакет fontspec не работает с компилятором pdflatex. Он требует движка, поддерживающего Unicode и современные шрифты: XeLaTeX или LuaLaTeX. Вы, скорее всего, используете в преамбуле что-то вроде:
+latex
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}  % или любой системный шрифт
+
+Как исправить?
+Вариант 1: Переключить компилятор в VimTeX (рекомендуется)
+
+В вашем файле plugins_config/nvim_only.vim измените настройку latexmk. Вместо -pdf (который вызывает pdflatex) используйте -xelatex или -lualatex:
+vim
+
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : 'build',
+    \ 'options' : [
+    \   '-xelatex',           # или '-lualatex'
+    \   '-interaction=nonstopmode',
+    \   '-synctex=1',
+    \   '-shell-escape',
+    \ ],
+\}
+
+После этого перезапустите Neovim и снова нажмите ,ll.
+Вариант 2: Глобально настроить latexmk (на всю систему)
+
+Создайте или отредактируйте файл %USERPROFILE%\.latexmkrc (Windows) или ~/.latexmkrc (Linux/Mac) и добавьте:
+perl
+
+$pdf_mode = 1;
+$pdflatex = 'xelatex -interaction=nonstopmode -synctex=1 %O %S';
+# Или для lualatex:
+# $pdflatex = 'lualatex -interaction=nonstopmode -synctex=1 %O %S';
+
+Но этот способ повлияет на все проекты, даже те, которые используют pdflatex для обычных документов.
+Вариант 3: Если вы не хотите менять компилятор
+
+Можно заменить fontspec на что-то другое, но это неудобно. Если вам нужны только русские буквы, можно использовать inputenc + babel:
+latex
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+Но тогда вы потеряете возможность использовать системные шрифты (Arial, Times New Roman и т.д.) напрямую.
+Дополнительно: установка недостающих шрифтов
+
+Ошибка может быть не только в компиляторе, но и в том, что вы запрашиваете шрифт, которого нет в системе. Например:
+latex
+
+\setmainfont{Some Font}   % Если такого шрифта нет — ошибка.
+
+Убедитесь, что шрифт установлен в Windows. Для проверки можно использовать стандартный шрифт, который точно есть: Arial, Times New Roman, Courier New.
+Итог
+
+Самое простое решение: замените в вашей конфигурации VimTeX -pdf на -xelatex или -lualatex. После этого ,ll должен компилировать без ошибок.
+
+Если ошибка останется, покажите первые строки вашего .tex файла (преамбулу) — я помогу подобрать правильные настройки.
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Fatal Package font
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Emergency stop.
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Fatal error o
+
+
+но суматру с pdf он открыл
+
+Мы видим, что ошибка fontspec: он не может работать с pdflatex. Но Sumatra открыла PDF? Возможно, предыдущая компилятация сработала? Или PDF был уже сгенерирован ранее? Сейчас главное: пользователь понял, что проблема в компиляторе. Нужно дать инструкцию по смене компилятора в его конфиге VimTeX. Ответим кратко и по делу.
+
+Понял, Sumatra открыла PDF — значит, компиляция всё-таки прошла, но с ошибками? Это странно. Скорее всего, PDF был сгенерирован предыдущей успешной компиляцией, а сейчас latexmk запустил pdflatex, который упал на fontspec, но Sumatra просто открыла старый PDF.
+Что делать: переключить VimTeX на XeLaTeX или LuaLaTeX
+
+Ваш конфиг plugins_config/nvim_only.vim сейчас, видимо, содержит:
+vim
+
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : 'build',
+    \ 'options' : [
+    \   '-pdf',
+    \   '-interaction=nonstopmode',
+    \   '-synctex=1',
+    \   '-shell-escape',
+    \ ],
+\}
+
+Измените -pdf на -xelatex (или -lualatex):
+vim
+
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : 'build',
+    \ 'options' : [
+    \   '-xelatex',
+    \   '-interaction=nonstopmode',
+    \   '-synctex=1',
+    \   '-shell-escape',
+    \ ],
+\}
+
+Сохраните файл, перезапустите Neovim, откройте .tex и нажмите ,ll.
+Проверка
+
+Теперь в окне сообщений не должно быть ошибок fontspec. Если они остались — возможно, в вашем документе используется шрифт, которого нет в Windows. Попробуйте минимальный пример:
+latex
+
+\documentclass{article}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\begin{document}
+Hello, world!
+\end{document}
+
+С XeLaTeX это скомпилируется без проблем.
+Если Sumatra всё ещё не обновляет PDF
+
+После смены компилятора может понадобиться очистить временные файлы: нажмите ,lc (VimtexClean), затем ,ll.
+
+Теперь всё должно работать.
+всё равно на тесте ошибки.
+
+
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Fatal Package font
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Emergency stop.
+C:\Program Files\MiKTeX\tex\latex\fontspec\fontspec.sty|101 error| Fatal error o
+
+
+мой конфиг
+
+" ══════════════════════════════════════════════════════════════════════════════
+" VimTeX (LaTeX) — компиляция через latexmk, просмотр в SumatraPDF (Windows)
+" ══════════════════════════════════════════════════════════════════════════════
+
+if has('nvim')
+    " Метод компиляции: latexmk (лучший вариант)
+    let g:vimtex_compiler_method = 'latexmk'
+    
+    " Настройки latexmk: складывать временные файлы в build/
+    let g:vimtex_compiler_latexmk = {
+        \ 'build_dir' : 'build',
+        \ 'options' : [
+        \   '-xelatex',
+        \   '-interaction=nonstopmode',
+        \   '-synctex=1',
+        \   '-shell-escape',
+        \ ],
+    \}
+    
+    " Просмотрщик PDF для Windows (SumatraPDF)
+    " Укажите полный путь, если SumatraPDF не в PATH
+    let g:vimtex_view_general_viewer = 'C:/Progs/Sumatra/SumatraPDF-3.6.1-64.exe'
+    let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+
+Мы видим, что проблема с fontspec сохраняется даже после переключения на -xelatex. Ошибка говорит о том, что xelatex (или pdflatex?) все еще запускается. Возможно, latexmk игнорирует -xelatex из-за глобальной конфигурации или кеша. Нужно проверить, какой именно движок используется.
+
+Также возможно, что в самом документе есть команды, несовместимые с xelatex, но fontspec должен работать в xelatex. Ошибка на строке 101 fontspec.sty указывает на внутреннюю ошибку пакета, что может быть вызвано конфликтом с другими пакетами или версией MikTeX.
+
+Дадим пользователю диагностические шаги и решение: проверить, какой компилятор реально вызывает latexmk, предложить очистить кеш, проверить минимальный пример, обновить пакеты MikTeX, или использовать lualatex.
+
+Понял, проблема глубже. Даже с -xelatex ошибка остаётся. Это означает, что latexmk всё равно вызывает pdflatex (игнорирует вашу настройку) или в вашем документе есть что-то, что ломает fontspec даже в XeLaTeX.
+🔍 Шаг 1: Узнаем, какой компилятор реально запускается
+
+В Neovim, после нажатия ,ll, откройте окно вывода:
+text
+
+:VimtexCompileOutput
+
+Или просто посмотрите в лог: ,lo (VimtexLog). Найдите строку, начинающуюся с Runs:. Там будет указано, какой движок реально вызван (pdflatex, xelatex или lualatex).
+
+Если там pdflatex — значит latexmk не подхватил -xelatex. Это может быть из-за глобального ~/.latexmkrc или неправильного синтаксиса.
+⚙️ Шаг 2: Исправляем настройку VimTeX
+
+Попробуйте явно указать latexmk через переменную g:vimtex_compiler_latexmk_engines:
+vim
+
+let g:vimtex_compiler_latexmk_engines = {
+    \ '_' : '-xelatex',
+    \}
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : 'build',
+    \ 'options' : [
+    \   '-interaction=nonstopmode',
+    \   '-synctex=1',
+    \   '-shell-escape',
+    \ ],
+\}
+
+Или ещё проще — сменить метод компиляции на latexmk с явным указанием движка через callback:
+vim
+
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : 'build',
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-xelatex',
+    \   '-interaction=nonstopmode',
+    \   '-synctex=1',
+    \   '-shell-escape',
+    \ ],
+\}
+
+После изменения перезапустите Neovim и попробуйте снова.
+🧪 Шаг 3: Тест с минимальным документом
+
+Создайте файл test.tex с таким содержимым (без преамбулы, только самое простое):
+latex
+
+\documentclass{article}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\begin{document}
+Hello
+\end{document}
+
+Скомпилируйте его вручную из командной строки (вне Neovim), чтобы исключить проблемы с VimTeX:
+cmd
+
+cd C:\путь\к\папке
+xelatex test.tex
+
+Если и так ошибка — проблема в вашем MiKTeX (возможно, повреждён пакет fontspec или не хватает шрифтов). Если компилируется — проблема в настройке VimTeX.
+📦 Шаг 4: Обновление пакетов MiKTeX
+
+Ошибка на строке 101 fontspec.sty может быть багом в старой версии. Обновите пакеты:
+
+    Откройте MiKTeX Console (Пуск → MiKTeX Console)
+
+    Перейдите на вкладку Updates
+
+    Нажмите Check for updates, затем Update now
+
+После обновления повторите тест.
+🔄 Шаг 5: Очистка кеша latexmk
+
+Иногда latexmk запоминает старые настройки. Удалите папку build/ (или выполните ,lc в Neovim) и удалите файл .latexmkrc из домашней папки, если он там есть (временно).
+🚀 Шаг 6: Альтернатива — использовать LuaLaTeX
+
+Попробуйте заменить -xelatex на -lualatex. Он ещё более современный и лучше работает с fontspec:
+vim
+
+'options' : ['-lualatex', '-interaction=nonstopmode', '-synctex=1', '-shell-escape'],
+
+📝 Если ничего не помогает
+
+Временно уберите из документа \usepackage{fontspec} и используйте стандартные шрифты LaTeX. Для русского языка можно обойтись без fontspec:
+latex
+
+\documentclass{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\begin{document}
+Привет, мир!
+\end{document}
+
+Это точно скомпилируется pdflatex (можно вернуться к -pdf). Но это не решение, а временный обходной путь.
+❓ Пожалуйста, выполните
+
+    Запустите вручную xelatex test.tex из командной строки — успех или ошибка?
+
+    Посмотрите вывод :VimtexCompileOutput после ,ll — что там написано?
+
+    Какая версия MiKTeX? (выполните latex --version в cmd)
+
+От этого будем плясать дальше.
+VimtexCompileOutput пишет no output exist
+
+Мы видим, что после нажатия ,ll команда :VimtexCompileOutput говорит "no output exist", что означает, что компиляция даже не запустилась или не сгенерировала лог. Это указывает на то, что VimTeX не смог запустить latexmk. Возможно, проблема в том, что latexmk не найден в PATH, или VimTeX не может его вызвать.
+
+Также пользователь сказал, что maplocalleader у него пробел, но это не связано с компиляцией. Нужно проверить, установлен ли latexmk в системе MiKTeX. Обычно в MiKTeX есть latexmk.
+
+План:
+
+    Предложить проверить наличие latexmk: выполнить в командной строке latexmk --version.
+
+    Если latexmk есть, то возможно проблема в том, что VimTeX не видит его из-за переменных окружения. Предложить явно указать путь к latexmk в конфиге.
+
+    Также можно предложить альтернативный способ компиляции без latexmk, используя xelatex напрямую (но с ручным запуском). Однако это менее удобно.
+
+    Учитывая, что пользователь на Windows, нужно проверить, что в конфиге используется правильный shell: у него в platform/windows.vim установлен set shell=cmd.exe, что нормально.
+
+Ответ должен быть конкретным: дать диагностические команды и возможные исправления.
+
+Ошибка VimtexCompileOutput: no output exist означает, что VimTeX даже не запустил компиляцию. Скорее всего, проблема в том, что latexmk не найден в системе.
+✅ Диагностика (выполните в командной строке Windows)
+
+    Проверьте, установлен ли latexmk:
+    text
+
+    latexmk --version
+
+    Если команда не найдена — нужно установить latexmk через MiKTeX Console.
+
+    Установка latexmk в MiKTeX:
+
+        Откройте MiKTeX Console (Пуск → MiKTeX Console)
+
+        Перейдите на вкладку Packages
+
+        Найдите пакет latexmk и установите его (если ещё не установлен)
+
+    Проверьте, видит ли Neovim latexmk:
+    Внутри Neovim выполните:
+    text
+
+    :echo executable('latexmk')
+
+    Должно вернуть 1. Если 0 — Neovim не видит latexmk в PATH.
+
+🔧 Исправление
+Вариант А: Добавить путь к latexmk в PATH (если MiKTeX установлен)
+
+Обычно MiKTeX кладёт исполняемые файлы в C:\Program Files\MiKTeX\miktex\bin\x64\. Убедитесь, что эта папка есть в системной переменной PATH. Перезапустите Neovim после изменений.
+Вариант Б: Указать полный путь к latexmk в конфиге VimTeX
+
+В вашем plugins_config/nvim_only.vim добавьте строчку (перед настройками компилятора):
+vim
+
+let g:vimtex_compiler_latexmk = {
+    \ 'executable' : 'C:/Program Files/MiKTeX/miktex/bin/x64/latexmk.exe',
+    \ 'build_dir' : 'build',
+    \ 'options' : [
+    \   '-xelatex',
+    \   '-interaction=nonstopmode',
+    \   '-synctex=1',
+    \   '-shell-escape',
+    \ ],
+\}
+
+Путь может отличаться в зависимости от версии MiKTeX. Проверьте реальное расположение latexmk.exe.
+🧪 После исправления
+
+    Перезапустите Neovim.
+
+    Откройте .tex файл.
+
+    Нажмите ,ll.
+
+    Должна появиться компиляция. Если снова нет вывода — выполните :messages и посмотрите ошибки.
+
+⚠️ Если latexmk установлен, но VimTeX всё равно не запускает
+
+Попробуйте временно использовать альтернативный метод компиляции — через xelatex напрямую (без latexmk). В конфиге замените:
+vim
+
+let g:vimtex_compiler_method = 'xelatex'
+let g:vimtex_compiler_custom = {
+    \ 'command' : 'xelatex',
+    \ 'options' : ['-interaction=nonstopmode', '-synctex=1', '-shell-escape'],
+    \ 'continuous' : 0,
+\}
+
+Но с этим методом не будет автоматической перекомпиляции при сохранении. Придётся каждый раз нажимать ,ll.
+Итог
+
+Скорее всего, проблема в отсутствии latexmk в PATH или в том, что Neovim не видит его из-за настроек shell. Проверьте :echo executable('latexmk') и дайте знать, что получилось. Если 0 — нужно установить latexmk и/или прописать пути.
+PS C:\Users\st\Documents\LaTexScripts\Itelma_feb16SW> latexmk --version
+Initial Win CP for (console input, console output, system): (CP866, CP65001, CP1251)
+I changed them all to CP1251
+Latexmk, John Collins, 9 March 2026. Version 4.88
+Reverting Windows console CPs to (in,out) = (866,65001)
+PS C:\Users\st\Documents\LaTexScripts\Itelma_feb16SW>
+
+
+через mixtex
+
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(calculation_friction_coef.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(C:\Program Files\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Program Files\MiKTeX\tex/latex/base\size12.clo))
+(C:\Program Files\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Program Files\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
+(C:\Program Files\MiKTeX\tex/latex/l3kernel\expl3.sty
+(C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-xetex.def)))
+(C:\Program Files\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+(C:\Program Files\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Program Files\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(C:\Program Files\MiKTeX\tex/latex/polyglossia\polyglossia.sty
+(C:\Program Files\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(C:\Program Files\MiKTeX\tex/generic/iftex\iftex.sty)
+(C:\Program Files\MiKTeX\tex/latex/polyglossia\gloss-latex.ldf))
+(C:\Program Files\MiKTeX\tex/latex/polyglossia\gloss-russian.ldf
+(C:\Program Files\MiKTeX\tex/latex/polyglossia\xpg-cyrillicnumbers.sty)
+(C:\Program Files\MiKTeX\tex/latex/polyglossia\babelsh.def))
+(C:\Program Files\MiKTeX\tex/latex/polyglossia\gloss-english.ldf)
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Program Files\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+(C:\Program Files\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Program Files\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Program Files\MiKTeX\tex/generic/iftex\ifvtex.sty)
+(C:\Program Files\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Program Files\MiKTeX\tex/latex/tabularray\tabularray.sty)
+(C:\Program Files\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Program Files\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(C:\Program Files\MiKTeX\tex/latex/graphics-def\xetex.def)
+(C:\Program Files\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(C:\Program Files\MiKTeX\tex/latex/ninecolors\ninecolors.sty)
+(C:\Program Files\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Program Files\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)
+(C:\Program Files\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty)
+(C:\Program Files\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(C:\Program Files\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(C:\Program Files\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(C:\Program Files\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(C:\Program Files\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Program Files\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Program Files\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Program Files\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
+(C:\Program Files\MiKTeX\tex/latex/kvoptions\kvoptions.sty)))
+(C:\Program Files\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(C:\Program Files\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(C:\Program Files\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(C:\Program Files\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Program Files\MiKTeX\tex/latex/url\url.sty)
+(C:\Program Files\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Program Files\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(C:\Program Files\MiKTeX\tex/latex/hyperref\hxetex.def
+(C:\Program Files\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(C:\Program Files\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty)))
+(calculation_friction_coef.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+(calculation_friction_coef.out) (calculation_friction_coef.out)
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd) [1]
+Overfull \hbox (18.0pt too wide) in paragraph at lines 96--97
+[][] 
+
+Overfull \hbox (18.0pt too wide) in paragraph at lines 106--107
+[][] 
+[2] [3]
+Overfull \hbox (18.00002pt too wide) in paragraph at lines 238--239
+[][] 
+[4] [5] [6]
+Missing character: There is no ✗ in font Times New Roman/OT:script=cyrl;languag
+e=dflt;mapping=tex-text;!
+Missing character: There is no ✗ in font Times New Roman/OT:script=cyrl;languag
+e=dflt;mapping=tex-text;!
+Missing character: There is no ✗ in font Times New Roman/OT:script=cyrl;languag
+e=dflt;mapping=tex-text;!
+Missing character: There is no ✓ in font Times New Roman/OT:script=cyrl;languag
+e=dflt;mapping=tex-text;!
+Missing character: There is no ✓ in font Times New Roman/OT:script=cyrl;languag
+e=dflt;mapping=tex-text;!
+Missing character: There is no ✓ in font Times New Roman/OT:script=cyrl;languag
+e=dflt;mapping=tex-text;!
+[7] [8] [9] (calculation_friction_coef.aux) )
+(see the transcript file for additional information)
+Output written on calculation_friction_coef.pdf (9 pages).
+SyncTeX written on calculation_friction_coef.synctex.gz.
+Transcript written on calculation_friction_coef.log.
+
+
+а в терминале
+
+vimcompileoutput - no output exist
+
+Мы видим, что пользователь вручную запустил xelatex из командной строки, и компиляция прошла успешно (создан PDF на 9 страниц, хотя есть предупреждения о недостающих символах ✗ и ✓). Но в Neovim VimTeX не запускает компиляцию, пишет "no output exist". Это указывает на то, что VimTeX не может запустить latexmk или не видит его вывод.
+
+Пользователь проверил latexmk --version, он установлен (версия 4.88). Проблема в том, что VimTeX не может найти latexmk или не может его выполнить из-за настроек shell/путей. Возможно, проблема с переменной PATH внутри Neovim или с настройкой shell для Windows.
+
+Нужно помочь пользователю диагностировать, почему VimTeX не запускает компиляцию, и предложить решения:
+
+    Проверить, видит ли Neovim latexmk: :echo executable('latexmk') (уже делали, но надо уточнить результат).
+
+    Убедиться, что latexmk работает из командной строки Neovim: выполнить внутри Neovim :!latexmk --version.
+
+    Возможно, VimTeX требует, чтобы latexmk был в PATH, но Neovim использует другой shell (cmd.exe или PowerShell). В конфиге Windows у пользователя установлено set shell=cmd.exe. Нужно проверить, что latexmk доступен в cmd.exe.
+
+    Предложить явно указать путь к latexmk в конфигурации VimTeX, как уже советовали.
+
+    Также возможно, что проблема с правами доступа к папке build (но пользователь компилирует вручную из той же папки).
+
+    Проверить, не блокирует ли антивирус или что-то ещё.
+
+Пользователь использует MiKTeX, latexmk.exe находится, вероятно, в C:\Program Files\MiKTeX\miktex\bin\x64\latexmk.exe. Предложить прописать полный путь в конфиг.
+
+Также можно временно переключить VimTeX на прямой вызов xelatex (без latexmk), чтобы хотя бы компиляция работала. Но лучше разобраться с latexmk.
+
+Ответим пользователю, предложим конкретные шаги для диагностики и исправления.
+
+Отлично, вижу, что xelatex из командной строки работает и создаёт PDF. Значит проблема именно в том, что VimTeX внутри Neovim не может запустить компилятор (latexmk). Давайте починим.
+🔍 Диагностика (выполните в Neovim)
+
+    Проверьте, видит ли Neovim latexmk:
+    text
+
+    :echo executable('latexmk')
+
+    Если вернуло 0 — значит Neovim не находит latexmk в PATH. Если 1 — проблема в другом.
+
+    Проверьте, работает ли latexmk из командной строки Neovim:
+    text
+
+    :!latexmk --version
+
+    Должно показать версию. Если ошибка 'latexmk' is not recognized... — значит окружение Neovim не видит путь к MiKTeX.
+
+    Узнайте, какой shell использует Neovim:
+    text
+
+    :echo &shell
+
+    У вас в platform/windows.vim прописано set shell=cmd.exe. Это нормально, но надо убедиться, что в cmd.exe доступен latexmk.
+
+✅ Решение 1: Явно указать полный путь к latexmk
+
+В вашем конфиге plugins_config/nvim_only.vim замените блок g:vimtex_compiler_latexmk на следующий (укажите реальный путь к latexmk.exe):
+vim
+
+let g:vimtex_compiler_latexmk = {
+    \ 'executable' : 'C:/Program Files/MiKTeX/miktex/bin/x64/latexmk.exe',
+    \ 'build_dir' : 'build',
+    \ 'options' : [
+    \   '-xelatex',
+    \   '-interaction=nonstopmode',
+    \   '-synctex=1',
+    \   '-shell-escape',
+    \ ],
+\}
+
+Важно: путь может отличаться в зависимости от версии MiKTeX. Проверьте в проводнике, где лежит latexmk.exe. Обычно это C:\Program Files\MiKTeX\miktex\bin\x64\latexmk.exe или C:\Program Files\MiKTeX\texmf\miktex\bin\latexmk.exe.
+
+После изменения перезапустите Neovim, откройте .tex файл и нажмите ,ll.
+✅ Решение 2: Добавить MiKTeX в PATH (чтобы работало без полного пути)
+
+    Закройте Neovim.
+
+    Откройте Системные переменные (Win + R → sysdm.cpl → Дополнительно → Переменные среды).
+
+    В разделе Системные переменные найдите Path → Изменить.
+
+    Добавьте новую строку: C:\Program Files\MiKTeX\miktex\bin\x64\ (или путь к папке с latexmk.exe).
+
+    Нажмите ОК везде.
+
+    Перезапустите Neovim.
+
+После этого :echo executable('latexmk') должно вернуть 1, и ,ll заработает.
+✅ Решение 3 (обходное): Использовать прямой вызов xelatex без latexmk
+
+Если с latexmk никак не получается, настройте VimTeX на прямой вызов xelatex (без автоматической перекомпиляции при сохранении, но компиляция будет работать):
+vim
+
+let g:vimtex_compiler_method = 'xelatex'
+let g:vimtex_compiler_custom = {
+    \ 'command' : 'xelatex',
+    \ 'options' : ['-interaction=nonstopmode', '-synctex=1', '-shell-escape'],
+    \ 'continuous' : 0,
+\}
+
+После этого ,ll будет компилировать один раз. Чтобы перекомпилировать после изменений, снова нажимайте ,ll.
+📌 Почему VimtexCompileOutput пустой?
+
+Потому что VimTeX даже не запускает процесс — он не может найти исполняемый файл (latexmk). Поэтому нет ни вывода, ни ошибок в логе.
+Что делать с ошибками Missing character: There is no ✗?
+
+Это не ошибки, а предупреждения: символы ✗ и ✓ отсутствуют в шрифте Times New Roman. Чтобы их убрать, либо установите шрифт, содержащий эти символы (например, Segoe UI Symbol), либо используйте команды \ding{51} и \ding{55} из пакета pifont, либо замените на обычные [X] и [V]. Но PDF создаётся, и это не критично.
+Итог
+
+Попробуйте сначала Решение 1 (полный путь к latexmk). Оно самое надёжное и не требует правки системного PATH. После этого ,ll должен заработать. Если нет — покажите вывод :echo executable('latexmk') и :!latexmk --version из Neovim.
+echo executable('latexmk') - 1
+
+
+:!latexmk --version
+Initial Win CP for (console input, console output, system): (CP866, CP65001, CP1251)
+I changed them all to CP1251
+Latexmk, John Collins, 9 March 2026. Version 4.88
+Reverting Windows console CPs to (in,out) = (866,65001)
+
+Нажмите ENTER или введите команду для продолжения
+
+
+cmd.exe
+
+Мы видим, что executable('latexmk') возвращает 1, и :!latexmk --version работает. Значит latexmk доступен. Однако VimTeX не запускает компиляцию и VimtexCompileOutput пуст. Причина может быть в том, что VimTeX не может создать папку build или у него проблемы с аргументами.
+
+Давайте проверим:
+
+    Попробуйте запустить компиляцию вручную через VimTeX, но с отладочным выводом:
+    text
+
+    :VimtexCompile
+
+    Затем сразу:
+    text
+
+    :messages
+
+    Посмотрите, нет ли ошибок.
+
+    Проверьте, существует ли папка build в текущем каталоге. Если нет, VimTeX должен её создать. Возможно, у вас нет прав на запись в текущей папке? Но скорее всего проблема в настройках.
+
+    Давайте временно уберем build_dir и попробуем компилировать в текущую папку. Измените в конфиге:
+    vim
+
+    let g:vimtex_compiler_latexmk = {
+        \ 'options' : [
+        \   '-xelatex',
+        \   '-interaction=nonstopmode',
+        \   '-synctex=1',
+        \   '-shell-escape',
+        \ ],
+    \}
+
+    (Убрали build_dir). Перезапустите Neovim и попробуйте ,ll.
+
+    Если заработает, значит проблема с созданием папки build. Тогда можно либо создавать её вручную, либо использовать другой путь, либо проверить права.
+
+    Если не заработает, попробуйте другой метод компиляции — через latexmk без дополнительных опций:
+    vim
+
+    let g:vimtex_compiler_method = 'latexmk'
+    let g:vimtex_compiler_latexmk = {}
+
+    (пустые опции, чтобы использовать дефолтные). Или явно укажите -pdf вместо -xelatex для проверки.
+
+    Проверьте, есть ли у вас в домашней папке файл .latexmkrc, который может конфликтовать. Если есть, временно переименуйте его.
+
+    Также проверьте, не блокирует ли антивирус или политика выполнения скриптов.
+
+Но главное: executable('latexmk') = 1, значит VimTeX должен видеть его. Возможно, проблема в том, что вы не перезагрузили конфиг после изменений? Вы точно перезапускали Neovim? Или используйте :source % в файле конфига.
+
+Пожалуйста, выполните пункты 1 и 3 и сообщите результат.
+
+Отлично, latexmk виден и работает. Значит проблема не в доступности, а в том, как VimTeX его вызывает.
+🔍 Следующая диагностика
+
+Выполните в Neovim (открыв .tex файл):
+
+    Проверьте, есть ли у VimTeX маппинги:
+    text
+
+    :nmap ,ll
+
+    Должно показать @<Plug>(vimtex-Compile) или подобное. Если нет — маппинг не создан.
+
+    Попробуйте запустить компиляцию вручную командой:
+    text
+
+    :VimtexCompile
+
+    Затем сразу посмотрите сообщения:
+    text
+
+    :messages
+
+    Есть ли ошибки?
+
+    Проверьте текущий рабочий каталог:
+    text
+
+    :pwd
+
+    Убедитесь, что вы находитесь в папке с .tex файлом.
+
+    Временно уберите build_dir (это частая причина проблем на Windows). В вашем конфиге plugins_config/nvim_only.vim закомментируйте или удалите строку 'build_dir' : 'build',:
+    vim
+
+    let g:vimtex_compiler_latexmk = {
+        \ 'options' : [
+        \   '-xelatex',
+        \   '-interaction=nonstopmode',
+        \   '-synctex=1',
+        \   '-shell-escape',
+        \ ],
+    \}
+
+    Перезапустите Neovim, откройте .tex, нажмите ,ll.
+
+    Если всё ещё не работает, попробуйте минимальную конфигурацию VimTeX (временно замените весь блок на):
+    vim
+
+    let g:vimtex_compiler_method = 'latexmk'
+    let g:vimtex_compiler_latexmk = {
+        \ 'options' : ['-xelatex'],
+    \}
+    let g:vimtex_view_general_viewer = 'C:/Progs/Sumatra/SumatraPDF-3.6.1-64.exe'
+
+    Без build_dir, без лишних опций.
+
+📌 Почему VimtexCompileOutput пуст?
+
+Потому что VimTeX даже не запускает процесс — возможно, валидация аргументов не проходит. Убирая build_dir, мы исключаем проблему с созданием папки.
+🧪 Альтернативный тест: запустите latexmk вручную из Neovim
+
+Выполните внутри Neovim:
+text
+
+:!latexmk -xelatex -interaction=nonstopmode -synctex=1 -shell-escape %
+
+(где % — текущее имя файла). Это должно скомпилировать и показать вывод. Если работает — проблема в VimTeX, а не в окружении.
+Ещё одна возможная причина: shellslash или пути с пробелами
+
+У вас в platform/windows.vim указано set shell=cmd.exe. Это хорошо. Но если в пути к проекту есть пробелы (например, LaTexScripts — пробела нет, но имя папки Itelma_feb16SW — без пробелов), то проблем не должно быть. Однако для надёжности попробуйте проект в папке без пробелов, например C:\test\.
+Итог
+
+Скорее всего, build_dir создаёт проблему. Уберите его и попробуйте. Если заработает — потом можно будет разобраться с правами на запись в текущей папке или использовать абсолютный путь для build_dir (например, 'build_dir' : 'C:/temp/latex_build').
+
+Пожалуйста, сообщите результат после удаления build_dir.
+Обнаружена ошибка при обработке BufEnter Автокоманды для "*":
+E11: Недопустимо в окне командной строки; <CR> выполнение, CTRL-C выход: :checktime
+Use either `` or '' as an alternative to `"'. (18)
+Use either `` or '' as an alternative to `"'. (18)                                                                      Use either `` or '' as an alternative to `"'. (18)
+Use either `` or '' as an alternative to `"'. (18)
+Double space found. (39)
+Double space found. (39)
+<- unmatched "end of file C:\Users\st\AppData\Local\Temp\nvim.0\QlnZjU\8\fontspec.sty"
+You should put a space in front of parenthesis. (36)
+possible unwanted space at "{"
+
+Нажмите ENTER или введите команду для продолжения
+
+Пользователь хочет отключить обратный поиск (inverse search) из SumatraPDF, который открывает Visual Studio, и перенаправить его в Neovim.
+
+Мне нужно найти информацию о настройке обратного поиска в SumatraPDF, особенно о том, как указать командную строку для Neovim.
+
+Поищу.
+Found 43 web pages
+
+Результаты поиска показывают несколько релевантных источников. Чтобы получить максимально полную информацию, я открою наиболее многообещающие из них.
+Read 8 pages
+Startup for PDF Viewer sometimes hangs · Issue #2601 · lervag/vimtex
+Vimtex项目中的逆向搜索功能配置与问题排查指南
+Vimtex项目中的逆向搜索功能配置与问题排查指南
+Reverse search with SumatraPDF doesn't work with nvim-qt · Issue #1819 · lervag/vimtex
+Inverse Search Emacs 28.1 & SumatraPDF v3.4.6 · sumatrapdfreader/sumatrapdf · Discussion #2829
+View All
+
+Вся информация собрана. Теперь нужно ответить пользователю, объяснив, как изменить настройку обратного поиска в SumatraPDF с Visual Studio на Neovim. Ответ должен быть практическим и пошаговым. Я буду использовать информацию из найденных источников, чтобы составить ответ.
+
+Проблема в том, что SumatraPDF сейчас настроена на вызов Visual Studio. Давайте это исправим и перенастроим её на Neovim.
+
+Вот два способа, как это можно сделать. Лучше использовать только один из них, на ваше усмотрение.
+📝 Способ 1: Настройка через графический интерфейс SumatraPDF (Самый простой)
+
+Это самый удобный и визуально понятный способ.
+
+    Откройте любой PDF-файл, сгенерированный вашим LaTeX-проектом (с которым есть .synctex.gz файл).
+
+    В верхнем меню SumatraPDF перейдите в Настройки (Settings) -> Параметры (Options).
+
+    В открывшемся окне найдите поле "Set inverse search command-line" (Установить командную строку обратного поиска). Если вы его не видите, возможно, оно появится после первого запуска компиляции с поддержкой synctex.
+
+    В это поле скопируйте и вставьте следующую команду:
+
+text
+
+cmd /c start /min "" nvim --headless -c "VimtexInverseSearch %l '%f'"
+
+Что здесь происходит: Команда тихо (/min) запускает фоновый процесс Neovim (nvim --headless), который с помощью специальной функции VimTeX (VimtexInverseSearch) открывает нужный файл ('%f') и переходит к указанной строке (%l).
+
+    Нажмите ОК, чтобы сохранить настройки. Теперь двойной клик в PDF должен переносить вас в Neovim.
+
+⚙️ Способ 2: Прямое редактирование файла настроек (Продвинутый)
+
+Если окно настроек по какой-то причине не работает, можно изменить конфигурационный файл вручную.
+
+    Закройте SumatraPDF, если она запущена.
+
+    Нажмите Win + R, введите %LOCALAPPDATA%\SumatraPDF и нажмите Enter. Если папки SumatraPDF нет, проверьте директорию, где находится сама программа, так как переносная версия хранит настройки там же.
+
+    Найдите и откройте файл SumatraPDF-settings.txt любым текстовым редактором.
+
+    Найдите в файле строку InverseSearchCmdLine. Если её нет, вы можете добавить её самостоятельно вручную. Замените или установите её значение на:
+
+text
+
+InverseSearchCmdLine = cmd /c start /min "" nvim --headless -c "VimtexInverseSearch %l '%f'"
+
+    Сохраните файл и снова запустите SumatraPDF.
+
+✅ Проверка результата
+
+Чтобы убедиться, что всё работает, скомпилируйте ваш .tex файл в Neovim (например, с помощью ,ll), чтобы гарантированно создать synctex файл. Затем откройте полученный PDF в SumatraPDF и дважды кликните по любому месту документа. Курсор в Neovim должен переместиться к соответствующей строке в исходном коде.
+теперь все эти баги и пути мне в памятку добавь! я сохраню
+
+Мы подготовим памятку по настройке LaTeX в Neovim на Windows, включая все проблемы и решения, которые обсуждались. Формат: чёткий список шагов, важные моменты, команды и пути. Без лишних комментариев, чтобы пользователь мог сохранить и использовать.
+📌 Памятка: Настройка LaTeX (VimTeX) в Neovim на Windows
+1. Установка компонентов
+
+    MiKTeX (или TeX Live) – основной дистрибутив LaTeX.
+
+    SumatraPDF – просмотрщик PDF с поддержкой SyncTeX (портативная версия – C:\Progs\Sumatra\SumatraPDF-3.6.1-64.exe).
+
+    latexmk – автоматическая компиляция (устанавливается через MiKTeX Console: пакет latexmk).
+
+2. Конфигурация VimTeX (в plugins_config/nvim_only.vim)
+vim
+
+if has('nvim')
+    let g:vimtex_compiler_method = 'latexmk'
+    let g:vimtex_compiler_latexmk = {
+        \ 'options' : [
+        \   '-xelatex',                     " использовать XeLaTeX (не pdflatex!)
+        \   '-interaction=nonstopmode',
+        \   '-synctex=1',
+        \   '-shell-escape',
+        \ ],
+    \}
+    let g:vimtex_view_general_viewer = 'C:/Progs/Sumatra/SumatraPDF-3.6.1-64.exe'
+    let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+endif
+
+Важно:
+
+    Не используйте 'build_dir' : 'build' – на Windows может вызывать проблемы с правами и пустым выводом.
+
+    Не создавайте глобальный ~/.latexmkrc (или %USERPROFILE%\.latexmkrc), если там прописан $pdflatex = 'pdflatex ...' – он переопределит -xelatex.
+
+    Проверьте, что latexmk доступен: :echo executable('latexmk') → 1.
+
+3. Настройка обратного поиска в SumatraPDF (клик из PDF → Neovim)
+
+Способ 1 (графический):
+SumatraPDF → Настройки → Параметры → поле "Set inverse search command-line" вставить:
+text
+
+cmd /c start /min "" nvim --headless -c "VimtexInverseSearch %l '%f'"
+
+Способ 2 (файл настроек):
+Закрыть Sumatra, открыть %LOCALAPPDATA%\SumatraPDF\SumatraPDF-settings.txt (или рядом с .exe для портативной версии), найти/добавить строку:
+text
+
+InverseSearchCmdLine = cmd /c start /min "" nvim --headless -c "VimtexInverseSearch %l '%f'"
+
+4. Проверка работы
+
+    Открыть .tex файл в Neovim.
+
+    Нажать ,ll (запятая – лидер) – запустится xelatex, создастся PDF и откроется в Sumatra.
+
+    При сохранении файла (:w) компиляция перезапускается автоматически.
+
+    Двойной клик в Sumatra – курсор в Neovim переходит к соответствующей строке.
+
+5. Частые ошибки и их решения
+Ошибка	Причина	Решение
+Fatal Package fontspec	Используется pdflatex вместо xelatex	Убедиться, что в опциях VimTeX есть -xelatex и нет глобального .latexmkrc, который форсирует pdflatex.
+VimtexCompileOutput: no output exist	VimTeX не может запустить latexmk (не найден или build_dir мешает)	Проверить :echo executable('latexmk'). Убрать 'build_dir' из конфига.
+Missing character: There is no ✗	В шрифте Times New Roman нет символов ✗/✓	Не критично. Можно заменить на \ding{55} / \ding{51} из пакета pifont.
+Обратный поиск открывает VS Code / другой редактор	В Sumatra прописана старая команда	Переписать InverseSearchCmdLine на команду с nvim --headless.
+,ll не работает (лидер – запятая)	maplocalleader не установлен	Проверить: :echo maplocalleader – должно быть ,. Если нет, добавить let maplocalleader = "," в core/options.vim.
+Ошибки fontspec.sty при компиляции из командной строки (вне Neovim)	MiKTeX вызывает pdflatex по умолчанию	Использовать xelatex файл.tex или lualatex файл.tex явно.
+6. Полезные команды VimTeX (лидер ,)
+
+    ,ll – начать компиляцию
+
+    ,lv – forward search (перейти в PDF к текущей позиции)
+
+    ,lc – очистить временные файлы
+
+    ,lo – показать окно вывода компиляции
+
+    ,le – показать ошибки
+
+    ,lL – остановить компиляцию
+
+7. Важные пути (проверить и подставить свои)
+
+    Путь к SumatraPDF: C:/Progs/Sumatra/SumatraPDF-3.6.1-64.exe
+
+    Путь к Neovim: C:\Program Files\Neovim\bin\nvim.exe (для обратного поиска)
+
+    Глобальный .latexmkrc (если есть): C:\Users\ИМЯ\.latexmkrc – лучше удалить или переименовать.
+
+    Временные файлы компиляции: по умолчанию в текущей папке (можно задать 'build_dir' позже, если убедиться, что права на запись есть).

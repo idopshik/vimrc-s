@@ -74,3 +74,39 @@ augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=200})
 augroup END
+
+
+" ══════════════════════════════════════════════════════════════════════════════
+" VimTeX (LaTeX) — компиляция через latexmk, просмотр в SumatraPDF (Windows)
+" ══════════════════════════════════════════════════════════════════════════════
+
+if has('nvim')
+    " Метод компиляции: latexmk (лучший вариант)
+    let g:vimtex_compiler_method = 'latexmk'
+    
+    " Настройки latexmk: складывать временные файлы в build/
+    let g:vimtex_compiler_latexmk = {
+        \ 'build_dir' : 'build',
+        \ 'options' : [
+        \   '-pdfxe',
+        \   '-interaction=nonstopmode',
+        \   '-synctex=1',
+        \   '-shell-escape',
+        \ ],
+    \}
+    " Просмотрщик PDF для Windows (SumatraPDF)
+    " Укажите полный путь, если SumatraPDF не в PATH
+    let g:vimtex_view_general_viewer = 'C:/Progs/Sumatra/SumatraPDF-3.6.1-64.exe'
+    let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+    
+    " Если SumatraPDF не находится автоматически, укажите явно:
+    " let g:vimtex_view_general_viewer = 'C:/Program Files/SumatraPDF/SumatraPDF.exe'
+    
+    " Для обратного поиска из SumatraPDF в Neovim:
+    " Настройте SumatraPDF: Настройки → Дополнительные настройки → ReverseSearchCmdLine
+    " Пример строки:
+    " ReverseSearchCmdLine = "C:\\Program Files\\Neovim\\bin\\nvim.exe" --headless -c "VimtexInverseSearch %l '%f'"
+    
+    " Опционально: быстрые привязки (по умолчанию \ll, \lv и т.д. работают)
+    " Не переопределяйте \ll, \lv, если не хотите менять стандартное поведение
+endif
