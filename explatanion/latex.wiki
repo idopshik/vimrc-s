@@ -1169,7 +1169,7 @@ Missing character: There is no ✗	В шрифте Times New Roman нет сим
 Обратный поиск открывает VS Code / другой редактор	В Sumatra прописана старая команда	Переписать InverseSearchCmdLine на команду с nvim --headless.
 ,ll не работает (лидер – запятая)	maplocalleader не установлен	Проверить: :echo maplocalleader – должно быть ,. Если нет, добавить let maplocalleader = "," в core/options.vim.
 Ошибки fontspec.sty при компиляции из командной строки (вне Neovim)	MiKTeX вызывает pdflatex по умолчанию	Использовать xelatex файл.tex или lualatex файл.tex явно.
-6. Полезные команды VimTeX (лидер ,)
+1. Полезные команды VimTeX (лидер ,)
 
     ,ll – начать компиляцию
 
@@ -1183,7 +1183,7 @@ Missing character: There is no ✗	В шрифте Times New Roman нет сим
 
     ,lL – остановить компиляцию
 
-7. Важные пути (проверить и подставить свои)
+2. Важные пути (проверить и подставить свои)
 
     Путь к SumatraPDF: C:/Progs/Sumatra/SumatraPDF-3.6.1-64.exe
 
@@ -1192,3 +1192,28 @@ Missing character: There is no ✗	В шрифте Times New Roman нет сим
     Глобальный .latexmkrc (если есть): C:\Users\ИМЯ\.latexmkrc – лучше удалить или переименовать.
 
     Временные файлы компиляции: по умолчанию в текущей папке (можно задать 'build_dir' позже, если убедиться, что права на запись есть).
+
+
+
+
+sample 
+
+
+# ============================================================
+# Глобальный .latexmkrc для XeLaTeX и сборки мусора в build/
+# ============================================================
+
+$pdf_mode = 5;          # XeLaTeX
+$synctex = 1;
+$interaction = "nonstopmode";
+$out_dir = "build";
+$aux_dir = "build";
+
+# Явно задаём команду xelatex (с нужными опциями)
+$xelatex = 'xelatex -output-directory=build -synctex=1 -interaction=nonstopmode -file-line-error -shell-escape %O %S';
+
+# Чтобы latexmk всегда использовал xelatex, даже если не указан -pdfxe
+$pdflatex = 'xelatex %O %S';
+
+# (Опционально) очищать вспомогательные файлы после компиляции
+$clean_ext = 'aux bbl bcf blg brf fdb_latexmk fls idx ilg ind lof log lot out run.xml synctex.gz thm toc';

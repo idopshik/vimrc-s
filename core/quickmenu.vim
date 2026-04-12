@@ -52,6 +52,7 @@ call g:quickmenu#append('cp866', 'e ++enc=cp866 ++ff=dos', 'set cp866')
 " --- COC (вместо ALE/deoplete) ---
 call g:quickmenu#append('# COC', '')
 call g:quickmenu#append('Diagnostics OFF', 'CocDisable', 'Выключить ВСЕ — линтер, подсказки, всё')
+call g:quickmenu#append('ALE Toggle', 'ALEToggle', 'Toggle ALE (linter) on/off')
 call g:quickmenu#append('Diagnostics ON', 'CocEnable', 'Включить обратно')
 call g:quickmenu#append('Restart COC', 'CocRestart', 'Перезапустить если глючит')
 call g:quickmenu#append('Format file', 'call CocActionAsync("format")', 'Форматировать (как F4)')

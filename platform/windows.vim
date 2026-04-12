@@ -80,7 +80,7 @@ let g:asyncrun_bell = 1
 
 " === GUI font (для gvim/nvim-qt) ===
 if g:is_gui
-    set guifont=Consolas:h11
+    " set guifont=Consolas:h11
     " Или если установлен Nerd Font:
     " set guifont=JetBrainsMono\ NF:h11
 endif
