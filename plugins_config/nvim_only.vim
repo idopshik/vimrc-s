@@ -81,6 +81,41 @@ augroup END
 " ══════════════════════════════════════════════════════════════════════════════
 
 if has('nvim')
+
+    " Отключаем conceal для TeX-файлов
+
+    let g:vimtex_syntax_conceal = {
+        \ 'accents': 0,
+        \ 'cites': 0,
+        \ 'fancy': 0,
+        \ 'greek': 0,
+        \ 'ligatures': 0,
+        \ 'math_bounds': 0,
+        \ 'math_delimiters': 0,
+        \ 'math_symbols': 0,
+        \ 'sections': 0,
+        \ 'styles': 0,
+    \}
+    highlight Conceal guifg=#fabd2f guibg=NONE gui=bold
+
+    set conceallevel=0   
+
+    autocmd ColorScheme * highlight texDelim guifg=#fabd2f guibg=NONE gui=bold
+    autocmd ColorScheme * highlight texMathSymbol guifg=#fabd2f guibg=NONE gui=bold
+    highlight texCmdItem guifg=#fabd2f guibg=NONE gui=bold
+
+
+    for group in ['texAccent', 'texMathSymbol', 'texMathZone', 'texGreek', 'Conceal', 'texDelim', 'texMathOper', 'texTypeStyle', 'texStatement']
+      execute 'highlight' group 'guifg=#fabd2f guibg=NONE gui=bold'
+    endfor
+   
+    
+    " Или глобально через autocmd
+    " autocmd FileType tex setlocal conceallevel=0
+    "
+    " bug подсветки
+    " g:vimtex_syntax_enabled = 1
+
     " Метод компиляции: latexmk (лучший вариант)
     let g:vimtex_compiler_method = 'latexmk'
     
