@@ -89,7 +89,7 @@ if has('nvim')
         \ 'executable' : 'latexmk',
         \ 'build_dir' : 'build',
         \ 'options' : [
-        \   '-lualatex',      % вместо -pdfxe
+        \   '-lualatex',
         \   '-interaction=nonstopmode',
         \   '-synctex=1',
         \   '-shell-escape',

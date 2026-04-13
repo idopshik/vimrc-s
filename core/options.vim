@@ -73,7 +73,7 @@ set shiftwidth=4
 set softtabstop=4
 
 " === Wrapping ===
-set wrap
+set nowrap
 set linebreak
 set showbreak=↪\ 
 
