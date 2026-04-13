@@ -86,9 +86,10 @@ if has('nvim')
     
     " Настройки latexmk: складывать временные файлы в build/
     let g:vimtex_compiler_latexmk = {
+        \ 'executable' : 'latexmk',
         \ 'build_dir' : 'build',
         \ 'options' : [
-        \   '-pdfxe',
+        \   '-lualatex',      % вместо -pdfxe
         \   '-interaction=nonstopmode',
         \   '-synctex=1',
         \   '-shell-escape',
