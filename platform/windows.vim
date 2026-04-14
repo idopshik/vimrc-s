@@ -98,3 +98,21 @@ if g:is_nvim
     " Neovim иногда создаёт странные пути для temp
     " let $TEMP = 'C:\Users\' . $USERNAME . '\AppData\Local\Temp'
 endif
+
+" ══════════════════════════════════════════════════════════════════════════════
+" Автоматическое переключение раскладки с помощью im-select
+" ══════════════════════════════════════════════════════════════════════════════
+
+if has('win32')
+    " Код русской раскладки (замените 1049 на тот, что получили на шаге 1)
+    let g:russian_layout = '1049'
+    " Код английской раскладки
+    let g:english_layout = '1033'
+
+    " При выходе из режима ввода переключаемся на английский
+    "качай im-select и клади в path 
+    autocmd InsertLeave * call system('im-select ' . g:english_layout)
+
+    echom "Windows (Neovim): layout switching with im-select enabled"
+endif
+
