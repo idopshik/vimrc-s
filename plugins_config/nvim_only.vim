@@ -75,7 +75,6 @@ augroup YankHighlight
     autocmd TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=200})
 augroup END
 
-
 " ══════════════════════════════════════════════════════════════════════════════
 " VimTeX (LaTeX) — компиляция через latexmk, просмотр в SumatraPDF (Windows)
 " ══════════════════════════════════════════════════════════════════════════════
