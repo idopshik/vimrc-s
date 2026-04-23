@@ -82,6 +82,8 @@ augroup END
 
 if has('nvim')
 
+   "
+
     " Отключаем conceal для TeX-файлов
 
     let g:vimtex_syntax_conceal = {
@@ -132,7 +134,7 @@ if has('nvim')
     \}
     " Просмотрщик PDF для Windows (SumatraPDF)
     " Укажите полный путь, если SumatraPDF не в PATH
-    let g:vimtex_view_general_viewer = 'C:/Progs/Sumatra/SumatraPDF-3.6.1-64.exe'
+    let g:vimtex_view_general_viewer = 'C:/Users/belousov/Progs/sumatra/SumatraPDF-3.6.1-64.exe'
     let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
     
     " Если SumatraPDF не находится автоматически, укажите явно:
