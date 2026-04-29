@@ -122,6 +122,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vimwiki/vimwiki'
 
 Plug 'vifm/vifm.vim'
+"
+"" === VimTeX (LaTeX) ===
+Plug 'lervag/vimtex'
 
 " === УДАЛЁННЫЕ ПЛАГИНЫ (заменены на coc) ===
 " xolox/vim-misc — не нужен без easytags

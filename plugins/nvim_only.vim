@@ -54,5 +54,3 @@ Plug 'folke/which-key.nvim'
 " <C-p> = файлы, <C-n> = file tree, <F9> = tagbar и т.д.
 
 " ══════════════════════════════════════════════════════════════════════════════
-"" === VimTeX (LaTeX) ===
-Plug 'lervag/vimtex'

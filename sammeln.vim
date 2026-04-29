@@ -41,6 +41,11 @@ if $MINIGO
     finish
 endif
 
+" === VIMTEX+WINDOWS+VIM ===
+if g:is_win && g:is_vim
+    call s:SourceIfExists('platform/windows_latex.vim')
+endif
+
 " Добавляем путь к Lua модулям
 if g:is_nvim
     let &runtimepath = g:vim_runtime . '/lua,' . &runtimepath
@@ -200,3 +205,4 @@ function! s:ShowInfo() abort
     echo 'Plug dir: ' . g:plug_home
     echo 'Runtime:  ' . g:vim_runtime
 endfunction
+
