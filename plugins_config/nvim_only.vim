@@ -2,8 +2,8 @@
 " ══════════════════════════════════════════════════════════════════════════════
 " Когда будешь готов к Lua-плагинам, раскомментируй нужное
 " ══════════════════════════════════════════════════════════════════════════════
-
 " === Пока используем те же плагины что и Vim ===
+
 " Все keymaps работают одинаково!
 
 " === ЗАГОТОВКА: Telescope (замена FZF) ===
@@ -146,4 +146,37 @@ if has('nvim')
     
     " Опционально: быстрые привязки (по умолчанию \ll, \lv и т.д. работают)
     " Не переопределяйте \ll, \lv, если не хотите менять стандартное поведение
+    " Не открывать quickfix при наличии только предупреждений
+
+    let g:vimtex_quickfix_open_on_warning = 0
+
+    " Фильтровать строки, содержащие эти паттерны (не попадают в quickfix)
+    let g:vimtex_quickfix_ignore_filters = [
+        \ 'Underfull \\hbox',
+        \ 'Overfull \\hbox',
+        \ 'Package hyperref Warning',
+        \ 'badness',
+    \]
+
+    autocmd FileType tex setlocal conceallevel=0
+    let g:vimtex_syntax_conceal_default = 0
+
 endif
+
+
+
+" Устанавливаем программу для сборки
+set makeprg=latexmk\ -xelatex\ -interaction=nonstopmode\ -synctex=1\ -shell-escape\ -output-directory=build\ %
+" Настраиваем формат вывода ошибок для quickfix-списка
+set errorformat=%E!\ LaTeX\ %trror:\ %m,
+      \%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
+      \%+WPackage\ hyperref\ Warning:%.%#,
+      \%+WPackage\ %.%#\ Warning:%.%#,
+      \%+WUnderfull\ %.%#,
+      \%+WOverfull\ %.%#,
+      \%+WLaTeX\ %.%#Warning:%.%#,
+      \%+W\ %.%#\ at\ lines\ %l--%*\\d,
+      \%+W\ \ at\ lines\ %l--%*\\d,
+      \%+W\ at\ lines\ %l--%*\\d,
+      \%-C\ \ %\\&\\&,
+      \%-C%.%#
