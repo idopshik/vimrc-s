@@ -84,3 +84,6 @@ if g:is_nvim
     " Более плавный scroll
     set smoothscroll
 endif
+
+" попытка баг алакрити убрать
+set background=dark

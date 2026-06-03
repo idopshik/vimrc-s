@@ -53,9 +53,10 @@ Plug 'folke/which-key.nvim'
 " Главное правило: KEYMAPS ОСТАЮТСЯ ТЕ ЖЕ!
 " <C-p> = файлы, <C-n> = file tree, <F9> = tagbar и т.д.
 
-" ══════════════════════════════════════════════════════════════════════════════
-=======
+" ══════════════════════════════════════════════════════════════════════════════ =======
 "" === VimTeX (LaTeX) ===
 Plug 'lervag/vimtex'
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
+Plug 'selimacerbas/live-server.nvim'
+Plug 'selimacerbas/markdown-preview.nvim'
