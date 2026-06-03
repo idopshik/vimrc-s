@@ -41,11 +41,6 @@ if $MINIGO
     finish
 endif
 
-" === VIMTEX+WINDOWS+VIM ===
-if g:is_win && g:is_vim
-    call s:SourceIfExists('platform/windows_latex.vim')
-endif
-
 " Добавляем путь к Lua модулям
 if g:is_nvim
     let &runtimepath = g:vim_runtime . '/lua,' . &runtimepath
@@ -159,9 +154,13 @@ if g:is_nvim
     " Telescope config для Neovim
     call s:SourceIfExists('plugins_config/nvim_telescope.vim')
     "
-    call s:SourceIfExists('plugins_config/nvim_treesitter.vim')
+    " call s:SourceIfExists('plugins_config/nvim_treesitter.vim')  " DISABLED: parser version mismatch
 else
     call s:SourceIfExists('plugins_config/vim_only.vim')
+    " VimTeX config for Vim on Windows (after plugins are loaded)
+    if g:is_win
+        call s:SourceIfExists('platform/windows_latex.vim')
+    endif
 endif
 
 "
@@ -205,4 +204,3 @@ function! s:ShowInfo() abort
     echo 'Plug dir: ' . g:plug_home
     echo 'Runtime:  ' . g:vim_runtime
 endfunction
-

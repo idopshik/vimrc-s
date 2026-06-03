@@ -1,6 +1,12 @@
 lua << EOF
-local telescope = require('telescope')
-local builtin = require('telescope.builtin')
+local ok_telescope, telescope = pcall(require, 'telescope')
+local ok_builtin, builtin    = pcall(require, 'telescope.builtin')
+if not ok_telescope or not ok_builtin then
+    vim.notify("[nvim_telescope] telescope not installed. Run :PlugInstall", vim.log.levels.WARN)
+    -- <C-p> falls back to nothing; safe to return
+    return
+end
+
 
 telescope.setup({
     defaults = {
@@ -55,7 +61,8 @@ telescope.setup({
     },
 })
 
-telescope.load_extension('fzf')
+-- fzf-native not installed on Windows (requires make)
+-- telescope.load_extension('fzf')
 
 -- Keymaps
 vim.keymap.set('n', '<C-p>', builtin.find_files, { noremap = true })

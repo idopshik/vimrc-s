@@ -11,7 +11,7 @@ require('nvim-treesitter.config').setup {
   },
   
   highlight = {
-    enable = true,
+    enable = false,  -- DISABLED: parser version mismatch causes Telescope crash
     disable = {},
     additional_vim_regex_highlighting = false,
   },

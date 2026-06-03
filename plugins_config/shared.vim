@@ -155,6 +155,7 @@ let g:ale_linters = {
 \   'go': ['golint', 'go vet'],
 \   'c': ['clangd'],
 \   'cpp': ['clangd'],
+\   'tex': [],
 \}
 
 " Отключаем ALE для Python (coc-pyright + ruff лучше)

@@ -1,6 +1,18 @@
-" plugins/vim_only.vim — Плагины только для Vim (не Neovim)
-" ══════════════════════════════════════════════════════════════════════════════
-" Здесь плагины, которые нужны только в Vim и не работают/не нужны в Neovim
-" ══════════════════════════════════════════════════════════════════════════════
+" plugins/nvim_only.vim — Плагины только для Neovim
+" ══════════════════════════════════════════════════════════════════════════
+" Здесь nvim-specific плагины. Keymaps остаются теми же!
+" ══════════════════════════════════════════════════════════════════════════
 
-" Пока пусто — большинство плагинов работают и там и там
+" === Treesitter — ОТКЛЮЧЕН (parser version mismatch) ===
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" === Telescope (замена FZF для Neovim) ===
+" fzf-native требует make/gcc — на Windows не компилируется, не ставим
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" === Which-key (показывает keymaps на leader) ===
+Plug 'folke/which-key.nvim'
+
+" === VimTeX (LaTeX) ===
+Plug 'lervag/vimtex'
