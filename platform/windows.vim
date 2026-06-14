@@ -100,19 +100,60 @@ if g:is_nvim
 endif
 
 " ══════════════════════════════════════════════════════════════════════════════
-" Автоматическое переключение раскладки с помощью im-select
+" Автоматическое сохранение/восстановление раскладки и цветной курсор (Lua)
 " ══════════════════════════════════════════════════════════════════════════════
 
-if has('win32')
-    " Код русской раскладки (замените 1049 на тот, что получили на шаге 1)
-    let g:russian_layout = '1049'
-    " Код английской раскладки
-    let g:english_layout = '1033'
+if has('win32') && has('nvim')
+lua << EOF
+    local english_layout = "1033"
+    local saved_layout = english_layout -- По умолчанию ставим английский
 
-    " При выходе из режима ввода переключаемся на английский
-    "качай im-select и клади в path 
-    autocmd InsertLeave * call system('im-select ' . g:english_layout)
+    -- Функция: сохраняем текущий язык перед выходом и форсируем английский
+    _G.save_and_switch_to_english = function()
+        -- vim.system работает напрямую с процессом без вызова cmd.exe, поэтому лагов нет
+        local obj = vim.system({'im-select'}):wait()
+        if obj.code == 0 then
+            local current = vim.trim(obj.stdout)
+            if current ~= "" then
+                saved_layout = current
+            end
+        end
+        vim.system({'im-select', english_layout})
+    end
 
-    echom "Windows (Neovim): layout switching with im-select enabled"
+    -- Функция: возвращаем тот язык, который был активен в Insert режиме
+    _G.restore_saved_layout = function()
+        vim.system({'im-select', saved_layout})
+        
+        -- Динамически перекрашиваем курсор в зависимости от возвращаемого языка
+        if saved_layout == "1049" then
+            vim.cmd("highlight DynamicInsertCursor guibg=#FF5555 ctermbg=Red")   -- Яркий красный для русского
+        else
+            vim.cmd("highlight DynamicInsertCursor guibg=#50FA7B ctermbg=Green") -- Яркий зеленый для английского
+        end
+    end
+
+    -- === Настройка цветного курсора для Windows Terminal ===
+    vim.cmd("set termguicolors") -- Включаем поддержку True Color
+    vim.cmd("highlight DynamicInsertCursor guibg=#50FA7B ctermbg=Green")
+    
+    -- Настраиваем guicursor: в Normal mode оставляем стандартный блок,
+    -- а в Insert (i), Cmdline-insert (ci) и Visual-exclusive (ve) делаем тонкую вертикальную линию (ver25) нашего цвета
+    -- n-v-c-sm: блок (Normal, Visual, Command)
+    -- i-ci-ve: палочка толщиной 25% с нашим цветом (Insert)
+    -- r-cr-o: горизонтальная линия (Replace)
+    vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-DynamicInsertCursor,r-cr-o:hor20"
+
+    -- Регистрируем быстрые автокоманды Neovim
+    local group = vim.api.nvim_create_augroup("ImSelectGroup", { clear = true })
+    vim.api.nvim_create_autocmd("InsertLeave", {
+        group = group,
+        callback = _G.save_and_switch_to_english,
+    })
+    vim.api.nvim_create_autocmd("InsertEnter", {
+        group = group,
+        callback = _G.restore_saved_layout,
+    })
+EOF
+    echom "Windows (Neovim): Fast Lua-based layout switching and dynamic cursor enabled"
 endif
-

@@ -103,8 +103,11 @@ if has('nvim')
     let g:vimtex_quickfix_ignore_filters = [
         \ 'Underfull \\hbox',
         \ 'Overfull \\hbox',
+        \ 'Overfull \\vbox',
         \ 'Package hyperref Warning',
+        \ 'Token not allowed',
         \ 'badness',
+        \ 'duplicate destination',
     \]
 
     autocmd FileType tex setlocal conceallevel=0
@@ -129,3 +132,30 @@ set errorformat=%E!\ LaTeX\ %trror:\ %m,
       \%+W\ at\ lines\ %l--%*\\d,
       \%-C\ \ %\\&\\&,
       \%-C%.%#
+
+
+
+" let g:git_messenger_no_default_mappings = 1
+" let g:git_messenger_always_into_popup = 1
+"
+"
+
+"" === Markdown Preview (iamcco) ===
+let g:mkdp_auto_start = 0          " не открывать автоматически
+let g:mkdp_auto_close = 1          " закрывать при выходе из буфера
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_browser = ''            " если надо указать путь к браузеру
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+    \ 'mermaid': {
+        \ 'start': '```mermaid',
+        \ 'end': '```'
+    \ },
+    \ 'toc': {
+        \ 'enable': 1
+    \ }
+\}

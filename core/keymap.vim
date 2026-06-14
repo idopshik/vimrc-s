@@ -203,6 +203,26 @@ if g:is_win
 else
     command! T :tabnew /home/st/MegaLinux/tech.wiki/tasks.wiki
 endif
+"
+"
+" === Quickfix navigation ===
+nnoremap <silent> ]q :cnext<CR>
+nnoremap <silent> [q :cprev<CR>
+nnoremap <silent> ]Q :clast<CR>
+nnoremap <silent> [Q :cfirst<CR>
+"
+" === Markdown Preview ===
+nnoremap <silent> <leader>mp :MarkdownPreview<CR>
+nnoremap <silent> <leader>ms :MarkdownPreviewStop<CR>
+
+
+" Выход из режима ввода по Ctrl-] (английская) и Ctrl-ъ (русская)
+inoremap <C-]> <Esc>
+inoremap <C-х> <Esc>
+
+" То же самое для выхода из командной строки
+cnoremap <C-]> <C-c>
+cnoremap <C-х> <C-c>
 
 " ══════════════════════════════════════════════════════════════════════════════
 "  `\|||/´         MMM           \|/            www            __^__          ~
@@ -210,4 +230,6 @@ endif
 "ooO_(_)_Ooo__ ooO_(_)_Ooo___oOO_(_)_OOo___oOO__(_)__OOo___oOO__(_)__OOo_____ ~
 "_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|____ ~
 "__|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_ ~
+"
+
 " ══════════════════════════════════════════════════════════════════════════════

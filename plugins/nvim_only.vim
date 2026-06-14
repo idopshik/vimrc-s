@@ -12,7 +12,13 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " === Which-key (показывает keymaps на leader) ===
-Plug 'folke/which-key.nvim'
+" Plug 'folke/which-key.nvim'
+
+" === Markdown Preview + Live Server ===
+" Plug 'selimacerbas/live-server.nvim'
+" Plug 'selimacerbas/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
+
 
 " === VimTeX (LaTeX) ===
 Plug 'lervag/vimtex'

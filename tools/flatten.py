@@ -3,30 +3,34 @@ import os
 import shutil
 from pathlib import Path
 
-def flatten_vim_folder(source_folder, target_folder=None):
+def flatten_vim_folder(source_folder=".", target_folder="flatten"):
     """
-    Расплющивает папку: копирует все .vim файлы из подпапок в target_folder,
-    переименовывая их в .txt, заменяя пути на подчеркивания.
+    Расплющивает папку: копирует все .vim файлы из подпапок source_folder
+    в папку target_folder, переименовывая их в .txt,
+    заменяя пути на подчёркивания.
+    
+    Перед копированием папка target_folder полностью удаляется (если существует)
+    и создаётся заново.
     """
     source_path = Path(source_folder).expanduser().resolve()
+    target_path = Path(target_folder).expanduser().resolve()
     
     if not source_path.exists():
         print(f"Ошибка: папка {source_path} не существует")
         return False
     
-    # Если target_folder не указан, создаем папку с суффиксом _flattened
-    if target_folder is None:
-        target_folder = f"{source_path}_flattened"
+    # --- Очистка/создание target_folder ---
+    if target_path.exists():
+        print(f"Папка {target_path} уже существует. Удаляем её содержимое...")
+        shutil.rmtree(target_path)   # удаляем всю папку рекурсивно
+        print("Старая папка удалена.")
     
-    target_path = Path(target_folder).expanduser().resolve()
+    # Создаём чистую папку
     target_path.mkdir(parents=True, exist_ok=True)
-    
-    print(f"Копируем из: {source_path}")
-    print(f"В папку: {target_path}\n")
+    print(f"Создана папка: {target_path}\n")
     
     # Собираем все .vim файлы
     vim_files = list(source_path.rglob("*.vim"))
-    
     if not vim_files:
         print("Не найдено .vim файлов")
         return False
@@ -35,14 +39,15 @@ def flatten_vim_folder(source_folder, target_folder=None):
     
     copied_count = 0
     for file_path in vim_files:
-        # Получаем относительный путь от корня
+        # Относительный путь от корня source_folder
         rel_path = file_path.relative_to(source_path)
         
-        # Создаем новое имя: заменяем разделители на _ и .vim на .txt
+        # Новое имя: заменяем разделители на _, расширение .vim -> .txt
         new_name = str(rel_path).replace(os.sep, "_").replace(".vim", ".txt")
         new_path = target_path / new_name
         
-        # Если файл с таким именем уже существует, добавляем суффикс
+        # Если имя совпадает (например, два файла с одинаковыми путями),
+        # добавляем суффикс (маловероятно, но на всякий случай)
         counter = 1
         original_new_path = new_path
         while new_path.exists():
@@ -58,13 +63,17 @@ def flatten_vim_folder(source_folder, target_folder=None):
     return True
 
 if __name__ == "__main__":
-    # ВАРИАНТ 1: Вы находитесь в C:\Users\st\.vim_runtime\vimrcs\
-    # И хотите обработать текущую папку (vimrcs)
-    source = "."  # текущая папка
-    target = "./flatten"  # создаст папку flatten внутри текущей
+    # Можно запускать без аргументов (текущая папка -> папка flatten)
+    # или с двумя аргументами: source_folder, target_folder
+    import sys
+    if len(sys.argv) > 1:
+        source = sys.argv[1]
+    else:
+        source = "."
     
-    # ВАРИАНТ 2: Или укажите абсолютные пути
-    # source = "C:\\Users\\st\\.vim_runtime\\vimrcs"
-    # target = "C:\\Users\\st\\.vim_runtime\\vimrcs\\flatten"
+    if len(sys.argv) > 2:
+        target = sys.argv[2]
+    else:
+        target = "./flatten"
     
     flatten_vim_folder(source, target)
