@@ -109,6 +109,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+Plug 'altercation/vim-colors-solarized'
 Plug 'folke/tokyonight.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ErichDonGubler/vim-sublime-monokai'

@@ -1,0 +1,208 @@
+
+local wezterm = require 'wezterm'
+local config = wezterm.config_builder()
+
+-- ═════════════════════════════════════════════════════════════════════════════
+-- ПОПУЛЯРНЫЕ ЦВЕТОВЫЕ ФОНЫ (встроены)
+-- ═════════════════════════════════════════════════════════════════════════════
+
+local schemes = {
+  oceanicnext = {
+    foreground = '#c0c5ce',
+    background = '#1b2b34',
+    cursor_bg = '#c0c5ce',
+    cursor_fg = '#1b2b34',
+    selection_bg = '#4f7a8e',
+    selection_fg = '#c0c5ce',
+    ansi = {
+      '#1b2b34', '#ec5f67', '#99c794', '#fac863',
+      '#6699cc', '#c594c5', '#5fb3b3', '#a7adba',
+    },
+    brights = {
+      '#65737e', '#ff6b6b', '#c3e88d', '#ffcb8b',
+      '#82aaff', '#c792ea', '#80cbc4', '#eff0f5',
+    },
+  },
+
+  gruvbox_dark = {
+    foreground = '#ebdbb2',
+    background = '#282828',
+    cursor_bg = '#ebdbb2',
+    cursor_fg = '#282828',
+    selection_bg = '#b8bb26',
+    selection_fg = '#282828',
+    ansi = {
+      '#282828', '#cc241d', '#98971a', '#d79921',
+      '#458588', '#b16286', '#689d6a', '#a89984',
+    },
+    brights = {
+      '#928374', '#fb4934', '#b8bb26', '#fabd2f',
+      '#83a598', '#d3869b', '#8ec07c', '#ebdbb2',
+    },
+  },
+
+  solarized_light = {
+    foreground = '#657b83',
+    background = '#fdf6e3',
+    cursor_bg = '#657b83',
+    cursor_fg = '#fdf6e3',
+    selection_bg = '#eee8d5',
+    selection_fg = '#657b83',
+    ansi = {
+      '#eee8d5', '#dc322f', '#859900', '#b58900',
+      '#268bd2', '#d33682', '#2aa198', '#073642',
+    },
+    brights = {
+      '#fdf6e3', '#cb4b16', '#93a1a1', '#839496',
+      '#657b83', '#6c71c4', '#586e75', '#002b36',
+    },
+  },
+
+  solarized_dark = {
+    foreground = '#839496',
+    background = '#002b36',
+    cursor_bg = '#839496',
+    cursor_fg = '#002b36',
+    selection_bg = '#073642',
+    selection_fg = '#839496',
+    ansi = {
+      '#073642', '#dc322f', '#859900', '#b58900',
+      '#268bd2', '#d33682', '#2aa198', '#eee8d5',
+    },
+    brights = {
+      '#002b36', '#cb4b16', '#586e75', '#657b83',
+      '#839496', '#6c71c4', '#93a1a1', '#fdf6e3',
+    },
+  },
+
+  nord = {
+    foreground = '#d8dee9',
+    background = '#2e3440',
+    cursor_bg = '#88c0d0',
+    cursor_fg = '#2e3440',
+    selection_bg = '#434c5e',
+    selection_fg = '#d8dee9',
+    ansi = {
+      '#3b4252', '#bf616a', '#a3be8c', '#ebcb8b',
+      '#81a1c1', '#b48ead', '#88c0d0', '#eceff4',
+    },
+    brights = {
+      '#4c566a', '#bf616a', '#a3be8c', '#ebcb8b',
+      '#81a1c1', '#b48ead', '#8fbcbb', '#eceff4',
+    },
+  },
+
+  dracula = {
+    foreground = '#f8f8f2',
+    background = '#282a36',
+    cursor_bg = '#f8f8f2',
+    cursor_fg = '#282a36',
+    selection_bg = '#44475a',
+    selection_fg = '#f8f8f2',
+    ansi = {
+      '#000000', '#ff5555', '#50fa7b', '#f1fa8c',
+      '#bd93f9', '#ff79c6', '#8be9fd', '#bfbfbf',
+    },
+    brights = {
+      '#4d4d4d', '#ff6e6e', '#69ff94', '#ffffa5',
+      '#d6acff', '#ff92df', '#a4ffff', '#ffffff',
+    },
+  },
+
+  tokyo_night = {
+    foreground = '#c0caf5',
+    background = '#1a1b26',
+    cursor_bg = '#c0caf5',
+    cursor_fg = '#1a1b26',
+    selection_bg = '#283457',
+    selection_fg = '#c0caf5',
+    ansi = {
+      '#15202b', '#f7768e', '#9ece6a', '#e0af68',
+      '#7aa2f7', '#bb9af7', '#7dcfff', '#a9b1d6',
+    },
+    brights = {
+      '#414868', '#f7768e', '#9ece6a', '#e0af68',
+      '#7aa2f7', '#bb9af7', '#7dcfff', '#c0caf5',
+    },
+  },
+
+  catppuccin_mocha = {
+    foreground = '#cdd6f4',
+    background = '#1e1e2e',
+    cursor_bg = '#f5e0dc',
+    cursor_fg = '#1e1e2e',
+    selection_bg = '#45475a',
+    selection_fg = '#cdd6f4',
+    ansi = {
+      '#45475a', '#f38ba8', '#a6e3a1', '#f9e2af',
+      '#89b4fa', '#f5c2e7', '#94e2d5', '#bac2de',
+    },
+    brights = {
+      '#585b70', '#f38ba8', '#a6e3a1', '#f9e2af',
+      '#89b4fa', '#f5c2e7', '#94e2d5', '#cdd6f4',
+    },
+  },
+
+  rose_pine = {
+    foreground = '#e0def4',
+    background = '#191724',
+    cursor_bg = '#f6c6dc',
+    cursor_fg = '#191724',
+    selection_bg = '#403d52',
+    selection_fg = '#e0def4',
+    ansi = {
+      '#26233a', '#eb6f92', '#31748f', '#f6c177',
+      '#9ccfd8', '#c4a7e7', '#ebbcba', '#e0def4',
+    },
+    brights = {
+      '#6e6a86', '#eb6f92', '#31748f', '#f6c177',
+      '#9ccfd8', '#c4a7e7', '#ebbcba', '#e0def4',
+    },
+  },
+
+  pure_white = {
+    foreground = '#000000',
+    background = '#ffffff',
+    cursor_bg = '#000000',
+    cursor_fg = '#ffffff',
+    selection_bg = '#d3d3d3',
+    selection_fg = '#000000',
+    ansi = {
+      '#000000', '#cc0000', '#008000', '#cccc00',
+      '#0000cc', '#cc00cc', '#00cccc', '#cccccc',
+    },
+    brights = {
+      '#666666', '#ff0000', '#00ff00', '#ffff00',
+      '#0000ff', '#ff00ff', '#00ffff', '#ffffff',
+    },
+  },
+}
+
+-- ═════════════════════════════════════════════════════════════════════════════
+-- 🎨 ВЫБЕРИ ФАРВОР ЗДЕСЬ! (измени название в кавычках)
+-- ═════════════════════════════════════════════════════════════════════════════
+-- Доступные названия:
+--   'oceanicnext'      (синяя)
+--   'gruvbox_dark'     (коричневая)
+--   'solarized_light'  (светлая)
+--   'solarized_dark'   (тёмно-синяя)
+--   'nord'             (голубая)
+--   'dracula'          (фиолетовая)
+--   'tokyo_night'      (неоновая)
+--   'catppuccin_mocha' (пастельная тёмная)
+--   'rose_pine'        (розовая)
+--   'pure_white'       (белая)
+
+config.colors = schemes.oceanicnext  -- 👈 ИЗМЕНИ ЗДЕСЬ!
+
+-- ═════════════════════════════════════════════════════════════════════════════
+-- ШРИФТ И ОКНО
+-- ═════════════════════════════════════════════════════════════════════════════
+
+config.font = wezterm.font('Consolas')
+config.font_size = 15.4
+config.initial_cols = 90
+config.initial_rows = 26 
+config.window_background_opacity = 0.95
+
+return config

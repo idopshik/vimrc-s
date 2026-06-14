@@ -1,89 +1,73 @@
 " core/styling.vim — Цвета, шрифты, визуальные настройки
 " ══════════════════════════════════════════════════════════════════════════════
 
-" === True colors ===
 if has('termguicolors')
     set termguicolors
 endif
 
-" === Background ===
-set background=dark
-
-" === Colorscheme ===
-" Попробуем gruvbox, если не найден — fallback
-try
-    colorscheme gruvbox
-catch
-    try
-        colorscheme desert
-    catch
-        " Ничего страшного, используем default
-    endtry
-endtry
-
-" === Gruvbox настройки ===
-let g:gruvbox_contrast_dark = 'medium'
-let g:gruvbox_invert_selection = 0
-
-" === Airline theme ===
-let g:airline_theme = 'gruvbox'
-
-" === GUI шрифт ===
-if g:is_gui
-    if g:is_win
-        set guifont=Consolas:h11
-        " Или с Nerd Font:
-        " set guifont=JetBrainsMono\ NF:h11
-    else
-        set guifont=JetBrains\ Mono\ 11
-        " Или:
-        " set guifont=Fira\ Code\ 11
-    endif
-endif
-
-" === Cursor ===
+" === Базовые визуальные настройки ===
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-
-" === Sign column ===
 set signcolumn=yes
-
-" === Line numbers color ===
-highlight LineNr guifg=#665c54
-highlight CursorLineNr guifg=#fabd2f gui=bold
-
-" === Vertical split line ===
-highlight VertSplit guifg=#3c3836 guibg=NONE
-
-" === Transparent background (опционально) ===
-" let g:transparent_enabled = v:true
-" highlight Normal guibg=NONE ctermbg=NONE
-" highlight NonText guibg=NONE ctermbg=NONE
-
-" === Status line всегда видна ===
 set laststatus=2
-
-" === Show mode в command line ===
 set showmode
-
-" === Show command в command line ===
 set showcmd
-
-" === Подсветка текущей строки ===
 set cursorline
-
-" === Подсветка 80 символов (опционально) ===
-" set colorcolumn=80
-" highlight ColorColumn guibg=#3c3836
-
-" === Listchars (показ пробелов, табов) ===
 set list
 set listchars=tab:→\ ,trail:·,extends:›,precedes:‹,nbsp:␣
 
-" === Neovim-specific ===
 if g:is_nvim
-    " Более плавный scroll
     set smoothscroll
 endif
 
-" попытка баг алакрити убрать
-set background=dark
+" === Настройка шрифта ===
+if g:is_gui
+    if g:is_win
+        set guifont=Consolas:h11
+    else
+        set guifont=JetBrains\ Mono\ 11
+    endif
+endif
+
+" === Функция для сброса фона (делает Neovim прозрачным) ===
+function! Transparentize()
+    highlight Normal guibg=NONE ctermbg=NONE
+    highlight NormalNC guibg=NONE ctermbg=NONE
+    highlight LineNr guibg=NONE ctermbg=NONE
+    highlight SignColumn guibg=NONE ctermbg=NONE
+    highlight VertSplit guibg=NONE
+    highlight EndOfBuffer guibg=NONE
+endfunction
+
+" Автоматический сброс прозрачности при любой смене темы
+autocmd ColorScheme * call Transparentize()
+
+" ═══════════════════════════════════════════════════════════════════════════
+" СИНХРОНИЗАЦИЯ VIM + WEZTERM
+" ═══════════════════════════════════════════════════════════════════════════
+" КАК ЭТО РАБОТАЕТ:
+" - Vim colorscheme и WezTerm фон НЕ связаны автоматически
+" - Ты должен нажимать ОБА:
+"   1. :Theme1 (или :Tn1, :Tn2, :Tn3) в Vim
+"   2. Ctrl+Alt+1 (или 2, 3) в WezTerm
+" 
+" Это отдельные приложения, они не видят друг друга!
+" ═══════════════════════════════════════════════════════════════════════════
+
+" === ТЕМА 1: OceanicNext (Синяя) ===
+command! Theme1 colorscheme OceanicNext | let g:airline_theme = 'oceanicnext' | echom '✓ OceanicNext | Press Ctrl+Alt+1 in WezTerm'
+command! Tn1 Theme1
+
+" === ТЕМА 2: Gruvbox (Коричневая) ===
+command! Theme2 colorscheme gruvbox | let g:airline_theme = 'gruvbox' | echom '✓ Gruvbox | Press Ctrl+Alt+2 in WezTerm'
+command! Tn2 Theme2
+
+" === ТЕМА 3: Solarized Light (Светлая) ===
+command! Theme3 colorscheme solarized | let g:airline_theme = 'solarized' | echom '✓ Solarized | Press Ctrl+Alt+3 in WezTerm'
+command! Tn3 Theme3
+
+" === ДОПОЛНИТЕЛЬНО: Tokyo Night (для быстрого теста) ===
+command! Theme9 colorscheme tokyonight | let g:airline_theme = 'tokyonight' | echom '✓ Tokyo Night | Press Ctrl+Alt+9 in WezTerm'
+
+" === ПО УМОЛЧАНИЮ: Theme 1 (OceanicNext) ===
+call execute('Theme1')
+call Transparentize()
