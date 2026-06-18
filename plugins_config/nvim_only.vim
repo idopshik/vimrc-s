@@ -70,20 +70,36 @@ if has('nvim')
     let g:vimtex_compiler_method = 'latexmk'
     
     " Настройки latexmk: складывать временные файлы в build/
-    let g:vimtex_compiler_latexmk = {
-        \ 'executable' : 'latexmk',
-        \ 'build_dir' : 'build',
-        \ 'options' : [
-        \   '-lualatex',
-        \   '-interaction=nonstopmode',
-        \   '-synctex=1',
-        \   '-shell-escape',
-        \ ],
-    \}
+let g:vimtex_compiler_latexmk = {
+    \ 'executable' : 'latexmk',
+    \ 'build_dir'  : 'build',
+    \ 'continuous' : 1,
+    \ 'options' : [
+    \   '-lualatex',
+    \   '-interaction=nonstopmode',
+    \   '-synctex=1',
+    \   '-shell-escape',
+    \   '-output-directory=build',
+    \ ],
+\}
+
+    " Вместо (или дополнительно к) build_dir в dict:
+    let g:vimtex_compiler_build_dir = 'build'
+
+
+
     " Просмотрщик PDF для Windows (SumatraPDF)
     " Укажите полный путь, если SumatraPDF не в PATH
-    let g:vimtex_view_general_viewer = 'C:/Users/belousov/Progs/sumatra/SumatraPDF-3.6.1-64.exe'
-    let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+    if g:is_win
+        " Windows: SumatraPDF
+        let g:vimtex_view_general_viewer = 'C:/Users/belousov/Progs/sumatra/SumatraPDF-3.6.1-64.exe'
+        let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+    else
+
+        " Linux: используем системный просмотрщик по умолчанию (xdg-open)
+        let g:vimtex_view_method = 'zathura'
+    endif
+
     
     " Если SumatraPDF не находится автоматически, укажите явно:
     " let g:vimtex_view_general_viewer = 'C:/Program Files/SumatraPDF/SumatraPDF.exe'
@@ -117,8 +133,7 @@ endif
 
 
 
-" Устанавливаем программу для сборки
-set makeprg=latexmk\ -xelatex\ -interaction=nonstopmode\ -synctex=1\ -shell-escape\ -output-directory=build\ %
+
 " Настраиваем формат вывода ошибок для quickfix-списка
 set errorformat=%E!\ LaTeX\ %trror:\ %m,
       \%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
