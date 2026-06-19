@@ -56,16 +56,25 @@ while c <= 'z'
 endwhile
 
 " === Keyboard layout switch (Linux only, xkb-switch) ===
-if g:is_linux && !g:is_nvim
-    let g:XkbSwitchLib = "/usr/local/lib/libxkbswitch.so"
-    
-    function! InsertLeaveFun() abort
-        if filereadable(g:XkbSwitchLib)
-            call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
-        endif
-    endfunction
-    
-    autocmd InsertLeave * call InsertLeaveFun()
+if g:is_linux
+    if g:is_nvim
+lua << EOF
+vim.api.nvim_create_autocmd("InsertLeave", {
+    group = vim.api.nvim_create_augroup("XkbSwitchNvim", { clear = true }),
+    callback = function()
+        vim.system({'xkb-switch', '-s', 'us'})
+    end,
+})
+EOF
+    else
+        let g:XkbSwitchLib = "/usr/local/lib/libxkbswitch.so"
+        function! InsertLeaveFun() abort
+            if filereadable(g:XkbSwitchLib)
+                call libcall(g:XkbSwitchLib, 'Xkb_Switch_setXkbLayout', 'us')
+            endif
+        endfunction
+        autocmd InsertLeave * call InsertLeaveFun()
+    endif
 endif
 
 " === Vimwiki ===

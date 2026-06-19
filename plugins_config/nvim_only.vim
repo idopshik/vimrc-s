@@ -70,21 +70,41 @@ if has('nvim')
     let g:vimtex_compiler_method = 'latexmk'
     
     " Настройки latexmk: складывать временные файлы в build/
+
 let g:vimtex_compiler_latexmk = {
     \ 'executable' : 'latexmk',
-    \ 'build_dir'  : 'build',
+    \ 'out_dir'    : 'build',
     \ 'continuous' : 1,
     \ 'options' : [
     \   '-lualatex',
     \   '-interaction=nonstopmode',
     \   '-synctex=1',
     \   '-shell-escape',
-    \   '-output-directory=build',
     \ ],
 \}
 
     " Вместо (или дополнительно к) build_dir в dict:
     let g:vimtex_compiler_build_dir = 'build'
+
+
+
+augroup LatexKeymapsFix
+    autocmd!
+    autocmd FileType tex nnoremap <buffer> <F6> :call VimtexViewFixed()<CR>
+augroup END
+
+function! VimtexViewFixed() abort
+    let l:build = get(b:vimtex.compiler, 'build_dir', '')
+    let l:pdf = b:vimtex.root . (empty(l:build) ? '' : '/' . l:build)
+               \ . '/' . b:vimtex.name . '.pdf'
+    if filereadable(l:pdf)
+        call system('zathura ' . shellescape(l:pdf) . ' &')
+    else
+        echom 'PDF not found: ' . l:pdf
+    endif
+endfunction
+
+
 
 
 
